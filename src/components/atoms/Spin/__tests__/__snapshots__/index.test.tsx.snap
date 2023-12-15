@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spin should match snapshot 1`] = `
+<div
+  aria-busy="true"
+  aria-live="polite"
+  class="ant-spin ant-spin-spinning css-dev-only-do-not-override-htwhyh"
+>
+  <span
+    class="ant-spin-dot ant-spin-dot-spin"
+  >
+    <i
+      class="ant-spin-dot-item"
+    />
+    <i
+      class="ant-spin-dot-item"
+    />
+    <i
+      class="ant-spin-dot-item"
+    />
+    <i
+      class="ant-spin-dot-item"
+    />
+  </span>
+</div>
+`;

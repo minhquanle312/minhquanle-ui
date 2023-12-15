@@ -1,0 +1,1 @@
+export { DividerPure } from './DividerPure';

@@ -1,0 +1,1 @@
+export { CrossTabTable } from './CrossTabTable';

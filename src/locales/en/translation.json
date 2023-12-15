@@ -1,0 +1,33 @@
+{
+  "global": {
+    "minus": "Minus",
+    "plus": "Plus"
+  },
+  "button": {},
+  "datePicker": {
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "dateTypes": {
+      "today": "Today",
+      "firstDayOfWeekMonSun": "First day of this week (Mon - Sun)",
+      "firstDayOfWeekSunSat": "First day of this week (Sun - Sat)",
+      "firstDayOfMonth": "First day of this month",
+      "firstDayOfQuarter": "First day of this quarter",
+      "firstDayOfYear": "First day of this year",
+      "lastDayOfWeekMonSun": "First day of this week (Mon - Sun)",
+      "lastDayOfWeekSunSat": "First day of this week (Sun - Sat)",
+      "lastDayOfMonth": "Last day of this month",
+      "lastDayOfQuarter": "Last day of this quarter",
+      "lastDayOfYear": "Last day of this year",
+      "fixed": "Fixed"
+    },
+    "seconds": "Seconds",
+    "minutes": "Minutes",
+    "hours": "Hours",
+    "days": "Days",
+    "weeks": "Weeks",
+    "months": "Months",
+    "quarters": "Quarters",
+    "years": "Years"
+  }
+}

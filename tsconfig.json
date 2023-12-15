@@ -1,21 +1,106 @@
 {
+  // "compilerOptions": {
+  //   // Default
+  //   "target": "es5",
+  //   "esModuleInterop": true,
+  //   "forceConsistentCasingInFileNames": true,
+  //   "strict": true,
+  //   "skipLibCheck": true,
+
+  //   // Added
+  //   "jsx": "react",
+  //   "module": "ESNext",
+  //   "declaration": true,
+  //   "declarationDir": "types",
+  //   "sourceMap": true,
+  //   "outDir": "dist",
+  //   "moduleResolution": "node",
+  //   "allowSyntheticDefaultImports": true,
+  //   "emitDeclarationOnly": true
+  // }
+
+  // NOTE: default config
+  // "compilerOptions": {
+  //   "target": "es2016" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+  //   "typeRoots": [
+  //     "node_modules/@types",
+  //     "src/types"
+  //   ] /* Specify multiple folders that act like `./node_modules/@types`. */,
+  //   "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables `allowSyntheticDefaultImports` for type compatibility. */,
+  //   "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
+  //   /* Type Checking */
+  //   "strict": true /* Enable all strict type-checking options. */,
+  //   "skipLibCheck": true /* Skip type checking all .d.ts files. */,
+  //   "jsx": "react",
+  //   "module": "ESNext",
+  //   "declaration": true,
+  //   "declarationDir": "dist/types",
+  //   "sourceMap": true,
+  //   "outDir": "dist",
+  //   "moduleResolution": "node",
+  //   "resolveJsonModule": true,
+  //   "allowSyntheticDefaultImports": true,
+  //   "noImplicitAny": false,
+  //   "baseUrl": "./",
+  //   "paths": {
+  //     "src": ["./src"]
+  //   }
+  // },
+  // "exclude": [
+  //   "src/**/*.test.tsx",
+  //   "src/**/*.test.ts",
+  //   "src/**/*.test.jsx",
+  //   "src/**/*.test.js",
+  //   "src/**/*.stories.tsx",
+  //   "node_modules",
+  //   "lib",
+  //   "es"
+  // ],
+  // "include": ["src", "types"]
+  // NOTE: END - default config
+
+  // NOTE: Config 3
+  // "compilerOptions": {
+  //   "target": "es2016",
+  //   "esModuleInterop": true,
+  //   "forceConsistentCasingInFileNames": true,
+  //   "strict": true,
+  //   "skipLibCheck": true,
+
+  //   "jsx": "react",
+  //   "module": "ESNext",
+  //   "declaration": true,
+  //   "sourceMap": true,
+  //   "outDir": "dist",
+  //   "moduleResolution": "node",
+  //   "allowSyntheticDefaultImports": true,
+  //   "emitDeclarationOnly": true
+  // }
+
+  // NOTE: config 4 - use tsc as compiler
+  // Link: https://blog.logrocket.com/publishing-node-modules-typescript-es-modules/
   "compilerOptions": {
-    // Default
-    "target": "es5",
+    "baseUrl": "./",
+    "paths": {
+      "src/*": ["./src/*"],
+      "minhquanle-ui": ["./src/components/index.ts"],
+      "minhquanle-ui/lib/*": ["./src/components/*"]
+    },
+    "target": "ES6",
+    "module": "ESNext",
+    "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true,
-
-    // Added
-    "jsx": "react",
-    "module": "ESNext",
     "declaration": true,
-    "declarationDir": "types",
-    "sourceMap": true,
-    "outDir": "dist",
+    // "moduleResolution": "Bundler",
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "emitDeclarationOnly": true
-  }
+    "jsx": "react",
+    "jsxFactory": "React.createElement",
+    "jsxFragmentFactory": "React.Fragment",
+    "outDir": "./lib",
+
+    "lib": ["dom", "es2017"]
+  },
+  "include": ["**/*"],
+  "exclude": ["node_modules", "lib", "es"]
 }

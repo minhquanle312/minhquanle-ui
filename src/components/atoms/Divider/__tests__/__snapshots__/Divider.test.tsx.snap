@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Divider Component should render the Default Divider Component 1`] = `
+<div>
+  <div
+    class="ant-divider css-dev-only-do-not-override-htwhyh ant-divider-horizontal"
+    role="separator"
+  />
+</div>
+`;
+
+exports[`Divider Component should render the Divider Component 1`] = `
+<div>
+  <div
+    class="ant-divider css-dev-only-do-not-override-htwhyh ant-divider-horizontal"
+    role="separator"
+  />
+</div>
+`;
+
+exports[`Divider Component should render the Horizontal Divider Component 1`] = `
+<div>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.
+  </p>
+  <div
+    class="ant-divider css-dev-only-do-not-override-htwhyh ant-divider-horizontal"
+    role="separator"
+  />
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.
+  </p>
+  <div
+    class="ant-divider css-dev-only-do-not-override-htwhyh ant-divider-horizontal ant-divider-dashed"
+    role="separator"
+  />
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.
+  </p>
+</div>
+`;
+
+exports[`Divider Component should render the TextWithoutHeadingStyle Divider Component 1`] = `
+<div>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.
+  </p>
+  <div
+    class="ant-divider css-dev-only-do-not-override-htwhyh ant-divider-horizontal ant-divider-with-text ant-divider-with-text-center ant-divider-plain"
+    role="separator"
+  >
+    <span
+      class="ant-divider-inner-text"
+    >
+      Text
+    </span>
+  </div>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.
+  </p>
+  <div
+    class="ant-divider css-dev-only-do-not-override-htwhyh ant-divider-horizontal ant-divider-with-text ant-divider-with-text-left ant-divider-plain"
+    role="separator"
+  >
+    <span
+      class="ant-divider-inner-text"
+    >
+      Left Text
+    </span>
+  </div>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.
+  </p>
+  <div
+    class="ant-divider css-dev-only-do-not-override-htwhyh ant-divider-horizontal ant-divider-with-text ant-divider-with-text-right ant-divider-plain"
+    role="separator"
+  >
+    <span
+      class="ant-divider-inner-text"
+    >
+      Right Text
+    </span>
+  </div>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.
+  </p>
+</div>
+`;
+
+exports[`Divider Component should render the Vertical Divider Component 1`] = `
+<div>
+  Text Vertical
+  <div
+    class="ant-divider css-dev-only-do-not-override-htwhyh ant-divider-vertical"
+    role="separator"
+  />
+  <a
+    href="#"
+  >
+    Link 1 123
+  </a>
+  <div
+    class="ant-divider css-dev-only-do-not-override-htwhyh ant-divider-vertical"
+    role="separator"
+  />
+  <a
+    href="#"
+  >
+    Link 2 234312
+  </a>
+</div>
+`;

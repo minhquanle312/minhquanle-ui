@@ -1,0 +1,45 @@
+import { Meta, Story } from '@storybook/addon-docs';
+import { Button } from 'src/index';
+
+<Meta title="Home/Usage" />
+
+# Usage
+
+## Config Provider in Global App 
+To use Antsomi UI components in your React application, you need to import the ConfigProvider from the Antsomi library in the index.js or App.js file. By importing ConfigProvider, you can provide a custom `theme` configuration object that will be used across all Antsomi components in your application.
+
+```jsx
+// Libraries
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {ConfigProvider} from '@antscorp/antsomi-ui';
+
+// App
+import App from './app.jsx';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <ConfigProvider>
+    <App />
+  </ConfigProvider>
+);
+
+```
+
+## Using component
+
+This is a example for using Button Component
+
+```jsx
+import React from 'react';
+import { Button } from '@antscorp/antsomi-ui';
+
+const App = () => {
+  return <Button>Click me</Button>;
+};
+
+export default App;
+```
+
+<Story name="Example">
+  <Button>Click me</Button>
+</Story>

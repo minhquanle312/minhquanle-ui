@@ -1,0 +1,33 @@
+{
+  "global": {
+    "minus": "Trừ",
+    "plus": "Cộng"
+  },
+  "button": {},
+  "datePicker": {
+    "startDate": "Ngày bắt đầu",
+    "endDate": "Ngày kết thúc",
+    "dateTypes": {
+      "today": "Hôm nay",
+      "firstDayOfWeekMonSun": "Ngày đầu tiên của tuần (T2 - CN)",
+      "firstDayOfWeekSunSat": "Ngày đầu tiên của tuần (CN - T7)",
+      "firstDayOfMonth": "Ngày đầu tiên của tháng",
+      "firstDayOfQuarter": "Ngày đầu tiên của quý",
+      "firstDayOfYear": "Ngày đầu tiên của năm",
+      "lastDayOfWeekMonSun": "Ngày cuối cùng của tuần (T2 - CN)",
+      "lastDayOfWeekSunSat": "Ngày cuối cùng của tuần (CN - T7)",
+      "lastDayOfMonth": "Ngày cuối cùng của tháng",
+      "lastDayOfQuarter": "Ngày cuối cùng của quý",
+      "lastDayOfYear": "Ngày cuối cùng của năm",
+      "fixed": "Cố Định"
+    },
+    "seconds": "Giây",
+    "minutes": "Phút",
+    "hours": "Giờ",
+    "days": "Ngày",
+    "weeks": "Tuần",
+    "months": "Tháng",
+    "quarters": "Quý",
+    "years": "Năm"
+  }
+}

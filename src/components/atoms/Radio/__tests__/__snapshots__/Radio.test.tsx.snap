@@ -1,0 +1,1115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Radio Component Basic Radio Component should render the Basic Radio Component 1`] = `
+<div>
+  <label
+    class="ant-radio-wrapper css-dev-only-do-not-override-htwhyh"
+  >
+    <span
+      class="ant-radio"
+    >
+      <input
+        class="ant-radio-input"
+        type="radio"
+      />
+      <span
+        class="ant-radio-inner"
+      />
+    </span>
+    <span>
+      Radio
+    </span>
+  </label>
+</div>
+`;
+
+exports[`Radio Component Default Radio Component should render the Default Radio Component 1`] = `
+<div>
+  <label
+    class="ant-radio-wrapper css-dev-only-do-not-override-htwhyh"
+  >
+    <span
+      class="ant-radio"
+    >
+      <input
+        class="ant-radio-input"
+        type="radio"
+      />
+      <span
+        class="ant-radio-inner"
+      />
+    </span>
+  </label>
+</div>
+`;
+
+exports[`Radio Component Disabled Radio Component should render the Disabled Radio Component 1`] = `
+<div>
+  <label
+    class="ant-radio-wrapper ant-radio-wrapper-disabled css-dev-only-do-not-override-htwhyh"
+  >
+    <span
+      class="ant-radio ant-radio-disabled"
+    >
+      <input
+        class="ant-radio-input"
+        disabled=""
+        type="radio"
+      />
+      <span
+        class="ant-radio-inner"
+      />
+    </span>
+    <span>
+      Disabled
+    </span>
+  </label>
+  <label
+    class="ant-radio-wrapper ant-radio-wrapper-disabled css-dev-only-do-not-override-htwhyh"
+  >
+    <span
+      class="ant-radio ant-radio-checked ant-radio-disabled"
+    >
+      <input
+        checked=""
+        class="ant-radio-input"
+        disabled=""
+        type="radio"
+      />
+      <span
+        class="ant-radio-inner"
+      />
+    </span>
+    <span>
+      Disabled
+    </span>
+  </label>
+  <br />
+  <button
+    class="ant-btn css-dev-only-do-not-override-htwhyh ant-btn-primary"
+    style="margin-top: 16px;"
+    type="button"
+  >
+    <span>
+      Toggle disabled
+    </span>
+  </button>
+</div>
+`;
+
+exports[`Radio Component Radio Group API should render the Radio Group API Component 1`] = `
+<div>
+  <div
+    class="ant-table-wrapper css-dev-only-do-not-override-htwhyh"
+  >
+    <div
+      class="ant-spin-nested-loading css-dev-only-do-not-override-htwhyh"
+    >
+      <div
+        class="ant-spin-container"
+      >
+        <div
+          class="ant-table"
+        >
+          <div
+            class="ant-table-container"
+          >
+            <div
+              class="ant-table-content"
+            >
+              <table
+                style="table-layout: auto;"
+              >
+                <colgroup />
+                <thead
+                  class="ant-table-thead"
+                >
+                  <tr>
+                    <th
+                      class="ant-table-cell"
+                      scope="col"
+                    >
+                      Property
+                    </th>
+                    <th
+                      class="ant-table-cell"
+                      scope="col"
+                    >
+                      Description
+                    </th>
+                    <th
+                      class="ant-table-cell"
+                      scope="col"
+                    >
+                      Type
+                    </th>
+                    <th
+                      class="ant-table-cell"
+                      scope="col"
+                    >
+                      Default
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  class="ant-table-tbody"
+                >
+                  <tr
+                    class="ant-table-row ant-table-row-level-0"
+                    data-row-key="1"
+                  >
+                    <td
+                      class="ant-table-cell"
+                    >
+                      buttonStyle
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      The style type of radio button
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      <a
+                        style="color: magenta;"
+                      >
+                        <span
+                          class="ant-tag ant-tag-magenta css-dev-only-do-not-override-htwhyh"
+                          style="margin-right: 0px;"
+                        >
+                          outline
+                        </span>
+                         | 
+                        <span
+                          class="ant-tag ant-tag-magenta css-dev-only-do-not-override-htwhyh"
+                          style="margin-right: 0px;"
+                        >
+                          solid
+                        </span>
+                      </a>
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      <span
+                        class="ant-tag css-dev-only-do-not-override-htwhyh"
+                      >
+                        outline
+                      </span>
+                    </td>
+                  </tr>
+                  <tr
+                    class="ant-table-row ant-table-row-level-0"
+                    data-row-key="2"
+                  >
+                    <td
+                      class="ant-table-cell"
+                    >
+                      defaultValue
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      Default selected value
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      <a
+                        style="color: magenta;"
+                      >
+                        any
+                      </a>
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      -
+                    </td>
+                  </tr>
+                  <tr
+                    class="ant-table-row ant-table-row-level-0"
+                    data-row-key="3"
+                  >
+                    <td
+                      class="ant-table-cell"
+                    >
+                      disabled
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      Disable all radio buttons
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      <a
+                        style="color: magenta;"
+                      >
+                        boolean
+                      </a>
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      false
+                    </td>
+                  </tr>
+                  <tr
+                    class="ant-table-row ant-table-row-level-0"
+                    data-row-key="4"
+                  >
+                    <td
+                      class="ant-table-cell"
+                    >
+                      name
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      The
+                      <span
+                        class="ant-tag css-dev-only-do-not-override-htwhyh"
+                        style="margin-left: 8px;"
+                      >
+                        name
+                      </span>
+                      property of all
+                      <span
+                        class="ant-tag css-dev-only-do-not-override-htwhyh"
+                        style="margin-left: 8px;"
+                      >
+                        input[type="radio"]
+                      </span>
+                      children
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      <a
+                        style="color: magenta;"
+                      >
+                        string
+                      </a>
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      -
+                    </td>
+                  </tr>
+                  <tr
+                    class="ant-table-row ant-table-row-level-0"
+                    data-row-key="5"
+                  >
+                    <td
+                      class="ant-table-cell"
+                    >
+                      options
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      Set children optional
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      <a
+                        style="color: magenta;"
+                      >
+                        string[] | number[] | Array&lt;{ label: ReactNode; value: string; disabled?: boolean; }&gt;
+                      </a>
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      -
+                    </td>
+                  </tr>
+                  <tr
+                    class="ant-table-row ant-table-row-level-0"
+                    data-row-key="6"
+                  >
+                    <td
+                      class="ant-table-cell"
+                    >
+                      optionType
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      Set Radio optionType
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      <a
+                        style="color: magenta;"
+                      >
+                        <span
+                          class="ant-tag ant-tag-magenta css-dev-only-do-not-override-htwhyh"
+                          style="margin-right: 0px;"
+                        >
+                          default
+                        </span>
+                         | 
+                        <span
+                          class="ant-tag ant-tag-magenta css-dev-only-do-not-override-htwhyh"
+                          style="margin-right: 0px;"
+                        >
+                          button
+                        </span>
+                      </a>
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      <span
+                        class="ant-tag css-dev-only-do-not-override-htwhyh"
+                      >
+                        default
+                      </span>
+                    </td>
+                  </tr>
+                  <tr
+                    class="ant-table-row ant-table-row-level-0"
+                    data-row-key="7"
+                  >
+                    <td
+                      class="ant-table-cell"
+                    >
+                      size
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      The size of radio button style
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      <a
+                        style="color: magenta;"
+                      >
+                        <span
+                          class="ant-tag ant-tag-magenta css-dev-only-do-not-override-htwhyh"
+                          style="margin-right: 0px;"
+                        >
+                          large
+                        </span>
+                         | 
+                        <span
+                          class="ant-tag ant-tag-magenta css-dev-only-do-not-override-htwhyh"
+                          style="margin-right: 0px;"
+                        >
+                          middle
+                        </span>
+                         |
+                         
+                        <span
+                          class="ant-tag ant-tag-magenta css-dev-only-do-not-override-htwhyh"
+                          style="margin-right: 0px;"
+                        >
+                          small
+                        </span>
+                      </a>
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      -
+                    </td>
+                  </tr>
+                  <tr
+                    class="ant-table-row ant-table-row-level-0"
+                    data-row-key="8"
+                  >
+                    <td
+                      class="ant-table-cell"
+                    >
+                      value
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      Used for setting the currently selected value
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      <a
+                        style="color: magenta;"
+                      >
+                        any
+                      </a>
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      -
+                    </td>
+                  </tr>
+                  <tr
+                    class="ant-table-row ant-table-row-level-0"
+                    data-row-key="9"
+                  >
+                    <td
+                      class="ant-table-cell"
+                    >
+                      onChange
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      The callback function that is triggered when the state changes
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      <a
+                        style="color: magenta;"
+                      >
+                        function(e:Event)
+                      </a>
+                    </td>
+                    <td
+                      class="ant-table-cell"
+                    >
+                      -
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Radio Component Radio Group Component should render the Radio Group Component 1`] = `
+<div>
+  <div
+    class="ant-radio-group ant-radio-group-outline css-dev-only-do-not-override-htwhyh"
+    role="radiogroup"
+  >
+    <label
+      class="ant-radio-wrapper ant-radio-wrapper-checked css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio ant-radio-checked"
+      >
+        <input
+          checked=""
+          class="ant-radio-input"
+          type="radio"
+          value="1"
+        />
+        <span
+          class="ant-radio-inner"
+        />
+      </span>
+      <span>
+        A
+      </span>
+    </label>
+    <label
+      class="ant-radio-wrapper css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio"
+      >
+        <input
+          class="ant-radio-input"
+          type="radio"
+          value="2"
+        />
+        <span
+          class="ant-radio-inner"
+        />
+      </span>
+      <span>
+        B
+      </span>
+    </label>
+    <label
+      class="ant-radio-wrapper css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio"
+      >
+        <input
+          class="ant-radio-input"
+          type="radio"
+          value="3"
+        />
+        <span
+          class="ant-radio-inner"
+        />
+      </span>
+      <span>
+        C
+      </span>
+    </label>
+    <label
+      class="ant-radio-wrapper css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio"
+      >
+        <input
+          class="ant-radio-input"
+          type="radio"
+          value="4"
+        />
+        <span
+          class="ant-radio-inner"
+        />
+      </span>
+      <span>
+        D
+      </span>
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Radio Component Radio Group Optional Component should render the Radio Group Optional Component 1`] = `
+<div>
+  <div
+    class="ant-radio-group ant-radio-group-outline css-dev-only-do-not-override-htwhyh"
+    role="radiogroup"
+  >
+    <label
+      class="ant-radio-wrapper ant-radio-wrapper-checked css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio ant-radio-checked"
+      >
+        <input
+          checked=""
+          class="ant-radio-input"
+          type="radio"
+          value="Apple"
+        />
+        <span
+          class="ant-radio-inner"
+        />
+      </span>
+      <span>
+        Apple
+      </span>
+    </label>
+    <label
+      class="ant-radio-wrapper css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio"
+      >
+        <input
+          class="ant-radio-input"
+          type="radio"
+          value="Pear"
+        />
+        <span
+          class="ant-radio-inner"
+        />
+      </span>
+      <span>
+        Pear
+      </span>
+    </label>
+    <label
+      class="ant-radio-wrapper css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio"
+      >
+        <input
+          class="ant-radio-input"
+          type="radio"
+          value="Orange"
+        />
+        <span
+          class="ant-radio-inner"
+        />
+      </span>
+      <span>
+        Orange
+      </span>
+    </label>
+  </div>
+  <br />
+  <div
+    class="ant-radio-group ant-radio-group-outline css-dev-only-do-not-override-htwhyh"
+    role="radiogroup"
+  >
+    <label
+      class="ant-radio-wrapper ant-radio-wrapper-checked css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio ant-radio-checked"
+      >
+        <input
+          checked=""
+          class="ant-radio-input"
+          type="radio"
+          value="Apple"
+        />
+        <span
+          class="ant-radio-inner"
+        />
+      </span>
+      <span>
+        Apple
+      </span>
+    </label>
+    <label
+      class="ant-radio-wrapper css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio"
+      >
+        <input
+          class="ant-radio-input"
+          type="radio"
+          value="Pear"
+        />
+        <span
+          class="ant-radio-inner"
+        />
+      </span>
+      <span>
+        Pear
+      </span>
+    </label>
+    <label
+      class="ant-radio-wrapper ant-radio-wrapper-disabled css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio ant-radio-disabled"
+      >
+        <input
+          class="ant-radio-input"
+          disabled=""
+          type="radio"
+          value="Orange"
+        />
+        <span
+          class="ant-radio-inner"
+        />
+      </span>
+      <span>
+        Orange
+      </span>
+    </label>
+  </div>
+  <br />
+  <br />
+  <div
+    class="ant-radio-group ant-radio-group-outline css-dev-only-do-not-override-htwhyh"
+    role="radiogroup"
+  >
+    <label
+      class="ant-radio-button-wrapper ant-radio-button-wrapper-checked css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio-button ant-radio-button-checked"
+      >
+        <input
+          checked=""
+          class="ant-radio-button-input"
+          type="radio"
+          value="Apple"
+        />
+        <span
+          class="ant-radio-button-inner"
+        />
+      </span>
+      <span>
+        Apple
+      </span>
+    </label>
+    <label
+      class="ant-radio-button-wrapper css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio-button"
+      >
+        <input
+          class="ant-radio-button-input"
+          type="radio"
+          value="Pear"
+        />
+        <span
+          class="ant-radio-button-inner"
+        />
+      </span>
+      <span>
+        Pear
+      </span>
+    </label>
+    <label
+      class="ant-radio-button-wrapper css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio-button"
+      >
+        <input
+          class="ant-radio-button-input"
+          type="radio"
+          value="Orange"
+        />
+        <span
+          class="ant-radio-button-inner"
+        />
+      </span>
+      <span>
+        Orange
+      </span>
+    </label>
+  </div>
+  <br />
+  <br />
+  <div
+    class="ant-radio-group ant-radio-group-solid css-dev-only-do-not-override-htwhyh"
+  >
+    <label
+      class="ant-radio-button-wrapper ant-radio-button-wrapper-checked css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio-button ant-radio-button-checked"
+      >
+        <input
+          checked=""
+          class="ant-radio-button-input"
+          type="radio"
+          value="Apple"
+        />
+        <span
+          class="ant-radio-button-inner"
+        />
+      </span>
+      <span>
+        Apple
+      </span>
+    </label>
+    <label
+      class="ant-radio-button-wrapper css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio-button"
+      >
+        <input
+          class="ant-radio-button-input"
+          type="radio"
+          value="Pear"
+        />
+        <span
+          class="ant-radio-button-inner"
+        />
+      </span>
+      <span>
+        Pear
+      </span>
+    </label>
+    <label
+      class="ant-radio-button-wrapper ant-radio-button-wrapper-disabled css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio-button ant-radio-button-disabled"
+      >
+        <input
+          class="ant-radio-button-input"
+          disabled=""
+          type="radio"
+          value="Orange"
+        />
+        <span
+          class="ant-radio-button-inner"
+        />
+      </span>
+      <span>
+        Orange
+      </span>
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Radio Component Size Radio Component should render the Size Radio Component 1`] = `
+<div>
+  <div
+    class="ant-radio-group ant-radio-group-outline ant-radio-group-large css-dev-only-do-not-override-htwhyh"
+  >
+    <label
+      class="ant-radio-button-wrapper ant-radio-button-wrapper-checked css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio-button ant-radio-button-checked"
+      >
+        <input
+          checked=""
+          class="ant-radio-button-input"
+          type="radio"
+          value="a"
+        />
+        <span
+          class="ant-radio-button-inner"
+        />
+      </span>
+      <span>
+        Hangzhou
+      </span>
+    </label>
+    <label
+      class="ant-radio-button-wrapper css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio-button"
+      >
+        <input
+          class="ant-radio-button-input"
+          type="radio"
+          value="b"
+        />
+        <span
+          class="ant-radio-button-inner"
+        />
+      </span>
+      <span>
+        Shanghai
+      </span>
+    </label>
+    <label
+      class="ant-radio-button-wrapper css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio-button"
+      >
+        <input
+          class="ant-radio-button-input"
+          type="radio"
+          value="c"
+        />
+        <span
+          class="ant-radio-button-inner"
+        />
+      </span>
+      <span>
+        Beijing
+      </span>
+    </label>
+    <label
+      class="ant-radio-button-wrapper css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio-button"
+      >
+        <input
+          class="ant-radio-button-input"
+          type="radio"
+          value="d"
+        />
+        <span
+          class="ant-radio-button-inner"
+        />
+      </span>
+      <span>
+        Chengdu
+      </span>
+    </label>
+  </div>
+  <br />
+  <div
+    class="ant-radio-group ant-radio-group-outline css-dev-only-do-not-override-htwhyh"
+    style="margin-top: 16px;"
+  >
+    <label
+      class="ant-radio-button-wrapper ant-radio-button-wrapper-checked css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio-button ant-radio-button-checked"
+      >
+        <input
+          checked=""
+          class="ant-radio-button-input"
+          type="radio"
+          value="a"
+        />
+        <span
+          class="ant-radio-button-inner"
+        />
+      </span>
+      <span>
+        Hangzhou
+      </span>
+    </label>
+    <label
+      class="ant-radio-button-wrapper css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio-button"
+      >
+        <input
+          class="ant-radio-button-input"
+          type="radio"
+          value="b"
+        />
+        <span
+          class="ant-radio-button-inner"
+        />
+      </span>
+      <span>
+        Shanghai
+      </span>
+    </label>
+    <label
+      class="ant-radio-button-wrapper css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio-button"
+      >
+        <input
+          class="ant-radio-button-input"
+          type="radio"
+          value="c"
+        />
+        <span
+          class="ant-radio-button-inner"
+        />
+      </span>
+      <span>
+        Beijing
+      </span>
+    </label>
+    <label
+      class="ant-radio-button-wrapper css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio-button"
+      >
+        <input
+          class="ant-radio-button-input"
+          type="radio"
+          value="d"
+        />
+        <span
+          class="ant-radio-button-inner"
+        />
+      </span>
+      <span>
+        Chengdu
+      </span>
+    </label>
+  </div>
+  <br />
+  <div
+    class="ant-radio-group ant-radio-group-outline ant-radio-group-small css-dev-only-do-not-override-htwhyh"
+    style="margin-top: 16px;"
+  >
+    <label
+      class="ant-radio-button-wrapper ant-radio-button-wrapper-checked css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio-button ant-radio-button-checked"
+      >
+        <input
+          checked=""
+          class="ant-radio-button-input"
+          type="radio"
+          value="a"
+        />
+        <span
+          class="ant-radio-button-inner"
+        />
+      </span>
+      <span>
+        Hangzhou
+      </span>
+    </label>
+    <label
+      class="ant-radio-button-wrapper css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio-button"
+      >
+        <input
+          class="ant-radio-button-input"
+          type="radio"
+          value="b"
+        />
+        <span
+          class="ant-radio-button-inner"
+        />
+      </span>
+      <span>
+        Shanghai
+      </span>
+    </label>
+    <label
+      class="ant-radio-button-wrapper css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio-button"
+      >
+        <input
+          class="ant-radio-button-input"
+          type="radio"
+          value="c"
+        />
+        <span
+          class="ant-radio-button-inner"
+        />
+      </span>
+      <span>
+        Beijing
+      </span>
+    </label>
+    <label
+      class="ant-radio-button-wrapper css-dev-only-do-not-override-htwhyh"
+    >
+      <span
+        class="ant-radio-button"
+      >
+        <input
+          class="ant-radio-button-input"
+          type="radio"
+          value="d"
+        />
+        <span
+          class="ant-radio-button-inner"
+        />
+      </span>
+      <span>
+        Chengdu
+      </span>
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Radio Component should render the Radio Component 1`] = `
+<div>
+  <label
+    class="ant-radio-wrapper css-dev-only-do-not-override-htwhyh"
+  >
+    <span
+      class="ant-radio"
+    >
+      <input
+        class="ant-radio-input"
+        type="radio"
+      />
+      <span
+        class="ant-radio-inner"
+      />
+    </span>
+  </label>
+</div>
+`;

@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Statistic should match snapshot 1`] = `
+<div
+  class="ant-statistic css-dev-only-do-not-override-nnuwmp"
+>
+  <div
+    class="ant-statistic-content"
+  >
+    <span
+      class="ant-statistic-content-value"
+    >
+      <span
+        class="ant-statistic-content-value-int"
+      >
+        0
+      </span>
+    </span>
+  </div>
+</div>
+`;

@@ -1,17 +1,17 @@
 /* eslint-disable prettier/prettier */
 // Libraries
-import React, { useState } from 'react';
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
-import { RadioChangeEvent } from 'antd';
-import type { DefaultOptionType } from 'antd/es/cascader';
+import React, { useState } from 'react'
+import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import { RadioChangeEvent } from 'antd'
+import type { DefaultOptionType } from 'antd/es/cascader'
 
 // Components
-import { Cascader } from './Cascader';
-import { Radio, Divider, Space } from '../../atoms';
-import { Table } from '../../organism';
+import { Cascader } from './Cascader'
+import { Radio, Divider, Space } from '../../atoms'
+import { Table } from '../../organism'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'src/constants';
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants'
 
 export default {
   title: 'Molecules/Cascader',
@@ -104,7 +104,7 @@ export default {
     },
     displayRender: {
       name: 'displayRender',
-      defaultValue: label => label.join(`/`),
+      defaultValue: (label) => label.join(`/`),
       description: 'The render function of displaying selected options',
       table: {
         type: { summary: '(label, selectedOptions) => ReactNode' },
@@ -117,7 +117,10 @@ export default {
       defaultValue: undefined,
       description: 'Custom render function for tags in `multiple` mode',
       table: {
-        type: { summary: '(label: string, onClose: function, value: string) => ReactNode' },
+        type: {
+          summary:
+            '(label: string, onClose: function, value: string) => ReactNode',
+        },
         defaultValue: { summary: '-' },
       },
       control: null,
@@ -155,7 +158,8 @@ export default {
     expandTrigger: {
       name: 'expandTrigger',
       defaultValue: 'click',
-      description: 'expand current item when `click` or `hover`, one of click hover',
+      description:
+        'expand current item when `click` or `hover`, one of click hover',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'click' },
@@ -169,7 +173,9 @@ export default {
       description: 'Custom field name for label and value and children',
       table: {
         type: { summary: 'object' },
-        defaultValue: { summary: '{ label: label, value: value, children: children }' },
+        defaultValue: {
+          summary: '{ label: label, value: value, children: children }',
+        },
       },
       control: null,
     },
@@ -187,7 +193,8 @@ export default {
     loadData: {
       name: 'loadData',
       defaultValue: undefined,
-      description: 'To load option lazily, and it cannot work with `showSearch`',
+      description:
+        'To load option lazily, and it cannot work with `showSearch`',
       table: {
         type: { summary: '(selectedOptions) => void' },
         defaultValue: { summary: '-' },
@@ -197,7 +204,8 @@ export default {
     maxTagCount: {
       name: 'maxTagCount',
       defaultValue: undefined,
-      description: 'Max tag count to show. `responsive` will cost render performance',
+      description:
+        'Max tag count to show. `responsive` will cost render performance',
       table: {
         type: { summary: 'number | responsive' },
         defaultValue: { summary: '-' },
@@ -442,20 +450,22 @@ Cascade selection box.
       },
     },
   },
-} as ComponentMeta<typeof Cascader>;
+} as ComponentMeta<typeof Cascader>
 
 // Default
-const Template: ComponentStory<typeof Cascader> = args => <Cascader {...args} />;
-export const Default = Template.bind({});
+const Template: ComponentStory<typeof Cascader> = (args) => (
+  <Cascader {...args} />
+)
+export const Default = Template.bind({})
 
-Default.args = {};
+Default.args = {}
 
 // Examples
 export const Basic: ComponentStory<any> = () => {
   interface Option {
-    value: string | number;
-    label: string;
-    children?: Option[];
+    value: string | number
+    label: string
+    children?: Option[]
   }
 
   const options: Option[] = [
@@ -491,14 +501,20 @@ export const Basic: ComponentStory<any> = () => {
         },
       ],
     },
-  ];
+  ]
 
   const onChange = (_value: string[]) => {
     // Do something
-  };
+  }
 
-  return <Cascader options={options} onChange={() => onChange} placeholder="Please select" />;
-};
+  return (
+    <Cascader
+      options={options}
+      onChange={() => onChange}
+      placeholder="Please select"
+    />
+  )
+}
 
 Basic.parameters = {
   docs: {
@@ -506,13 +522,13 @@ Basic.parameters = {
       story: 'Cascade selection box for selecting province/city/district.',
     },
   },
-};
+}
 
 export const CustomTrigger: ComponentStory<any> = () => {
   interface Option {
-    value: string;
-    label: string;
-    children?: Option[];
+    value: string
+    label: string
+    children?: Option[]
   }
 
   const options: Option[] = [
@@ -536,13 +552,13 @@ export const CustomTrigger: ComponentStory<any> = () => {
         },
       ],
     },
-  ];
+  ]
 
-  const [text, setText] = useState('Unselect');
+  const [text, setText] = useState('Unselect')
 
   const onChange = (_: string[], selectedOptions: Option[]) => {
-    setText(selectedOptions.map(o => o.label).join(', '));
-  };
+    setText(selectedOptions.map((o) => o.label).join(', '))
+  }
 
   return (
     <span>
@@ -552,8 +568,8 @@ export const CustomTrigger: ComponentStory<any> = () => {
         <a href="#">Change city</a>
       </Cascader>
     </span>
-  );
-};
+  )
+}
 
 CustomTrigger.parameters = {
   docs: {
@@ -561,14 +577,14 @@ CustomTrigger.parameters = {
       story: 'Separate trigger button and result.',
     },
   },
-};
+}
 
 export const DisabledOption: ComponentStory<any> = () => {
   interface Option {
-    value: string;
-    label: string;
-    disabled?: boolean;
-    children?: Option[];
+    value: string
+    label: string
+    disabled?: boolean
+    children?: Option[]
   }
 
   const options: Option[] = [
@@ -605,29 +621,30 @@ export const DisabledOption: ComponentStory<any> = () => {
         },
       ],
     },
-  ];
+  ]
 
   const onChange = (_value: string[]) => {
     // Do something
-  };
+  }
 
-  return <Cascader options={options} onChange={() => onChange} />;
-};
+  return <Cascader options={options} onChange={() => onChange} />
+}
 
 DisabledOption.parameters = {
   docs: {
     description: {
-      story: 'Disable option by specifying the `disabled` property in `options.`',
+      story:
+        'Disable option by specifying the `disabled` property in `options.`',
     },
   },
-};
+}
 
 export const Multiple: ComponentStory<any> = () => {
   interface Option {
-    value: string | number;
-    label: string;
-    children?: Option[];
-    disableCheckbox?: boolean;
+    value: string | number
+    label: string
+    children?: Option[]
+    disableCheckbox?: boolean
   }
 
   const options: Option[] = [
@@ -663,11 +680,11 @@ export const Multiple: ComponentStory<any> = () => {
         },
       ],
     },
-  ];
+  ]
 
   const onChange = (_value: string[][]) => {
     // Do something
-  };
+  }
 
   return (
     <Cascader
@@ -677,8 +694,8 @@ export const Multiple: ComponentStory<any> = () => {
       multiple
       maxTagCount="responsive"
     />
-  );
-};
+  )
+}
 
 Multiple.parameters = {
   docs: {
@@ -687,13 +704,13 @@ Multiple.parameters = {
         'Select multiple options. Disable the `checkbox` by adding the `disableCheckbox` property and selecting a specific item. The style of the disable can be modified by the className.',
     },
   },
-};
+}
 
 export const Size: ComponentStory<any> = () => {
   interface Option {
-    value: string;
-    label: string;
-    children?: Option[];
+    value: string
+    label: string
+    children?: Option[]
   }
 
   const options: Option[] = [
@@ -729,11 +746,11 @@ export const Size: ComponentStory<any> = () => {
         },
       ],
     },
-  ];
+  ]
 
   const onChange = (_value: string[]) => {
     // Do something
-  };
+  }
 
   return (
     <>
@@ -747,8 +764,8 @@ export const Size: ComponentStory<any> = () => {
       <br />
       <br />
     </>
-  );
-};
+  )
+}
 
 Size.parameters = {
   docs: {
@@ -756,14 +773,14 @@ Size.parameters = {
       story: 'Cascade selection box of different sizes.',
     },
   },
-};
+}
 
 export const Search: ComponentStory<any> = () => {
   interface Option {
-    value: string;
-    label: string;
-    children?: Option[];
-    disabled?: boolean;
+    value: string
+    label: string
+    children?: Option[]
+    disabled?: boolean
   }
 
   const options: Option[] = [
@@ -804,26 +821,29 @@ export const Search: ComponentStory<any> = () => {
         },
       ],
     },
-  ];
+  ]
 
   const onChange = (_value: string[], _selectedOptions?: Option[]) => {
     // Do something
-  };
+  }
 
   const filter = (inputValue: string, path: DefaultOptionType[]) =>
     path.some(
-      option => (option.label as string).toLowerCase().indexOf(inputValue.toLowerCase()) > -1,
-    );
+      (option) =>
+        (option.label as string)
+          .toLowerCase()
+          .indexOf(inputValue.toLowerCase()) > -1
+    )
   return (
     <Cascader
       options={options}
       onChange={() => onChange}
       placeholder="Please select"
       showSearch={{ filter }}
-      onSearch={value => onChange([value])}
+      onSearch={(value) => onChange([value])}
     />
-  );
-};
+  )
+}
 
 Search.parameters = {
   docs: {
@@ -831,13 +851,13 @@ Search.parameters = {
       story: 'Search and select options directly.',
     },
   },
-};
+}
 
 export const CustomFieldNames: ComponentStory<any> = () => {
   interface Option {
-    code: string;
-    name: string;
-    items?: Option[];
+    code: string
+    name: string
+    items?: Option[]
   }
 
   const options: Option[] = [
@@ -873,11 +893,11 @@ export const CustomFieldNames: ComponentStory<any> = () => {
         },
       ],
     },
-  ];
+  ]
 
   const onChange = (_value: string[]) => {
     // Do something
-  };
+  }
 
   return (
     <Cascader
@@ -886,8 +906,8 @@ export const CustomFieldNames: ComponentStory<any> = () => {
       onChange={() => onChange}
       placeholder="Please select"
     />
-  );
-};
+  )
+}
 
 CustomFieldNames.parameters = {
   docs: {
@@ -895,13 +915,13 @@ CustomFieldNames.parameters = {
       story: 'Custom field names.',
     },
   },
-};
+}
 
 export const Placement: ComponentStory<any> = () => {
   interface Option {
-    value: string;
-    label: string;
-    children?: Option[];
+    value: string
+    label: string
+    children?: Option[]
   }
 
   const options: Option[] = [
@@ -937,15 +957,15 @@ export const Placement: ComponentStory<any> = () => {
         },
       ],
     },
-  ];
+  ]
 
-  const [placement, SetPlacement] = useState<'bottomLeft' | 'bottomRight' | 'topLeft' | 'topRight'>(
-    'topLeft',
-  );
+  const [placement, SetPlacement] = useState<
+    'bottomLeft' | 'bottomRight' | 'topLeft' | 'topRight'
+  >('topLeft')
 
   const placementChange = (e: RadioChangeEvent) => {
-    SetPlacement(e.target.value);
-  };
+    SetPlacement(e.target.value)
+  }
 
   return (
     <>
@@ -957,24 +977,29 @@ export const Placement: ComponentStory<any> = () => {
       </Radio.Group>
       <br />
       <br />
-      <Cascader options={options} placeholder="Please select" placement={placement} />
+      <Cascader
+        options={options}
+        placeholder="Please select"
+        placement={placement}
+      />
     </>
-  );
-};
+  )
+}
 
 Placement.parameters = {
   docs: {
     description: {
-      story: 'You can manually specify the position of the popup via `placement`.',
+      story:
+        'You can manually specify the position of the popup via `placement`.',
     },
   },
-};
+}
 
 export const DefaultValue: ComponentStory<any> = () => {
   interface Option {
-    value: string;
-    label: string;
-    children?: Option[];
+    value: string
+    label: string
+    children?: Option[]
   }
 
   const options: Option[] = [
@@ -1010,11 +1035,11 @@ export const DefaultValue: ComponentStory<any> = () => {
         },
       ],
     },
-  ];
+  ]
 
   const onChange = (_value: string[]) => {
     // Do something
-  };
+  }
 
   return (
     <Cascader
@@ -1022,8 +1047,8 @@ export const DefaultValue: ComponentStory<any> = () => {
       options={options}
       onChange={() => onChange}
     />
-  );
-};
+  )
+}
 
 DefaultValue.parameters = {
   docs: {
@@ -1031,13 +1056,13 @@ DefaultValue.parameters = {
       story: 'Specifies default value by an array.',
     },
   },
-};
+}
 
 export const Hover: ComponentStory<any> = () => {
   interface Option {
-    value: string;
-    label: string;
-    children?: Option[];
+    value: string
+    label: string
+    children?: Option[]
   }
 
   const options: Option[] = [
@@ -1073,14 +1098,14 @@ export const Hover: ComponentStory<any> = () => {
         },
       ],
     },
-  ];
+  ]
 
   const onChange = (_value: string[]) => {
     // Do something
-  };
+  }
 
   // Just show the latest item.
-  const displayRender = (labels: string[]) => labels[labels.length - 1];
+  const displayRender = (labels: string[]) => labels[labels.length - 1]
 
   return (
     <Cascader
@@ -1089,8 +1114,8 @@ export const Hover: ComponentStory<any> = () => {
       displayRender={displayRender}
       onChange={() => onChange}
     />
-  );
-};
+  )
+}
 
 Hover.parameters = {
   docs: {
@@ -1098,13 +1123,13 @@ Hover.parameters = {
       story: 'Hover to expand sub menu, click to select option.',
     },
   },
-};
+}
 
 export const ChangeOnSelect: ComponentStory<any> = () => {
   interface Option {
-    value: string;
-    label: string;
-    children?: Option[];
+    value: string
+    label: string
+    children?: Option[]
   }
 
   const options: Option[] = [
@@ -1140,14 +1165,14 @@ export const ChangeOnSelect: ComponentStory<any> = () => {
         },
       ],
     },
-  ];
+  ]
 
   const onChange = (_value: string[]) => {
     // Do something
-  };
+  }
 
-  return <Cascader options={options} onChange={() => onChange} changeOnSelect />;
-};
+  return <Cascader options={options} onChange={() => onChange} changeOnSelect />
+}
 
 ChangeOnSelect.parameters = {
   docs: {
@@ -1155,15 +1180,15 @@ ChangeOnSelect.parameters = {
       story: 'Allow only select parent options.',
     },
   },
-};
+}
 
 export const ShowCheckedStrategy: ComponentStory<any> = () => {
-  const { SHOW_CHILD } = Cascader;
+  const { SHOW_CHILD } = Cascader
 
   interface Option {
-    value: string | number;
-    label: string;
-    children?: Option[];
+    value: string | number
+    label: string
+    children?: Option[]
   }
 
   const options: Option[] = [
@@ -1198,11 +1223,11 @@ export const ShowCheckedStrategy: ComponentStory<any> = () => {
         },
       ],
     },
-  ];
+  ]
 
   const onChange = (_value: string[][]) => {
     // Do something
-  };
+  }
 
   return (
     <>
@@ -1230,8 +1255,8 @@ export const ShowCheckedStrategy: ComponentStory<any> = () => {
         defaultValue={['bamboo']}
       />
     </>
-  );
-};
+  )
+}
 
 ShowCheckedStrategy.parameters = {
   docs: {
@@ -1239,14 +1264,14 @@ ShowCheckedStrategy.parameters = {
       story: 'The way show selected item in box using `ShowCheckedStrategy`.',
     },
   },
-};
+}
 
 export const CustomRender: ComponentStory<any> = () => {
   interface Option {
-    value: string;
-    label: string;
-    children?: Option[];
-    code?: number;
+    value: string
+    label: string
+    children?: Option[]
+    code?: number
   }
 
   const options: Option[] = [
@@ -1284,29 +1309,36 @@ export const CustomRender: ComponentStory<any> = () => {
         },
       ],
     },
-  ];
+  ]
 
   const handleAreaClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     _label: string,
-    _option: DefaultOptionType,
+    _option: DefaultOptionType
   ) => {
-    e.stopPropagation();
+    e.stopPropagation()
     // Do something
-  };
+  }
 
-  const displayRender = (labels: string[], selectedOptions?: DefaultOptionType[]) =>
+  const displayRender = (
+    labels: string[],
+    selectedOptions?: DefaultOptionType[]
+  ) =>
     labels.map((label, i) => {
-      const option = selectedOptions ? selectedOptions[i] : undefined;
+      const option = selectedOptions ? selectedOptions[i] : undefined
       if (i === labels.length - 1 && option) {
         return (
           <span key={option.value}>
-            {label} (<a onClick={e => handleAreaClick(e, label, option)}>{option.code}</a>)
+            {label} (
+            <a onClick={(e) => handleAreaClick(e, label, option)}>
+              {option.code}
+            </a>
+            )
           </span>
-        );
+        )
       }
-      return <span key={option ? option.value : null}>{label} / </span>;
-    });
+      return <span key={option ? option.value : null}>{label} / </span>
+    })
 
   return (
     <Cascader
@@ -1315,8 +1347,8 @@ export const CustomRender: ComponentStory<any> = () => {
       displayRender={displayRender}
       style={{ width: '100%' }}
     />
-  );
-};
+  )
+}
 
 CustomRender.parameters = {
   docs: {
@@ -1324,14 +1356,14 @@ CustomRender.parameters = {
       story: 'For instance, add an external link after the selected value.',
     },
   },
-};
+}
 
 export const LoadOptionsLazily: ComponentStory<any> = () => {
   interface Option {
-    value?: string | number | null;
-    label: React.ReactNode;
-    children?: Option[];
-    isLeaf?: boolean;
+    value?: string | number | null
+    label: React.ReactNode
+    children?: Option[]
+    isLeaf?: boolean
   }
 
   const optionLists: Option[] = [
@@ -1345,16 +1377,19 @@ export const LoadOptionsLazily: ComponentStory<any> = () => {
       label: 'Jiangsu',
       isLeaf: false,
     },
-  ];
+  ]
 
-  const [options, setOptions] = useState<Option[]>(optionLists);
+  const [options, setOptions] = useState<Option[]>(optionLists)
 
-  const onChange = (_value: (string | number)[], _selectedOptions: Option[]) => {
+  const onChange = (
+    _value: (string | number)[],
+    _selectedOptions: Option[]
+  ) => {
     // Do something
-  };
+  }
 
   const loadData = (selectedOptions: Option[]) => {
-    const targetOption = selectedOptions[selectedOptions.length - 1];
+    const targetOption = selectedOptions[selectedOptions.length - 1]
 
     // load options lazily
     setTimeout(() => {
@@ -1367,13 +1402,20 @@ export const LoadOptionsLazily: ComponentStory<any> = () => {
           label: `${targetOption.label} Dynamic 2`,
           value: 'dynamic2',
         },
-      ];
-      setOptions([...options]);
-    }, 1000);
-  };
+      ]
+      setOptions([...options])
+    }, 1000)
+  }
 
-  return <Cascader options={options} loadData={loadData} onChange={onChange} changeOnSelect />;
-};
+  return (
+    <Cascader
+      options={options}
+      loadData={loadData}
+      onChange={onChange}
+      changeOnSelect
+    />
+  )
+}
 
 LoadOptionsLazily.parameters = {
   docs: {
@@ -1381,13 +1423,13 @@ LoadOptionsLazily.parameters = {
       story: 'Load options lazily with `loadData`.',
     },
   },
-};
+}
 
 export const CustomDropdown: ComponentStory<any> = () => {
   interface Option {
-    value: string;
-    label: string;
-    children?: Option[];
+    value: string
+    label: string
+    children?: Option[]
   }
 
   const options: Option[] = [
@@ -1423,7 +1465,7 @@ export const CustomDropdown: ComponentStory<any> = () => {
         },
       ],
     },
-  ];
+  ]
 
   const dropdownRender = (menus: React.ReactNode) => (
     <div>
@@ -1431,10 +1473,16 @@ export const CustomDropdown: ComponentStory<any> = () => {
       <Divider style={{ margin: 0 }} />
       <div style={{ padding: 8 }}>The footer is not very short.</div>
     </div>
-  );
+  )
 
-  return <Cascader options={options} dropdownRender={dropdownRender} placeholder="Please select" />;
-};
+  return (
+    <Cascader
+      options={options}
+      dropdownRender={dropdownRender}
+      placeholder="Please select"
+    />
+  )
+}
 
 CustomDropdown.parameters = {
   docs: {
@@ -1442,22 +1490,23 @@ CustomDropdown.parameters = {
       story: 'Customize the dropdown menu via `dropdownRender`.',
     },
   },
-};
+}
 
 export const Status: ComponentStory<any> = () => (
   <Space direction="vertical">
     <Cascader status="error" placeholder="Error" />
     <Cascader status="warning" multiple placeholder="Warning multiple" />
   </Space>
-);
+)
 
 Status.parameters = {
   docs: {
     description: {
-      story: 'Add status to Cascader with `status`, which could be `error` or `warning`.',
+      story:
+        'Add status to Cascader with `status`, which could be `error` or `warning`.',
     },
   },
-};
+}
 
 export const ShowSearchAPI: ComponentStory<any> = () => {
   const dataSource = [
@@ -1481,7 +1530,10 @@ export const ShowSearchAPI: ComponentStory<any> = () => {
       description: (
         <>
           Whether the width of list matches input, (
-          <a href="https://github.com/ant-design/ant-design/issues/25779">how it looks</a>)
+          <a href="https://github.com/ant-design/ant-design/issues/25779">
+            how it looks
+          </a>
+          )
         </>
       ),
       type: 'boolean',
@@ -1501,10 +1553,16 @@ export const ShowSearchAPI: ComponentStory<any> = () => {
       type: 'function(a, b, inputValue)',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 ShowSearchAPI.parameters = {
   docs: {
@@ -1515,4 +1573,4 @@ ShowSearchAPI.parameters = {
       code: null,
     },
   },
-};
+}

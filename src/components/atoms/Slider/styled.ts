@@ -1,21 +1,21 @@
 // Libraries
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
 // Constants
-import { THEME } from 'src/constants';
+import { THEME } from 'minhquanle-ui/lib/constants'
 
 interface InputNumberWrapperProps {
-  isNegative?: boolean;
-  sliderValue?: number;
-  width?: number;
+  isNegative?: boolean
+  sliderValue?: number
+  width?: number
 }
 
 export const SliderWrapper = styled.div<InputNumberWrapperProps>`
   width: 100%;
 
   .antsomi-slider {
-    ${p => {
-      const width = p.width || 0;
+    ${(p) => {
+      const width = p.width || 0
 
       return p.isNegative
         ? css`
@@ -46,7 +46,7 @@ export const SliderWrapper = styled.div<InputNumberWrapperProps>`
               border-color: ${THEME.token?.accent1};
             }
           `
-        : '';
+        : ''
     }}
   }
-`;
+`

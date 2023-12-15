@@ -1,23 +1,23 @@
-import React, { FC, useState, useEffect, useRef } from 'react';
-import clsx from 'clsx';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeHighlight from 'rehype-highlight';
-import 'highlight.js/styles/vs2015.css';
+import React, { FC, useState, useEffect, useRef } from 'react'
+import clsx from 'clsx'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import rehypeHighlight from 'rehype-highlight'
+import 'highlight.js/styles/vs2015.css'
 
 // Atoms
-import { Typography } from 'src/components/atoms';
+import { Typography } from 'minhquanle-ui/lib/components/atoms'
 
 // Components
-import { GPTIconV3, UserIcon } from 'src/components/icons';
+import { GPTIconV3, UserIcon } from 'minhquanle-ui/lib/components/icons'
 
 // Type
-import { IChatBoxMessageProps, Role } from './types';
+import { IChatBoxMessageProps, Role } from './types'
 
 // Style
-import { MessageItemWrapper } from './styled';
+import { MessageItemWrapper } from './styled'
 
-const { Text } = Typography;
+const { Text } = Typography
 
 const MessageItem: FC<IChatBoxMessageProps> = ({
   role,
@@ -30,9 +30,9 @@ const MessageItem: FC<IChatBoxMessageProps> = ({
   isPlaceholder,
   renderType,
 }) => {
-  const isBot = role === Role.Assistant;
-  const [text, setText] = useState(isBot && doAnimation ? '' : content);
-  const contentRef = useRef<React.ReactElement>();
+  const isBot = role === Role.Assistant
+  const [text, setText] = useState(isBot && doAnimation ? '' : content)
+  const contentRef = useRef<React.ReactElement>()
 
   const MAP_ICON = {
     [Role.Assistant]: <GPTIconV3 className={clsx('icon', 'gpt')} />,
@@ -41,30 +41,30 @@ const MessageItem: FC<IChatBoxMessageProps> = ({
     ) : (
       <UserIcon className={clsx('icon', 'user')} />
     ),
-  };
+  }
 
   useEffect(() => {
     if (isBot && doAnimation) {
-      let i = 0;
+      let i = 0
       setTimeout(() => {
         const intervalId = setInterval(() => {
-          const nextSpace = content.slice(i).indexOf(' ');
-          i += nextSpace >= 0 ? nextSpace + 1 : content.length + 1;
-          setText(content.slice(0, i));
+          const nextSpace = content.slice(i).indexOf(' ')
+          i += nextSpace >= 0 ? nextSpace + 1 : content.length + 1
+          setText(content.slice(0, i))
           if (i > content.length) {
-            clearInterval(intervalId);
-            renderDone(idx);
+            clearInterval(intervalId)
+            renderDone(idx)
           }
-          scrollBody();
-        }, 20);
+          scrollBody()
+        }, 20)
 
-        return () => clearInterval(intervalId);
-      }, 150);
+        return () => clearInterval(intervalId)
+      }, 150)
     } else {
-      scrollBody();
+      scrollBody()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isBot]);
+  }, [isBot])
 
   const renderMarkdown = () => {
     try {
@@ -84,22 +84,23 @@ const MessageItem: FC<IChatBoxMessageProps> = ({
         >
           {text}
         </ReactMarkdown>
-      );
+      )
 
-      contentRef.current = newContent;
+      contentRef.current = newContent
 
-      return contentRef.current;
+      return contentRef.current
     } catch (error) {
-      return contentRef.current;
+      return contentRef.current
     }
-  };
+  }
   return (
     <MessageItemWrapper className={clsx({ greyBg: isBot })}>
       {MAP_ICON[role]}
       {renderType === 'markdown' ? (
         <div
           className={
-            isPlaceholder || (isBot && doAnimation && text.length < content.length)
+            isPlaceholder ||
+            (isBot && doAnimation && text.length < content.length)
               ? 'ants-text-streaming'
               : ''
           }
@@ -109,18 +110,20 @@ const MessageItem: FC<IChatBoxMessageProps> = ({
       ) : (
         <Text
           className={
-            isPlaceholder || (isBot && doAnimation && text !== content) ? 'ants-text-streaming' : ''
+            isPlaceholder || (isBot && doAnimation && text !== content)
+              ? 'ants-text-streaming'
+              : ''
           }
         >
           {isPlaceholder ? '' : text}
         </Text>
       )}
     </MessageItemWrapper>
-  );
-};
+  )
+}
 
 MessageItem.defaultProps = {
   renderType: 'markdown',
-};
+}
 
-export default React.memo(MessageItem);
+export default React.memo(MessageItem)

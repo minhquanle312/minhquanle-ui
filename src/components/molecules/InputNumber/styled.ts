@@ -1,11 +1,11 @@
 // Libraries
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
 // Components
-import { InputNumber as AntdInputNumber } from 'antd';
+import { InputNumber as AntdInputNumber } from 'antd'
 
 // Constants
-import { THEME } from 'src/constants';
+import { THEME } from 'minhquanle-ui/lib/constants'
 
 export const InputNumberWrapper = styled(AntdInputNumber)`
   height: 30px;
@@ -15,8 +15,8 @@ export const InputNumberWrapper = styled(AntdInputNumber)`
   font-size: ${THEME.token?.fontSize}px;
   --tw-shadow: 0 1px 0 0 #e0e0e0;
   --tw-shadow-colored: 0 1px 0 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
-    var(--tw-shadow);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
@@ -29,7 +29,7 @@ export const InputNumberWrapper = styled(AntdInputNumber)`
     background-color: ${THEME.token?.blue0};
   }
 
-  ${props =>
+  ${(props) =>
     css`
       height: ${props.height}${typeof props.height === 'number' ? 'px' : ''};
       width: ${props.width}${typeof props.width === 'number' ? 'px' : ''};
@@ -44,8 +44,8 @@ export const InputNumberWrapper = styled(AntdInputNumber)`
     background-color: ${THEME.token?.bw1_1};
     --tw-shadow: 0 1px 0 0 #194e8d;
     --tw-shadow-colored: 0 1px 0 0 var(--tw-shadow-color);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
-      var(--tw-shadow);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+      var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   &:disabled {
@@ -53,8 +53,8 @@ export const InputNumberWrapper = styled(AntdInputNumber)`
     color: ${THEME.token?.accent5};
     --tw-shadow: 0 1px 0 0 #e0e0e0;
     --tw-shadow-colored: 0 1px 0 0 var(--tw-shadow-color);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
-      var(--tw-shadow);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+      var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   .antsomi-input-number-handler-wrap {
@@ -95,4 +95,4 @@ export const InputNumberWrapper = styled(AntdInputNumber)`
     color: ${THEME.token?.colorTextBase};
     border-bottom-width: 1px;
   }
-`;
+`

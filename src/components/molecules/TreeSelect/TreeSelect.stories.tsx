@@ -1,18 +1,18 @@
 // Libraries
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-import React, { useState } from 'react';
-import { RadioChangeEvent, Switch, TreeSelectProps } from 'antd';
-import { CarryOutOutlined } from '@ant-design/icons';
-import { DefaultOptionType } from 'antd/es/select';
-import { SelectCommonPlacement } from 'antd/es/_util/motion';
+import { ComponentMeta, ComponentStory } from '@storybook/react'
+import React, { useState } from 'react'
+import { RadioChangeEvent, Switch, TreeSelectProps } from 'antd'
+import { CarryOutOutlined } from '@ant-design/icons'
+import { DefaultOptionType } from 'antd/es/select'
+import { SelectCommonPlacement } from 'antd/es/_util/motion'
 
 // Components
-import { TreeSelect } from './TreeSelect';
-import { Space, Radio } from '../../atoms';
-import { Table } from '../../organism';
+import { TreeSelect } from './TreeSelect'
+import { Space, Radio } from '../../atoms'
+import { Table } from '../../organism'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'src/constants';
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants'
 
 const treeData = [
   {
@@ -45,7 +45,7 @@ const treeData = [
       },
     ],
   },
-];
+]
 
 export default {
   title: 'Molecules/TreeSelect',
@@ -64,7 +64,8 @@ export default {
     },
     autoClearSearchValue: {
       name: 'autoClearSearchValue',
-      description: 'If auto clear search input value when multiple select is selected/deselected',
+      description:
+        'If auto clear search input value when multiple select is selected/deselected',
       table: {
         type: {
           summary: 'boolean',
@@ -151,7 +152,9 @@ export default {
       description: 'Customize node label, value, children field name',
       table: {
         type: { summary: 'object' },
-        defaultValue: { summary: '{ label: label, value: value, children: children }' },
+        defaultValue: {
+          summary: '{ label: label, value: value, children: children }',
+        },
       },
       control: 'object',
     },
@@ -214,7 +217,8 @@ export default {
     },
     maxTagCount: {
       name: 'maxTagCount',
-      description: 'Max tag count to show. `responsive` will cost render performance',
+      description:
+        'Max tag count to show. `responsive` will cost render performance',
       table: {
         type: { summary: 'number | responsive	' },
       },
@@ -241,7 +245,8 @@ export default {
     multiple: {
       name: 'multiple',
       defaultValue: false,
-      description: 'Support multiple or not, will be `true` when enable `treeCheckable`',
+      description:
+        'Support multiple or not, will be `true` when enable `treeCheckable`',
       table: {
         type: { summary: 'boolean ' },
         defaultValue: { summary: false },
@@ -359,7 +364,9 @@ export default {
       name: 'switcherIcon',
       description: 'Customize collapse/expand icon of tree node	',
       table: {
-        type: { summary: `ReactNode | ((props: AntTreeNodeProps) => ReactNode)` },
+        type: {
+          summary: `ReactNode | ((props: AntTreeNodeProps) => ReactNode)`,
+        },
       },
       control: null,
     },
@@ -401,7 +408,10 @@ export default {
       description:
         'Enable simple mode of `treeData`. Changes the treeData schema to: [{id:1, pId:0, value:1, title:"test1",...},...] where pId is parent nodes id). It is possible to replace the default `id` and `pId` keys by providing object to `treeDataSimpleMode`',
       table: {
-        type: { summary: 'boolean | object<{ id: string, pId: string, rootPId: string }>' },
+        type: {
+          summary:
+            'boolean | object<{ id: string, pId: string, rootPId: string }>',
+        },
         defaultValue: { summary: false },
       },
       control: {
@@ -430,7 +440,8 @@ export default {
     },
     treeExpandAction: {
       name: 'treeExpandAction',
-      description: 'Tree title open logic when click, optional: false |` click` | `doubleClick`',
+      description:
+        'Tree title open logic when click, optional: false |` click` | `doubleClick`',
       table: {
         type: { summary: 'string | boolean' },
         defaultValue: { summary: false },
@@ -462,7 +473,8 @@ export default {
     },
     treeLoadedKeys: {
       name: 'treeLoadedKeys	',
-      description: '(Controlled) Set loaded tree nodes, work with `loadData` only',
+      description:
+        '(Controlled) Set loaded tree nodes, work with `loadData` only',
       table: {
         type: { summary: 'string[] ' },
         defaultValue: { summary: '[]' },
@@ -484,7 +496,8 @@ export default {
     },
     treeNodeFilterProp: {
       name: 'treeNodeFilterProp	',
-      description: 'Will be used for filtering if `filterTreeNode` returns true',
+      description:
+        'Will be used for filtering if `filterTreeNode` returns true',
       table: {
         type: { summary: 'string' },
       },
@@ -543,7 +556,8 @@ export default {
     },
     onSearch: {
       name: 'onSearch',
-      description: 'A callback function, can be executed when the search input changes',
+      description:
+        'A callback function, can be executed when the search input changes',
       table: {
         type: { summary: 'function(value: string)' },
       },
@@ -551,7 +565,8 @@ export default {
     },
     onSelect: {
       name: 'onSelect',
-      description: 'A callback function, can be executed when you select a treeNode',
+      description:
+        'A callback function, can be executed when you select a treeNode',
       table: {
         type: { summary: 'function(value, node, extra)' },
       },
@@ -559,7 +574,8 @@ export default {
     },
     onTreeExpand: {
       name: 'onTreeExpand',
-      description: 'A callback function, can be executed when treeNode expanded',
+      description:
+        'A callback function, can be executed when treeNode expanded',
       table: {
         type: { summary: 'function(expandedKeys)' },
       },
@@ -580,9 +596,9 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof TreeSelect>;
+} as ComponentMeta<typeof TreeSelect>
 
-const Template: ComponentStory<typeof TreeSelect> = args => (
+const Template: ComponentStory<typeof TreeSelect> = (args) => (
   <TreeSelect
     style={{ width: '100%' }}
     dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
@@ -591,17 +607,17 @@ const Template: ComponentStory<typeof TreeSelect> = args => (
     bordered
     {...args}
   />
-);
+)
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 
 // Examples
 export const MultipleSelection = () => {
-  const [value, setValue] = useState<string>();
+  const [value, setValue] = useState<string>()
 
   const onChange = (newValue: string) => {
-    setValue(newValue);
-  };
+    setValue(newValue)
+  }
 
   return (
     <TreeSelect
@@ -616,8 +632,8 @@ export const MultipleSelection = () => {
       treeDefaultExpandAll
       onChange={onChange}
     />
-  );
-};
+  )
+}
 
 MultipleSelection.parameters = {
   docs: {
@@ -625,7 +641,7 @@ MultipleSelection.parameters = {
       story: 'Multiple selection usage.',
     },
   },
-};
+}
 
 export const Checkable = () => {
   const treeData = [
@@ -663,12 +679,12 @@ export const Checkable = () => {
         },
       ],
     },
-  ];
-  const [value, setValue] = useState(['0-0-0']);
+  ]
+  const [value, setValue] = useState(['0-0-0'])
 
   const onChange = (newValue: string[]) => {
-    setValue(newValue);
-  };
+    setValue(newValue)
+  }
 
   return (
     <TreeSelect
@@ -680,8 +696,8 @@ export const Checkable = () => {
       placeholder="Please select"
       treeData={treeData}
     />
-  );
-};
+  )
+}
 
 Checkable.parameters = {
   docs: {
@@ -689,40 +705,44 @@ Checkable.parameters = {
       story: 'Multiple and checkable.',
     },
   },
-};
+}
 
 export const AsynchronousLoading = () => {
-  const [value, setValue] = useState<string>();
+  const [value, setValue] = useState<string>()
   const [treeData, setTreeData] = useState<Omit<DefaultOptionType, 'label'>[]>([
     { id: 1, pId: 0, value: '1', title: 'Expand to load' },
     { id: 2, pId: 0, value: '2', title: 'Expand to load' },
     { id: 3, pId: 0, value: '3', title: 'Tree Node', isLeaf: true },
-  ]);
+  ])
 
   const genTreeNode = (parentId: number, isLeaf = false) => {
-    const random = Math.random().toString(36).substring(2, 6);
+    const random = Math.random().toString(36).substring(2, 6)
     return {
       id: random,
       pId: parentId,
       value: random,
       title: isLeaf ? 'Tree Node' : 'Expand to load',
       isLeaf,
-    };
-  };
+    }
+  }
 
   const onLoadData: TreeSelectProps['loadData'] = ({ id }) =>
-    new Promise(resolve => {
+    new Promise((resolve) => {
       setTimeout(() => {
         setTreeData(
-          treeData.concat([genTreeNode(id, false), genTreeNode(id, true), genTreeNode(id, true)]),
-        );
-        resolve(undefined);
-      }, 300);
-    });
+          treeData.concat([
+            genTreeNode(id, false),
+            genTreeNode(id, true),
+            genTreeNode(id, true),
+          ])
+        )
+        resolve(undefined)
+      }, 300)
+    })
 
   const onChange = (newValue: string) => {
-    setValue(newValue);
-  };
+    setValue(newValue)
+  }
 
   return (
     <TreeSelect
@@ -735,8 +755,8 @@ export const AsynchronousLoading = () => {
       loadData={onLoadData}
       treeData={treeData}
     />
-  );
-};
+  )
+}
 
 AsynchronousLoading.parameters = {
   docs: {
@@ -744,7 +764,7 @@ AsynchronousLoading.parameters = {
       story: 'Asynchronous loading tree node.',
     },
   },
-};
+}
 
 export const ShowTreeLine = () => {
   const treeData = [
@@ -784,10 +804,10 @@ export const ShowTreeLine = () => {
         },
       ],
     },
-  ];
-  const [treeLine, setTreeLine] = useState(true);
-  const [showLeafIcon, setShowLeafIcon] = useState(false);
-  const [showIcon, setShowIcon] = useState<boolean>(false);
+  ]
+  const [treeLine, setTreeLine] = useState(true)
+  const [showLeafIcon, setShowLeafIcon] = useState(false)
+  const [showIcon, setShowIcon] = useState<boolean>(false)
 
   return (
     <Space direction="vertical">
@@ -817,8 +837,8 @@ export const ShowTreeLine = () => {
         treeIcon={showIcon}
       />
     </Space>
-  );
-};
+  )
+}
 
 ShowTreeLine.parameters = {
   docs: {
@@ -826,14 +846,15 @@ ShowTreeLine.parameters = {
       story: 'Use `treeLine` to show the line style.',
     },
   },
-};
+}
 
 export const Placements = () => {
-  const [placement, SetPlacement] = useState<SelectCommonPlacement>('bottomRight');
+  const [placement, SetPlacement] =
+    useState<SelectCommonPlacement>('bottomRight')
 
   const placementChange = (e: RadioChangeEvent) => {
-    SetPlacement(e.target.value);
-  };
+    SetPlacement(e.target.value)
+  }
 
   return (
     <>
@@ -857,16 +878,17 @@ export const Placements = () => {
         treeData={treeData}
       />
     </>
-  );
-};
+  )
+}
 
 Placements.parameters = {
   docs: {
     description: {
-      story: 'You can manually specify the position of the popup via `placement`.',
+      story:
+        'You can manually specify the position of the popup via `placement`.',
     },
   },
-};
+}
 
 export const Status = () => (
   <Space direction="vertical" style={{ width: '100%' }}>
@@ -878,15 +900,16 @@ export const Status = () => (
       placeholder="Warning multiple"
     />
   </Space>
-);
+)
 
 Status.parameters = {
   docs: {
     description: {
-      story: 'Add status to TreeSelect with `status`, which could be `error` or `warning`.',
+      story:
+        'Add status to TreeSelect with `status`, which could be `error` or `warning`.',
     },
   },
-};
+}
 
 export const Treenodeprops: ComponentStory<any> = () => {
   const dataSources = [
@@ -948,10 +971,16 @@ export const Treenodeprops: ComponentStory<any> = () => {
       type: 'string',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSources} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSources}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 Treenodeprops.parameters = {
   docs: {
@@ -963,4 +992,4 @@ Treenodeprops.parameters = {
       code: null,
     },
   },
-};
+}

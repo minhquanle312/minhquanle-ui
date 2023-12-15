@@ -1,21 +1,21 @@
 /* eslint-disable no-console */
 // Libraries
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import React from 'react'
+import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 // Components
-import { Space, Tag, Input } from '..';
-import { TextArea as AntdCustomTextArea } from './styled';
-import { Table } from '../../organism';
+import { Space, Tag, Input } from '..'
+import { TextArea as AntdCustomTextArea } from './styled'
+import { Table } from '../../organism'
 
 // Types
-import Icon from '@antscorp/icons';
+import Icon from '@antscorp/icons'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'src/constants';
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants'
 
 // Variables
-const exampleIcon = <Icon type="icon-ants-search-2" />;
+const exampleIcon = <Icon type="icon-ants-search-2" />
 
 export default {
   title: 'Atoms/Input',
@@ -24,7 +24,8 @@ export default {
     addonAfter: {
       name: 'addonAfter',
       defaultValue: undefined,
-      description: 'The label text displayed after (on the right side of) the input field',
+      description:
+        'The label text displayed after (on the right side of) the input field',
       table: {
         type: { summary: 'ReactNode' },
         defaultValue: { summary: '-' },
@@ -36,7 +37,8 @@ export default {
     addonBefore: {
       name: 'addonBefore',
       defaultValue: undefined,
-      description: 'The label text displayed before (on the left side of) the input field',
+      description:
+        'The label text displayed before (on the left side of) the input field',
       table: {
         type: { summary: 'ReactNode' },
         defaultValue: { summary: '-' },
@@ -207,7 +209,8 @@ export default {
     onPressEnter: {
       name: 'onPressEnter',
       defaultValue: undefined,
-      description: 'The callback function that is triggered when Enter key is pressed',
+      description:
+        'The callback function that is triggered when Enter key is pressed',
       table: {
         type: { summary: 'function(e)' },
         defaultValue: { summary: '-' },
@@ -224,18 +227,20 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Input>;
+} as ComponentMeta<typeof Input>
 
 // Variables
 
 // Default
-const Template: ComponentStory<typeof Input> = args => <Input {...args} />;
+const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 
-Default.args = {};
+Default.args = {}
 
-export const BasicUsage: ComponentStory<any> = () => <Input placeholder="Basic usage" />;
+export const BasicUsage: ComponentStory<any> = () => (
+  <Input placeholder="Basic usage" />
+)
 
 BasicUsage.parameters = {
   docs: {
@@ -243,7 +248,7 @@ BasicUsage.parameters = {
       story: 'Basic usage example.',
     },
   },
-};
+}
 
 export const TextArea: ComponentStory<any> = () => (
   <>
@@ -252,7 +257,7 @@ export const TextArea: ComponentStory<any> = () => (
     <br />
     <AntdCustomTextArea rows={4} placeholder="maxLength is 6" maxLength={6} />
   </>
-);
+)
 
 TextArea.parameters = {
   docs: {
@@ -260,28 +265,37 @@ TextArea.parameters = {
       story: 'For multi-line input.',
     },
   },
-};
+}
 
 export const Status: ComponentStory<any> = () => (
   <Space direction="vertical" style={{ width: '100%' }}>
     <Input status="error" placeholder="Error" />
     <Input status="warning" placeholder="Warning" />
-    <Input status="error" prefix={exampleIcon} placeholder="Error with prefix" />
-    <Input status="warning" prefix={exampleIcon} placeholder="Warning with prefix" />
+    <Input
+      status="error"
+      prefix={exampleIcon}
+      placeholder="Error with prefix"
+    />
+    <Input
+      status="warning"
+      prefix={exampleIcon}
+      placeholder="Warning with prefix"
+    />
   </Space>
-);
+)
 
 Status.parameters = {
   docs: {
     description: {
-      story: 'Add status to Input with status, which could be error or warning.',
+      story:
+        'Add status to Input with status, which could be error or warning.',
     },
   },
-};
+}
 
 export const BorderLess: ComponentStory<any> = () => (
   <Input placeholder="Borderless" bordered={false} />
-);
+)
 
 BorderLess.parameters = {
   docs: {
@@ -289,7 +303,7 @@ BorderLess.parameters = {
       story: 'No border.',
     },
   },
-};
+}
 
 export const InputTextAreaAPI: ComponentStory<any> = () => {
   const dataSource = [
@@ -360,7 +374,8 @@ export const InputTextAreaAPI: ComponentStory<any> = () => {
     {
       key: '10',
       property: 'onPressEnter',
-      description: 'The callback function that is triggered when Enter key is pressed',
+      description:
+        'The callback function that is triggered when Enter key is pressed',
       type: 'function(e)',
       default: '-',
     },
@@ -371,14 +386,19 @@ export const InputTextAreaAPI: ComponentStory<any> = () => {
       type: 'function({ width, height })',
       default: '-',
     },
-  ];
+  ]
 
   return (
     <>
-      <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />
+      <Table
+        dataSource={dataSource}
+        columns={TABLE_API_COLUMNS}
+        pagination={false}
+      />
       <p>
-        The rest of the props of <Tag style={{ marginRight: '0' }}>Input.TextArea</Tag> are the same
-        as the original{' '}
+        The rest of the props of{' '}
+        <Tag style={{ marginRight: '0' }}>Input.TextArea</Tag> are the same as
+        the original{' '}
         <a
           href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea"
           style={{ textDecoration: 'none' }}
@@ -388,8 +408,8 @@ export const InputTextAreaAPI: ComponentStory<any> = () => {
         .
       </p>
     </>
-  );
-};
+  )
+}
 
 InputTextAreaAPI.parameters = {
   docs: {
@@ -400,7 +420,7 @@ InputTextAreaAPI.parameters = {
       code: null,
     },
   },
-};
+}
 
 export const InputPasswordAPI: ComponentStory<any> = () => {
   const dataSource = [
@@ -409,7 +429,8 @@ export const InputPasswordAPI: ComponentStory<any> = () => {
       property: 'iconRender',
       description: 'Custom toggle button',
       type: '(visible) => ReactNode',
-      default: '(visible) => (visible ? <EyeOutlined /> : <EyeInvisibleOutlined />)',
+      default:
+        '(visible) => (visible ? <EyeOutlined /> : <EyeInvisibleOutlined />)',
     },
     {
       key: '2',
@@ -418,10 +439,16 @@ export const InputPasswordAPI: ComponentStory<any> = () => {
       type: 'boolean | VisibilityToggle',
       default: 'true',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 InputPasswordAPI.parameters = {
   docs: {
@@ -432,7 +459,7 @@ InputPasswordAPI.parameters = {
       code: null,
     },
   },
-};
+}
 
 export const VisibilityToggleAPI: ComponentStory<any> = () => {
   const dataSource = [
@@ -446,14 +473,21 @@ export const VisibilityToggleAPI: ComponentStory<any> = () => {
     {
       key: '2',
       property: 'onVisibleChange',
-      description: 'Callback executed when visibility of the password is changed',
+      description:
+        'Callback executed when visibility of the password is changed',
       type: 'boolean',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 VisibilityToggleAPI.parameters = {
   docs: {
@@ -464,4 +498,4 @@ VisibilityToggleAPI.parameters = {
       code: null,
     },
   },
-};
+}

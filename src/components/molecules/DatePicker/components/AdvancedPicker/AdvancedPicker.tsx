@@ -1,27 +1,34 @@
 /* eslint-disable react/no-unused-prop-types */
 // Libraries
-import React, { useEffect, useMemo, useState } from 'react';
-import { theme } from 'antd';
-import dayjs from 'dayjs';
-import clsx from 'clsx';
-import { useTranslation } from 'react-i18next';
+import React, { useEffect, useMemo, useState } from 'react'
+import { theme } from 'antd'
+import dayjs from 'dayjs'
+import clsx from 'clsx'
+import { useTranslation } from 'react-i18next'
 
 // Hooks
-import { useDeepCompareEffect } from '../../../../../hooks';
+import { useDeepCompareEffect } from '../../../../../hooks'
 
 // Icons
-import Icon from '@antscorp/icons';
-import { EventIcon } from '../../../../icons';
+import Icon from '@antscorp/icons'
+import { EventIcon } from '../../../../icons'
 
 // Atoms
-import { Input, InputNumber, Divider, Space, Button, Typography } from 'src/components/atoms';
+import {
+  Input,
+  InputNumber,
+  Divider,
+  Space,
+  Button,
+  Typography,
+} from 'minhquanle-ui/lib/components/atoms'
 
 // Molecules
-import { Select, Dropdown, DatePicker } from 'src/components';
+import { Select, Dropdown, DatePicker } from 'minhquanle-ui/lib/components'
 
 // Utils
-import { handleError, reorder } from 'src/utils';
-import { calculationDateAdvanced } from './utils';
+import { handleError, reorder } from 'minhquanle-ui/lib/utils'
+import { calculationDateAdvanced } from './utils'
 
 // Styled
 import {
@@ -32,7 +39,7 @@ import {
   DatePickerFooter,
   DropdownFooter,
   CalendarIconWrapper,
-} from './styled';
+} from './styled'
 
 // Constants
 import {
@@ -44,8 +51,8 @@ import {
   TIME_PICKER_TYPE,
   YEAR_PICKER_TYPE,
   ADVANCED_PICKER_TYPE,
-} from './constants';
-import { THEME } from '../../../../../constants';
+} from './constants'
+import { THEME } from '../../../../../constants'
 
 // Types
 import {
@@ -55,38 +62,39 @@ import {
   TOperatorKey,
   TOption,
   TShowCalculationTypeCondition,
-} from './types';
-import { RangePickerProps } from 'antd/es/date-picker';
+} from './types'
+import { RangePickerProps } from 'antd/es/date-picker'
 
 export interface AdvancedPickerProps {
-  label?: string;
-  disabled?: boolean;
-  dateTypeKeysShow?: string[];
-  showCalculationTypeCondition?: TShowCalculationTypeCondition;
-  calculationTypeKeysShow?: TCalculationType[];
-  defaultDateTypeKey?: string;
-  valueType?: string;
-  option?: TOption;
-  operatorKey?: TOperatorKey;
-  type?: TAdvancedType;
-  date?: string;
-  format?: string;
-  formatInputDisplay?: string;
-  inputStyle?: React.CSSProperties;
-  disableAfterDate?: string;
-  disableBeforeDate?: string;
-  errorMessage?: string;
-  showTime?: boolean;
-  onUpdatedNewDate?: (newDate: any) => void;
-  onApply?: ({ date, option }: { date: string; option: TOption }) => void;
+  label?: string
+  disabled?: boolean
+  dateTypeKeysShow?: string[]
+  showCalculationTypeCondition?: TShowCalculationTypeCondition
+  calculationTypeKeysShow?: TCalculationType[]
+  defaultDateTypeKey?: string
+  valueType?: string
+  option?: TOption
+  operatorKey?: TOperatorKey
+  type?: TAdvancedType
+  date?: string
+  format?: string
+  formatInputDisplay?: string
+  inputStyle?: React.CSSProperties
+  disableAfterDate?: string
+  disableBeforeDate?: string
+  errorMessage?: string
+  showTime?: boolean
+  onUpdatedNewDate?: (newDate: any) => void
+  onApply?: ({ date, option }: { date: string; option: TOption }) => void
 }
 
-const PATH = 'src/components/molecules/DatePicker/components/Advanced/DatePickerAdvanced.tsx';
+const PATH =
+  'minhquanle-ui/lib/components/molecules/DatePicker/components/Advanced/DatePickerAdvanced.tsx'
 
-const { useToken } = theme;
-const { Text } = Typography;
+const { useToken } = theme
+const { Text } = Typography
 
-export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
+export const AdvancedPicker: React.FC<AdvancedPickerProps> = (props) => {
   // Props
   const {
     label,
@@ -109,132 +117,136 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
     disabled,
     onUpdatedNewDate,
     onApply,
-  } = props;
+  } = props
 
   // Memo
   const newDateTypes = useMemo(() => {
     if (dateTypeKeysShow && dateTypeKeysShow.length) {
-      const draftDateTypes = DATE_TYPES.filter(dateType =>
-        dateTypeKeysShow.some(key => key === dateType.value),
-      );
+      const draftDateTypes = DATE_TYPES.filter((dateType) =>
+        dateTypeKeysShow.some((key) => key === dateType.value)
+      )
 
-      return draftDateTypes;
+      return draftDateTypes
     }
 
     if (defaultDateTypeKey) {
-      const index = DATE_TYPES.findIndex(dateType => dateType.value === defaultDateTypeKey);
+      const index = DATE_TYPES.findIndex(
+        (dateType) => dateType.value === defaultDateTypeKey
+      )
 
       if (index !== -1) {
-        return reorder(DATE_TYPES, index, 0);
+        return reorder(DATE_TYPES, index, 0)
       }
     }
 
-    return DATE_TYPES;
-  }, [dateTypeKeysShow, defaultDateTypeKey]);
+    return DATE_TYPES
+  }, [dateTypeKeysShow, defaultDateTypeKey])
 
   const newCalculationDates = useMemo(() => {
     switch (valueType) {
       case VALUE_TYPES.YEAR_MONTH_DAY:
         return CALCULATION_DATES.filter(
-          calculationDate => !['hours', 'minutes', 'seconds'].includes(calculationDate.value),
-        );
+          (calculationDate) =>
+            !['hours', 'minutes', 'seconds'].includes(calculationDate.value)
+        )
 
       case VALUE_TYPES.YEAR_MONTH_DAY_HOUR:
         return CALCULATION_DATES.filter(
-          calculationDate => !['minutes', 'seconds'].includes(calculationDate.value),
-        );
+          (calculationDate) =>
+            !['minutes', 'seconds'].includes(calculationDate.value)
+        )
 
       case VALUE_TYPES.YEAR_MONTH_DAY_MINUTE:
         return CALCULATION_DATES.filter(
-          calculationDate => !['seconds'].includes(calculationDate.value),
-        );
+          (calculationDate) => !['seconds'].includes(calculationDate.value)
+        )
 
       case VALUE_TYPES.YEAR:
-        return CALCULATION_DATES.filter(calculationDate =>
-          ['years'].includes(calculationDate.value),
-        );
+        return CALCULATION_DATES.filter((calculationDate) =>
+          ['years'].includes(calculationDate.value)
+        )
 
       case VALUE_TYPES.YEAR_MONTH:
-        return CALCULATION_DATES.filter(calculationDate =>
-          ['years', 'months', 'quarters'].includes(calculationDate.value),
-        );
+        return CALCULATION_DATES.filter((calculationDate) =>
+          ['years', 'months', 'quarters'].includes(calculationDate.value)
+        )
 
       case VALUE_TYPES.YEAR_MONTH_DAY_SECOND:
-        return CALCULATION_DATES;
+        return CALCULATION_DATES
 
       default:
-        return CALCULATION_DATES;
+        return CALCULATION_DATES
     }
-  }, [valueType]);
+  }, [valueType])
 
   const pickerType = useMemo(() => {
     switch (valueType) {
       case VALUE_TYPES.YEAR_MONTH_DAY:
-        return TIME_PICKER_TYPE.DATE;
+        return TIME_PICKER_TYPE.DATE
 
       case VALUE_TYPES.YEAR_MONTH_DAY_HOUR:
-        return TIME_PICKER_TYPE.DATE_HOUR;
+        return TIME_PICKER_TYPE.DATE_HOUR
 
       case VALUE_TYPES.YEAR_MONTH_DAY_MINUTE:
-        return TIME_PICKER_TYPE.DATE_HOUR_MINUTE;
+        return TIME_PICKER_TYPE.DATE_HOUR_MINUTE
 
       case VALUE_TYPES.YEAR_MONTH_DAY_SECOND:
-        return TIME_PICKER_TYPE.DATE_TIME;
+        return TIME_PICKER_TYPE.DATE_TIME
 
       case VALUE_TYPES.YEAR:
-        return YEAR_PICKER_TYPE.YEAR;
+        return YEAR_PICKER_TYPE.YEAR
 
       case VALUE_TYPES.YEAR_MONTH:
-        return YEAR_PICKER_TYPE.MONTH;
+        return YEAR_PICKER_TYPE.MONTH
 
       default:
-        return TIME_PICKER_TYPE.DATE;
+        return TIME_PICKER_TYPE.DATE
     }
-  }, [valueType]);
+  }, [valueType])
 
   const [formatDisplay, timeFormatDisplay] = useMemo(() => {
-    let formatDisplay = '';
-    let timeFormatDisplay = '';
-    let isStartDate = false;
+    let formatDisplay = ''
+    let timeFormatDisplay = ''
+    let isStartDate = false
 
     // Handle detect day is start or end
     if (operatorKey === 'between') {
-      isStartDate = type === 'startDate';
+      isStartDate = type === 'startDate'
     } else {
-      isStartDate = operatorKey === 'after';
+      isStartDate = operatorKey === 'after'
     }
 
     switch (pickerType) {
       case TIME_PICKER_TYPE.DATE_TIME:
-        formatDisplay = 'DD/MM/YYYY - HH:mm:ss';
-        timeFormatDisplay = 'HH:mm:ss';
-        break;
+        formatDisplay = 'DD/MM/YYYY - HH:mm:ss'
+        timeFormatDisplay = 'HH:mm:ss'
+        break
       case TIME_PICKER_TYPE.DATE_HOUR:
-        formatDisplay = `DD/MM/YYYY - ${isStartDate ? 'HH:00:00' : 'HH:59:59'}`;
-        timeFormatDisplay = isStartDate ? 'HH:00:00' : 'HH:59:59';
-        break;
+        formatDisplay = `DD/MM/YYYY - ${isStartDate ? 'HH:00:00' : 'HH:59:59'}`
+        timeFormatDisplay = isStartDate ? 'HH:00:00' : 'HH:59:59'
+        break
       case TIME_PICKER_TYPE.DATE_HOUR_MINUTE:
-        formatDisplay = `DD/MM/YYYY - ${isStartDate ? 'HH:mm:00' : 'HH:mm:59'}`;
-        timeFormatDisplay = isStartDate ? 'HH:mm:00' : 'HH:mm:59';
-        break;
+        formatDisplay = `DD/MM/YYYY - ${isStartDate ? 'HH:mm:00' : 'HH:mm:59'}`
+        timeFormatDisplay = isStartDate ? 'HH:mm:00' : 'HH:mm:59'
+        break
       case YEAR_PICKER_TYPE.MONTH:
-        formatDisplay = 'MM/YYYY';
-        break;
+        formatDisplay = 'MM/YYYY'
+        break
       case YEAR_PICKER_TYPE.YEAR:
-        formatDisplay = 'YYYY';
-        break;
+        formatDisplay = 'YYYY'
+        break
       default:
-        formatDisplay = `DD/MM/YYYY - ${isStartDate ? '00:00:00' : '23:59:59'}`;
-        timeFormatDisplay = isStartDate ? '00:00:00' : '23:59:59';
-        break;
+        formatDisplay = `DD/MM/YYYY - ${isStartDate ? '00:00:00' : '23:59:59'}`
+        timeFormatDisplay = isStartDate ? '00:00:00' : '23:59:59'
+        break
     }
 
     if (formatInputDisplay) {
-      formatDisplay = formatInputDisplay;
+      formatDisplay = formatInputDisplay
     }
 
-    return [formatDisplay, timeFormatDisplay];
-  }, [pickerType, operatorKey, type, formatInputDisplay]);
+    return [formatDisplay, timeFormatDisplay]
+  }, [pickerType, operatorKey, type, formatInputDisplay])
 
   // State
   const [state, setState] = useState({
@@ -253,64 +265,78 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
     },
     date: dayjs().format(DEFAULT_DATE_FORMAT),
     dateDisplay: dayjs().format(DEFAULT_DATE_FORMAT),
-  });
-  const { isOpen, option, date, dateDisplay } = state;
+  })
+  const { isOpen, option, date, dateDisplay } = state
 
   const newCalculationTypes = useMemo(() => {
     if (calculationTypeKeysShow && calculationTypeKeysShow.length) {
-      const draftCalculationTypes = CALCULATION_TYPES.filter(calculationType =>
-        calculationTypeKeysShow.some(key => key === calculationType.value),
-      );
+      const draftCalculationTypes = CALCULATION_TYPES.filter(
+        (calculationType) =>
+          calculationTypeKeysShow.some((key) => key === calculationType.value)
+      )
 
-      return draftCalculationTypes;
+      return draftCalculationTypes
     }
 
     if (showCalculationTypeCondition && option.dateType) {
       if (showCalculationTypeCondition.dateType[option.dateType.value]) {
         const draftCalculationTypes = showCalculationTypeCondition.dateType[
           option.dateType.value
-        ]?.map(dateType => CALCULATION_TYPES.find(({ value }) => value === dateType));
+        ]?.map((dateType) =>
+          CALCULATION_TYPES.find(({ value }) => value === dateType)
+        )
 
-        if (!draftCalculationTypes.find(({ value }) => value === option.calculationType.value)) {
-          setState(state => ({
+        if (
+          !draftCalculationTypes.find(
+            ({ value }) => value === option.calculationType.value
+          )
+        ) {
+          setState((state) => ({
             ...state,
-            option: { ...state.option, calculationType: draftCalculationTypes[0] },
-          }));
+            option: {
+              ...state.option,
+              calculationType: draftCalculationTypes[0],
+            },
+          }))
         }
 
-        return draftCalculationTypes;
+        return draftCalculationTypes
       }
     }
 
-    return CALCULATION_TYPES;
+    return CALCULATION_TYPES
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [calculationTypeKeysShow, showCalculationTypeCondition, option.dateType]);
+  }, [calculationTypeKeysShow, showCalculationTypeCondition, option.dateType])
 
   // Hooks
-  const { token } = useToken();
-  const { t } = useTranslation();
+  const { token } = useToken()
+  const { t } = useTranslation()
 
   // Variables
   const contentStyle = {
     backgroundColor: token.colorBgElevated,
     borderRadius: token.borderRadius,
     boxShadow: token.boxShadowSecondary,
-  };
+  }
 
   // Effects
   useDeepCompareEffect(() => {
     try {
       if (isOpen) {
-        setState(state => ({ ...state, option: state.optionSelected, date: state.dateDisplay }));
+        setState((state) => ({
+          ...state,
+          option: state.optionSelected,
+          date: state.dateDisplay,
+        }))
       }
     } catch (error) {
       handleError(error, {
         path: PATH,
         name: 'useEffect',
         args: {},
-      });
+      })
     }
-  }, [isOpen]);
+  }, [isOpen])
 
   useEffect(() => {
     try {
@@ -320,47 +346,54 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
           option.calculationType.value,
           option.calculationDate.value,
           option.value,
-          format,
-        );
+          format
+        )
 
-        setState(state => ({ ...state, date: newDate }));
+        setState((state) => ({ ...state, date: newDate }))
       }
     } catch (error) {
       handleError(error, {
         path: PATH,
         name: 'useEffectWithDependencies[state.option, format]',
         args: { option, format },
-      });
+      })
     }
-  }, [option, format]);
+  }, [option, format])
 
   useEffect(() => {
     try {
       if (propsOption) {
-        const { dateType, calculationType, calculationDate, value = 0 } = propsOption || {};
-        const newDateTypes = DATE_TYPES;
+        const {
+          dateType,
+          calculationType,
+          calculationDate,
+          value = 0,
+        } = propsOption || {}
+        const newDateTypes = DATE_TYPES
 
-        const newDateType = newDateTypes.find(dType => dType.value === dateType);
+        const newDateType = newDateTypes.find(
+          (dType) => dType.value === dateType
+        )
         const newCalculationType = CALCULATION_TYPES.find(
-          calType => calType.value === calculationType,
-        );
+          (calType) => calType.value === calculationType
+        )
         const newCalculationDate = newCalculationDates.find(
-          calDate => calDate.value === calculationDate,
-        );
-        let newDate: any = '';
+          (calDate) => calDate.value === calculationDate
+        )
+        let newDate: any = ''
 
         if (newDateType) {
           if (newDateType.value === 'fixed') {
             newDate = dayjs(propsDate, DEFAULT_DATE_FORMAT, true).isValid()
               ? dayjs(propsDate, DEFAULT_DATE_FORMAT).format(format)
-              : propsDate;
+              : propsDate
 
-            setState(state => ({
+            setState((state) => ({
               ...state,
               date: newDate,
               dateDisplay: newDate,
               optionSelected: { ...option, dateType: newDateType },
-            }));
+            }))
           } else {
             if (newCalculationDate && newCalculationType) {
               const date = calculationDateAdvanced(
@@ -368,10 +401,10 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
                 newCalculationType.value,
                 newCalculationDate.value,
                 value,
-                format,
-              );
+                format
+              )
 
-              setState(state => ({
+              setState((state) => ({
                 ...state,
                 dateDisplay: date,
                 optionSelected: {
@@ -380,15 +413,15 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
                   calculationType: newCalculationType,
                   value,
                 },
-              }));
+              }))
 
-              newDate = date;
+              newDate = date
             }
           }
         }
 
         if (typeof onUpdatedNewDate === 'function' && propsDate !== newDate) {
-          onUpdatedNewDate(newDate);
+          onUpdatedNewDate(newDate)
         }
       }
     } catch (error) {
@@ -396,27 +429,28 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
         path: PATH,
         name: 'useEffectPropsOption',
         args: {},
-      });
+      })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [propsOption, propsDate, format]);
+  }, [propsOption, propsDate, format])
 
   // Handlers
-  const disableDate: RangePickerProps['disabledDate'] = current =>
-    current > dayjs(disableAfterDate, format) || current < dayjs(disableBeforeDate, format);
+  const disableDate: RangePickerProps['disabledDate'] = (current) =>
+    current > dayjs(disableAfterDate, format) ||
+    current < dayjs(disableBeforeDate, format)
 
   const renderLabel = (date: string, locale: string = 'en') => {
-    let formatLabel = 'dddd, MMMM D, YYYY';
+    let formatLabel = 'dddd, MMMM D, YYYY'
 
     switch (valueType) {
       case VALUE_TYPES.YEAR:
-        formatLabel = 'YYYY';
-        break;
+        formatLabel = 'YYYY'
+        break
       case VALUE_TYPES.YEAR_MONTH:
-        formatLabel = 'MMMM, YYYY';
-        break;
+        formatLabel = 'MMMM, YYYY'
+        break
       default:
-        break;
+        break
     }
 
     return (
@@ -426,58 +460,64 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
             .locale(locale || 'en')
             .format(formatLabel)}
         </div>
-        {![VALUE_TYPES.YEAR, VALUE_TYPES.YEAR_MONTH].includes(valueType || '') && showTime && (
-          <div>
-            {dayjs(date || new Date(), format)
-              .locale(locale || 'en')
-              .format(timeFormatDisplay)}
-          </div>
-        )}
+        {![VALUE_TYPES.YEAR, VALUE_TYPES.YEAR_MONTH].includes(
+          valueType || ''
+        ) &&
+          showTime && (
+            <div>
+              {dayjs(date || new Date(), format)
+                .locale(locale || 'en')
+                .format(timeFormatDisplay)}
+            </div>
+          )}
       </>
-    );
-  };
+    )
+  }
 
   const toggleOpenDropdown = (isOpen?: boolean) => {
     try {
-      setState(() => ({ ...state, isOpen: isOpen != null ? isOpen : !state.isOpen }));
+      setState(() => ({
+        ...state,
+        isOpen: isOpen != null ? isOpen : !state.isOpen,
+      }))
     } catch (error) {
       handleError(error, {
         path: PATH,
         name: 'toggleOpenDropdown',
         args: {},
-      });
+      })
     }
-  };
+  }
 
   const onChangeOption = (params: Record<string, any>) => {
     try {
-      setState(state => ({
+      setState((state) => ({
         ...state,
         option: {
           ...state.option,
           ...params,
         },
-      }));
+      }))
     } catch (error) {
       handleError(error, {
         path: PATH,
         name: 'onChangeOption',
         args: {},
-      });
+      })
     }
-  };
+  }
 
   const onChangeDatePicker = (value: any) => {
     try {
-      setState(state => ({ ...state, date: dayjs(value).format(format) }));
+      setState((state) => ({ ...state, date: dayjs(value).format(format) }))
     } catch (error) {
       handleError(error, {
         path: PATH,
         name: 'onChangeDatePicker',
         args: { value },
-      });
+      })
     }
-  };
+  }
 
   const onClickApply = () => {
     try {
@@ -492,44 +532,46 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
             ? ''
             : (option.calculationType.value as TCalculationType),
         value: option.dateType.value === 'fixed' ? 0 : option.value,
-      };
+      }
 
-      setState(state => ({
+      setState((state) => ({
         ...state,
         optionSelected: option,
         dateDisplay: date,
         isOpen: false,
-      }));
+      }))
 
       if (typeof onApply === 'function') {
         onApply({
           date,
           option: draftOption,
-        });
+        })
       }
     } catch (error) {
       handleError(error, {
         path: PATH,
         name: 'onClickApply',
         args: {},
-      });
+      })
     }
-  };
+  }
 
   const onClickNow = () => {
     try {
-      setState(state => ({ ...state, date: dayjs().format(format) }));
+      setState((state) => ({ ...state, date: dayjs().format(format) }))
     } catch (error) {
       handleError(error, {
         path: PATH,
         name: 'onClickNow',
         args: {},
-      });
+      })
     }
-  };
+  }
 
   const renderDropdownLabel = () => {
-    const title = Object.values(ADVANCED_PICKER_TYPE).find(({ value }) => value === type)?.label;
+    const title = Object.values(ADVANCED_PICKER_TYPE).find(
+      ({ value }) => value === type
+    )?.label
 
     return (
       <div style={{ textAlign: 'center' }}>
@@ -541,8 +583,8 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
 
         {renderLabel(date, 'en')}
       </div>
-    );
-  };
+    )
+  }
 
   const renderDropdownFooter = () => (
     <>
@@ -558,34 +600,44 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
           </Button>
         </Space>
 
-        {option.dateType.value === 'fixed' && <Button onClick={() => onClickNow()}>Now</Button>}
+        {option.dateType.value === 'fixed' && (
+          <Button onClick={() => onClickNow()}>Now</Button>
+        )}
       </DropdownFooter>
     </>
-  );
+  )
 
   const renderDateTypeOptions = () => (
     <Select
-      options={newDateTypes.map(dateType => ({ ...dateType, label: t(dateType.label) }))}
+      options={newDateTypes.map((dateType) => ({
+        ...dateType,
+        label: t(dateType.label),
+      }))}
       value={option.dateType.value}
-      onChange={value => {
-        const dateType = newDateTypes.find(dateType => dateType.value === value);
+      onChange={(value) => {
+        const dateType = newDateTypes.find(
+          (dateType) => dateType.value === value
+        )
 
-        toggleOpenDropdown(true);
+        toggleOpenDropdown(true)
 
         setTimeout(() => {
-          onChangeOption({ dateType });
-        }, 100);
+          onChangeOption({ dateType })
+        }, 100)
       }}
     />
-  );
+  )
 
   const renderErrorMessage = () =>
     errorMessage ? (
       <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-        <Icon type="icon-ants-remove-circle" style={{ color: THEME.token?.colorError }} />
+        <Icon
+          type="icon-ants-remove-circle"
+          style={{ color: THEME.token?.colorError }}
+        />
         <Text type="danger">{errorMessage}</Text>
       </div>
-    ) : null;
+    ) : null
 
   const dropdownRender = () => (
     <div style={contentStyle}>
@@ -595,14 +647,17 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
         {renderDateTypeOptions()}
 
         <Select
-          options={newCalculationTypes.map(({ label, value }) => ({ value, label: t(label) }))}
+          options={newCalculationTypes.map(({ label, value }) => ({
+            value,
+            label: t(label),
+          }))}
           value={option.calculationType.value}
-          onChange={value => {
+          onChange={(value) => {
             const calculationType = CALCULATION_TYPES.find(
-              calculationType => calculationType.value === value,
-            );
+              (calculationType) => calculationType.value === value
+            )
 
-            onChangeOption({ calculationType });
+            onChangeOption({ calculationType })
           }}
         />
 
@@ -611,21 +666,21 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
           style={{ width: '100%' }}
           min={0}
           showHandler={false}
-          onChange={value => onChangeOption({ value })}
+          onChange={(value) => onChangeOption({ value })}
         />
 
         <Select
-          options={newCalculationDates.map(calculationDate => ({
+          options={newCalculationDates.map((calculationDate) => ({
             ...calculationDate,
             label: t(calculationDate.label),
           }))}
           value={option.calculationDate.value}
-          onChange={value => {
+          onChange={(value) => {
             const calculationDate = newCalculationDates.find(
-              calculationDate => calculationDate.value === value,
-            );
+              (calculationDate) => calculationDate.value === value
+            )
 
-            onChangeOption({ calculationDate });
+            onChangeOption({ calculationDate })
           }}
         />
 
@@ -634,7 +689,7 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
 
       {renderDropdownFooter()}
     </div>
-  );
+  )
 
   return (
     <Space direction="vertical" size={5}>
@@ -696,19 +751,21 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
               <EventIcon
                 width={20}
                 height={20}
-                fill={errorMessage ? THEME.token?.colorError : THEME.token?.bw10}
+                fill={
+                  errorMessage ? THEME.token?.colorError : THEME.token?.bw10
+                }
               />
             </CalendarIconWrapper>
           }
-          dateRender={current => (
+          dateRender={(current) => (
             <div
               className="antsomi-picker-cell-inner"
               style={{ pointerEvents: 'all' }}
-              onClick={e => {
-                e.preventDefault();
-                e.stopPropagation();
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
 
-                onChangeDatePicker(current);
+                onChangeDatePicker(current)
               }}
             >
               {current.date()}
@@ -746,8 +803,8 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
         </Dropdown>
       )}
     </Space>
-  );
-};
+  )
+}
 
 AdvancedPicker.defaultProps = {
   label: '',
@@ -763,4 +820,4 @@ AdvancedPicker.defaultProps = {
   valueType: VALUE_TYPES.YEAR_MONTH_DAY,
   showTime: true,
   disabled: false,
-};
+}

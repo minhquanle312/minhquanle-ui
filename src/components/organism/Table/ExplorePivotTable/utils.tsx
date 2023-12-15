@@ -1,19 +1,20 @@
 // React
-import React from 'react';
+import React from 'react'
 
 // Types
-import { ColumnsType } from 'antd/es/table';
-import { TData } from './types';
+import { ColumnsType } from 'antd/es/table'
+import { TData } from './types'
 
 // Components
-import { CustomCell } from './components/CustomCell';
-import { get } from 'lodash';
+import { CustomCell } from './components/CustomCell'
+import { get } from 'lodash'
 
 // Utils
-import { handleError } from 'src/utils';
-import { GRAND_TOTAL_KEY } from './constants';
+import { handleError } from 'minhquanle-ui/lib/utils'
+import { GRAND_TOTAL_KEY } from './constants'
 
-const PATH = 'src/components/organism/Table/ExploreTable/utils.tsx';
+const PATH =
+  'minhquanle-ui/lib/components/organism/Table/ExploreTable/utils.tsx'
 
 export const buildColumns = (data: TData) => {
   const {
@@ -25,17 +26,21 @@ export const buildColumns = (data: TData) => {
     dimensions,
     versions,
     showColumnTotal,
-  } = data;
-  const dimension = dimensions[0];
-  const metric = metrics[0];
+  } = data
+  const dimension = dimensions[0]
+  const metric = metrics[0]
 
-  const columns: ColumnsType<any> = [];
+  const columns: ColumnsType<any> = []
 
   if (dimension && metric) {
     // Check is it contains 2 versions and has columnDimension
-    if (Array.isArray(columnDimension) && columnDimension.length && versions.length > 1) {
+    if (
+      Array.isArray(columnDimension) &&
+      columnDimension.length &&
+      versions.length > 1
+    ) {
       // Create first column with dimension name
-      const secondVersion = versions[1] || {};
+      const secondVersion = versions[1] || {}
 
       columns.push({
         title: ' ',
@@ -51,9 +56,9 @@ export const buildColumns = (data: TData) => {
               record.key === GRAND_TOTAL_KEY ? <strong>{value}</strong> : value,
           },
         ],
-      });
+      })
 
-      columnDimension.forEach(column => {
+      columnDimension.forEach((column) => {
         columns.push({
           title: column,
           align: 'right',
@@ -77,8 +82,8 @@ export const buildColumns = (data: TData) => {
               ),
             },
           ],
-        });
-      });
+        })
+      })
 
       if (showColumnTotal) {
         columns.push({
@@ -93,13 +98,13 @@ export const buildColumns = (data: TData) => {
               align: 'right',
               ellipsis: true,
               width: 150,
-              render: value => <strong>{value}</strong>,
+              render: (value) => <strong>{value}</strong>,
             },
           ],
-        });
+        })
       }
     } else {
-      const firstVersion = versions[0] || {};
+      const firstVersion = versions[0] || {}
 
       columns.push({
         title: dimension.label,
@@ -109,7 +114,7 @@ export const buildColumns = (data: TData) => {
         width: 150,
         render: (value, record) =>
           record.key === GRAND_TOTAL_KEY ? <strong>{value}</strong> : value,
-      });
+      })
 
       if (firstVersion) {
         columns.push({
@@ -119,15 +124,21 @@ export const buildColumns = (data: TData) => {
           ellipsis: true,
           align: 'right',
           render: (value, record, index) => (
-            <CustomCell value={value} record={record} index={index} type="heat" max={maxValue} />
+            <CustomCell
+              value={value}
+              record={record}
+              index={index}
+              type="heat"
+              max={maxValue}
+            />
           ),
-        });
+        })
       }
     }
   }
 
-  return columns;
-};
+  return columns
+}
 
 export const buildDataSource = (data: TData) => {
   try {
@@ -142,62 +153,71 @@ export const buildDataSource = (data: TData) => {
       showRowTotal,
       totalColumnDimension,
       totalRowDimension,
-    } = data;
-    const dimension = dimensions[0];
-    const metric = metrics[0];
-    const dataSource: any[] = [];
+    } = data
+    const dimension = dimensions[0]
+    const metric = metrics[0]
+    const dataSource: any[] = []
 
     if (dimension && metric && Array.isArray(dataRow)) {
       // Check is it contains 2 versions and has columnDimension
-      if (Array.isArray(columnDimension) && columnDimension.length && versions.length > 1) {
+      if (
+        Array.isArray(columnDimension) &&
+        columnDimension.length &&
+        versions.length > 1
+      ) {
         rowDimension.forEach((row, rowIndex) => {
-          const dimensionObjectValue = {};
+          const dimensionObjectValue = {}
 
           columnDimension.forEach((col, colIndex) => {
             dimensionObjectValue[`${col}-${metric.name}`] = get(
               dataRow,
               `[${rowIndex}][${colIndex}]`,
-              0,
-            );
-          });
+              0
+            )
+          })
 
           if (showColumnTotal) {
             dimensionObjectValue[`${GRAND_TOTAL_KEY}-${metric.name}`] = get(
               totalColumnDimension,
               `[${rowIndex}]`,
-              0,
-            ).toLocaleString();
+              0
+            ).toLocaleString()
           }
 
           dataSource.push({
             key: rowIndex,
             [dimension.name]: row,
             ...dimensionObjectValue,
-          });
-        });
+          })
+        })
 
         if (showRowTotal) {
-          const totalObjectValue = {};
+          const totalObjectValue = {}
 
           columnDimension.forEach((col, colIndex) => {
             totalObjectValue[`${col}-${metric.name}`] = get(
               totalRowDimension,
               `[${colIndex}]`,
-              0,
-            ).toLocaleString();
-          });
+              0
+            ).toLocaleString()
+          })
 
           if (showColumnTotal) {
-            totalObjectValue[`${GRAND_TOTAL_KEY}-${metric.name}`] = columnDimension
-              .reduce((acc, _curr, index) => acc + (Number(totalRowDimension[index]) || 0), 0)
-              .toLocaleString();
+            totalObjectValue[`${GRAND_TOTAL_KEY}-${metric.name}`] =
+              columnDimension
+                .reduce(
+                  (acc, _curr, index) =>
+                    acc + (Number(totalRowDimension[index]) || 0),
+                  0
+                )
+                .toLocaleString()
           }
 
           dataSource.push({
             key: `${GRAND_TOTAL_KEY}`,
             [dimension.name]: 'Grand total',
             ...totalObjectValue,
-          });
+          })
         }
       } else {
         dataRow.forEach((row, rowIndex) => {
@@ -205,27 +225,27 @@ export const buildDataSource = (data: TData) => {
             key: rowIndex,
             [dimension.name]: rowDimension[rowIndex],
             [metric.name]: row,
-          });
-        });
+          })
+        })
 
         if (showRowTotal) {
           dataSource.push({
             key: GRAND_TOTAL_KEY,
             [dimension.name]: 'Grand total',
             [metric.name]: dataRow.reduce((acc, curr) => acc + curr, 0),
-          });
+          })
         }
       }
     }
 
-    return dataSource;
+    return dataSource
   } catch (error) {
     handleError(error, {
       path: PATH,
       name: '',
       args: {},
-    });
+    })
 
-    return [];
+    return []
   }
-};
+}

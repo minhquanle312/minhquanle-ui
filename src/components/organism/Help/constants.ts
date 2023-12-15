@@ -1,15 +1,16 @@
-import { title } from 'process';
-import { ITabShareScreenProps } from './types';
-import { generateUniqueId } from 'src/components/molecules/CaptureScreen/utils';
-import { ControlPositionProps } from 'src/components/molecules/CaptureScreen/types';
+import { title } from 'process'
+import { ITabShareScreenProps } from './types'
+import { generateUniqueId } from 'minhquanle-ui/lib/components/molecules/CaptureScreen/utils'
+import { ControlPositionProps } from 'minhquanle-ui/lib/components/molecules/CaptureScreen/types'
 
-export const TICKET_CUSTOM_MESSAGE_KEY = 'TICKET_CUSTOM_MESSAGE_KEY';
-export const PORTALS_ANTSOMI_PACKAGE_UI_KEY = 'PORTALS_ANTSOMI_PACKAGE_UI_KEY';
-export const PORTALS_ANTSOMI_PACKAGE_UI_KEY_POPUP = 'PORTALS_ANTSOMI_PACKAGE_UI_KEY_POPUP';
+export const TICKET_CUSTOM_MESSAGE_KEY = 'TICKET_CUSTOM_MESSAGE_KEY'
+export const PORTALS_ANTSOMI_PACKAGE_UI_KEY = 'PORTALS_ANTSOMI_PACKAGE_UI_KEY'
+export const PORTALS_ANTSOMI_PACKAGE_UI_KEY_POPUP =
+  'PORTALS_ANTSOMI_PACKAGE_UI_KEY_POPUP'
 
 export const MESSAGE_TYPE = {
   TICKET_CREATE_STATUS: 'TICKET_CREATE_STATUS',
-};
+}
 export enum MENU_KEYS {
   FEATURE_ANNOUNCEMENT = 'feature_announcement',
   FEEDBACK = 'feedback',
@@ -64,7 +65,7 @@ export const ATTACH_CAPTURE_TYPES = [
       },
     ],
   },
-];
+]
 
 export const DEFAULT_POSITIONS: ControlPositionProps = {
   [ATTACH_KEYS.CAPTURE]: {
@@ -75,7 +76,7 @@ export const DEFAULT_POSITIONS: ControlPositionProps = {
     x: 82,
     y: 0,
   },
-};
+}
 
 export const TABS_SHARING_SCREEN: ITabShareScreenProps[] = [
   {
@@ -95,7 +96,7 @@ export const TABS_SHARING_SCREEN: ITabShareScreenProps[] = [
     label: 'Entire Screen',
     key: 'entire',
   },
-];
+]
 export const HELP_APP = [
   {
     title: 'Personas',
@@ -185,7 +186,8 @@ export const HELP_APP = [
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/personas/segments/create-a-segment-for-cart-abandonment',
           },
           {
-            title: 'Set up a "Segment" containing emails to be excluded before sending mail',
+            title:
+              'Set up a "Segment" containing emails to be excluded before sending mail',
             key: generateUniqueId(),
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/personas/segments/set-up-a-segment-containing-emails-to-be-excluded-before-sending-mail',
           },
@@ -357,7 +359,8 @@ export const HELP_APP = [
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/data-hub/business-objects/export-histories',
           },
           {
-            title: 'How to create "Data Source" connected with the" Business object" of CDP',
+            title:
+              'How to create "Data Source" connected with the" Business object" of CDP',
             key: generateUniqueId(),
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/data-hub/business-objects/how-to-create-data-source-connected-with-the-business-object-of-cdp',
           },
@@ -367,7 +370,8 @@ export const HELP_APP = [
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/data-hub/business-objects/how-to-create-a-collection',
           },
           {
-            title: 'How to create "Custom Attributes" with Input via UI feature',
+            title:
+              'How to create "Custom Attributes" with Input via UI feature',
             key: generateUniqueId(),
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/data-hub/business-objects/how-to-create-custom-attributes-with-input-via-ui-feature',
           },
@@ -450,7 +454,8 @@ export const HELP_APP = [
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/marketing-hub/how-to-send-marketing-sms-using-one-way-sms-destination',
           },
           {
-            title: 'How to create Web Personalization using Media JSON in CDP 365?',
+            title:
+              'How to create Web Personalization using Media JSON in CDP 365?',
             key: generateUniqueId(),
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/marketing-hub/how-to-create-web-personalization-using-media-json-in-cdp-365',
           },
@@ -500,7 +505,8 @@ export const HELP_APP = [
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/marketing-hub/how-to-create-promotion-coupon-by-uploading-files',
           },
           {
-            title: 'How to create Coupon from Magento or ERP system to CDP 365?',
+            title:
+              'How to create Coupon from Magento or ERP system to CDP 365?',
             key: generateUniqueId(),
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/marketing-hub/how-to-create-coupon-from-magento-or-erp-system-to-cdp-365',
           },
@@ -530,7 +536,8 @@ export const HELP_APP = [
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/marketing-hub/how-to-send-sms-using-klasik-sms-in-cdp-365',
           },
           {
-            title: 'How to push notification "Firebase Cloud Messaging" using CDP 365',
+            title:
+              'How to push notification "Firebase Cloud Messaging" using CDP 365',
             key: generateUniqueId(),
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/marketing-hub/how-to-push-notification-firebase-cloud-messaging-using-cdp-365',
           },
@@ -540,7 +547,8 @@ export const HELP_APP = [
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/marketing-hub/how-to-send-email-using-amazon-ses-in-cdp-365',
           },
           {
-            title: 'How to define zone in website for improve web personalize performance',
+            title:
+              'How to define zone in website for improve web personalize performance',
             key: generateUniqueId(),
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/marketing-hub/how-to-define-zone-in-website-for-improve-web-personalize-performance',
           },
@@ -565,12 +573,14 @@ export const HELP_APP = [
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/marketing-hub/how-to-send-sms-using-telerivet-sms-in-cdp-365',
           },
           {
-            title: 'How to push notification using "Onesignal (App Push)" in CDP 365',
+            title:
+              'How to push notification using "Onesignal (App Push)" in CDP 365',
             key: generateUniqueId(),
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/marketing-hub/how-to-push-notification-using-onesignal-app-push-in-cdp-365',
           },
           {
-            title: 'How to push notification using "Antsomi Web Push" in CDP 365',
+            title:
+              'How to push notification using "Antsomi Web Push" in CDP 365',
             key: generateUniqueId(),
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/marketing-hub/how-to-push-notification-using-antsomi-web-push-in-cdp-365',
           },
@@ -666,7 +676,8 @@ export const HELP_APP = [
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/marketing-hub/how-to-send-marketing-sms-using-one-way-sms-destination',
           },
           {
-            title: 'How to create Web Personalization using Media JSON in CDP 365?',
+            title:
+              'How to create Web Personalization using Media JSON in CDP 365?',
             key: generateUniqueId(),
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/marketing-hub/how-to-create-web-personalization-using-media-json-in-cdp-365',
           },
@@ -681,7 +692,8 @@ export const HELP_APP = [
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/marketing-hub/how-to-display-template-on-website-using-cdp-365',
           },
           {
-            title: 'How to create Coupon from Magento or ERP system to CDP 365?',
+            title:
+              'How to create Coupon from Magento or ERP system to CDP 365?',
             key: generateUniqueId(),
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/marketing-hub/how-to-create-coupon-from-magento-or-erp-system-to-cdp-365',
           },
@@ -701,7 +713,8 @@ export const HELP_APP = [
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/marketing-hub/how-to-send-sms-using-klasik-sms-in-cdp-365',
           },
           {
-            title: 'How to push notification "Firebase Cloud Messaging" using CDP 365',
+            title:
+              'How to push notification "Firebase Cloud Messaging" using CDP 365',
             key: generateUniqueId(),
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/marketing-hub/how-to-push-notification-firebase-cloud-messaging-using-cdp-365',
           },
@@ -726,12 +739,14 @@ export const HELP_APP = [
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/marketing-hub/how-to-send-sms-using-telerivet-sms-in-cdp-365',
           },
           {
-            title: 'How to push notification using "Onesignal (App Push)" in CDP 365',
+            title:
+              'How to push notification using "Onesignal (App Push)" in CDP 365',
             key: generateUniqueId(),
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/marketing-hub/how-to-push-notification-using-onesignal-app-push-in-cdp-365',
           },
           {
-            title: 'How to push notification using "Antsomi Web Push" in CDP 365',
+            title:
+              'How to push notification using "Antsomi Web Push" in CDP 365',
             key: generateUniqueId(),
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/marketing-hub/how-to-push-notification-using-antsomi-web-push-in-cdp-365',
           },
@@ -772,7 +787,8 @@ export const HELP_APP = [
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/marketing-hub/how-to-create-promotion-coupon-by-uploading-files',
           },
           {
-            title: 'How to create Coupon from Magento or ERP system to CDP 365?',
+            title:
+              'How to create Coupon from Magento or ERP system to CDP 365?',
             key: generateUniqueId(),
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/marketing-hub/how-to-create-coupon-from-magento-or-erp-system-to-cdp-365',
           },
@@ -1368,7 +1384,8 @@ export const HELP_APP = [
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/insights/reports/glossary',
           },
           {
-            title: 'How to create "Report" with “Journey performance” data source?',
+            title:
+              'How to create "Report" with “Journey performance” data source?',
             key: generateUniqueId(),
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/insights/how-to-create-report-with-journey-performance-data-source',
           },
@@ -1513,7 +1530,8 @@ export const HELP_APP = [
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/dataflows/set-up-dataflows-to-push-data-to-cdp',
           },
           {
-            title: 'Set up "Dataflows" to push data to "Google" and "Facebook" Audiences',
+            title:
+              'Set up "Dataflows" to push data to "Google" and "Facebook" Audiences',
             key: generateUniqueId(),
             path: 'https://docs.antsomi.com/cdp-365-user-guide-en/use-cases/dataflows/set-up-dataflows-to-push-data-to-google-and-facebook-audiences',
           },
@@ -1658,4 +1676,4 @@ export const HELP_APP = [
       },
     ],
   },
-];
+]

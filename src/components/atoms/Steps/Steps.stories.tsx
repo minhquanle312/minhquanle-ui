@@ -1,16 +1,21 @@
 // Libraries
-import React, { useState } from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { LoadingOutlined, SmileOutlined, SolutionOutlined, UserOutlined } from '@ant-design/icons';
-import { Avatar, Card, ConfigProvider, List, StepsProps, theme } from 'antd';
+import React, { useState } from 'react'
+import { ComponentStory, ComponentMeta } from '@storybook/react'
+import {
+  LoadingOutlined,
+  SmileOutlined,
+  SolutionOutlined,
+  UserOutlined,
+} from '@ant-design/icons'
+import { Avatar, Card, ConfigProvider, List, StepsProps, theme } from 'antd'
 
 // Components
-import { Steps } from './Steps';
-import { Button, message, Divider, Popover, Space, Radio } from '../index';
-import { Table } from '../../organism';
+import { Steps } from './Steps'
+import { Button, message, Divider, Popover, Space, Radio } from '../index'
+import { Table } from '../../organism'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'src/constants';
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants'
 
 export default {
   title: 'Atoms/Steps',
@@ -43,7 +48,8 @@ export default {
     direction: {
       name: 'direction',
       defaultValue: 'horizontal',
-      description: 'To specify the direction of the step bar, horizontal or vertical',
+      description:
+        'To specify the direction of the step bar, horizontal or vertical',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'horizontal' },
@@ -67,7 +73,8 @@ export default {
     },
     labelPlacement: {
       name: 'labelPlacement',
-      description: 'Place title and description with `horizontal` or `vertical` direction	',
+      description:
+        'Place title and description with `horizontal` or `vertical` direction	',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'horizontal' },
@@ -93,14 +100,18 @@ export default {
       description:
         'Steps with progress dot style, customize the progress dot by setting it to a function. labelPlacement will be `vertical`',
       table: {
-        type: { summary: 'boolean | (iconDot, {index, status, title, description}) => ReactNode' },
+        type: {
+          summary:
+            'boolean | (iconDot, {index, status, title, description}) => ReactNode',
+        },
       },
       control: null,
     },
     responsive: {
       name: 'responsive',
       defaultValue: true,
-      description: 'Change to vertical direction when screen width smaller than `532px`	',
+      description:
+        'Change to vertical direction when screen width smaller than `532px`	',
       table: {
         type: { summary: 'boolean' },
         defaultValue: true,
@@ -172,11 +183,11 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Steps>;
+} as ComponentMeta<typeof Steps>
 
 // Default
-const Template: ComponentStory<typeof Steps> = args => {
-  const description = 'This is a description.';
+const Template: ComponentStory<typeof Steps> = (args) => {
+  const description = 'This is a description.'
 
   return (
     <Steps
@@ -197,10 +208,10 @@ const Template: ComponentStory<typeof Steps> = args => {
         },
       ]}
     />
-  );
-};
+  )
+}
 
-export const Basic = Template.bind({});
+export const Basic = Template.bind({})
 
 // Examples
 export const MiniVersion = () => (
@@ -219,15 +230,16 @@ export const MiniVersion = () => (
       },
     ]}
   />
-);
+)
 
 MiniVersion.parameters = {
   docs: {
     description: {
-      story: 'By setting like this: `<Steps size="small">`, you can get a mini version. ',
+      story:
+        'By setting like this: `<Steps size="small">`, you can get a mini version. ',
     },
   },
-};
+}
 
 export const WithIcon = () => (
   <Steps
@@ -254,15 +266,16 @@ export const WithIcon = () => (
       },
     ]}
   />
-);
+)
 
 WithIcon.parameters = {
   docs: {
     description: {
-      story: 'By setting like this: `<Steps size="small">`, you can get a mini version. ',
+      story:
+        'By setting like this: `<Steps size="small">`, you can get a mini version. ',
     },
   },
-};
+}
 
 export const SwitchStep = () => {
   const steps = [
@@ -278,19 +291,19 @@ export const SwitchStep = () => {
       title: 'Last',
       content: 'Last-content',
     },
-  ];
-  const { token } = theme.useToken();
-  const [current, setCurrent] = useState(0);
+  ]
+  const { token } = theme.useToken()
+  const [current, setCurrent] = useState(0)
 
   const next = () => {
-    setCurrent(current + 1);
-  };
+    setCurrent(current + 1)
+  }
 
   const prev = () => {
-    setCurrent(current - 1);
-  };
+    setCurrent(current - 1)
+  }
 
-  const items = steps.map(item => ({ key: item.title, title: item.title }));
+  const items = steps.map((item) => ({ key: item.title, title: item.title }))
 
   const contentStyle: React.CSSProperties = {
     lineHeight: '260px',
@@ -300,7 +313,7 @@ export const SwitchStep = () => {
     borderRadius: token.borderRadiusLG,
     border: `1px dashed ${token.colorBorder}`,
     marginTop: 16,
-  };
+  }
 
   return (
     <>
@@ -313,7 +326,10 @@ export const SwitchStep = () => {
           </Button>
         )}
         {current === steps.length - 1 && (
-          <Button type="primary" onClick={() => message.success('Processing complete!')}>
+          <Button
+            type="primary"
+            onClick={() => message.success('Processing complete!')}
+          >
             Done
           </Button>
         )}
@@ -324,19 +340,20 @@ export const SwitchStep = () => {
         )}
       </div>
     </>
-  );
-};
+  )
+}
 
 SwitchStep.parameters = {
   docs: {
     description: {
-      story: 'Cooperate with the content and buttons, to represent the progress of a process.',
+      story:
+        'Cooperate with the content and buttons, to represent the progress of a process.',
     },
   },
-};
+}
 
 export const Vertical = () => {
-  const description = 'This is a description.';
+  const description = 'This is a description.'
   return (
     <Steps
       direction="vertical"
@@ -356,8 +373,8 @@ export const Vertical = () => {
         },
       ]}
     />
-  );
-};
+  )
+}
 
 Vertical.parameters = {
   docs: {
@@ -365,10 +382,10 @@ Vertical.parameters = {
       story: 'A simple step bar in the vertical direction.',
     },
   },
-};
+}
 
 export const VerticalMiniVersion = () => {
-  const description = 'This is a description.';
+  const description = 'This is a description.'
   return (
     <Steps
       direction="vertical"
@@ -386,8 +403,8 @@ export const VerticalMiniVersion = () => {
         },
       ]}
     />
-  );
-};
+  )
+}
 
 VerticalMiniVersion.parameters = {
   docs: {
@@ -395,10 +412,10 @@ VerticalMiniVersion.parameters = {
       story: 'A simple mini version step bar in the vertical direction.',
     },
   },
-};
+}
 
 export const ErrorStatus = () => {
-  const description = 'This is a description';
+  const description = 'This is a description'
   return (
     <Steps
       current={1}
@@ -418,16 +435,17 @@ export const ErrorStatus = () => {
         },
       ]}
     />
-  );
-};
+  )
+}
 
 ErrorStatus.parameters = {
   docs: {
     description: {
-      story: 'By using `status` of `Steps`, you can specify the state for current step.',
+      story:
+        'By using `status` of `Steps`, you can specify the state for current step.',
     },
   },
-};
+}
 
 export const DotStyle = () => (
   <>
@@ -478,7 +496,7 @@ export const DotStyle = () => (
       ]}
     />
   </>
-);
+)
 
 DotStyle.parameters = {
   docs: {
@@ -486,7 +504,7 @@ DotStyle.parameters = {
       story: 'Steps with progress dot style.',
     },
   },
-};
+}
 
 export const CustomizedDotStyle = () => {
   const customDot: StepsProps['progressDot'] = (dot, { status, index }) => (
@@ -499,8 +517,8 @@ export const CustomizedDotStyle = () => {
     >
       {dot}
     </Popover>
-  );
-  const description = 'You can hover on the dot.';
+  )
+  const description = 'You can hover on the dot.'
   return (
     <Steps
       current={1}
@@ -524,8 +542,8 @@ export const CustomizedDotStyle = () => {
         },
       ]}
     />
-  );
-};
+  )
+}
 
 CustomizedDotStyle.parameters = {
   docs: {
@@ -533,7 +551,7 @@ CustomizedDotStyle.parameters = {
       story: 'You can customize the display for Steps with progress dot style.',
     },
   },
-};
+}
 
 export const DotStyleSizeSmall = () => (
   <>
@@ -586,7 +604,7 @@ export const DotStyleSizeSmall = () => (
       ]}
     />
   </>
-);
+)
 
 DotStyleSizeSmall.parameters = {
   docs: {
@@ -594,16 +612,16 @@ DotStyleSizeSmall.parameters = {
       story: 'Steps with progress dot style.',
     },
   },
-};
+}
 
 export const Clickable = () => {
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(0)
 
   const onChange = (value: number) => {
-    console.log('onChange:', value);
-    setCurrent(value);
-  };
-  const description = 'This is a description.';
+    console.log('onChange:', value)
+    setCurrent(value)
+  }
+  const description = 'This is a description.'
 
   return (
     <>
@@ -648,8 +666,8 @@ export const Clickable = () => {
         ]}
       />
     </>
-  );
-};
+  )
+}
 
 Clickable.parameters = {
   docs: {
@@ -657,13 +675,13 @@ Clickable.parameters = {
       story: 'Setting `onChange` makes Steps clickable.',
     },
   },
-};
+}
 
 export const ProgressDebug = () => {
-  const [percent, setPercentage] = useState<number | undefined>(0);
-  const [current, setCurrent] = useState(1);
-  const [status, setStatus] = useState<StepsProps['status']>('process');
-  const description = 'This is a description.';
+  const [percent, setPercentage] = useState<number | undefined>(0)
+  const [current, setCurrent] = useState(1)
+  const [status, setStatus] = useState<StepsProps['status']>('process')
+  const description = 'This is a description.'
   const items = [
     {
       title: 'Finished',
@@ -678,23 +696,40 @@ export const ProgressDebug = () => {
       title: 'Waiting',
       description,
     },
-  ];
+  ]
   return (
     <>
       <Space.Compact block>
-        <Button onClick={() => setPercentage(undefined)}>Percentage to undefined</Button>
-        <Button onClick={() => setPercentage(prev => ((prev ?? 0) + 10) % 100)}>
+        <Button onClick={() => setPercentage(undefined)}>
+          Percentage to undefined
+        </Button>
+        <Button
+          onClick={() => setPercentage((prev) => ((prev ?? 0) + 10) % 100)}
+        >
           Percentage +
         </Button>
-        <Button onClick={() => setCurrent(prev => (prev + 1) % 3)}>Current +</Button>
+        <Button onClick={() => setCurrent((prev) => (prev + 1) % 3)}>
+          Current +
+        </Button>
         <Button onClick={() => setStatus('wait')}>Status Wait</Button>
         <Button onClick={() => setStatus('process')}>Status Process</Button>
         <Button onClick={() => setStatus('finish')}>Status Finish</Button>
         <Button onClick={() => setStatus('error')}>Status Error</Button>
       </Space.Compact>
       <br />
-      <Steps current={current} percent={percent} status={status} items={items} />
-      <Steps current={current} percent={percent} status={status} size="small" items={items} />
+      <Steps
+        current={current}
+        percent={percent}
+        status={status}
+        items={items}
+      />
+      <Steps
+        current={current}
+        percent={percent}
+        status={status}
+        size="small"
+        items={items}
+      />
       <Steps
         current={current}
         percent={percent}
@@ -711,8 +746,8 @@ export const ProgressDebug = () => {
         items={items}
       />
     </>
-  );
-};
+  )
+}
 
 ProgressDebug.parameters = {
   docs: {
@@ -720,11 +755,11 @@ ProgressDebug.parameters = {
       story: 'Buggy!',
     },
   },
-};
+}
 
 export const StepsInsideSteps = () => {
-  const [size, setSize] = useState<StepsProps['size']>('default');
-  const description = 'This is a description.';
+  const [size, setSize] = useState<StepsProps['size']>('default')
+  const description = 'This is a description.'
   const horizontalSteps = (
     <Card>
       <Steps
@@ -745,14 +780,14 @@ export const StepsInsideSteps = () => {
         ]}
       />
     </Card>
-  );
+  )
 
   return (
     <>
       <Radio.Group
         style={{ marginBottom: 16 }}
         value={size}
-        onChange={e => setSize(e.target.value)}
+        onChange={(e) => setSize(e.target.value)}
       >
         <Radio value="small">Small</Radio>
         <Radio value="default">Default</Radio>
@@ -776,8 +811,8 @@ export const StepsInsideSteps = () => {
         ]}
       />
     </>
-  );
-};
+  )
+}
 
 StepsInsideSteps.parameters = {
   docs: {
@@ -785,7 +820,7 @@ StepsInsideSteps.parameters = {
       story: 'Test style of Steps inside Steps.',
     },
   },
-};
+}
 
 export const InlineSteps = () => {
   const data = [
@@ -806,7 +841,7 @@ export const InlineSteps = () => {
       title: 'Ant Design Title 4',
       current: 1,
     },
-  ];
+  ]
 
   const items = [
     {
@@ -821,7 +856,7 @@ export const InlineSteps = () => {
       title: 'Step 3',
       description: 'This is a Step 3.',
     },
-  ];
+  ]
   return (
     <div>
       <List
@@ -831,7 +866,9 @@ export const InlineSteps = () => {
           <List.Item>
             <List.Item.Meta
               avatar={
-                <Avatar src={`https://xsgames.co/randomusers/avatar.php?g=pixel&key=${index}`} />
+                <Avatar
+                  src={`https://xsgames.co/randomusers/avatar.php?g=pixel&key=${index}`}
+                />
               }
               title={<a href="https://ant.design">{item.title}</a>}
               description="Ant Design, a design language for background applications, is refined by Ant UED Team"
@@ -847,8 +884,8 @@ export const InlineSteps = () => {
         )}
       />
     </div>
-  );
-};
+  )
+}
 
 InlineSteps.parameters = {
   docs: {
@@ -857,10 +894,10 @@ InlineSteps.parameters = {
         'Inline type steps, suitable for displaying the process and current state of the object in the list content scene.',
     },
   },
-};
+}
 
 export const Wireframe = () => {
-  const description = 'This is a description.';
+  const description = 'This is a description.'
   return (
     <ConfigProvider theme={{ token: { wireframe: true } }}>
       <Steps
@@ -882,8 +919,8 @@ export const Wireframe = () => {
         ]}
       />
     </ConfigProvider>
-  );
-};
+  )
+}
 
 Wireframe.parameters = {
   docs: {
@@ -891,7 +928,7 @@ Wireframe.parameters = {
       story: 'Wireframe style.',
     },
   },
-};
+}
 
 export const StepItem: ComponentStory<any> = () => {
   const dataSource = [
@@ -938,10 +975,16 @@ export const StepItem: ComponentStory<any> = () => {
       type: 'ReactNode',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 StepItem.parameters = {
   docs: {
@@ -952,4 +995,4 @@ StepItem.parameters = {
       code: null,
     },
   },
-};
+}

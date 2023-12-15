@@ -1,44 +1,51 @@
 // Libraries
-import dayjs from 'dayjs';
-import React from 'react';
-import omit from 'lodash/omit';
-import isEqual from 'react-fast-compare';
-import { useTranslation } from 'react-i18next';
+import dayjs from 'dayjs'
+import React from 'react'
+import omit from 'lodash/omit'
+import isEqual from 'react-fast-compare'
+import { useTranslation } from 'react-i18next'
 
 // Types
-import { TOption, TShowCalculationTypeCondition } from '../AdvancedPicker/types';
-import { TDateConfig, TOnChangeMode, TOnChangePayload, TTimeRange } from './types';
+import { TOption, TShowCalculationTypeCondition } from '../AdvancedPicker/types'
+import {
+  TDateConfig,
+  TOnChangeMode,
+  TOnChangePayload,
+  TTimeRange,
+} from './types'
 
 // Atoms
-import { Space } from '../../../../atoms';
+import { Space } from '../../../../atoms'
 
 // Molecules
-import { AdvancedPicker } from '../AdvancedPicker';
+import { AdvancedPicker } from '../AdvancedPicker'
 
 // Constants
-import { ADVANCED_RANGE_PICKER_FORMAT } from './constants';
+import { ADVANCED_RANGE_PICKER_FORMAT } from './constants'
 
 // Utils
-import { handleError } from 'src/utils';
-import { translations } from 'src/locales/translations';
+import { handleError } from 'minhquanle-ui/lib/utils'
+import { translations } from 'minhquanle-ui/lib/locales/translations'
 
 export interface AdvancedRangePickerProps {
-  disabled?: boolean;
-  showCalculationTypeCondition?: TShowCalculationTypeCondition;
-  startDateConfig?: TDateConfig;
-  endDateConfig?: TDateConfig;
-  timeRange: TTimeRange;
-  errorMessage?: string;
-  showLabel?: boolean;
-  showTime?: boolean;
-  onChange?: ({ timeRange, mode }: TOnChangePayload) => void;
+  disabled?: boolean
+  showCalculationTypeCondition?: TShowCalculationTypeCondition
+  startDateConfig?: TDateConfig
+  endDateConfig?: TDateConfig
+  timeRange: TTimeRange
+  errorMessage?: string
+  showLabel?: boolean
+  showTime?: boolean
+  onChange?: ({ timeRange, mode }: TOnChangePayload) => void
 }
 
 const PATH =
-  'src/components/molecules/DatePicker/components/AdvancedRangePicker/AdvancedRangePicker.tsx';
+ 'minhquanle-ui/lib/components/molecules/DatePicker/components/AdvancedRangePicker/AdvancedRangePicker.tsx'
 
-export const AdvancedRangePicker: React.FC<AdvancedRangePickerProps> = props => {
-  const { t } = useTranslation();
+export const AdvancedRangePicker: React.FC<AdvancedRangePickerProps> = (
+  props
+) => {
+  const { t } = useTranslation()
 
   // Props
   const {
@@ -51,13 +58,13 @@ export const AdvancedRangePicker: React.FC<AdvancedRangePickerProps> = props => 
     showCalculationTypeCondition,
     disabled,
     onChange,
-  } = props;
+  } = props
 
   // Handles
   const onUpdateTimeRange = (
     key: 'startDate' | 'endDate',
     params: Partial<TOption & { date: string }>,
-    mode: TOnChangeMode = 'user',
+    mode: TOnChangeMode = 'user'
   ) => {
     try {
       if (typeof onChange === 'function') {
@@ -67,13 +74,13 @@ export const AdvancedRangePicker: React.FC<AdvancedRangePickerProps> = props => 
             ...timeRange[key],
             ...params,
           },
-        };
+        }
 
         if (!isEqual(newTimeRange, timeRange)) {
           onChange({
             timeRange: newTimeRange,
             mode,
-          });
+          })
         }
       }
     } catch (error) {
@@ -82,9 +89,9 @@ export const AdvancedRangePicker: React.FC<AdvancedRangePickerProps> = props => 
         path: PATH,
         name: 'onUpdateTimeRange',
         args: {},
-      });
+      })
     }
-  };
+  }
 
   return (
     <Space size={20}>
@@ -101,8 +108,12 @@ export const AdvancedRangePicker: React.FC<AdvancedRangePickerProps> = props => 
         showTime={showTime}
         calculationTypeKeysShow={startDateConfig?.calculationTypeKeysShow}
         showCalculationTypeCondition={showCalculationTypeCondition}
-        onUpdatedNewDate={date => onUpdateTimeRange('startDate', { date }, 'system')}
-        onApply={({ date, option }) => onUpdateTimeRange('startDate', { date, ...option }, 'user')}
+        onUpdatedNewDate={(date) =>
+          onUpdateTimeRange('startDate', { date }, 'system')
+        }
+        onApply={({ date, option }) =>
+          onUpdateTimeRange('startDate', { date, ...option }, 'user')
+        }
       />
 
       <AdvancedPicker
@@ -117,12 +128,16 @@ export const AdvancedRangePicker: React.FC<AdvancedRangePickerProps> = props => 
         showTime={showTime}
         calculationTypeKeysShow={endDateConfig?.calculationTypeKeysShow}
         showCalculationTypeCondition={showCalculationTypeCondition}
-        onUpdatedNewDate={date => onUpdateTimeRange('endDate', { date }, 'system')}
-        onApply={({ date, option }) => onUpdateTimeRange('endDate', { date, ...option }, 'user')}
+        onUpdatedNewDate={(date) =>
+          onUpdateTimeRange('endDate', { date }, 'system')
+        }
+        onApply={({ date, option }) =>
+          onUpdateTimeRange('endDate', { date, ...option }, 'user')
+        }
       />
     </Space>
-  );
-};
+  )
+}
 
 AdvancedRangePicker.defaultProps = {
   timeRange: {
@@ -145,4 +160,4 @@ AdvancedRangePicker.defaultProps = {
   disabled: false,
   showLabel: true,
   showTime: true,
-};
+}

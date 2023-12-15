@@ -1,13 +1,13 @@
 // Libraries
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 // Image
-import TransparentSvg from 'src/assets/svg/transparent.svg';
+import TransparentSvg from 'minhquanle-ui/lib/assets/svg/transparent.svg'
 
 // Components
-import { Button } from 'src/components/atoms';
+import { Button } from 'minhquanle-ui/lib/components/atoms'
 
-export const ColorSettingWrapper = styled.div``;
+export const ColorSettingWrapper = styled.div``
 
 export const PresetColor = styled.div`
   position: relative;
@@ -28,7 +28,7 @@ export const PresetColor = styled.div`
     border-radius: 9999px;
     border: 1px solid rgba(0, 0, 0, 0.12);
   }
-`;
+`
 
 export const ButtonPreset = styled(Button)`
   width: 24px !important;
@@ -36,7 +36,7 @@ export const ButtonPreset = styled(Button)`
   padding: 0px !important;
   margin: 0px !important;
   min-width: fit-content !important;
-`;
+`
 
 export const PresetWrapper = styled.div`
   max-height: 100px;
@@ -45,4 +45,4 @@ export const PresetWrapper = styled.div`
   flex-wrap: wrap;
   gap: 5px;
   margin-top: 10px;
-`;
+`

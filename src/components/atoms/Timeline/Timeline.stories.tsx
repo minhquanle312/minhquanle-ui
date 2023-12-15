@@ -1,16 +1,16 @@
 // Libraries
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-import React, { useState } from 'react';
-import { SmileOutlined, ClockCircleOutlined } from '@ant-design/icons';
+import { ComponentMeta, ComponentStory } from '@storybook/react'
+import React, { useState } from 'react'
+import { SmileOutlined, ClockCircleOutlined } from '@ant-design/icons'
 
 // Components
-import { Timeline } from '.';
-import { Table } from '../../organism';
-import { Button, Radio } from '../index';
+import { Timeline } from '.'
+import { Table } from '../../organism'
+import { Button, Radio } from '../index'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'src/constants/storybook';
-import { RadioChangeEvent } from 'antd';
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants/storybook'
+import { RadioChangeEvent } from 'antd'
 
 export default {
   title: 'Atoms/Timeline',
@@ -85,9 +85,9 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Timeline>;
+} as ComponentMeta<typeof Timeline>
 
-const Template: ComponentStory<typeof Timeline> = args => (
+const Template: ComponentStory<typeof Timeline> = (args) => (
   <Timeline
     {...args}
     items={[
@@ -105,9 +105,9 @@ const Template: ComponentStory<typeof Timeline> = args => (
       },
     ]}
   />
-);
+)
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 
 // Examples
 export const Color = () => (
@@ -167,7 +167,7 @@ export const Color = () => (
       },
     ]}
   />
-);
+)
 
 Color.parameters = {
   docs: {
@@ -176,14 +176,14 @@ Color.parameters = {
         'Set the color of circles. `green` means completed or success status, `red` means warning or error, and blue means ongoing or other default status, `gray` for unfinished or disabled status.',
     },
   },
-};
+}
 
 export const LastnodeAndReversing = () => {
-  const [reverse, setReverse] = useState(false);
+  const [reverse, setReverse] = useState(false)
 
   const handleClick = () => {
-    setReverse(!reverse);
-  };
+    setReverse(!reverse)
+  }
 
   return (
     <div>
@@ -206,8 +206,8 @@ export const LastnodeAndReversing = () => {
         Toggle Reverse
       </Button>
     </div>
-  );
-};
+  )
+}
 
 LastnodeAndReversing.parameters = {
   docs: {
@@ -216,7 +216,7 @@ LastnodeAndReversing.parameters = {
         'When the timeline is incomplete and ongoing, put a ghost node at last. Set `pending` as truthy value to enable displaying pending item. You can customize the pending content by passing a React Element. Meanwhile,` pendingDot={a React Element}` is used to customize the dot of the pending item. `reverse={true}` is used for reversing nodes.',
     },
   },
-};
+}
 
 export const Custom = () => (
   <Timeline
@@ -237,7 +237,7 @@ export const Custom = () => (
       },
     ]}
   />
-);
+)
 
 Custom.parameters = {
   docs: {
@@ -245,14 +245,14 @@ Custom.parameters = {
       story: 'Set a node as an icon or other custom element.',
     },
   },
-};
+}
 
 export const Label = () => {
-  const [mode, setMode] = useState<'left' | 'alternate' | 'right'>('left');
+  const [mode, setMode] = useState<'left' | 'alternate' | 'right'>('left')
 
   const onChange = (e: RadioChangeEvent) => {
-    setMode(e.target.value);
-  };
+    setMode(e.target.value)
+  }
 
   return (
     <>
@@ -288,8 +288,8 @@ export const Label = () => {
         ]}
       />
     </>
-  );
-};
+  )
+}
 
 Label.parameters = {
   docs: {
@@ -297,7 +297,7 @@ Label.parameters = {
       story: 'Use `label` show time alone.',
     },
   },
-};
+}
 
 export const Alternate = () => (
   <Timeline
@@ -327,7 +327,7 @@ export const Alternate = () => (
       },
     ]}
   />
-);
+)
 
 Label.parameters = {
   docs: {
@@ -335,7 +335,7 @@ Label.parameters = {
       story: 'Alternate timeline.',
     },
   },
-};
+}
 
 export const RightAlternate = () => (
   <Timeline
@@ -357,7 +357,7 @@ export const RightAlternate = () => (
       },
     ]}
   />
-);
+)
 
 RightAlternate.parameters = {
   docs: {
@@ -365,7 +365,7 @@ RightAlternate.parameters = {
       story: 'Right alternate timeline.',
     },
   },
-};
+}
 
 export const Items: ComponentStory<any> = () => {
   const dataSources = [
@@ -404,10 +404,16 @@ export const Items: ComponentStory<any> = () => {
       type: 'left | right',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSources} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSources}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 Items.parameters = {
   docs: {
@@ -415,4 +421,4 @@ Items.parameters = {
       code: null,
     },
   },
-};
+}

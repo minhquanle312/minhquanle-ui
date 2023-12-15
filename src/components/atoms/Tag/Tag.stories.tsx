@@ -1,9 +1,9 @@
 // Libraries
-import React, { useEffect, useRef, useState } from 'react';
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
+import React, { useEffect, useRef, useState } from 'react'
+import type { ComponentMeta, ComponentStory } from '@storybook/react'
 
 // Antd
-import { Divider, Input, InputRef, Space, Tooltip, theme } from 'antd';
+import { Divider, Input, InputRef, Space, Tooltip, theme } from 'antd'
 import {
   PlusOutlined,
   CheckCircleOutlined,
@@ -16,14 +16,14 @@ import {
   LinkedinOutlined,
   TwitterOutlined,
   YoutubeOutlined,
-} from '@ant-design/icons';
+} from '@ant-design/icons'
 
 // Components
-import { Tag } from './Tag';
-import { Table } from '../../organism';
+import { Tag } from './Tag'
+import { Table } from '../../organism'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'src/constants';
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants'
 
 export default {
   title: 'Atoms/Tag',
@@ -111,27 +111,27 @@ Tag for categorizing or markup.
       },
     },
   },
-} as ComponentMeta<typeof Tag>;
+} as ComponentMeta<typeof Tag>
 
 // Default
-const Template: ComponentStory<typeof Tag> = args => <Tag {...args} />;
-export const Default = Template.bind({});
+const Template: ComponentStory<typeof Tag> = (args) => <Tag {...args} />
+export const Default = Template.bind({})
 
 Default.args = {
   children: 'Tag',
-};
+}
 
 // Examples
 export const Basic: ComponentStory<any> = () => {
   const log = (e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     // Do something
-  };
+  }
 
   const preventDefault = (e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     // Do something
-  };
+  }
   return (
     <Space size={[0, 8]} wrap>
       <Tag>Tag 1</Tag>
@@ -145,8 +145,8 @@ export const Basic: ComponentStory<any> = () => {
         Prevent Default
       </Tag>
     </Space>
-  );
-};
+  )
+}
 
 Basic.parameters = {
   docs: {
@@ -155,7 +155,7 @@ Basic.parameters = {
         'Usage of basic Tag, and it could be closable by set `closable` property. Closable Tag supports `onClose` events.',
     },
   },
-};
+}
 
 export const ColorfulTag: ComponentStory<any> = () => (
   <>
@@ -181,7 +181,7 @@ export const ColorfulTag: ComponentStory<any> = () => (
       <Tag color="#108ee9">#108ee9</Tag>
     </Space>
   </>
-);
+)
 
 ColorfulTag.parameters = {
   docs: {
@@ -192,7 +192,7 @@ ColorfulTag.parameters = {
       `,
     },
   },
-};
+}
 
 export const StatusTag: ComponentStory<any> = () => (
   <>
@@ -226,7 +226,7 @@ export const StatusTag: ComponentStory<any> = () => (
       </Tag>
     </Space>
   </>
-);
+)
 
 StatusTag.parameters = {
   docs: {
@@ -235,43 +235,46 @@ StatusTag.parameters = {
         'We preset five different colors, you can set color property such as `success`,`processing`,`error`,`default` and `warning` to indicate specific status.',
     },
   },
-};
+}
 
 export const Checkable: ComponentStory<any> = () => {
-  const [selectedTags, setSelectedTags] = useState<string[]>(['Books']);
-  const tagsData = ['Movies', 'Books', 'Music', 'Sports'];
-  const { CheckableTag } = Tag;
+  const [selectedTags, setSelectedTags] = useState<string[]>(['Books'])
+  const tagsData = ['Movies', 'Books', 'Music', 'Sports']
+  const { CheckableTag } = Tag
 
   const handleChange = (tag: string, checked: boolean) => {
-    const nextSelectedTags = checked ? [...selectedTags, tag] : selectedTags.filter(t => t !== tag);
-    setSelectedTags(nextSelectedTags);
-  };
+    const nextSelectedTags = checked
+      ? [...selectedTags, tag]
+      : selectedTags.filter((t) => t !== tag)
+    setSelectedTags(nextSelectedTags)
+  }
 
   return (
     <>
       <span style={{ marginRight: 8 }}>Categories:</span>
       <Space size={[0, 8]} wrap>
-        {tagsData.map(tag => (
+        {tagsData.map((tag) => (
           <CheckableTag
             key={tag}
             checked={selectedTags.includes(tag)}
-            onChange={checked => handleChange(tag, checked)}
+            onChange={(checked) => handleChange(tag, checked)}
           >
             {tag}
           </CheckableTag>
         ))}
       </Space>
     </>
-  );
-};
+  )
+}
 
 Checkable.parameters = {
   docs: {
     description: {
-      story: '`CheckableTag` works like Checkbox, click it to toggle checked state.',
+      story:
+        '`CheckableTag` works like Checkbox, click it to toggle checked state.',
     },
   },
-};
+}
 
 export const Icon: ComponentStory<any> = () => (
   <Space size={[0, 8]} wrap>
@@ -288,7 +291,7 @@ export const Icon: ComponentStory<any> = () => (
       LinkedIn
     </Tag>
   </Space>
-);
+)
 
 Icon.parameters = {
   docs: {
@@ -299,7 +302,7 @@ Icon.parameters = {
       ].join('<br />'),
     },
   },
-};
+}
 
 export const Borderless: ComponentStory<any> = () => (
   <>
@@ -362,7 +365,7 @@ export const Borderless: ComponentStory<any> = () => (
       </Tag>
     </Space>
   </>
-);
+)
 
 Borderless.parameters = {
   docs: {
@@ -370,70 +373,70 @@ Borderless.parameters = {
       story: 'Borderless.',
     },
   },
-};
+}
 
 export const AddAndRemoveDynamically: ComponentStory<any> = () => {
-  const { token } = theme.useToken();
-  const [tags, setTags] = useState(['Unremovable', 'Tag 2', 'Tag 3']);
-  const [inputVisible, setInputVisible] = useState(false);
-  const [inputValue, setInputValue] = useState('');
-  const [editInputIndex, setEditInputIndex] = useState(-1);
-  const [editInputValue, setEditInputValue] = useState('');
-  const inputRef = useRef<InputRef>(null);
-  const editInputRef = useRef<InputRef>(null);
+  const { token } = theme.useToken()
+  const [tags, setTags] = useState(['Unremovable', 'Tag 2', 'Tag 3'])
+  const [inputVisible, setInputVisible] = useState(false)
+  const [inputValue, setInputValue] = useState('')
+  const [editInputIndex, setEditInputIndex] = useState(-1)
+  const [editInputValue, setEditInputValue] = useState('')
+  const inputRef = useRef<InputRef>(null)
+  const editInputRef = useRef<InputRef>(null)
 
   useEffect(() => {
     if (inputVisible) {
-      inputRef.current?.focus();
+      inputRef.current?.focus()
     }
-  }, [inputVisible]);
+  }, [inputVisible])
 
   useEffect(() => {
-    editInputRef.current?.focus();
-  }, [inputValue]);
+    editInputRef.current?.focus()
+  }, [inputValue])
 
   const handleClose = (removedTag: string) => {
-    const newTags = tags.filter(tag => tag !== removedTag);
-    setTags(newTags);
-  };
+    const newTags = tags.filter((tag) => tag !== removedTag)
+    setTags(newTags)
+  }
 
   const showInput = () => {
-    setInputVisible(true);
-  };
+    setInputVisible(true)
+  }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
+    setInputValue(e.target.value)
+  }
 
   const handleInputConfirm = () => {
     if (inputValue && tags.indexOf(inputValue) === -1) {
-      setTags([...tags, inputValue]);
+      setTags([...tags, inputValue])
     }
-    setInputVisible(false);
-    setInputValue('');
-  };
+    setInputVisible(false)
+    setInputValue('')
+  }
 
   const handleEditInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEditInputValue(e.target.value);
-  };
+    setEditInputValue(e.target.value)
+  }
 
   const handleEditInputConfirm = () => {
-    const newTags = [...tags];
-    newTags[editInputIndex] = editInputValue;
-    setTags(newTags);
-    setEditInputIndex(-1);
-    setInputValue('');
-  };
+    const newTags = [...tags]
+    newTags[editInputIndex] = editInputValue
+    setTags(newTags)
+    setEditInputIndex(-1)
+    setInputValue('')
+  }
 
   const tagInputStyle: React.CSSProperties = {
     width: 78,
     verticalAlign: 'top',
-  };
+  }
 
   const tagPlusStyle: React.CSSProperties = {
     background: token.colorBgContainer,
     borderStyle: 'dashed',
-  };
+  }
 
   return (
     <Space size={[0, 8]} wrap>
@@ -451,9 +454,9 @@ export const AddAndRemoveDynamically: ComponentStory<any> = () => {
                 onBlur={handleEditInputConfirm}
                 onPressEnter={handleEditInputConfirm}
               />
-            );
+            )
           }
-          const isLongTag = tag.length > 20;
+          const isLongTag = tag.length > 20
           const tagElem = (
             <Tag
               key={tag}
@@ -462,25 +465,25 @@ export const AddAndRemoveDynamically: ComponentStory<any> = () => {
               onClose={() => handleClose(tag)}
             >
               <span
-                onDoubleClick={e => {
+                onDoubleClick={(e) => {
                   if (index !== 0) {
-                    setEditInputIndex(index);
-                    setEditInputValue(tag);
-                    e.preventDefault();
+                    setEditInputIndex(index)
+                    setEditInputValue(tag)
+                    e.preventDefault()
                   }
                 }}
               >
                 {isLongTag ? `${tag.slice(0, 20)}...` : tag}
               </span>
             </Tag>
-          );
+          )
           return isLongTag ? (
             <Tooltip title={tag} key={tag}>
               {tagElem}
             </Tooltip>
           ) : (
             tagElem
-          );
+          )
         })}
       </Space>
       {inputVisible ? (
@@ -500,16 +503,17 @@ export const AddAndRemoveDynamically: ComponentStory<any> = () => {
         </Tag>
       )}
     </Space>
-  );
-};
+  )
+}
 
 AddAndRemoveDynamically.parameters = {
   docs: {
     description: {
-      story: 'Generating a set of Tags by array, you can add and remove dynamically.',
+      story:
+        'Generating a set of Tags by array, you can add and remove dynamically.',
     },
   },
-};
+}
 
 export const CheckableTagAPI: ComponentStory<any> = () => {
   const dataSource = [
@@ -527,10 +531,16 @@ export const CheckableTagAPI: ComponentStory<any> = () => {
       type: 'Callback executed when Tag is checked/unchecked',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 CheckableTagAPI.parameters = {
   docs: {
@@ -541,4 +551,4 @@ CheckableTagAPI.parameters = {
       code: null,
     },
   },
-};
+}

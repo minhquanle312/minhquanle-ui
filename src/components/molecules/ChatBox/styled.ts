@@ -1,15 +1,15 @@
 // Libraries
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 // Constantsim
-import { THEME } from 'src/constants';
+import { THEME } from 'minhquanle-ui/lib/constants'
 
 export const ChatBoxWrapper = styled.div<{ withoutBox?: boolean }>`
   box-sizing: border-box;
-  width: ${props => (props.withoutBox ? '100%' : '450px')};
-  min-height: ${props => (props.withoutBox ? '100%' : '300px')};
-  max-height: ${props => (props.withoutBox ? 'unset' : 'calc(100vh - 57px)')};
-  position: ${props => (props.withoutBox ? 'static' : 'fixed')};
+  width: ${(props) => (props.withoutBox ? '100%' : '450px')};
+  min-height: ${(props) => (props.withoutBox ? '100%' : '300px')};
+  max-height: ${(props) => (props.withoutBox ? 'unset' : 'calc(100vh - 57px)')};
+  position: ${(props) => (props.withoutBox ? 'static' : 'fixed')};
   right: 5px;
   bottom: 0px;
   z-index: 9999;
@@ -19,7 +19,7 @@ export const ChatBoxWrapper = styled.div<{ withoutBox?: boolean }>`
 
   font-family: Roboto, san-serif;
   border: 1px solid #e5e5e5;
-`;
+`
 export const ChatBoxHeader = styled.div`
   flex: 0 0 50px;
   display: flex;
@@ -37,7 +37,7 @@ export const ChatBoxHeader = styled.div`
     border: none;
     padding: 0;
   }
-`;
+`
 export const ChatBoxBody = styled.div`
   flex: 1;
   background: #fff;
@@ -83,10 +83,10 @@ export const ChatBoxBody = styled.div`
   //   border-bottom-left-radius: 4px;
   //   border-top-left-radius: 4px;
   // }
-`;
+`
 export const ChatBoxFooter = styled.div`
   background: #fff;
-`;
+`
 export const MessageItemWrapper = styled.div`
   margin: 0 11px;
   padding: 10px;
@@ -175,8 +175,16 @@ export const MessageItemWrapper = styled.div`
   // }
 
   .ants-text-streaming > div > :not(ol):not(ul):not(pre):last-child:after,
-  .ants-text-streaming > div > ol:last-child > li:last-child > *:last-child:after,
-  .ants-text-streaming > div > pre:last-child > code:last-child > span:last-child:after,
+  .ants-text-streaming
+    > div
+    > ol:last-child
+    > li:last-child
+    > *:last-child:after,
+  .ants-text-streaming
+    > div
+    > pre:last-child
+    > code:last-child
+    > span:last-child:after,
   .ants-text-streaming > div > ul:last-child > li:last-child:after {
     -webkit-animation: cursor-blink 1s steps(5, start) infinite;
     animation: cursor-blink 1s steps(5, start) infinite;
@@ -214,7 +222,7 @@ export const MessageItemWrapper = styled.div`
   code {
     white-space: pre-wrap;
   }
-`;
+`
 export const WarningWrapper = styled.div`
   padding: 10px;
   display: flex;
@@ -227,7 +235,7 @@ export const WarningWrapper = styled.div`
   .icon {
     min-width: 18px;
   }
-`;
+`
 export const InputWrapper = styled.div`
   min-height: 44px;
   display: flex;
@@ -269,7 +277,7 @@ export const InputWrapper = styled.div`
     position: relative;
     left: 3px;
   }
-`;
+`
 export const TypingCursor = styled.div`
   width: 3px;
   height: 10px;
@@ -278,4 +286,4 @@ export const TypingCursor = styled.div`
   // animation:
   //   typing 3.5s steps(40, end),
   //   blink-caret .75s step-end infinite;
-`;
+`

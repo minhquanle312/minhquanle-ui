@@ -1,27 +1,36 @@
 // Libraries
-import React, { memo, useEffect, useState } from 'react';
-import classNames from 'classnames';
+import React, { memo, useEffect, useState } from 'react'
+import classNames from 'classnames'
 
 // Atoms
-import { DividerPure, Icon, Text, InputNumber } from 'src/components/atoms';
+import {
+  DividerPure,
+  Icon,
+  Text,
+  InputNumber,
+} from 'minhquanle-ui/lib/components/atoms'
 
 // Styled
-import { EdgeSettingContent, EdgeSettingHeader, EdgeSettingWrapper } from './styled';
+import {
+  EdgeSettingContent,
+  EdgeSettingHeader,
+  EdgeSettingWrapper,
+} from './styled'
 
 // Utils
-import { handleError } from 'src/utils';
+import { handleError } from 'minhquanle-ui/lib/utils'
 
 // Types
-import { AlignEdit } from '../AlignSetting';
+import { AlignEdit } from '../AlignSetting'
 
 // Constants
-import { THEME } from 'src/constants';
+import { THEME } from 'minhquanle-ui/lib/constants'
 
-type MarginProps = number | 'auto';
-type ValueProps = [MarginProps, MarginProps, MarginProps, MarginProps];
-type ValueLabelProps = [string, string, string?, string?];
-type AlignTypeProps = 'left' | 'center' | 'right';
-type UnitProps = 'px' | '%' | any;
+type MarginProps = number | 'auto'
+type ValueProps = [MarginProps, MarginProps, MarginProps, MarginProps]
+type ValueLabelProps = [string, string, string?, string?]
+type AlignTypeProps = 'left' | 'center' | 'right'
+type UnitProps = 'px' | '%' | any
 
 export const UNIT = {
   PX: {
@@ -32,36 +41,41 @@ export const UNIT = {
     value: '%',
     label: '%',
   },
-};
-const PATH = 'src/components/molecules/EdgeSetting/index.tsx';
+}
+const PATH = 'minhquanle-ui/lib/components/molecules/EdgeSetting/index.tsx'
 
-type DataProps = { values: ValueProps; linked: boolean; unit: UnitProps; align: AlignTypeProps };
-type OnChangeProps = (data: DataProps) => void;
+type DataProps = {
+  values: ValueProps
+  linked: boolean
+  unit: UnitProps
+  align: AlignTypeProps
+}
+type OnChangeProps = (data: DataProps) => void
 
 interface EdgeSettingProps {
-  label: string;
-  minValue?: number;
-  maxValue?: number;
-  edgeLabels?: ValueLabelProps;
-  edgeLabelClassName?: string;
-  contentClassName?: string;
-  values: ValueProps;
-  unit?: UnitProps;
-  linked?: boolean;
-  onChange?: OnChangeProps;
-  align?: AlignTypeProps | null;
-  disabledLinked?: boolean | false;
+  label: string
+  minValue?: number
+  maxValue?: number
+  edgeLabels?: ValueLabelProps
+  edgeLabelClassName?: string
+  contentClassName?: string
+  values: ValueProps
+  unit?: UnitProps
+  linked?: boolean
+  onChange?: OnChangeProps
+  align?: AlignTypeProps | null
+  disabledLinked?: boolean | false
 }
 
 interface EdgeSettingState {
-  values: ValueProps;
-  unit: UnitProps;
-  linked: boolean;
-  lastValueFocus: MarginProps;
-  align: AlignTypeProps | null;
+  values: ValueProps
+  unit: UnitProps
+  linked: boolean
+  lastValueFocus: MarginProps
+  align: AlignTypeProps | null
 }
 
-export const EdgeSetting: React.FC<EdgeSettingProps> = memo(props => {
+export const EdgeSetting: React.FC<EdgeSettingProps> = memo((props) => {
   const {
     label,
     values,
@@ -75,7 +89,7 @@ export const EdgeSetting: React.FC<EdgeSettingProps> = memo(props => {
     onChange = () => {},
     align,
     disabledLinked = false,
-  } = props;
+  } = props
 
   // State
   const [state, setState] = useState<EdgeSettingState>({
@@ -84,65 +98,69 @@ export const EdgeSetting: React.FC<EdgeSettingProps> = memo(props => {
     linked: false,
     lastValueFocus: 0,
     align: null,
-  });
+  })
 
   useEffect(() => {
-    setState(state => ({
+    setState((state) => ({
       ...state,
       values,
       unit,
       linked,
       align: align as AlignTypeProps,
-    }));
-  }, [values, unit, linked, align]);
+    }))
+  }, [values, unit, linked, align])
 
   // Handlers
   const onChangeState = (key: string, value: any) => {
     try {
-      let draftValues: ValueProps = [...state.values];
-      let draftLinked = state.linked;
-      const draftAlign = state.align;
+      let draftValues: ValueProps = [...state.values]
+      let draftLinked = state.linked
+      const draftAlign = state.align
 
       // Case linked is true set all value is exam
       if (key === 'linked') {
         if (state.align) {
           // disabled
-          return;
+          return
         }
         if (!state.linked) {
-          draftValues = draftValues.map(() => state.lastValueFocus) as ValueProps;
+          draftValues = draftValues.map(
+            () => state.lastValueFocus
+          ) as ValueProps
         }
       }
 
       // Case align set linked = false & set values
       if (key === 'align') {
-        draftLinked = false;
+        draftLinked = false
 
-        draftValues = draftValues.map(value => (value === 'auto' ? 0 : value)) as ValueProps;
+        draftValues = draftValues.map((value) =>
+          value === 'auto' ? 0 : value
+        ) as ValueProps
 
         if (value === state.align) {
           // reset align value
-          value = '';
+          value = ''
         } else {
           if (value === 'left') {
             // change values right to auto
-            draftValues[1] = 'auto';
+            draftValues[1] = 'auto'
           } else if (value === 'right') {
             // change values left to auto
-            draftValues[3] = 'auto';
+            draftValues[3] = 'auto'
           } else if (value === 'center') {
             // change values right + left to auto
-            draftValues[1] = 'auto';
-            draftValues[3] = 'auto';
+            draftValues[1] = 'auto'
+            draftValues[3] = 'auto'
           }
         }
       }
 
-      setState(state => ({
+      setState((state) => ({
         ...state,
         values: draftValues,
         [key]: value,
-      }));
+      }))
 
       // Callback onchange
       onChange({
@@ -151,45 +169,62 @@ export const EdgeSetting: React.FC<EdgeSettingProps> = memo(props => {
         align: draftAlign as any,
         linked: draftLinked,
         [key]: value,
-      });
+      })
     } catch (error) {
       handleError(error, {
         path: PATH,
         name: 'onChangeState',
         args: {},
-      });
+      })
     }
-  };
+  }
 
   const onChangeValue = (value: any, index: number) => {
     try {
-      let draftValues = [...state.values];
+      let draftValues = [...state.values]
 
       if (state.linked) {
-        draftValues = draftValues.map(() => value);
+        draftValues = draftValues.map(() => value)
       } else {
-        draftValues[index] = value;
+        draftValues[index] = value
       }
 
-      setState(state => ({ ...state, lastValueFocus: value }));
-      onChangeState('values', draftValues);
+      setState((state) => ({ ...state, lastValueFocus: value }))
+      onChangeState('values', draftValues)
     } catch (error) {
       handleError(error, {
         path: PATH,
         name: 'onChangeValue',
         args: {},
-      });
+      })
     }
-  };
+  }
 
   return (
     <EdgeSettingWrapper>
       <EdgeSettingHeader>
         <Text style={{ color: THEME.token?.colorIcon }}>{label}</Text>
-        <div style={{ display: 'flex', alignItems: 'center', marginLeft: 12, marginRight: 12 }}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            marginLeft: 12,
+            marginRight: 12,
+          }}
+        >
           {state.align !== null ? (
-            <div style={{ display: 'flex', alignItems: 'center', marginLeft: 8, marginRight: 8 }}>
-              <AlignEdit align={state.align} onChange={value => onChangeState('align', value)} />
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                marginLeft: 8,
+                marginRight: 8,
+              }}
+            >
+              <AlignEdit
+                align={state.align}
+                onChange={(value) => onChangeState('align', value)}
+              />
               <DividerPure type="vertical" dot height={12} />
             </div>
           ) : null}
@@ -215,7 +250,8 @@ export const EdgeSetting: React.FC<EdgeSettingProps> = memo(props => {
                         ? THEME.token?.colorIcon
                         : 'inherit',
                     fontWeight: state.unit === value ? 'bold' : 'normal',
-                    marginLeft: Object.values(UNIT).length - 1 === index ? 6 : 0,
+                    marginLeft:
+                      Object.values(UNIT).length - 1 === index ? 6 : 0,
                     cursor: 'pointer',
                     paddingRight: value === '%' ? 8 : 0,
                   }}
@@ -234,7 +270,11 @@ export const EdgeSetting: React.FC<EdgeSettingProps> = memo(props => {
                   justifyContent: 'center',
                 }}
               >
-                <Icon type="icon-ants-vertical-dots" style={{ fontSize: '30px' }} color="#D2D2D2" />
+                <Icon
+                  type="icon-ants-vertical-dots"
+                  style={{ fontSize: '30px' }}
+                  color="#D2D2D2"
+                />
               </div>
             </div>
           ) : null}
@@ -243,9 +283,15 @@ export const EdgeSetting: React.FC<EdgeSettingProps> = memo(props => {
             size={18}
             style={{
               cursor: 'pointer',
-              color: !state.linked ? THEME.token?.colorIcon : THEME.token?.colorPrimary,
+              color: !state.linked
+                ? THEME.token?.colorIcon
+                : THEME.token?.colorPrimary,
             }}
-            onClick={disabledLinked ? () => {} : () => onChangeState('linked', !state.linked)}
+            onClick={
+              disabledLinked
+                ? () => {}
+                : () => onChangeState('linked', !state.linked)
+            }
             disabled={disabledLinked ? true : !!state.align}
           />
         </div>
@@ -253,7 +299,7 @@ export const EdgeSetting: React.FC<EdgeSettingProps> = memo(props => {
       <EdgeSettingContent className={contentClassName}>
         {state.values.map((value, index) => {
           if (!edgeLabels[index]) {
-            return null;
+            return null
           }
 
           return (
@@ -271,12 +317,12 @@ export const EdgeSetting: React.FC<EdgeSettingProps> = memo(props => {
                   required
                   min={minValue}
                   max={maxValue}
-                  onFocus={e => {
-                    const { value = '' } = e.target;
+                  onFocus={(e) => {
+                    const { value = '' } = e.target
 
-                    setState(state => ({ ...state, lastValueFocus: +value }));
+                    setState((state) => ({ ...state, lastValueFocus: +value }))
                   }}
-                  onChange={val => onChangeValue(val, index)}
+                  onChange={(val) => onChangeValue(val, index)}
                 />
               ) : (
                 <Text
@@ -288,12 +334,12 @@ export const EdgeSetting: React.FC<EdgeSettingProps> = memo(props => {
                 </Text>
               )}
             </div>
-          );
+          )
         })}
       </EdgeSettingContent>
     </EdgeSettingWrapper>
-  );
-});
+  )
+})
 
 EdgeSetting.defaultProps = {
   label: '',
@@ -303,4 +349,4 @@ EdgeSetting.defaultProps = {
   edgeLabels: ['Top', 'Right', 'Bottom', 'Left'],
   unit: null,
   align: null,
-};
+}

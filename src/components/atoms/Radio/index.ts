@@ -1,11 +1,11 @@
 // Libraries
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 // Components
-import { Radio as AntdRadio } from 'antd';
+import { Radio as AntdRadio } from 'antd'
 
 // Constants
-import { THEME } from 'src/constants';
+import { THEME } from 'minhquanle-ui/lib/constants'
 
 export const Radio = styled(AntdRadio)`
   font-family: 'Roboto';
@@ -22,7 +22,7 @@ export const Radio = styled(AntdRadio)`
       }
     }
   }
-`;
+`
 
-export const RadioButton = styled(AntdRadio.Button)``;
-export const RadioGroupSub = styled(AntdRadio.Group)``;
+export const RadioButton = styled(AntdRadio.Button)``
+export const RadioGroupSub = styled(AntdRadio.Group)``

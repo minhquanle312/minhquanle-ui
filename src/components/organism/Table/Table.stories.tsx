@@ -1,21 +1,25 @@
 // Libraries
-import React, { useState } from 'react';
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
+import React, { useState } from 'react'
+import type { ComponentMeta, ComponentStory } from '@storybook/react'
 
 // Atnd
-import { DownOutlined } from '@ant-design/icons';
-import { Form, RadioChangeEvent, Switch } from 'antd';
-import { SizeType } from 'antd/es/config-provider/SizeContext';
-import { ExpandableConfig, Key, TableRowSelection } from 'antd/es/table/interface';
-import { ColumnsType, TableProps } from 'antd/es/table';
+import { DownOutlined } from '@ant-design/icons'
+import { Form, RadioChangeEvent, Switch } from 'antd'
+import { SizeType } from 'antd/es/config-provider/SizeContext'
+import {
+  ExpandableConfig,
+  Key,
+  TableRowSelection,
+} from 'antd/es/table/interface'
+import { ColumnsType, TableProps } from 'antd/es/table'
 
 // Components
-import { Table } from './Table';
-import { Space, Radio, Divider, Tag, Button } from '../../atoms';
-import { TableApiTypeTag } from 'src/stories/components';
+import { Table } from './Table'
+import { Space, Radio, Divider, Tag, Button } from '../../atoms'
+import { TableApiTypeTag } from 'minhquanle-ui/lib/stories/components'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'src/constants';
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants'
 
 export default {
   title: 'Organisms/Table',
@@ -139,7 +143,8 @@ export default {
     rowKey: {
       name: 'rowKey',
       defaultValue: undefined,
-      description: "Row's unique key, could be a string or function that returns a string",
+      description:
+        "Row's unique key, could be a string or function that returns a string",
       table: {
         type: { summary: 'string | function(record): string' },
         defaultValue: { summary: 'key' },
@@ -237,7 +242,10 @@ export default {
       description: 'The table-layout attribute of table element',
       table: {
         type: { summary: '- | auto | fixed' },
-        defaultValue: { summary: 'fixed when header/columns are fixed, or using column.ellipsis' },
+        defaultValue: {
+          summary:
+            'fixed when header/columns are fixed, or using column.ellipsis',
+        },
       },
       control: 'select',
       options: ['-', 'auto', 'fixed'],
@@ -255,7 +263,8 @@ export default {
     onChange: {
       name: 'onChange',
       defaultValue: undefined,
-      description: 'Callback executed when pagination, filters or sorter is changed',
+      description:
+        'Callback executed when pagination, filters or sorter is changed',
       table: {
         type: {
           summary:
@@ -297,10 +306,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Table>;
+} as ComponentMeta<typeof Table>
 
 // Default
-const Template: ComponentStory<typeof Table> = args => {
+const Template: ComponentStory<typeof Table> = (args) => {
   const dataSource = [
     {
       key: '1',
@@ -314,7 +323,7 @@ const Template: ComponentStory<typeof Table> = args => {
       age: 42,
       address: '10 Downing Street',
     },
-  ];
+  ]
 
   const columns = [
     {
@@ -332,22 +341,22 @@ const Template: ComponentStory<typeof Table> = args => {
       dataIndex: 'address',
       key: 'address',
     },
-  ];
-  return <Table {...args} dataSource={dataSource} columns={columns} />;
-};
+  ]
+  return <Table {...args} dataSource={dataSource} columns={columns} />
+}
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 
-Default.args = {};
+Default.args = {}
 
 // // Examples
 export const BasicUsage: ComponentStory<any> = () => {
   interface DataType {
-    key: string;
-    name: string;
-    age: number;
-    address: string;
-    tags: string[];
+    key: string
+    name: string
+    age: number
+    address: string
+    tags: string[]
   }
 
   const columns: ColumnsType<DataType> = [
@@ -355,7 +364,7 @@ export const BasicUsage: ComponentStory<any> = () => {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      render: text => <a>{text}</a>,
+      render: (text) => <a>{text}</a>,
     },
     {
       title: 'Age',
@@ -373,16 +382,16 @@ export const BasicUsage: ComponentStory<any> = () => {
       dataIndex: 'tags',
       render: (_, { tags }) => (
         <>
-          {tags.map(tag => {
-            let color = tag.length > 5 ? 'geekblue' : 'green';
+          {tags.map((tag) => {
+            let color = tag.length > 5 ? 'geekblue' : 'green'
             if (tag === 'loser') {
-              color = 'volcano';
+              color = 'volcano'
             }
             return (
               <Tag color={color} key={tag}>
                 {tag.toUpperCase()}
               </Tag>
-            );
+            )
           })}
         </>
       ),
@@ -397,7 +406,7 @@ export const BasicUsage: ComponentStory<any> = () => {
         </Space>
       ),
     },
-  ];
+  ]
 
   const data: DataType[] = [
     {
@@ -421,10 +430,10 @@ export const BasicUsage: ComponentStory<any> = () => {
       address: 'Sydney No. 1 Lake Park',
       tags: ['cool', 'teacher'],
     },
-  ];
+  ]
 
-  return <Table columns={columns} dataSource={data} />;
-};
+  return <Table columns={columns} dataSource={data} />
+}
 
 BasicUsage.parameters = {
   docs: {
@@ -432,18 +441,18 @@ BasicUsage.parameters = {
       story: 'Simple table with actions.',
     },
   },
-};
+}
 
 export const JSXStyleAPI: ComponentStory<any> = () => {
-  const { Column, ColumnGroup } = Table;
+  const { Column, ColumnGroup } = Table
 
   interface DataType {
-    key: React.Key;
-    firstName: string;
-    lastName: string;
-    age: number;
-    address: string;
-    tags: string[];
+    key: React.Key
+    firstName: string
+    lastName: string
+    age: number
+    address: string
+    tags: string[]
   }
 
   const data: DataType[] = [
@@ -471,7 +480,7 @@ export const JSXStyleAPI: ComponentStory<any> = () => {
       address: 'Sydney No. 1 Lake Park',
       tags: ['cool', 'teacher'],
     },
-  ];
+  ]
 
   return (
     <Table dataSource={data}>
@@ -487,7 +496,7 @@ export const JSXStyleAPI: ComponentStory<any> = () => {
         key="tags"
         render={(tags: string[]) => (
           <>
-            {tags.map(tag => (
+            {tags.map((tag) => (
               <Tag color="blue" key={tag}>
                 {tag}
               </Tag>
@@ -506,8 +515,8 @@ export const JSXStyleAPI: ComponentStory<any> = () => {
         )}
       />
     </Table>
-  );
-};
+  )
+}
 
 JSXStyleAPI.parameters = {
   docs: {
@@ -517,14 +526,14 @@ JSXStyleAPI.parameters = {
         "- Since this is just a syntax sugar for the prop `columns`, you can't compose `Column` and `ColumnGroup` with other Components.",
     },
   },
-};
+}
 
 export const Selection: ComponentStory<any> = () => {
   interface DataType {
-    key: React.Key;
-    name: string;
-    age: number;
-    address: string;
+    key: React.Key
+    name: string
+    age: number
+    address: string
   }
 
   const columns: ColumnsType<DataType> = [
@@ -541,7 +550,7 @@ export const Selection: ComponentStory<any> = () => {
       title: 'Address',
       dataIndex: 'address',
     },
-  ];
+  ]
 
   const data: DataType[] = [
     {
@@ -568,7 +577,7 @@ export const Selection: ComponentStory<any> = () => {
       age: 99,
       address: 'Sydney No. 1 Lake Park',
     },
-  ];
+  ]
 
   // rowSelection object indicates the need for row selection
   const rowSelection = {
@@ -579,15 +588,17 @@ export const Selection: ComponentStory<any> = () => {
       disabled: record.name === 'Disabled User', // Column configuration not to be checked
       name: record.name,
     }),
-  };
+  }
 
-  const [selectionType, setSelectionType] = useState<'checkbox' | 'radio'>('checkbox');
+  const [selectionType, setSelectionType] = useState<'checkbox' | 'radio'>(
+    'checkbox'
+  )
 
   return (
     <div>
       <Radio.Group
         onChange={({ target: { value } }) => {
-          setSelectionType(value);
+          setSelectionType(value)
         }}
         value={selectionType}
       >
@@ -606,8 +617,8 @@ export const Selection: ComponentStory<any> = () => {
         dataSource={data}
       />
     </div>
-  );
-};
+  )
+}
 
 Selection.parameters = {
   docs: {
@@ -617,14 +628,14 @@ Selection.parameters = {
         '- election happens when clicking checkbox by default. You can see https://codesandbox.io/s/000vqw38rl if you need row-click selection behavior.',
     },
   },
-};
+}
 
 export const SelectionAndOperation: ComponentStory<any> = () => {
   interface DataType {
-    key: React.Key;
-    name: string;
-    age: number;
-    address: string;
+    key: React.Key
+    name: string
+    age: number
+    address: string
   }
 
   const columns: ColumnsType<DataType> = [
@@ -640,44 +651,49 @@ export const SelectionAndOperation: ComponentStory<any> = () => {
       title: 'Address',
       dataIndex: 'address',
     },
-  ];
+  ]
 
-  const data: DataType[] = [];
+  const data: DataType[] = []
   for (let i = 0; i < 46; i++) {
     data.push({
       key: i,
       name: `Edward King ${i}`,
       age: 32,
       address: `London, Park Lane no. ${i}`,
-    });
+    })
   }
 
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([])
+  const [loading, setLoading] = useState(false)
 
   const start = () => {
-    setLoading(true);
+    setLoading(true)
     // ajax request after empty completing
     setTimeout(() => {
-      setSelectedRowKeys([]);
-      setLoading(false);
-    }, 1000);
-  };
+      setSelectedRowKeys([])
+      setLoading(false)
+    }, 1000)
+  }
 
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
-    setSelectedRowKeys(newSelectedRowKeys);
-  };
+    setSelectedRowKeys(newSelectedRowKeys)
+  }
 
   const rowSelection = {
     selectedRowKeys,
     onChange: onSelectChange,
-  };
-  const hasSelected = selectedRowKeys.length > 0;
+  }
+  const hasSelected = selectedRowKeys.length > 0
 
   return (
     <div>
       <div style={{ marginBottom: 16 }}>
-        <Button type="primary" onClick={start} disabled={!hasSelected} loading={loading}>
+        <Button
+          type="primary"
+          onClick={start}
+          disabled={!hasSelected}
+          loading={loading}
+        >
           Reload
         </Button>
         <span style={{ marginLeft: 8 }}>
@@ -686,8 +702,8 @@ export const SelectionAndOperation: ComponentStory<any> = () => {
       </div>
       <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
     </div>
-  );
-};
+  )
+}
 
 SelectionAndOperation.parameters = {
   docs: {
@@ -696,14 +712,14 @@ SelectionAndOperation.parameters = {
         'To perform operations and clear selections after selecting some rows, use `rowSelection.selectedRowKeys` to control selected rows.',
     },
   },
-};
+}
 
 export const CustomSelection: ComponentStory<any> = () => {
   interface DataType {
-    key: React.Key;
-    name: string;
-    age: number;
-    address: string;
+    key: React.Key
+    name: string
+    age: number
+    address: string
   }
 
   const columns: ColumnsType<DataType> = [
@@ -719,23 +735,23 @@ export const CustomSelection: ComponentStory<any> = () => {
       title: 'Address',
       dataIndex: 'address',
     },
-  ];
+  ]
 
-  const data: DataType[] = [];
+  const data: DataType[] = []
   for (let i = 0; i < 46; i++) {
     data.push({
       key: i,
       name: `Edward King ${i}`,
       age: 32,
       address: `London, Park Lane no. ${i}`,
-    });
+    })
   }
 
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([])
 
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
-    setSelectedRowKeys(newSelectedRowKeys);
-  };
+    setSelectedRowKeys(newSelectedRowKeys)
+  }
 
   const rowSelection: TableRowSelection<DataType> = {
     selectedRowKeys,
@@ -747,36 +763,38 @@ export const CustomSelection: ComponentStory<any> = () => {
       {
         key: 'odd',
         text: 'Select Odd Row',
-        onSelect: changeableRowKeys => {
-          let newSelectedRowKeys: Key[] = [];
+        onSelect: (changeableRowKeys) => {
+          let newSelectedRowKeys: Key[] = []
           newSelectedRowKeys = changeableRowKeys.filter((_, index) => {
             if (index % 2 !== 0) {
-              return false;
+              return false
             }
-            return true;
-          });
-          setSelectedRowKeys(newSelectedRowKeys);
+            return true
+          })
+          setSelectedRowKeys(newSelectedRowKeys)
         },
       },
       {
         key: 'even',
         text: 'Select Even Row',
-        onSelect: changeableRowKeys => {
-          let newSelectedRowKeys: Key[] = [];
+        onSelect: (changeableRowKeys) => {
+          let newSelectedRowKeys: Key[] = []
           newSelectedRowKeys = changeableRowKeys.filter((_, index) => {
             if (index % 2 !== 0) {
-              return true;
+              return true
             }
-            return false;
-          });
-          setSelectedRowKeys(newSelectedRowKeys);
+            return false
+          })
+          setSelectedRowKeys(newSelectedRowKeys)
         },
       },
     ],
-  };
+  }
 
-  return <Table rowSelection={rowSelection} columns={columns} dataSource={data} />;
-};
+  return (
+    <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+  )
+}
 
 CustomSelection.parameters = {
   docs: {
@@ -785,14 +803,14 @@ CustomSelection.parameters = {
         'Use `rowSelection.selections` custom selections, default no select dropdown, show default selections via setting to `true`.',
     },
   },
-};
+}
 
 export const FilterAndSorter: ComponentStory<any> = () => {
   interface DataType {
-    key: React.Key;
-    name: string;
-    age: number;
-    address: string;
+    key: React.Key
+    name: string
+    age: number
+    address: string
   }
 
   const columns: ColumnsType<DataType> = [
@@ -852,7 +870,7 @@ export const FilterAndSorter: ComponentStory<any> = () => {
       onFilter: (value: string | number | boolean, record) =>
         record.address.indexOf(value as string) === 0,
     },
-  ];
+  ]
 
   const data = [
     {
@@ -879,14 +897,19 @@ export const FilterAndSorter: ComponentStory<any> = () => {
       age: 32,
       address: 'London No. 2 Lake Park',
     },
-  ];
+  ]
 
-  const onChange: TableProps<DataType>['onChange'] = (_pagination, _filters, _sorter, _extra) => {
+  const onChange: TableProps<DataType>['onChange'] = (
+    _pagination,
+    _filters,
+    _sorter,
+    _extra
+  ) => {
     // Do something
-  };
+  }
 
-  return <Table columns={columns} dataSource={data} onChange={onChange} />;
-};
+  return <Table columns={columns} dataSource={data} onChange={onChange} />
+}
 
 FilterAndSorter.parameters = {
   docs: {
@@ -899,14 +922,14 @@ FilterAndSorter.parameters = {
         '\nIf a `sortOrder` or `defaultSortOrder` is specified with the value `ascend` or `descend`, you can access this value from within the function passed to the sorter as explained above. Such a function can take the form: `function(a, b, sortOrder) { ... }`.',
     },
   },
-};
+}
 
 export const FilterInTree: ComponentStory<any> = () => {
   interface DataType {
-    key: React.Key;
-    name: string;
-    age: number;
-    address: string;
+    key: React.Key
+    name: string
+    age: number
+    address: string
   }
 
   const columns: ColumnsType<DataType> = [
@@ -949,7 +972,8 @@ export const FilterInTree: ComponentStory<any> = () => {
       ],
       filterMode: 'tree',
       filterSearch: true,
-      onFilter: (value: string | number | boolean, record) => record.name.includes(value as string),
+      onFilter: (value: string | number | boolean, record) =>
+        record.name.includes(value as string),
       width: '30%',
     },
     {
@@ -975,7 +999,7 @@ export const FilterInTree: ComponentStory<any> = () => {
       filterSearch: true,
       width: '40%',
     },
-  ];
+  ]
 
   const data: DataType[] = [
     {
@@ -1002,14 +1026,19 @@ export const FilterInTree: ComponentStory<any> = () => {
       age: 32,
       address: 'London No. 2 Lake Park',
     },
-  ];
+  ]
 
-  const onChange: TableProps<DataType>['onChange'] = (_pagination, _filters, _sorter, _extra) => {
+  const onChange: TableProps<DataType>['onChange'] = (
+    _pagination,
+    _filters,
+    _sorter,
+    _extra
+  ) => {
     // Do something
-  };
+  }
 
-  return <Table columns={columns} dataSource={data} onChange={onChange} />;
-};
+  return <Table columns={columns} dataSource={data} onChange={onChange} />
+}
 
 FilterInTree.parameters = {
   docs: {
@@ -1019,14 +1048,14 @@ FilterInTree.parameters = {
         '- `filterSearch` is used for making filter dropdown items searchable.',
     },
   },
-};
+}
 
 export const FilterSearch: ComponentStory<any> = () => {
   interface DataType {
-    key: React.Key;
-    name: string;
-    age: number;
-    address: string;
+    key: React.Key
+    name: string
+    age: number
+    address: string
   }
 
   const columns: ColumnsType<DataType> = [
@@ -1076,7 +1105,7 @@ export const FilterSearch: ComponentStory<any> = () => {
       filterSearch: true,
       width: '40%',
     },
-  ];
+  ]
 
   const data: DataType[] = [
     {
@@ -1103,14 +1132,19 @@ export const FilterSearch: ComponentStory<any> = () => {
       age: 32,
       address: 'London No. 2 Lake Park',
     },
-  ];
+  ]
 
-  const onChange: TableProps<DataType>['onChange'] = (_pagination, _filters, _sorter, _extra) => {
+  const onChange: TableProps<DataType>['onChange'] = (
+    _pagination,
+    _filters,
+    _sorter,
+    _extra
+  ) => {
     // Do something
-  };
+  }
 
-  return <Table columns={columns} dataSource={data} onChange={onChange} />;
-};
+  return <Table columns={columns} dataSource={data} onChange={onChange} />
+}
 
 FilterSearch.parameters = {
   docs: {
@@ -1119,15 +1153,15 @@ FilterSearch.parameters = {
         '`filterSearch` is used to enable search of filter items, and you can set a custom filter method through `filterSearch:(input, record) => boolean`.',
     },
   },
-};
+}
 
 export const MultipleSorter: ComponentStory<any> = () => {
   interface DataType {
-    key: React.Key;
-    name: string;
-    chinese: number;
-    math: number;
-    english: number;
+    key: React.Key
+    name: string
+    chinese: number
+    math: number
+    english: number
   }
 
   const columns: ColumnsType<DataType> = [
@@ -1159,7 +1193,7 @@ export const MultipleSorter: ComponentStory<any> = () => {
         multiple: 1,
       },
     },
-  ];
+  ]
 
   const data: DataType[] = [
     {
@@ -1190,14 +1224,19 @@ export const MultipleSorter: ComponentStory<any> = () => {
       math: 99,
       english: 89,
     },
-  ];
+  ]
 
-  const onChange: TableProps<DataType>['onChange'] = (_pagination, _filters, _sorter, _extra) => {
+  const onChange: TableProps<DataType>['onChange'] = (
+    _pagination,
+    _filters,
+    _sorter,
+    _extra
+  ) => {
     // Do something
-  };
+  }
 
-  return <Table columns={columns} dataSource={data} onChange={onChange} />;
-};
+  return <Table columns={columns} dataSource={data} onChange={onChange} />
+}
 
 MultipleSorter.parameters = {
   docs: {
@@ -1206,15 +1245,15 @@ MultipleSorter.parameters = {
         '`column.sorter` support `multiple` to config the priority of sort columns. Though `sorter.compare` to customize compare function. You can also leave it empty to use the interactive only.',
     },
   },
-};
+}
 
 export const DynamicSettings: ComponentStory<any> = () => {
   interface DataType {
-    key: number;
-    name: string;
-    age: number;
-    address: string;
-    description: string;
+    key: number
+    name: string
+    age: number
+    address: string
+    description: string
   }
 
   type TablePaginationPosition =
@@ -1223,7 +1262,7 @@ export const DynamicSettings: ComponentStory<any> = () => {
     | 'topRight'
     | 'bottomLeft'
     | 'bottomCenter'
-    | 'bottomRight';
+    | 'bottomRight'
 
   const columns: ColumnsType<DataType> = [
     {
@@ -1248,7 +1287,8 @@ export const DynamicSettings: ComponentStory<any> = () => {
           value: 'New York',
         },
       ],
-      onFilter: (value, record) => record.address.indexOf(value as string) === 0,
+      onFilter: (value, record) =>
+        record.address.indexOf(value as string) === 0,
     },
     {
       title: 'Action',
@@ -1266,9 +1306,9 @@ export const DynamicSettings: ComponentStory<any> = () => {
         </Space>
       ),
     },
-  ];
+  ]
 
-  const data: DataType[] = [];
+  const data: DataType[] = []
   for (let i = 1; i <= 10; i++) {
     data.push({
       key: i,
@@ -1276,97 +1316,99 @@ export const DynamicSettings: ComponentStory<any> = () => {
       age: Number(`${i}2`),
       address: `New York No. ${i} Lake Park`,
       description: `My name is John Brown, I am ${i}2 years old, living in New York No. ${i} Lake Park.`,
-    });
+    })
   }
 
   const defaultExpandable = {
     expandedRowRender: (record: DataType) => <p>{record.description}</p>,
-  };
-  const defaultTitle = () => 'Here is title';
-  const defaultFooter = () => 'Here is footer';
+  }
+  const defaultTitle = () => 'Here is title'
+  const defaultFooter = () => 'Here is footer'
 
-  const [bordered, setBordered] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [size, setSize] = useState<SizeType>('large');
-  const [expandable, setExpandable] = useState<ExpandableConfig<DataType> | undefined>(
-    defaultExpandable,
-  );
-  const [showTitle, setShowTitle] = useState(false);
-  const [showHeader, setShowHeader] = useState(true);
-  const [showfooter, setShowFooter] = useState(true);
-  const [rowSelection, setRowSelection] = useState<TableRowSelection<DataType> | undefined>({});
-  const [hasData, setHasData] = useState(true);
-  const [tableLayout, setTableLayout] = useState();
-  const [top, setTop] = useState<TablePaginationPosition | 'none'>('none');
-  const [bottom, setBottom] = useState<TablePaginationPosition>('bottomRight');
-  const [ellipsis, setEllipsis] = useState(false);
-  const [yScroll, setYScroll] = useState(false);
-  const [xScroll, setXScroll] = useState<string>();
+  const [bordered, setBordered] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [size, setSize] = useState<SizeType>('large')
+  const [expandable, setExpandable] = useState<
+    ExpandableConfig<DataType> | undefined
+  >(defaultExpandable)
+  const [showTitle, setShowTitle] = useState(false)
+  const [showHeader, setShowHeader] = useState(true)
+  const [showfooter, setShowFooter] = useState(true)
+  const [rowSelection, setRowSelection] = useState<
+    TableRowSelection<DataType> | undefined
+  >({})
+  const [hasData, setHasData] = useState(true)
+  const [tableLayout, setTableLayout] = useState()
+  const [top, setTop] = useState<TablePaginationPosition | 'none'>('none')
+  const [bottom, setBottom] = useState<TablePaginationPosition>('bottomRight')
+  const [ellipsis, setEllipsis] = useState(false)
+  const [yScroll, setYScroll] = useState(false)
+  const [xScroll, setXScroll] = useState<string>()
 
   const handleBorderChange = (enable: boolean) => {
-    setBordered(enable);
-  };
+    setBordered(enable)
+  }
 
   const handleLoadingChange = (enable: boolean) => {
-    setLoading(enable);
-  };
+    setLoading(enable)
+  }
 
   const handleSizeChange = (e: RadioChangeEvent) => {
-    setSize(e.target.value);
-  };
+    setSize(e.target.value)
+  }
 
   const handleTableLayoutChange = (e: RadioChangeEvent) => {
-    setTableLayout(e.target.value);
-  };
+    setTableLayout(e.target.value)
+  }
 
   const handleExpandChange = (enable: boolean) => {
-    setExpandable(enable ? defaultExpandable : undefined);
-  };
+    setExpandable(enable ? defaultExpandable : undefined)
+  }
 
   const handleEllipsisChange = (enable: boolean) => {
-    setEllipsis(enable);
-  };
+    setEllipsis(enable)
+  }
 
   const handleTitleChange = (enable: boolean) => {
-    setShowTitle(enable);
-  };
+    setShowTitle(enable)
+  }
 
   const handleHeaderChange = (enable: boolean) => {
-    setShowHeader(enable);
-  };
+    setShowHeader(enable)
+  }
 
   const handleFooterChange = (enable: boolean) => {
-    setShowFooter(enable);
-  };
+    setShowFooter(enable)
+  }
 
   const handleRowSelectionChange = (enable: boolean) => {
-    setRowSelection(enable ? {} : undefined);
-  };
+    setRowSelection(enable ? {} : undefined)
+  }
 
   const handleYScrollChange = (enable: boolean) => {
-    setYScroll(enable);
-  };
+    setYScroll(enable)
+  }
 
   const handleXScrollChange = (e: RadioChangeEvent) => {
-    setXScroll(e.target.value);
-  };
+    setXScroll(e.target.value)
+  }
 
   const handleDataChange = (newHasData: boolean) => {
-    setHasData(newHasData);
-  };
+    setHasData(newHasData)
+  }
 
-  const scroll: { x?: number | string; y?: number | string } = {};
+  const scroll: { x?: number | string; y?: number | string } = {}
   if (yScroll) {
-    scroll.y = 240;
+    scroll.y = 240
   }
   if (xScroll) {
-    scroll.x = '100vw';
+    scroll.x = '100vw'
   }
 
-  const tableColumns = columns.map(item => ({ ...item, ellipsis }));
+  const tableColumns = columns.map((item) => ({ ...item, ellipsis }))
   if (xScroll === 'fixed') {
-    tableColumns[0].fixed = true;
-    tableColumns[tableColumns.length - 1].fixed = 'right';
+    tableColumns[0].fixed = true
+    tableColumns[tableColumns.length - 1].fixed = 'right'
   }
 
   const tableProps: TableProps<DataType> = {
@@ -1380,7 +1422,7 @@ export const DynamicSettings: ComponentStory<any> = () => {
     rowSelection,
     scroll,
     tableLayout,
-  };
+  }
 
   return (
     <>
@@ -1412,7 +1454,10 @@ export const DynamicSettings: ComponentStory<any> = () => {
               <Switch checked={!!expandable} onChange={handleExpandChange} />
             </Form.Item>
             <Form.Item label="Checkbox">
-              <Switch checked={!!rowSelection} onChange={handleRowSelectionChange} />
+              <Switch
+                checked={!!rowSelection}
+                onChange={handleRowSelectionChange}
+              />
             </Form.Item>
           </Space>
           <Space>
@@ -1442,7 +1487,10 @@ export const DynamicSettings: ComponentStory<any> = () => {
               </Radio.Group>
             </Form.Item>
             <Form.Item label="Table Layout">
-              <Radio.Group value={tableLayout} onChange={handleTableLayoutChange}>
+              <Radio.Group
+                value={tableLayout}
+                onChange={handleTableLayoutChange}
+              >
                 <Radio.Button value={undefined}>Unset</Radio.Button>
                 <Radio.Button value="fixed">Fixed</Radio.Button>
               </Radio.Group>
@@ -1450,8 +1498,8 @@ export const DynamicSettings: ComponentStory<any> = () => {
             <Form.Item label="Pagination Top">
               <Radio.Group
                 value={top}
-                onChange={e => {
-                  setTop(e.target.value);
+                onChange={(e) => {
+                  setTop(e.target.value)
                 }}
               >
                 <Radio.Button value="topLeft">TopLeft</Radio.Button>
@@ -1463,8 +1511,8 @@ export const DynamicSettings: ComponentStory<any> = () => {
             <Form.Item label="Pagination Bottom">
               <Radio.Group
                 value={bottom}
-                onChange={e => {
-                  setBottom(e.target.value);
+                onChange={(e) => {
+                  setBottom(e.target.value)
                 }}
               >
                 <Radio.Button value="bottomLeft">BottomLeft</Radio.Button>
@@ -1484,8 +1532,8 @@ export const DynamicSettings: ComponentStory<any> = () => {
         scroll={scroll}
       />
     </>
-  );
-};
+  )
+}
 
 DynamicSettings.parameters = {
   docs: {
@@ -1493,7 +1541,7 @@ DynamicSettings.parameters = {
       story: 'Select different settings to see the result.',
     },
   },
-};
+}
 
 export const ColumnAPI: ComponentStory<any> = () => {
   const dataSource = [
@@ -1529,7 +1577,8 @@ export const ColumnAPI: ComponentStory<any> = () => {
     {
       key: '4',
       property: 'dataIndex',
-      description: 'Display field of the data record, support nest path by string array',
+      description:
+        'Display field of the data record, support nest path by string array',
       type: 'string | string[ ]',
       default: '-',
     },
@@ -1543,7 +1592,8 @@ export const ColumnAPI: ComponentStory<any> = () => {
     {
       key: '6',
       property: 'filterResetToDefaultFilteredValue',
-      description: 'click the reset button, whether to restore the default filter',
+      description:
+        'click the reset button, whether to restore the default filter',
       type: 'boolean',
       default: 'false',
     },
@@ -1559,11 +1609,14 @@ export const ColumnAPI: ComponentStory<any> = () => {
       property: 'ellipsis',
       description: (
         <>
-          The ellipsis cell content, not working with sorter and filters for now. tableLayout would
-          be <Tag style={{ marginRight: '0' }}>fixed</Tag> when{' '}
+          The ellipsis cell content, not working with sorter and filters for
+          now. tableLayout would be{' '}
+          <Tag style={{ marginRight: '0' }}>fixed</Tag> when{' '}
           <Tag style={{ marginRight: '0' }}>ellipsis</Tag> is{' '}
           <Tag style={{ marginRight: '0' }}>true</Tag> or{' '}
-          <Tag style={{ marginRight: '0' }}>&#123; showTitle?: boolean &#125;</Tag>
+          <Tag style={{ marginRight: '0' }}>
+            &#123; showTitle?: boolean &#125;
+          </Tag>
         </>
       ),
       type: 'boolean | {showTitle?: boolean }',
@@ -1581,7 +1634,8 @@ export const ColumnAPI: ComponentStory<any> = () => {
       property: 'filterDropdownOpen',
       description: (
         <>
-          Whether <Tag style={{ marginRight: '0' }}>filterDropdown</Tag> is visible
+          Whether <Tag style={{ marginRight: '0' }}>filterDropdown</Tag> is
+          visible
         </>
       ),
       type: 'boolean',
@@ -1592,7 +1646,8 @@ export const ColumnAPI: ComponentStory<any> = () => {
       property: 'filtered',
       description: (
         <>
-          Whether the <Tag style={{ marginRight: '0' }}>dataSource</Tag> is filtered
+          Whether the <Tag style={{ marginRight: '0' }}>dataSource</Tag> is
+          filtered
         </>
       ),
       type: 'boolean',
@@ -1645,8 +1700,10 @@ export const ColumnAPI: ComponentStory<any> = () => {
       property: 'fixed',
       description: (
         <>
-          (IE not support) Set column to be fixed: <Tag style={{ marginRight: '0' }}>true</Tag>
-          &nbsp;(same as left) <Tag style={{ marginRight: '0' }}>&apos;left&apos;</Tag>&nbsp;
+          (IE not support) Set column to be fixed:{' '}
+          <Tag style={{ marginRight: '0' }}>true</Tag>
+          &nbsp;(same as left){' '}
+          <Tag style={{ marginRight: '0' }}>&apos;left&apos;</Tag>&nbsp;
           <Tag style={{ marginRight: '0' }}>&apos;right&apos;</Tag>
         </>
       ),
@@ -1658,7 +1715,8 @@ export const ColumnAPI: ComponentStory<any> = () => {
       property: 'key',
       description: (
         <>
-          Unique key of this column, you can ignore this prop if you&apos;ve set a unique &nbsp;
+          Unique key of this column, you can ignore this prop if you&apos;ve set
+          a unique &nbsp;
           <Tag>dataIndex</Tag>
         </>
       ),
@@ -1668,7 +1726,8 @@ export const ColumnAPI: ComponentStory<any> = () => {
     {
       key: '20',
       property: 'render',
-      description: 'Renderer of the table cell. The return value should be a ReactNode',
+      description:
+        'Renderer of the table cell. The return value should be a ReactNode',
       type: 'function(text, record, index) {}',
       default: '-',
     },
@@ -1717,8 +1776,9 @@ export const ColumnAPI: ComponentStory<any> = () => {
       property: 'sortDirections',
       description: (
         <>
-          Supported sort way, override <Tag style={{ marginRight: '0' }}>sortDirections</Tag> in
-          &nbsp;<Tag style={{ marginRight: '0' }}>Table</Tag>&nbsp;, could be &nbsp;
+          Supported sort way, override{' '}
+          <Tag style={{ marginRight: '0' }}>sortDirections</Tag> in &nbsp;
+          <Tag style={{ marginRight: '0' }}>Table</Tag>&nbsp;, could be &nbsp;
           <Tag style={{ marginRight: '0' }}>ascend</Tag>&nbsp;, &nbsp;
           <Tag style={{ marginRight: '0' }}>descend</Tag>
         </>
@@ -1736,8 +1796,9 @@ export const ColumnAPI: ComponentStory<any> = () => {
       property: 'sorter',
       description: (
         <>
-          Sort function for local sort, see Array.sort&apos;s compareFunction. If you need sort
-          buttons only, set to <Tag style={{ marginRight: '0' }}>true</Tag>
+          Sort function for local sort, see Array.sort&apos;s compareFunction.
+          If you need sort buttons only, set to{' '}
+          <Tag style={{ marginRight: '0' }}>true</Tag>
         </>
       ),
       type: 'function | boolean | { compare: function: multiple: number }',
@@ -1748,14 +1809,16 @@ export const ColumnAPI: ComponentStory<any> = () => {
       property: 'sortOrder',
       description: (
         <>
-          Order of sorted values: <Tag style={{ marginRight: '0' }}>ascend</Tag>&nbsp;
+          Order of sorted values: <Tag style={{ marginRight: '0' }}>ascend</Tag>
+          &nbsp;
           <Tag style={{ marginRight: '0' }}>descend</Tag>&nbsp;
           <Tag style={{ marginRight: '0' }}>null</Tag>
         </>
       ),
       type: (
         <>
-          <TableApiTypeTag text="ascend" /> | <TableApiTypeTag text="descend" /> | null
+          <TableApiTypeTag text="ascend" /> | <TableApiTypeTag text="descend" />{' '}
+          | null
         </>
       ),
       default: '-',
@@ -1798,7 +1861,8 @@ export const ColumnAPI: ComponentStory<any> = () => {
     {
       key: '32',
       property: 'onFilter',
-      description: 'Function that determines if the row is displayed when filtered',
+      description:
+        'Function that determines if the row is displayed when filtered',
       type: 'function(value, record) => boolean',
       default: '-',
     },
@@ -1807,8 +1871,8 @@ export const ColumnAPI: ComponentStory<any> = () => {
       property: 'onFilterDropdownOpenChange',
       description: (
         <>
-          Callback executed when <Tag style={{ marginRight: '0' }}>filterDropdownOpen</Tag> is
-          changed
+          Callback executed when{' '}
+          <Tag style={{ marginRight: '0' }}>filterDropdownOpen</Tag> is changed
         </>
       ),
       type: 'function(visible) {}',
@@ -1821,10 +1885,16 @@ export const ColumnAPI: ComponentStory<any> = () => {
       type: 'function(column)',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 ColumnAPI.parameters = {
   docs: {
@@ -1836,7 +1906,7 @@ ColumnAPI.parameters = {
       code: null,
     },
   },
-};
+}
 
 export const ColumnGroupAPI: ComponentStory<any> = () => {
   const dataSource = [
@@ -1847,10 +1917,16 @@ export const ColumnGroupAPI: ComponentStory<any> = () => {
       type: 'ReactNode',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 ColumnGroupAPI.parameters = {
   docs: {
@@ -1861,7 +1937,7 @@ ColumnGroupAPI.parameters = {
       code: null,
     },
   },
-};
+}
 
 export const PaginationAPI: ComponentStory<any> = () => {
   const dataSource = [
@@ -1870,7 +1946,8 @@ export const PaginationAPI: ComponentStory<any> = () => {
       property: 'position',
       description: (
         <>
-          Specify the position of <Tag style={{ marginRight: '0' }}>Pagination</Tag>, could be{' '}
+          Specify the position of{' '}
+          <Tag style={{ marginRight: '0' }}>Pagination</Tag>, could be{' '}
           <Tag style={{ marginRight: '0' }}>topLeft</Tag> |{' '}
           <Tag style={{ marginRight: '0' }}>topCenter</Tag> |{' '}
           <Tag style={{ marginRight: '0' }}>topRight</Tag> |{' '}
@@ -1886,23 +1963,30 @@ export const PaginationAPI: ComponentStory<any> = () => {
         </>
       ),
     },
-  ];
+  ]
 
   return (
     <>
-      <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />
+      <Table
+        dataSource={dataSource}
+        columns={TABLE_API_COLUMNS}
+        pagination={false}
+      />
       <p>
         More about pagination, please check{' '}
         <Tag style={{ marginRight: '0' }}>
-          <a href="https://ant.design/components/pagination" style={{ color: 'blue' }}>
+          <a
+            href="https://ant.design/components/pagination"
+            style={{ color: 'blue' }}
+          >
             Pagination
           </a>
         </Tag>
         .
       </p>
     </>
-  );
-};
+  )
+}
 
 PaginationAPI.parameters = {
   docs: {
@@ -1913,7 +1997,7 @@ PaginationAPI.parameters = {
       code: null,
     },
   },
-};
+}
 
 export const ExpandableAPI: ComponentStory<any> = () => {
   const dataSource = [
@@ -1988,7 +2072,8 @@ export const ExpandableAPI: ComponentStory<any> = () => {
     {
       key: '10',
       property: 'expandRowByClick',
-      description: 'Whether to expand row by clicking anywhere in the whole row',
+      description:
+        'Whether to expand row by clicking anywhere in the whole row',
       type: 'boolean',
       default: 'false',
     },
@@ -1998,7 +2083,8 @@ export const ExpandableAPI: ComponentStory<any> = () => {
       description: (
         <>
           Whether the expansion icon is fixed. Optional true{' '}
-          <Tag style={{ marginRight: '0' }}>left</Tag> <Tag style={{ marginRight: '0' }}>right</Tag>
+          <Tag style={{ marginRight: '0' }}>left</Tag>{' '}
+          <Tag style={{ marginRight: '0' }}>right</Tag>
         </>
       ),
       type: 'boolean | string',
@@ -2039,10 +2125,16 @@ export const ExpandableAPI: ComponentStory<any> = () => {
       type: 'function(expandedRows)',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 ExpandableAPI.parameters = {
   docs: {
@@ -2053,14 +2145,15 @@ ExpandableAPI.parameters = {
       code: null,
     },
   },
-};
+}
 
 export const RowSelectionAPI: ComponentStory<any> = () => {
   const dataSource = [
     {
       key: '1',
       property: 'checkStrictly',
-      description: 'Check table row precisely; parent row and children rows are not associated',
+      description:
+        'Check table row precisely; parent row and children rows are not associated',
       type: 'boolean',
       default: 'true',
     },
@@ -2104,8 +2197,8 @@ export const RowSelectionAPI: ComponentStory<any> = () => {
       property: 'preserveSelectedRowKeys',
       description: (
         <>
-          Keep selection <Tag style={{ marginRight: '0' }}>key</Tag> even when it removed from{' '}
-          <Tag style={{ marginRight: '0' }}>dataSource</Tag>
+          Keep selection <Tag style={{ marginRight: '0' }}>key</Tag> even when
+          it removed from <Tag style={{ marginRight: '0' }}>dataSource</Tag>
         </>
       ),
       type: 'boolean',
@@ -2116,8 +2209,8 @@ export const RowSelectionAPI: ComponentStory<any> = () => {
       property: 'renderCell',
       description: (
         <>
-          Renderer of the table cell. Same as <Tag style={{ marginRight: '0' }}>render</Tag> in
-          column
+          Renderer of the table cell. Same as{' '}
+          <Tag style={{ marginRight: '0' }}>render</Tag> in column
         </>
       ),
       type: 'function(checked, record, index, originNode) {}',
@@ -2135,8 +2228,10 @@ export const RowSelectionAPI: ComponentStory<any> = () => {
       property: 'selections',
       description: (
         <>
-          Custom selection <a href="https://ant.design/components/table/#selection">config</a>, only
-          displays default selections when set to <Tag style={{ marginRight: '0' }}>true</Tag>
+          Custom selection{' '}
+          <a href="https://ant.design/components/table/#selection">config</a>,
+          only displays default selections when set to{' '}
+          <Tag style={{ marginRight: '0' }}>true</Tag>
         </>
       ),
       type: 'object[ ] | boolean',
@@ -2163,7 +2258,8 @@ export const RowSelectionAPI: ComponentStory<any> = () => {
       property: 'onCell',
       description: (
         <>
-          Set props on per cell. Same as <Tag style={{ marginRight: '0' }}>onCell</Tag> in column
+          Set props on per cell. Same as{' '}
+          <Tag style={{ marginRight: '0' }}>onCell</Tag> in column
         </>
       ),
       type: 'function(record, rowIndex)',
@@ -2207,14 +2303,21 @@ export const RowSelectionAPI: ComponentStory<any> = () => {
     {
       key: '18',
       property: 'onSelectMultiple',
-      description: 'Callback executed when row selection is changed by pressing shift',
+      description:
+        'Callback executed when row selection is changed by pressing shift',
       type: 'function(selected, selectedRows, changeRows)',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 RowSelectionAPI.parameters = {
   docs: {
@@ -2225,7 +2328,7 @@ RowSelectionAPI.parameters = {
       code: null,
     },
   },
-};
+}
 
 export const ScrollAPI: ComponentStory<any> = () => {
   const dataSource = [
@@ -2242,8 +2345,8 @@ export const ScrollAPI: ComponentStory<any> = () => {
       property: 'x',
       description: (
         <>
-          Set horizontal scrolling, can also be used to specify the width of the scroll area, could
-          be number, percent value, true and{' '}
+          Set horizontal scrolling, can also be used to specify the width of the
+          scroll area, could be number, percent value, true and{' '}
           <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/width#max-content">
             &apos;max-content&apos;
           </a>
@@ -2260,10 +2363,16 @@ export const ScrollAPI: ComponentStory<any> = () => {
       type: 'string | number',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 ScrollAPI.parameters = {
   docs: {
@@ -2274,7 +2383,7 @@ ScrollAPI.parameters = {
       code: null,
     },
   },
-};
+}
 
 export const SelectionAPI: ComponentStory<any> = () => {
   const dataSource = [
@@ -2299,10 +2408,16 @@ export const SelectionAPI: ComponentStory<any> = () => {
       type: 'function(changeableRowKeys)',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 SelectionAPI.parameters = {
   docs: {
@@ -2313,4 +2428,4 @@ SelectionAPI.parameters = {
       code: null,
     },
   },
-};
+}

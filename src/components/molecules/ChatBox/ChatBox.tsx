@@ -1,16 +1,20 @@
 /* eslint-disable react/no-unused-prop-types */
 // Libraries
-import React, { useEffect, useState, useRef, useCallback } from 'react';
-import clsx from 'clsx';
-import axios from 'axios';
+import React, { useEffect, useState, useRef, useCallback } from 'react'
+import clsx from 'clsx'
+import axios from 'axios'
 
 // Atoms
-import { Button, Typography } from 'src/components/atoms';
-import { Input as AntdInput } from 'antd';
+import { Button, Typography } from 'minhquanle-ui/lib/components/atoms'
+import { Input as AntdInput } from 'antd'
 
 // Components
-import MessageItem from './MessageItem';
-import { CloseIcon, PlaneIcon, WarningIcon } from 'src/components/icons';
+import MessageItem from './MessageItem'
+import {
+  CloseIcon,
+  PlaneIcon,
+  WarningIcon,
+} from 'minhquanle-ui/lib/components/icons'
 
 // Styled
 import {
@@ -20,53 +24,53 @@ import {
   ChatBoxFooter,
   WarningWrapper,
   InputWrapper,
-} from './styled';
+} from './styled'
 
 // Types
-import { IChatBoxProps, Message, Role } from './types';
+import { IChatBoxProps, Message, Role } from './types'
 
-const { TextArea } = AntdInput;
-const { Text } = Typography;
+const { TextArea } = AntdInput
+const { Text } = Typography
 
-export const ChatBox: React.FC<IChatBoxProps> = props => {
-  const { onClose, domain, userId, token, withoutBox, avatar, style } = props;
-  const [question, setQuestion] = useState('');
-  const [isClosed, setIsClosed] = useState(false);
-  const [limitMessage, setLimitMessage] = useState('');
-  const [isAnswering, setAnswering] = useState<boolean>(false);
-  const [showPlaceHolder, setShowPlaceholder] = useState<boolean>(false);
-  const [conversation, setConversation] = useState<Message[]>([]);
-  const bodyRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLTextAreaElement>(null);
-  const initRef = useRef<boolean>(false);
-  const answeringRef = useRef<boolean>(false);
+export const ChatBox: React.FC<IChatBoxProps> = (props) => {
+  const { onClose, domain, userId, token, withoutBox, avatar, style } = props
+  const [question, setQuestion] = useState('')
+  const [isClosed, setIsClosed] = useState(false)
+  const [limitMessage, setLimitMessage] = useState('')
+  const [isAnswering, setAnswering] = useState<boolean>(false)
+  const [showPlaceHolder, setShowPlaceholder] = useState<boolean>(false)
+  const [conversation, setConversation] = useState<Message[]>([])
+  const bodyRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<HTMLTextAreaElement>(null)
+  const initRef = useRef<boolean>(false)
+  const answeringRef = useRef<boolean>(false)
 
   const scrollBody = useCallback(() => {
     if (bodyRef.current) {
-      bodyRef.current.scrollTo(0, bodyRef.current.scrollHeight);
+      bodyRef.current.scrollTo(0, bodyRef.current.scrollHeight)
     }
-  }, []);
+  }, [])
 
   const renderDone = useCallback(
-    idx => {
+    (idx) => {
       if (idx === conversation.length - 1) {
-        answeringRef.current = false;
-        setAnswering(false);
+        answeringRef.current = false
+        setAnswering(false)
       }
     },
-    [conversation],
-  );
+    [conversation]
+  )
 
   const addMessage = (content: string, role = Role.Assistant) => {
-    setConversation(prev => [
+    setConversation((prev) => [
       ...prev,
       {
         id: crypto.randomUUID(),
         role,
         content,
       } as Message,
-    ]);
-  };
+    ])
+  }
 
   const loadConversation = async () => {
     const result = await axios.get(`${domain}/api/chat/performance`, {
@@ -79,33 +83,33 @@ export const ChatBox: React.FC<IChatBoxProps> = props => {
         limit: 1000,
         page: 1,
       },
-    });
+    })
 
     if (result && result.data && result.data.data && result.data.data.rows) {
-      const initConversation: Message[] = [];
+      const initConversation: Message[] = []
 
       result.data.data.rows
         .sort((a, b) => a.message_id - b.message_id)
-        .forEach(mess => {
+        .forEach((mess) => {
           initConversation.push({
             id: mess.message_id,
             role: Role.User,
             content: mess.message,
-          });
+          })
 
           initConversation.push({
             id: `gpt_${mess.message_id}`,
             role: Role.Assistant,
             content: mess.response_message,
-          });
-        });
+          })
+        })
 
-      setConversation(initConversation);
+      setConversation(initConversation)
     }
-  };
+  }
 
   const request = async (question: string) => {
-    if (!question) return;
+    if (!question) return
 
     // await new Promise<any>(r => setTimeout(() => r({data: {data:{message: 'Lorem ipsum'}}}), Math.random() * 3000))
     const result = await axios.post(
@@ -119,46 +123,46 @@ export const ChatBox: React.FC<IChatBoxProps> = props => {
           _user_id: userId,
           _account_id: userId,
         },
-      },
-    );
+      }
+    )
     if (result && result.data && result.data.data && result.data.data.message) {
-      addMessage(result.data.data.message);
+      addMessage(result.data.data.message)
     } else if (result && result.data && result.data.code === 400) {
-      setLimitMessage(result.data.message);
+      setLimitMessage(result.data.message)
     }
-  };
+  }
 
   useEffect(() => {
-    loadConversation();
+    loadConversation()
     if (inputRef.current) {
-      inputRef.current.focus();
+      inputRef.current.focus()
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
-    scrollBody();
-  }, [conversation]);
+    scrollBody()
+  }, [conversation])
 
   useEffect(() => {
     if (isAnswering && conversation.at(-1)?.role !== Role.Assistant) {
       setTimeout(() => {
         if (isAnswering && conversation.at(-1)?.role !== Role.Assistant) {
-          setShowPlaceholder(true);
+          setShowPlaceholder(true)
         } else {
-          setShowPlaceholder(false);
+          setShowPlaceholder(false)
         }
-      }, Math.random() * 4000);
+      }, Math.random() * 4000)
     } else {
-      setShowPlaceholder(false);
+      setShowPlaceholder(false)
     }
-  }, [isAnswering, conversation]);
+  }, [isAnswering, conversation])
 
   const handleClose = () => {
-    setIsClosed(true);
+    setIsClosed(true)
     if (typeof onClose === 'function') {
-      onClose();
+      onClose()
     }
-  };
+  }
 
   const renderMessage = (message, idx: number, isPlaceholder = false) => (
     <MessageItem
@@ -171,27 +175,32 @@ export const ChatBox: React.FC<IChatBoxProps> = props => {
       avatar={avatar}
       isPlaceholder={isPlaceholder}
     />
-  );
+  )
 
-  const handleKeyDown = e => {
+  const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      e.preventDefault();
+      e.preventDefault()
 
-      if (answeringRef.current || limitMessage || !question || !question.trim()) {
-        return;
+      if (
+        answeringRef.current ||
+        limitMessage ||
+        !question ||
+        !question.trim()
+      ) {
+        return
       }
-      initRef.current = true;
-      answeringRef.current = true;
-      setAnswering(true);
+      initRef.current = true
+      answeringRef.current = true
+      setAnswering(true)
 
-      addMessage(question, Role.User);
-      request(question);
-      setQuestion('');
+      addMessage(question, Role.User)
+      request(question)
+      setQuestion('')
     }
-  };
+  }
 
   if (isClosed) {
-    return null;
+    return null
   }
 
   return (
@@ -217,7 +226,7 @@ export const ChatBox: React.FC<IChatBoxProps> = props => {
               content: '',
             },
             conversation.length,
-            true,
+            true
           )}
       </ChatBoxBody>
       <ChatBoxFooter>
@@ -232,7 +241,7 @@ export const ChatBox: React.FC<IChatBoxProps> = props => {
           <TextArea
             ref={inputRef}
             value={question}
-            onChange={e => setQuestion(e.target.value)}
+            onChange={(e) => setQuestion(e.target.value)}
             className={clsx('input')}
             placeholder="Type your question..."
             onKeyDown={handleKeyDown}
@@ -241,17 +250,19 @@ export const ChatBox: React.FC<IChatBoxProps> = props => {
           <Button
             disabled={isAnswering}
             className={clsx('submit-btn', { disabled: isAnswering })}
-            onClick={() => handleKeyDown({ key: 'Enter', preventDefault: () => null })}
+            onClick={() =>
+              handleKeyDown({ key: 'Enter', preventDefault: () => null })
+            }
           >
             <PlaneIcon className={clsx('icon')} />
           </Button>
         </InputWrapper>
       </ChatBoxFooter>
     </ChatBoxWrapper>
-  );
-};
+  )
+}
 
 ChatBox.defaultProps = {
   withoutBox: false,
   avatar: '',
-};
+}

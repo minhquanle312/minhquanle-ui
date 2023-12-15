@@ -1,6 +1,6 @@
 // Libraries
-import React, { useState } from 'react';
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
+import React, { useState } from 'react'
+import type { ComponentMeta, ComponentStory } from '@storybook/react'
 
 // Antd
 import {
@@ -13,7 +13,7 @@ import {
   Tooltip,
   Typography,
   Upload,
-} from 'antd';
+} from 'antd'
 import {
   UploadOutlined,
   DownloadOutlined,
@@ -26,18 +26,18 @@ import {
   WarningOutlined,
   MailOutlined,
   MobileOutlined,
-} from '@ant-design/icons';
+} from '@ant-design/icons'
 
 // Components
-import { Space } from './Space';
-import { SpaceSize } from 'antd/es/space';
-import { Tag } from '../Tag';
-import { Table } from '../../organism';
-import { TableApiTypeTag } from 'src/stories/components';
+import { Space } from './Space'
+import { SpaceSize } from 'antd/es/space'
+import { Tag } from '../Tag'
+import { Table } from '../../organism'
+import { TableApiTypeTag } from 'minhquanle-ui/lib/stories/components'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'src/constants';
-import Compact from 'antd/es/space/Compact';
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants'
+import Compact from 'antd/es/space/Compact'
 
 export default {
   title: 'Atoms/Space',
@@ -111,20 +111,20 @@ Set components spacing.
       },
     },
   },
-} as ComponentMeta<typeof Space>;
+} as ComponentMeta<typeof Space>
 
 // Default
-const Template: ComponentStory<typeof Space> = args => (
+const Template: ComponentStory<typeof Space> = (args) => (
   <Space {...args}>
     <Button type="primary">Primary</Button>
     <Button>Default</Button>
     <Button type="dashed">Dashed</Button>
     <Button type="link">Link</Button>
   </Space>
-);
-export const Default = Template.bind({});
+)
+export const Default = Template.bind({})
 
-Default.args = {};
+Default.args = {}
 
 // Examples
 export const BasicUsage: ComponentStory<any> = () => (
@@ -134,11 +134,15 @@ export const BasicUsage: ComponentStory<any> = () => (
     <Upload>
       <Button icon={<UploadOutlined />}>Click to Upload</Button>
     </Upload>
-    <Popconfirm title="Are you sure delete this task?" okText="Yes" cancelText="No">
+    <Popconfirm
+      title="Are you sure delete this task?"
+      okText="Yes"
+      cancelText="No"
+    >
       <Button>Confirm</Button>
     </Popconfirm>
   </Space>
-);
+)
 
 BasicUsage.parameters = {
   docs: {
@@ -146,7 +150,7 @@ BasicUsage.parameters = {
       story: 'Crowded components horizontal spacing.',
     },
   },
-};
+}
 
 export const Split: ComponentStory<any> = () => (
   <Space split={<Divider type="vertical" />}>
@@ -154,7 +158,7 @@ export const Split: ComponentStory<any> = () => (
     <Typography.Link>Link</Typography.Link>
     <Typography.Link>Link</Typography.Link>
   </Space>
-);
+)
 
 Split.parameters = {
   docs: {
@@ -162,14 +166,14 @@ Split.parameters = {
       story: 'Crowded components split.',
     },
   },
-};
+}
 
 export const Size: ComponentStory<any> = () => {
-  const [size, setSize] = useState<SpaceSize | [SpaceSize, SpaceSize]>('small');
+  const [size, setSize] = useState<SpaceSize | [SpaceSize, SpaceSize]>('small')
 
   return (
     <Space direction="vertical" size="middle">
-      <Radio.Group value={size} onChange={e => setSize(e.target.value)}>
+      <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>
         <Radio value="small">Small</Radio>
         <Radio value="middle">Middle</Radio>
         <Radio value="large">Large</Radio>
@@ -182,8 +186,8 @@ export const Size: ComponentStory<any> = () => {
         <Button type="link">Link</Button>
       </Space>
     </Space>
-  );
-};
+  )
+}
 
 Size.parameters = {
   docs: {
@@ -194,7 +198,7 @@ Size.parameters = {
       ].join('<br />'),
     },
   },
-};
+}
 
 export const Align: ComponentStory<any> = () => (
   <Space className="space-align-container" direction="vertical" size="middle">
@@ -227,7 +231,7 @@ export const Align: ComponentStory<any> = () => (
       </Space>
     </div>
   </Space>
-);
+)
 
 Align.parameters = {
   docs: {
@@ -235,7 +239,7 @@ Align.parameters = {
       story: 'Config item align.',
     },
   },
-};
+}
 
 export const VerticalCompactMode: ComponentStory<any> = () => (
   <Space>
@@ -255,7 +259,7 @@ export const VerticalCompactMode: ComponentStory<any> = () => (
       <Button type="primary">Button 3</Button>
     </Compact>
   </Space>
-);
+)
 
 VerticalCompactMode.parameters = {
   docs: {
@@ -263,7 +267,7 @@ VerticalCompactMode.parameters = {
       story: 'Vertical Mode for Space.Compact, support Button only.',
     },
   },
-};
+}
 
 export const ButtonCompactMode: ComponentStory<any> = () => (
   <Space direction="vertical" size="middle">
@@ -363,7 +367,7 @@ export const ButtonCompactMode: ComponentStory<any> = () => (
       </Dropdown>
     </Compact>
   </Space>
-);
+)
 
 ButtonCompactMode.parameters = {
   docs: {
@@ -371,7 +375,7 @@ ButtonCompactMode.parameters = {
       story: 'Button component compact example.',
     },
   },
-};
+}
 
 export const SpaceCompactAPI: ComponentStory<any> = () => {
   const dataSource = [
@@ -388,7 +392,8 @@ export const SpaceCompactAPI: ComponentStory<any> = () => {
       description: 'Set direction of layout',
       type: (
         <>
-          <TableApiTypeTag text="vertical" /> | <TableApiTypeTag text="horizontal" />
+          <TableApiTypeTag text="vertical" /> |{' '}
+          <TableApiTypeTag text="horizontal" />
         </>
       ),
       default: <Tag bordered>horizontal</Tag>,
@@ -405,10 +410,16 @@ export const SpaceCompactAPI: ComponentStory<any> = () => {
       ),
       default: <Tag bordered>middle</Tag>,
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 SpaceCompactAPI.parameters = {
   docs: {
@@ -419,4 +430,4 @@ SpaceCompactAPI.parameters = {
       code: null,
     },
   },
-};
+}

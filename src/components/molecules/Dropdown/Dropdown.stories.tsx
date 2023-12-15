@@ -1,17 +1,17 @@
 /* eslint-disable prettier/prettier */
 // Libraries
-import React, { useState } from 'react';
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
-import { DownOutlined, SmileOutlined, UserOutlined } from '@ant-design/icons';
-import { MenuProps, message, theme } from 'antd';
+import React, { useState } from 'react'
+import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import { DownOutlined, SmileOutlined, UserOutlined } from '@ant-design/icons'
+import { MenuProps, message, theme } from 'antd'
 
 // Components
-import { Dropdown } from './Dropdown';
-import { Space, Button, Divider, Tag, Tooltip, Typography } from '../../atoms';
-import { Table } from '../../organism';
+import { Dropdown } from './Dropdown'
+import { Space, Button, Divider, Tag, Tooltip, Typography } from '../../atoms'
+import { Table } from '../../organism'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'src/constants';
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants'
 
 export default {
   title: 'Molecules/Dropdown',
@@ -32,7 +32,8 @@ export default {
     autoAdjustOverflow: {
       name: 'autoAdjustOverflow',
       defaultValue: true,
-      description: 'Whether to adjust dropdown placement automatically when dropdown is off screen',
+      description:
+        'Whether to adjust dropdown placement automatically when dropdown is off screen',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'true' },
@@ -95,7 +96,9 @@ export default {
       defaultValue: undefined,
       description: 'The menu props',
       table: {
-        type: { summary: '[MenuProps](https://ant.design/components/menu#api)' },
+        type: {
+          summary: '[MenuProps](https://ant.design/components/menu#api)',
+        },
         defaultValue: { summary: '-' },
       },
       control: null,
@@ -130,7 +133,14 @@ export default {
         defaultValue: { summary: 'bottomLeft' },
       },
       control: 'select',
-      options: ['bottom', 'bottomLeft', 'bottomRight', 'top', 'topLeft', 'topRight'],
+      options: [
+        'bottom',
+        'bottomLeft',
+        'bottomRight',
+        'top',
+        'topLeft',
+        'topRight',
+      ],
     },
     trigger: {
       name: 'trigger',
@@ -174,10 +184,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Dropdown>;
+} as ComponentMeta<typeof Dropdown>
 
 // Default
-const Template: ComponentStory<typeof Dropdown> = args => {
+const Template: ComponentStory<typeof Dropdown> = (args) => {
   const items: MenuProps['items'] = [
     {
       key: '1',
@@ -191,24 +201,24 @@ const Template: ComponentStory<typeof Dropdown> = args => {
       key: '3',
       label: '3rd menu item',
     },
-  ];
+  ]
   return (
     <Dropdown {...args} menu={{ items }}>
-      <a onClick={e => e.preventDefault()}>
+      <a onClick={(e) => e.preventDefault()}>
         <Space>
           Hover me
           <DownOutlined />
         </Space>
       </a>
     </Dropdown>
-  );
-};
+  )
+}
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 
 Default.args = {
   children: 'Dropdown',
-};
+}
 
 // // Examples
 export const Basic: ComponentStory<any> = () => {
@@ -216,7 +226,11 @@ export const Basic: ComponentStory<any> = () => {
     {
       key: '1',
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.antgroup.com"
+        >
           1st menu item
         </a>
       ),
@@ -224,7 +238,11 @@ export const Basic: ComponentStory<any> = () => {
     {
       key: '2',
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.aliyun.com"
+        >
           2nd menu item (disabled)
         </a>
       ),
@@ -234,7 +252,11 @@ export const Basic: ComponentStory<any> = () => {
     {
       key: '3',
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.luohanacademy.com"
+        >
           3rd menu item (disabled)
         </a>
       ),
@@ -245,19 +267,19 @@ export const Basic: ComponentStory<any> = () => {
       danger: true,
       label: 'a danger item',
     },
-  ];
+  ]
 
   return (
     <Dropdown menu={{ items }}>
-      <a onClick={e => e.preventDefault()}>
+      <a onClick={(e) => e.preventDefault()}>
         <Space>
           Hover me
           <DownOutlined />
         </Space>
       </a>
     </Dropdown>
-  );
-};
+  )
+}
 
 Basic.parameters = {
   docs: {
@@ -265,14 +287,18 @@ Basic.parameters = {
       story: 'The most basic dropdown menu.',
     },
   },
-};
+}
 
 export const Arrow: ComponentStory<any> = () => {
   const items: MenuProps['items'] = [
     {
       key: '1',
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.antgroup.com"
+        >
           1st menu item
         </a>
       ),
@@ -280,7 +306,11 @@ export const Arrow: ComponentStory<any> = () => {
     {
       key: '2',
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.aliyun.com"
+        >
           2nd menu item
         </a>
       ),
@@ -288,12 +318,16 @@ export const Arrow: ComponentStory<any> = () => {
     {
       key: '3',
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.luohanacademy.com"
+        >
           3rd menu item
         </a>
       ),
     },
-  ];
+  ]
 
   return (
     <Space direction="vertical">
@@ -320,8 +354,8 @@ export const Arrow: ComponentStory<any> = () => {
         </Dropdown>
       </Space>
     </Space>
-  );
-};
+  )
+}
 
 Arrow.parameters = {
   docs: {
@@ -329,14 +363,18 @@ Arrow.parameters = {
       story: 'You could display an arrow.',
     },
   },
-};
+}
 
 export const ArrowPointingCenter: ComponentStory<any> = () => {
   const items: MenuProps['items'] = [
     {
       key: '1',
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.antgroup.com"
+        >
           1st menu item
         </a>
       ),
@@ -344,7 +382,11 @@ export const ArrowPointingCenter: ComponentStory<any> = () => {
     {
       key: '2',
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.aliyun.com"
+        >
           2nd menu item
         </a>
       ),
@@ -352,40 +394,68 @@ export const ArrowPointingCenter: ComponentStory<any> = () => {
     {
       key: '3',
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.luohanacademy.com"
+        >
           3rd menu item
         </a>
       ),
     },
-  ];
+  ]
 
   return (
     <Space direction="vertical">
       <Space>
-        <Dropdown menu={{ items }} placement="bottomLeft" arrow={{ pointAtCenter: true }}>
+        <Dropdown
+          menu={{ items }}
+          placement="bottomLeft"
+          arrow={{ pointAtCenter: true }}
+        >
           <Button>bottomLeft</Button>
         </Dropdown>
-        <Dropdown menu={{ items }} placement="bottom" arrow={{ pointAtCenter: true }}>
+        <Dropdown
+          menu={{ items }}
+          placement="bottom"
+          arrow={{ pointAtCenter: true }}
+        >
           <Button>bottom</Button>
         </Dropdown>
-        <Dropdown menu={{ items }} placement="bottomRight" arrow={{ pointAtCenter: true }}>
+        <Dropdown
+          menu={{ items }}
+          placement="bottomRight"
+          arrow={{ pointAtCenter: true }}
+        >
           <Button>bottomRight</Button>
         </Dropdown>
       </Space>
       <Space>
-        <Dropdown menu={{ items }} placement="topLeft" arrow={{ pointAtCenter: true }}>
+        <Dropdown
+          menu={{ items }}
+          placement="topLeft"
+          arrow={{ pointAtCenter: true }}
+        >
           <Button>topLeft</Button>
         </Dropdown>
-        <Dropdown menu={{ items }} placement="top" arrow={{ pointAtCenter: true }}>
+        <Dropdown
+          menu={{ items }}
+          placement="top"
+          arrow={{ pointAtCenter: true }}
+        >
           <Button>top</Button>
         </Dropdown>
-        <Dropdown menu={{ items }} placement="topRight" arrow={{ pointAtCenter: true }}>
+        <Dropdown
+          menu={{ items }}
+          placement="topRight"
+          arrow={{ pointAtCenter: true }}
+        >
           <Button>topRight</Button>
         </Dropdown>
       </Space>
     </Space>
-  );
-};
+  )
+}
 
 ArrowPointingCenter.parameters = {
   docs: {
@@ -394,7 +464,7 @@ ArrowPointingCenter.parameters = {
         'By specifying `arrow` prop with `{ pointAtCenter: true }`, the arrow will point to the center of the target element.',
     },
   },
-};
+}
 
 export const ClickEvent: ComponentStory<any> = () => {
   const items: MenuProps['items'] = [
@@ -410,22 +480,22 @@ export const ClickEvent: ComponentStory<any> = () => {
       label: '3rd menu item',
       key: '3',
     },
-  ];
+  ]
 
   const onClick: MenuProps['onClick'] = ({ key }) => {
-    message.info(`Click on item ${key}`);
-  };
+    message.info(`Click on item ${key}`)
+  }
   return (
     <Dropdown menu={{ items, onClick }}>
-      <a onClick={e => e.preventDefault()}>
+      <a onClick={(e) => e.preventDefault()}>
         <Space>
           Hover me, Click menu item
           <DownOutlined />
         </Space>
       </a>
     </Dropdown>
-  );
-};
+  )
+}
 
 ClickEvent.parameters = {
   docs: {
@@ -433,25 +503,29 @@ ClickEvent.parameters = {
       story: `An event will be triggered when you click menu items, in which you can make different operations according to item's key.`,
     },
   },
-};
+}
 
 export const CustomDropdown: ComponentStory<any> = () => {
-  const { useToken } = theme;
-  const { token } = useToken();
+  const { useToken } = theme
+  const { token } = useToken()
   const contentStyle = {
     backgroundColor: token.colorBgElevated,
     borderRadius: token.borderRadiusLG,
     boxShadow: token.boxShadowSecondary,
-  };
+  }
   const menuStyle = {
     boxShadow: 'none',
-  };
+  }
 
   const items: MenuProps['items'] = [
     {
       key: '1',
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.antgroup.com"
+        >
           1st menu item
         </a>
       ),
@@ -459,7 +533,11 @@ export const CustomDropdown: ComponentStory<any> = () => {
     {
       key: '2',
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.aliyun.com"
+        >
           2nd menu item (disabled)
         </a>
       ),
@@ -468,18 +546,22 @@ export const CustomDropdown: ComponentStory<any> = () => {
     {
       key: '3',
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.luohanacademy.com"
+        >
           3rd menu item (disabled)
         </a>
       ),
       disabled: true,
     },
-  ];
+  ]
 
   return (
     <Dropdown
       menu={{ items }}
-      dropdownRender={menu => (
+      dropdownRender={(menu) => (
         <div style={contentStyle}>
           {React.cloneElement(menu as React.ReactElement, { style: menuStyle })}
           <Divider style={{ margin: 0 }} />
@@ -489,15 +571,15 @@ export const CustomDropdown: ComponentStory<any> = () => {
         </div>
       )}
     >
-      <a onClick={e => e.preventDefault()}>
+      <a onClick={(e) => e.preventDefault()}>
         <Space>
           Hover me
           <DownOutlined />
         </Space>
       </a>
     </Dropdown>
-  );
-};
+  )
+}
 
 CustomDropdown.parameters = {
   docs: {
@@ -506,20 +588,20 @@ CustomDropdown.parameters = {
         "Customize the dropdown menu via `dropdownRender`. If you don't need the Menu content, use the Popover component directly.",
     },
   },
-};
+}
 
 export const TheWayOfHidingMenu: ComponentStory<any> = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
-  const handleMenuClick: MenuProps['onClick'] = e => {
+  const handleMenuClick: MenuProps['onClick'] = (e) => {
     if (e.key === '3') {
-      setOpen(false);
+      setOpen(false)
     }
-  };
+  }
 
   const handleOpenChange = (flag: boolean) => {
-    setOpen(flag);
-  };
+    setOpen(flag)
+  }
 
   const items: MenuProps['items'] = [
     {
@@ -534,7 +616,7 @@ export const TheWayOfHidingMenu: ComponentStory<any> = () => {
       label: 'Clicking me will close the menu.',
       key: '3',
     },
-  ];
+  ]
 
   return (
     <Dropdown
@@ -545,15 +627,15 @@ export const TheWayOfHidingMenu: ComponentStory<any> = () => {
       onOpenChange={handleOpenChange}
       open={open}
     >
-      <a onClick={e => e.preventDefault()}>
+      <a onClick={(e) => e.preventDefault()}>
         <Space>
           Hover me
           <DownOutlined />
         </Space>
       </a>
     </Dropdown>
-  );
-};
+  )
+}
 
 TheWayOfHidingMenu.parameters = {
   docs: {
@@ -562,7 +644,7 @@ TheWayOfHidingMenu.parameters = {
         'The default is to close the menu when you click on menu items, this feature can be turned off.',
     },
   },
-};
+}
 
 export const Loading: ComponentStory<any> = () => {
   const items: MenuProps['items'] = [
@@ -570,25 +652,25 @@ export const Loading: ComponentStory<any> = () => {
       label: 'Submit and continue',
       key: '1',
     },
-  ];
+  ]
 
-  const [loadings, setLoadings] = useState<boolean[]>([]);
+  const [loadings, setLoadings] = useState<boolean[]>([])
 
   const enterLoading = (index: number) => {
-    setLoadings(state => {
-      const newLoadings = [...state];
-      newLoadings[index] = true;
-      return newLoadings;
-    });
+    setLoadings((state) => {
+      const newLoadings = [...state]
+      newLoadings[index] = true
+      return newLoadings
+    })
 
     setTimeout(() => {
-      setLoadings(state => {
-        const newLoadings = [...state];
-        newLoadings[index] = false;
-        return newLoadings;
-      });
-    }, 6000);
-  };
+      setLoadings((state) => {
+        const newLoadings = [...state]
+        newLoadings[index] = false
+        return newLoadings
+      })
+    }, 6000)
+  }
   return (
     <Space direction="vertical">
       <Dropdown.Button type="primary" loading menu={{ items }}>
@@ -614,8 +696,8 @@ export const Loading: ComponentStory<any> = () => {
         Submit
       </Dropdown.Button>
     </Space>
-  );
-};
+  )
+}
 
 Loading.parameters = {
   docs: {
@@ -624,16 +706,16 @@ Loading.parameters = {
         'A `loading` indicator can be added to a button by setting the loading property on the `Dropdown.Button`.',
     },
   },
-};
+}
 
 export const ButtonWithDropdownMenu: ComponentStory<any> = () => {
   const handleButtonClick = (_e: React.MouseEvent<HTMLButtonElement>) => {
-    message.info('Click on left button.');
-  };
+    message.info('Click on left button.')
+  }
 
-  const handleMenuClick: MenuProps['onClick'] = _e => {
-    message.info('Click on menu item.');
-  };
+  const handleMenuClick: MenuProps['onClick'] = (_e) => {
+    message.info('Click on menu item.')
+  }
 
   const items: MenuProps['items'] = [
     {
@@ -659,19 +741,23 @@ export const ButtonWithDropdownMenu: ComponentStory<any> = () => {
       danger: true,
       disabled: true,
     },
-  ];
+  ]
 
   const menuProps = {
     items,
     onClick: handleMenuClick,
-  };
+  }
 
   return (
     <Space wrap>
       <Dropdown.Button menu={menuProps} onClick={handleButtonClick}>
         Dropdown
       </Dropdown.Button>
-      <Dropdown.Button menu={menuProps} placement="bottom" icon={<UserOutlined />}>
+      <Dropdown.Button
+        menu={menuProps}
+        placement="bottom"
+        icon={<UserOutlined />}
+      >
         Dropdown
       </Dropdown.Button>
       <Dropdown.Button menu={menuProps} onClick={handleButtonClick} disabled>
@@ -683,7 +769,9 @@ export const ButtonWithDropdownMenu: ComponentStory<any> = () => {
           <Tooltip title="tooltip" key="leftButton">
             {leftButton}
           </Tooltip>,
-          React.cloneElement(rightButton as React.ReactElement<any, string>, { loading: true }),
+          React.cloneElement(rightButton as React.ReactElement<any, string>, {
+            loading: true,
+          }),
         ]}
       >
         With Tooltip
@@ -700,8 +788,8 @@ export const ButtonWithDropdownMenu: ComponentStory<any> = () => {
         Danger
       </Dropdown.Button>
     </Space>
-  );
-};
+  )
+}
 
 ButtonWithDropdownMenu.parameters = {
   docs: {
@@ -710,7 +798,7 @@ ButtonWithDropdownMenu.parameters = {
         'A button is on the left, and a related functional menu is on the right. You can set the icon property to modify the icon of right.',
     },
   },
-};
+}
 
 export const CascadingMenu: ComponentStory<any> = () => {
   const items: MenuProps['items'] = [
@@ -758,19 +846,19 @@ export const CascadingMenu: ComponentStory<any> = () => {
         },
       ],
     },
-  ];
+  ]
 
   return (
     <Dropdown menu={{ items }}>
-      <a onClick={e => e.preventDefault()}>
+      <a onClick={(e) => e.preventDefault()}>
         <Space>
           Cascading menu
           <DownOutlined />
         </Space>
       </a>
     </Dropdown>
-  );
-};
+  )
+}
 
 CascadingMenu.parameters = {
   docs: {
@@ -778,7 +866,7 @@ CascadingMenu.parameters = {
       story: 'The menu has multiple levels.',
     },
   },
-};
+}
 
 export const ContextMenu: ComponentStory<any> = () => {
   const items: MenuProps['items'] = [
@@ -794,11 +882,11 @@ export const ContextMenu: ComponentStory<any> = () => {
       label: '3rd menu item',
       key: '3',
     },
-  ];
+  ]
 
   const {
     token: { colorBgLayout, colorTextTertiary },
-  } = theme.useToken();
+  } = theme.useToken()
 
   return (
     <Dropdown menu={{ items }} trigger={['contextMenu']}>
@@ -814,16 +902,17 @@ export const ContextMenu: ComponentStory<any> = () => {
         Right Click on here
       </div>
     </Dropdown>
-  );
-};
+  )
+}
 
 ContextMenu.parameters = {
   docs: {
     description: {
-      story: 'The default trigger mode is `hover`, you can change it to `contextMenu`.',
+      story:
+        'The default trigger mode is `hover`, you can change it to `contextMenu`.',
     },
   },
-};
+}
 
 export const SelectableMenu: ComponentStory<any> = () => {
   const items: MenuProps['items'] = [
@@ -839,7 +928,7 @@ export const SelectableMenu: ComponentStory<any> = () => {
       key: '3',
       label: 'Item 3',
     },
-  ];
+  ]
 
   return (
     <Dropdown
@@ -856,16 +945,17 @@ export const SelectableMenu: ComponentStory<any> = () => {
         </Space>
       </Typography.Link>
     </Dropdown>
-  );
-};
+  )
+}
 
 SelectableMenu.parameters = {
   docs: {
     description: {
-      story: 'Configure the `selectable` property in `menu` to enable selectable ability.',
+      story:
+        'Configure the `selectable` property in `menu` to enable selectable ability.',
     },
   },
-};
+}
 
 export const DropdownButtonAPI: ComponentStory<any> = () => {
   const dataSource = [
@@ -926,17 +1016,24 @@ export const DropdownButtonAPI: ComponentStory<any> = () => {
       property: 'onClick',
       description: (
         <>
-          The same as &nbsp;<a href="https://ant.design/components/button#api">Button</a>:&nbsp;
+          The same as &nbsp;
+          <a href="https://ant.design/components/button#api">Button</a>:&nbsp;
           called when you click the button on the left
         </>
       ),
       type: '(event) => void',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 DropdownButtonAPI.parameters = {
   docs: {
@@ -947,4 +1044,4 @@ DropdownButtonAPI.parameters = {
       code: null,
     },
   },
-};
+}

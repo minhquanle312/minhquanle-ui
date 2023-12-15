@@ -6,13 +6,13 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      src: resolve(__dirname, 'src'),
+      src: resolve(__dirname, 'minhquanle-ui/lib'),
       // src: './src',
     },
   },
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
+      entry: resolve(__dirname, 'minhquanle-ui/lib/index.ts'),
       name: 'minhquanle-ui',
 
       fileName: 'index',

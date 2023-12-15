@@ -1,13 +1,13 @@
 // Libraries
-import React, { useState } from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import React, { useState } from 'react'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 // Component
-import { Table } from '../../organism';
-import { Button, Space } from '../index';
-import { message } from './Message';
+import { Table } from '../../organism'
+import { Button, Space } from '../index'
+import { message } from './Message'
 // Constants
-import { TABLE_API_COLUMNS } from 'src/constants/storybook';
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants/storybook'
 
 export default {
   title: ' Atoms/Message',
@@ -40,14 +40,14 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Button>;
+} as ComponentMeta<typeof Button>
 
 const Template: ComponentStory<typeof Button> = () => {
-  const [messageApi, contextHolder] = message.useMessage();
+  const [messageApi, contextHolder] = message.useMessage()
 
   const info = () => {
-    messageApi.info('Hello, Ant Design!');
-  };
+    messageApi.info('Hello, Ant Design!')
+  }
 
   return (
     <>
@@ -56,34 +56,34 @@ const Template: ComponentStory<typeof Button> = () => {
         Display normal message
       </Button>
     </>
-  );
-};
+  )
+}
 
-export const Basic = Template.bind({});
+export const Basic = Template.bind({})
 
 export const OtherTypesOfMessage = () => {
-  const [messageApi, contextHolder] = message.useMessage();
+  const [messageApi, contextHolder] = message.useMessage()
 
   const success = () => {
     messageApi.open({
       type: 'success',
       content: 'This is a success message',
-    });
-  };
+    })
+  }
 
   const error = () => {
     messageApi.open({
       type: 'error',
       content: 'This is an error message',
-    });
-  };
+    })
+  }
 
   const warning = () => {
     messageApi.open({
       type: 'warning',
       content: 'This is a warning message',
-    });
-  };
+    })
+  }
 
   return (
     <>
@@ -94,8 +94,8 @@ export const OtherTypesOfMessage = () => {
         <Button onClick={warning}>Warning</Button>
       </Space>
     </>
-  );
-};
+  )
+}
 
 OtherTypesOfMessage.parameters = {
   docs: {
@@ -103,26 +103,27 @@ OtherTypesOfMessage.parameters = {
       story: 'Messages of success, error and warning types.',
     },
   },
-};
+}
 
 export const CustomizeDuration = () => {
-  const [messageApi, contextHolder] = message.useMessage();
+  const [messageApi, contextHolder] = message.useMessage()
 
   const success = () => {
     messageApi.open({
       type: 'success',
-      content: 'This is a prompt message for success, and it will disappear in 10 seconds',
+      content:
+        'This is a prompt message for success, and it will disappear in 10 seconds',
       duration: 10,
-    });
-  };
+    })
+  }
 
   return (
     <>
       {contextHolder}
       <Button onClick={success}>Customized display duration</Button>
     </>
-  );
-};
+  )
+}
 
 CustomizeDuration.parameters = {
   docs: {
@@ -130,37 +131,38 @@ CustomizeDuration.parameters = {
       story: 'Customize message display duration from default `3s` to `10s`.',
     },
   },
-};
+}
 
 export const MessageWithLoadingIndicator = () => {
-  const [messageApi, contextHolder] = message.useMessage();
+  const [messageApi, contextHolder] = message.useMessage()
 
   const success = () => {
     messageApi.open({
       type: 'loading',
       content: 'Action in progress..',
       duration: 0,
-    });
-    setTimeout(messageApi.destroy, 2500);
-  };
+    })
+    setTimeout(messageApi.destroy, 2500)
+  }
   return (
     <>
       {contextHolder}
       <Button onClick={success}>Display a loading indicator</Button>
     </>
-  );
-};
+  )
+}
 
 MessageWithLoadingIndicator.parameters = {
   docs: {
     description: {
-      story: 'Display a global loading indicator, which is dismissed by itself asynchronously.',
+      story:
+        'Display a global loading indicator, which is dismissed by itself asynchronously.',
     },
   },
-};
+}
 
 export const CustomizedStyle = () => {
-  const [messageApi, contextHolder] = message.useMessage();
+  const [messageApi, contextHolder] = message.useMessage()
 
   const success = () => {
     messageApi.open({
@@ -170,16 +172,16 @@ export const CustomizedStyle = () => {
       style: {
         marginTop: '20vh',
       },
-    });
-  };
+    })
+  }
 
   return (
     <>
       {contextHolder}
       <Button onClick={success}>Customized style</Button>
     </>
-  );
-};
+  )
+}
 
 CustomizedStyle.parameters = {
   docs: {
@@ -187,10 +189,10 @@ CustomizedStyle.parameters = {
       story: 'The `style` and `className `are available to customize Message.',
     },
   },
-};
+}
 
 export const PromiseInterface = () => {
-  const [messageApi, contextHolder] = message.useMessage();
+  const [messageApi, contextHolder] = message.useMessage()
 
   const success = () => {
     messageApi
@@ -200,16 +202,16 @@ export const PromiseInterface = () => {
         duration: 2.5,
       })
       .then(() => message.success('Loading finished', 2.5))
-      .then(() => message.info('Loading finished', 2.5));
-  };
+      .then(() => message.info('Loading finished', 2.5))
+  }
 
   return (
     <>
       {contextHolder}
       <Button onClick={success}>Display sequential messages</Button>
     </>
-  );
-};
+  )
+}
 
 PromiseInterface.parameters = {
   docs: {
@@ -218,27 +220,27 @@ PromiseInterface.parameters = {
         '`message` provides a promise interface for `onClose`. The above example will display a new message when the old message is about to close.',
     },
   },
-};
+}
 
 export const UpdateMessageContent = () => {
-  const [messageApi, contextHolder] = message.useMessage();
-  const key = 'updatable';
+  const [messageApi, contextHolder] = message.useMessage()
+  const key = 'updatable'
 
   const openMessage = () => {
     messageApi.open({
       key,
       type: 'loading',
       content: 'Loading...',
-    });
+    })
     setTimeout(() => {
       messageApi.open({
         key,
         type: 'success',
         content: 'Loaded!',
         duration: 2,
-      });
-    }, 1000);
-  };
+      })
+    }, 1000)
+  }
 
   return (
     <>
@@ -247,8 +249,8 @@ export const UpdateMessageContent = () => {
         Open the message box
       </Button>
     </>
-  );
-};
+  )
+}
 
 UpdateMessageContent.parameters = {
   docs: {
@@ -256,18 +258,18 @@ UpdateMessageContent.parameters = {
       story: 'Update message content with unique `key`.',
     },
   },
-};
+}
 
 export const StaticMethod = () => {
   const info = () => {
-    message.info('This is a normal message');
-  };
+    message.info('This is a normal message')
+  }
   return (
     <Button type="primary" onClick={info}>
       Static Method
     </Button>
-  );
-};
+  )
+}
 
 StaticMethod.parameters = {
   docs: {
@@ -275,7 +277,7 @@ StaticMethod.parameters = {
       story: 'Static methods cannot consume Context. Please use hooks first.',
     },
   },
-};
+}
 
 export const API: ComponentStory<any> = () => {
   const dataSources = [
@@ -289,14 +291,16 @@ export const API: ComponentStory<any> = () => {
     {
       key: '2',
       property: 'duration',
-      description: 'Time(seconds) before auto-dismiss, dont dismiss if set to 0',
+      description:
+        'Time(seconds) before auto-dismiss, dont dismiss if set to 0',
       type: 'number',
       default: 1.5,
     },
     {
       key: '3 ',
       property: 'onClose',
-      description: 'Specify a function that will be called when the message is closed',
+      description:
+        'Specify a function that will be called when the message is closed',
       type: 'function',
       default: '-',
     },
@@ -317,7 +321,8 @@ export const API: ComponentStory<any> = () => {
     {
       key: '6',
       property: 'duration	',
-      description: 'Time(seconds) before auto-dismiss, dont dismiss if set to 0	',
+      description:
+        'Time(seconds) before auto-dismiss, dont dismiss if set to 0	',
       type: 'number',
       default: 3,
     },
@@ -345,21 +350,29 @@ export const API: ComponentStory<any> = () => {
     {
       key: '10',
       property: 'onClick',
-      description: 'Specify a function that will be called when the message is clicked		',
+      description:
+        'Specify a function that will be called when the message is clicked		',
       type: 'function',
       default: '-',
     },
     {
       key: '11',
       property: 'onClose',
-      description: 'Specify a function that will be called when the message is closed		',
+      description:
+        'Specify a function that will be called when the message is closed		',
       type: 'function',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSources} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSources}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 API.parameters = {
   docs: {
@@ -406,7 +419,7 @@ API.parameters = {
       code: null,
     },
   },
-};
+}
 
 export const messageconfig: ComponentStory<any> = () => {
   const dataSources = [
@@ -438,10 +451,16 @@ export const messageconfig: ComponentStory<any> = () => {
       type: 'string',
       default: 'ant-message',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSources} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSources}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 messageconfig.parameters = {
   docs: {
@@ -449,4 +468,4 @@ messageconfig.parameters = {
       code: null,
     },
   },
-};
+}

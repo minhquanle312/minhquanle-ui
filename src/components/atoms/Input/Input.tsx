@@ -1,34 +1,42 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable react/destructuring-assignment */
 // Libraries
-import React, { ChangeEvent, FC, ReactNode, useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  ChangeEvent,
+  FC,
+  ReactNode,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 
 // Types
-import { InputProps as AntdInputProps } from 'antd';
+import { InputProps as AntdInputProps } from 'antd'
 
 // Components
-import { RequiredLabel, Text } from 'src/components/atoms';
+import { RequiredLabel, Text } from 'minhquanle-ui/lib/components/atoms'
 
 // Utils
-import { handleError } from 'src/utils';
-import { getPreventKeyboardAction } from 'src/utils/web';
-import { StyledInput } from './styled';
+import { handleError } from 'minhquanle-ui/lib/utils'
+import { getPreventKeyboardAction } from 'minhquanle-ui/lib/utils/web'
+import { StyledInput } from './styled'
 
-const PATH = 'src/components/atoms/Input/Input.tsx';
+const PATH = 'minhquanle-ui/lib/components/atoms/Input/Input.tsx'
 
 export interface InputProps extends AntdInputProps {
-  noborder?: 'true' | 'false' | boolean;
-  debounce?: number;
-  label?: ReactNode;
-  onAfterChange?: (value: any) => void;
-  errorArchive?: string;
-  required?: boolean;
-  focused?: boolean;
-  errorMsg?: string;
-  disableUndo?: boolean;
+  noborder?: 'true' | 'false' | boolean
+  debounce?: number
+  label?: ReactNode
+  onAfterChange?: (value: any) => void
+  errorArchive?: string
+  required?: boolean
+  focused?: boolean
+  errorMsg?: string
+  disableUndo?: boolean
 }
 
-const OriginInput: FC<InputProps> = props => {
+const OriginInput: FC<InputProps> = (props) => {
   // Props
   const {
     debounce,
@@ -40,58 +48,59 @@ const OriginInput: FC<InputProps> = props => {
     onChange,
     errorMsg,
     ...restProps
-  } = props;
+  } = props
 
   // State
-  const [value, setValue] = useState<any>(props.value);
-  const [isFocused, setFocused] = useState(false);
+  const [value, setValue] = useState<any>(props.value)
+  const [isFocused, setFocused] = useState(false)
 
   const requiredMsg = useMemo(() => {
-    let msg = '';
-    const isEmptyValue = !props.value || (Array.isArray(props.value) && !props.value.length);
+    let msg = ''
+    const isEmptyValue =
+      !props.value || (Array.isArray(props.value) && !props.value.length)
 
     if (required && isEmptyValue && isFocused) {
-      msg = 'This field is required';
+      msg = 'This field is required'
     }
 
-    return msg;
-  }, [props.value, required, isFocused]);
+    return msg
+  }, [props.value, required, isFocused])
 
   // Ref
-  const timeoutAfterChange = useRef<any>(null);
+  const timeoutAfterChange = useRef<any>(null)
 
   useEffect(() => {
-    setValue(props.value);
-  }, [props.value]);
+    setValue(props.value)
+  }, [props.value])
 
   useEffect(() => {
     if (focused) {
-      setFocused(focused);
+      setFocused(focused)
     }
-  }, [focused]);
+  }, [focused])
 
   const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     try {
-      const { value } = event.target;
+      const { value } = event.target
 
-      setValue(value);
-      onChange && onChange(event);
+      setValue(value)
+      onChange && onChange(event)
 
       if (timeoutAfterChange) {
-        clearTimeout(timeoutAfterChange.current);
+        clearTimeout(timeoutAfterChange.current)
       }
 
       timeoutAfterChange.current = setTimeout(() => {
-        onAfterChange && onAfterChange(value);
-      }, debounce);
+        onAfterChange && onAfterChange(value)
+      }, debounce)
     } catch (error) {
       handleError(error, {
         path: PATH,
         name: 'onChangeInput',
         args: {},
-      });
+      })
     }
-  };
+  }
 
   const renderRequiredLabel = (label: ReactNode) => {
     if (required) {
@@ -99,19 +108,19 @@ const OriginInput: FC<InputProps> = props => {
         <RequiredLabel color="#666666" style={{ marginBottom: 5 }}>
           {label}
         </RequiredLabel>
-      );
+      )
     }
 
     return (
       <Text color="#666666" style={{ marginBottom: 5 }}>
         {label}
       </Text>
-    );
-  };
-  const listDisableActions: Parameters<typeof getPreventKeyboardAction>[0] = [];
+    )
+  }
+  const listDisableActions: Parameters<typeof getPreventKeyboardAction>[0] = []
 
   if (props.disableUndo) {
-    listDisableActions.push('undo');
+    listDisableActions.push('undo')
   }
 
   return (
@@ -121,12 +130,12 @@ const OriginInput: FC<InputProps> = props => {
       <StyledInput
         {...restProps}
         value={value}
-        onBlur={e => {
+        onBlur={(e) => {
           if (!isFocused) {
-            setFocused(true);
+            setFocused(true)
           }
 
-          restProps.onBlur && restProps.onBlur(e);
+          restProps.onBlur && restProps.onBlur(e)
         }}
         onChange={onChangeInput}
         {...getPreventKeyboardAction(listDisableActions)}
@@ -137,15 +146,15 @@ const OriginInput: FC<InputProps> = props => {
         </Text>
       ) : null}
     </div>
-  );
-};
+  )
+}
 
 OriginInput.defaultProps = {
   debounce: 400,
-};
+}
 
-export const Input = OriginInput as typeof StyledInput;
+export const Input = OriginInput as typeof StyledInput
 
-Input.TextArea = StyledInput.TextArea;
+Input.TextArea = StyledInput.TextArea
 
-export const { TextArea } = StyledInput;
+export const { TextArea } = StyledInput

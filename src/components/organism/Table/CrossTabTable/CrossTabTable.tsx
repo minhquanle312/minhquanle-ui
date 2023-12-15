@@ -1,20 +1,20 @@
 // Libraries
-import React, { useMemo } from 'react';
+import React, { useMemo } from 'react'
 
 // Organism
-import { Table } from 'src/components/organism';
+import { Table } from 'minhquanle-ui/lib/components/organism'
 
 // Constants
-import { TEST_DATA } from './constants';
+import { TEST_DATA } from './constants'
 
 // Types
-import { ColumnsType } from 'antd/es/table';
-import { BarCell } from './styled';
-import { CustomCell } from './components/CustomCell/CustomCell';
+import { ColumnsType } from 'antd/es/table'
+import { BarCell } from './styled'
+import { CustomCell } from './components/CustomCell/CustomCell'
 
 interface CrossTabTableProps {}
 
-const max = 77;
+const max = 77
 
 export const columns: ColumnsType<any> = [
   {
@@ -65,7 +65,13 @@ export const columns: ColumnsType<any> = [
                 key: 'active_users_0',
                 dataIndex: 'active_users_0',
                 render: (value, record, index) => (
-                  <CustomCell value={value} record={record} index={index} type="bar" max={77} />
+                  <CustomCell
+                    value={value}
+                    record={record}
+                    index={index}
+                    type="bar"
+                    max={77}
+                  />
                 ),
               },
             ],
@@ -84,7 +90,13 @@ export const columns: ColumnsType<any> = [
                 key: 'active_users_1',
                 dataIndex: 'active_users_1',
                 render: (value, record, index) => (
-                  <CustomCell value={value} record={record} index={index} type="bar" max={77} />
+                  <CustomCell
+                    value={value}
+                    record={record}
+                    index={index}
+                    type="bar"
+                    max={77}
+                  />
                 ),
               },
             ],
@@ -109,7 +121,13 @@ export const columns: ColumnsType<any> = [
                 key: 'active_users_2',
                 dataIndex: 'active_users_2',
                 render: (value, record, index) => (
-                  <CustomCell value={value} record={record} index={index} type="bar" max={77} />
+                  <CustomCell
+                    value={value}
+                    record={record}
+                    index={index}
+                    type="bar"
+                    max={77}
+                  />
                 ),
               },
             ],
@@ -128,7 +146,13 @@ export const columns: ColumnsType<any> = [
                 key: 'active_users_3',
                 dataIndex: 'active_users_3',
                 render: (value, record, index) => (
-                  <CustomCell value={value} record={record} index={index} type="bar" max={77} />
+                  <CustomCell
+                    value={value}
+                    record={record}
+                    index={index}
+                    type="bar"
+                    max={77}
+                  />
                 ),
               },
             ],
@@ -153,7 +177,13 @@ export const columns: ColumnsType<any> = [
                 key: 'active_users_4',
                 dataIndex: 'active_users_4',
                 render: (value, record, index) => (
-                  <CustomCell value={value} record={record} index={index} type="bar" max={77} />
+                  <CustomCell
+                    value={value}
+                    record={record}
+                    index={index}
+                    type="bar"
+                    max={77}
+                  />
                 ),
               },
             ],
@@ -183,7 +213,7 @@ export const columns: ColumnsType<any> = [
       },
     ],
   },
-];
+]
 
 export const data = [
   {
@@ -285,10 +315,10 @@ export const data = [
     active_users_4: 0,
     active_users_5: 49,
   },
-];
+]
 
-export const CrossTabTable: React.FC<CrossTabTableProps> = props => {
-  const { ...restProps } = props;
+export const CrossTabTable: React.FC<CrossTabTableProps> = (props) => {
+  const { ...restProps } = props
 
   // const columns: ColumnsType<any> = useMemo(() => {
   //   const { dimensions, colDimensions } = TEST_DATA[0];
@@ -320,5 +350,5 @@ export const CrossTabTable: React.FC<CrossTabTableProps> = props => {
   //   return [...dimensionColumns];
   // }, []);
 
-  return <Table bordered columns={columns} dataSource={data} />;
-};
+  return <Table bordered columns={columns} dataSource={data} />
+}

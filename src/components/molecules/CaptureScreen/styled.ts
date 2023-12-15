@@ -1,14 +1,17 @@
 // Libraries
-import styled, { css } from 'styled-components';
-import { Typography } from 'antd';
+import styled, { css } from 'styled-components'
+import { Typography } from 'antd'
 
 // Constants
-import { THEME } from 'src/constants';
+import { THEME } from 'minhquanle-ui/lib/constants'
 
 // Components
-const { Text: AntText } = Typography;
+const { Text: AntText } = Typography
 
-export const ContainerCapture = styled.div<{ isRecord: boolean; imageURL?: string }>`
+export const ContainerCapture = styled.div<{
+  isRecord: boolean
+  imageURL?: string
+}>`
   position: fixed;
   top: 0px;
   right: 0px;
@@ -21,7 +24,7 @@ export const ContainerCapture = styled.div<{ isRecord: boolean; imageURL?: strin
 
   z-index: 9999;
 
-  ${props =>
+  ${(props) =>
     props.imageURL &&
     css`
       display: block;
@@ -57,7 +60,7 @@ export const ContainerCapture = styled.div<{ isRecord: boolean; imageURL?: strin
     cursor: none !important;
   }
 
-  ${props =>
+  ${(props) =>
     props.isRecord &&
     css`
       position: unset;
@@ -65,7 +68,7 @@ export const ContainerCapture = styled.div<{ isRecord: boolean; imageURL?: strin
       height: 0px;
       /* border: 5px solid ${THEME.token?.blue7}; */
     `}
-`;
+`
 export const BorderOverlay = styled.div`
   position: absolute;
   top: 0px;
@@ -87,25 +90,25 @@ export const BorderOverlay = styled.div`
     calc(100% - 5px) calc(100% - 5px),
     calc(100% - 5px) 5px
   );
-`;
+`
 
 export const FlexColumn = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-`;
+`
 
 export const FlexCenter = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-`;
+`
 
 export const WrapperIcon = styled.div<{ isRecord?: boolean }>`
   position: absolute;
-  top: ${props => (props.isRecord ? -5 : 0)}px;
-  right: ${props => (props.isRecord ? -5 : 0)}px;
+  top: ${(props) => (props.isRecord ? -5 : 0)}px;
+  right: ${(props) => (props.isRecord ? -5 : 0)}px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -114,7 +117,7 @@ export const WrapperIcon = styled.div<{ isRecord?: boolean }>`
   cursor: pointer;
   background-color: ${THEME.token?.blue7};
   z-index: 10;
-`;
+`
 
 export const DrawerGroups = styled.div`
   display: flex;
@@ -122,7 +125,7 @@ export const DrawerGroups = styled.div`
   height: 52px;
   background-color: ${THEME.token?.bw0};
   z-index: 9999;
-`;
+`
 
 export const WrapperDraggable = styled.strong`
   position: relative;
@@ -131,7 +134,7 @@ export const WrapperDraggable = styled.strong`
   justify-content: center;
   padding: 10px;
   cursor: move;
-`;
+`
 
 export const DrawerGroupItem = styled.div`
   position: relative;
@@ -170,10 +173,14 @@ export const DrawerGroupItem = styled.div`
     bottom: 80%;
     left: 0px;
   }
-`;
+`
 
 export const Divider = styled.div<{ isVertical?: boolean }>`
-  background-image: linear-gradient(to right, #d2d2d2 33%, rgba(255, 255, 255, 0) 0%);
+  background-image: linear-gradient(
+    to right,
+    #d2d2d2 33%,
+    rgba(255, 255, 255, 0) 0%
+  );
   background-position: center center;
   background-repeat: repeat-x;
   background-size: 4px 2px;
@@ -181,7 +188,7 @@ export const Divider = styled.div<{ isVertical?: boolean }>`
   height: 2px;
   max-width: 100%;
 
-  ${props =>
+  ${(props) =>
     props.isVertical &&
     css`
       margin: 0 -12px;
@@ -189,7 +196,7 @@ export const Divider = styled.div<{ isVertical?: boolean }>`
       transform: rotate(90deg);
       background-size: 5px 2px;
     `}
-`;
+`
 
 export const PopupBySide = styled.div`
   position: absolute;
@@ -203,19 +210,19 @@ export const PopupBySide = styled.div`
   box-shadow: 0px 4px 10px 0 rgba(0, 0, 0, 0.2);
   background-color: ${THEME.token?.bw0};
   cursor: default;
-`;
+`
 
 export const Heading = styled(AntText)`
   color: ${THEME.token?.colorText};
   font-size: ${THEME.token?.fontSize};
   font-weight: normal !important;
-`;
+`
 
 export const WrapperColor = styled.div`
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-`;
+`
 
 export const BoxColor = styled.div<{ bgColor?: string }>`
   display: flex;
@@ -225,16 +232,16 @@ export const BoxColor = styled.div<{ bgColor?: string }>`
   height: 28px;
   border-radius: 50%;
   border: solid 1px rgba(0, 0, 0, 0.12);
-  background-color: ${props => props.bgColor || '#0f2eae'};
+  background-color: ${(props) => props.bgColor || '#0f2eae'};
   cursor: pointer;
-`;
+`
 
 export const ImageIcon = styled.img`
   display: inline-block;
   width: 24px;
   height: 24px;
   object-fit: cover;
-`;
+`
 
 export const OutlineRemoveContainer = styled.div`
   position: absolute;
@@ -256,7 +263,7 @@ export const OutlineRemoveContainer = styled.div`
   );
   transform: translate(-50%, -50%);
   z-index: 99999;
-`;
+`
 
 export const WrapperRemoveBtn = styled.div`
   position: absolute;
@@ -268,4 +275,4 @@ export const WrapperRemoveBtn = styled.div`
   cursor: pointer;
   transform: translate(-50%, -50%);
   z-index: 99999;
-`;
+`

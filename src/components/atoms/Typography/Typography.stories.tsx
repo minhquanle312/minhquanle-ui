@@ -1,18 +1,23 @@
 // Libraries
-import React, { useMemo, useState } from 'react';
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
+import React, { useMemo, useState } from 'react'
+import type { ComponentMeta, ComponentStory } from '@storybook/react'
 
 // Antd
-import { Divider, Radio, Space } from 'antd';
-import { HighlightOutlined, SmileOutlined, CheckOutlined, SmileFilled } from '@ant-design/icons';
+import { Divider, Radio, Space } from 'antd'
+import {
+  HighlightOutlined,
+  SmileOutlined,
+  CheckOutlined,
+  SmileFilled,
+} from '@ant-design/icons'
 
 // Components
-import { Typography } from './Text';
-import { Table } from '../../organism';
-import { Tag } from '../Tag';
+import { Typography } from './Text'
+import { Table } from '../../organism'
+import { Tag } from '../Tag'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'src/constants';
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants'
 
 export default {
   title: 'Atoms/Typography',
@@ -211,12 +216,12 @@ Basic text writing, including headings, body text, lists, and more.
       },
     },
   },
-} as ComponentMeta<typeof Typography>;
+} as ComponentMeta<typeof Typography>
 
 // Default
-const { Title, Paragraph, Text, Link } = Typography;
+const { Title, Paragraph, Text, Link } = Typography
 
-const Template: ComponentStory<typeof Typography> = args => (
+const Template: ComponentStory<typeof Typography> = (args) => (
   <>
     <Title {...args}>Typography Title</Title>
     <Paragraph {...args}>Typography Paragraph</Paragraph>
@@ -225,40 +230,43 @@ const Template: ComponentStory<typeof Typography> = args => (
     <br />
     <Link {...args}>Typography Link</Link>
   </>
-);
-export const Default = Template.bind({});
+)
+export const Default = Template.bind({})
 
-Default.args = {};
+Default.args = {}
 
 // Examples
 export const Basic: ComponentStory<any> = () => {
-  const { Title, Paragraph, Text, Link } = Typography;
+  const { Title, Paragraph, Text, Link } = Typography
 
   const blockContent =
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore aliquam repellendus assumenda laudantium velit non iure officiis excepturi cupiditate modi ea cum, quisquam ratione voluptatibus. Non esse ipsam sint possimus?';
+    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore aliquam repellendus assumenda laudantium velit non iure officiis excepturi cupiditate modi ea cum, quisquam ratione voluptatibus. Non esse ipsam sint possimus?'
   return (
     <Typography>
       <Title>Introduction</Title>
       <Paragraph>
-        In the process of internal desktop applications development, many different design specs and
-        implementations would be involved, which might cause designers and developers difficulties
-        and duplication and reduce the efficiency of development.
+        In the process of internal desktop applications development, many
+        different design specs and implementations would be involved, which
+        might cause designers and developers difficulties and duplication and
+        reduce the efficiency of development.
       </Paragraph>
       <Paragraph>
-        After massive project practice and summaries, Ant Design, a design language for background
-        applications, is refined by Ant UED Team, which aims to{' '}
+        After massive project practice and summaries, Ant Design, a design
+        language for background applications, is refined by Ant UED Team, which
+        aims to{' '}
         <Text strong>
-          uniform the user interface specs for internal background projects, lower the unnecessary
-          cost of design differences and implementation and liberate the resources of design and
-          front-end development
+          uniform the user interface specs for internal background projects,
+          lower the unnecessary cost of design differences and implementation
+          and liberate the resources of design and front-end development
         </Text>
         .
       </Paragraph>
       <Title level={2}>Guidelines and Resources</Title>
       <Paragraph>
-        We supply a series of design principles, practical patterns and high quality design
-        resources (<Text code>Sketch</Text> and <Text code>Axure</Text>), to help people create
-        their product prototypes beautifully and efficiently.
+        We supply a series of design principles, practical patterns and high
+        quality design resources (<Text code>Sketch</Text> and{' '}
+        <Text code>Axure</Text>), to help people create their product prototypes
+        beautifully and efficiently.
       </Paragraph>
 
       <Paragraph>
@@ -283,30 +291,35 @@ export const Basic: ComponentStory<any> = () => {
 
       <Title>molestiae</Title>
       <Paragraph>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae ut deserunt esse,
-        veniam officiis consequatur quas, dolore mollitia distinctio exercitationem saepe dolorum
-        dolores molestiae odio, accusamus nam et optio sed.
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae ut
+        deserunt esse, veniam officiis consequatur quas, dolore mollitia
+        distinctio exercitationem saepe dolorum dolores molestiae odio,
+        accusamus nam et optio sed.
       </Paragraph>
       <Paragraph>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam itaque, repellat
-        veritatis pariatur modi fugiat tempora quibusdam quas eos consequuntur nam quaerat dicta,
-        dolore at quo id cum esse quidem. Ant Design。
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+        itaque, repellat veritatis pariatur modi fugiat tempora quibusdam quas
+        eos consequuntur nam quaerat dicta, dolore at quo id cum esse quidem.
+        Ant Design。
         <Text mark>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam minima dolorem eum
-          perferendis ipsa incidunt corporis blanditiis aliquid nulla, dolorum recusandae inventore
-          dolore repellat repudiandae totam molestiae necessitatibus ipsum saepe.
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam
+          minima dolorem eum perferendis ipsa incidunt corporis blanditiis
+          aliquid nulla, dolorum recusandae inventore dolore repellat
+          repudiandae totam molestiae necessitatibus ipsum saepe.
         </Text>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas nesciunt, perferendis velit
-        facere nam ullam eaque similique repellendus ex praesentium architecto totam. Quas
-        aspernatur cum id ea consequuntur dolorum doloremque.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas nesciunt,
+        perferendis velit facere nam ullam eaque similique repellendus ex
+        praesentium architecto totam. Quas aspernatur cum id ea consequuntur
+        dolorum doloremque.
         <Text strong>dolor sit amet consectetur</Text>。
       </Paragraph>
       <Title level={2}>nam ullam eaque</Title>
       <Paragraph>
-        Dolorum recusandae inventore dolore repellat repudiandae totam molestiae necessitatibus
-        ipsum saepe（<Text code>Sketch</Text> repellat<Text code>Axure</Text>
-        ），Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam itaque, repellat
-        veritatis pariatur modi fugiat tempora quibusdam
+        Dolorum recusandae inventore dolore repellat repudiandae totam molestiae
+        necessitatibus ipsum saepe（<Text code>Sketch</Text> repellat
+        <Text code>Axure</Text>
+        ），Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+        itaque, repellat veritatis pariatur modi fugiat tempora quibusdam
       </Paragraph>
 
       <Paragraph>
@@ -332,8 +345,8 @@ export const Basic: ComponentStory<any> = () => {
         按<Text keyboard>Esc</Text>ipsum
       </Paragraph>
     </Typography>
-  );
-};
+  )
+}
 
 Basic.parameters = {
   docs: {
@@ -341,10 +354,10 @@ Basic.parameters = {
       story: 'Display the document sample.',
     },
   },
-};
+}
 
 export const TitleComponent: ComponentStory<any> = () => {
-  const { Title } = Typography;
+  const { Title } = Typography
   return (
     <>
       <Title>h1. Ant Design</Title>
@@ -353,8 +366,8 @@ export const TitleComponent: ComponentStory<any> = () => {
       <Title level={4}>h4. Ant Design</Title>
       <Title level={5}>h5. Ant Design</Title>
     </>
-  );
-};
+  )
+}
 
 TitleComponent.parameters = {
   docs: {
@@ -362,10 +375,10 @@ TitleComponent.parameters = {
       story: 'Display title in different level.',
     },
   },
-};
+}
 
 export const TextAndLinkComponent: ComponentStory<any> = () => {
-  const { Text, Link } = Typography;
+  const { Text, Link } = Typography
   return (
     <Space direction="vertical">
       <Text>Ant Design (default)</Text>
@@ -385,8 +398,8 @@ export const TextAndLinkComponent: ComponentStory<any> = () => {
         Ant Design (Link)
       </Link>
     </Space>
-  );
-};
+  )
+}
 
 TextAndLinkComponent.parameters = {
   docs: {
@@ -394,56 +407,66 @@ TextAndLinkComponent.parameters = {
       story: 'Display title in different level.',
     },
   },
-};
+}
 
 export const Interactive: ComponentStory<any> = () => {
-  const { Paragraph } = Typography;
-  const [editableStr, setEditableStr] = useState('This is an editable text.');
+  const { Paragraph } = Typography
+  const [editableStr, setEditableStr] = useState('This is an editable text.')
   const [editableStrWithSuffix, setEditableStrWithSuffix] = useState(
-    'This is a loooooooooooooooooooooooooooooooong editable text with suffix.',
-  );
-  const [editableStrWithSuffixStartPart, editableStrWithSuffixSuffixPart] = useMemo(
-    () => [editableStrWithSuffix.slice(0, -12), editableStrWithSuffix.slice(-12)],
-    [editableStrWithSuffix],
-  );
-  const [customIconStr, setCustomIconStr] = useState('Custom Edit icon and replace tooltip text.');
+    'This is a loooooooooooooooooooooooooooooooong editable text with suffix.'
+  )
+  const [editableStrWithSuffixStartPart, editableStrWithSuffixSuffixPart] =
+    useMemo(
+      () => [
+        editableStrWithSuffix.slice(0, -12),
+        editableStrWithSuffix.slice(-12),
+      ],
+      [editableStrWithSuffix]
+    )
+  const [customIconStr, setCustomIconStr] = useState(
+    'Custom Edit icon and replace tooltip text.'
+  )
   const [clickTriggerStr, setClickTriggerStr] = useState(
-    'Text or icon as trigger - click to start editing.',
-  );
-  const [chooseTrigger, setChooseTrigger] = useState<('icon' | 'text')[]>(['icon']);
+    'Text or icon as trigger - click to start editing.'
+  )
+  const [chooseTrigger, setChooseTrigger] = useState<('icon' | 'text')[]>([
+    'icon',
+  ])
   const [customEnterIconStr, setCustomEnterIconStr] = useState(
-    'Editable text with a custom enter icon in edit field.',
-  );
+    'Editable text with a custom enter icon in edit field.'
+  )
   const [noEnterIconStr, setNoEnterIconStr] = useState(
-    'Editable text with no enter icon in edit field.',
-  );
-  const [hideTooltipStr, setHideTooltipStr] = useState('Hide Edit tooltip.');
+    'Editable text with no enter icon in edit field.'
+  )
+  const [hideTooltipStr, setHideTooltipStr] = useState('Hide Edit tooltip.')
   const [lengthLimitedStr, setLengthLimitedStr] = useState(
-    'This is an editable text with limited length.',
-  );
+    'This is an editable text with limited length.'
+  )
 
   const radioToState = (input: string): ('icon' | 'text')[] => {
     switch (input) {
       case 'text':
-        return ['text'];
+        return ['text']
       case 'both':
-        return ['icon', 'text'];
+        return ['icon', 'text']
       case 'icon':
       default:
-        return ['icon'];
+        return ['icon']
     }
-  };
+  }
 
   const stateToRadio = useMemo<string>(() => {
     if (chooseTrigger.includes('text')) {
-      return chooseTrigger.includes('icon') ? 'both' : 'text';
+      return chooseTrigger.includes('icon') ? 'both' : 'text'
     }
-    return 'icon';
-  }, [chooseTrigger]);
+    return 'icon'
+  }, [chooseTrigger])
 
   return (
     <>
-      <Paragraph editable={{ onChange: setEditableStr }}>{editableStr}</Paragraph>
+      <Paragraph editable={{ onChange: setEditableStr }}>
+        {editableStr}
+      </Paragraph>
       <Paragraph
         editable={{
           onChange: setEditableStrWithSuffix,
@@ -466,7 +489,7 @@ export const Interactive: ComponentStory<any> = () => {
       </Paragraph>
       Trigger edit with:{' '}
       <Radio.Group
-        onChange={e => setChooseTrigger(radioToState(e.target.value))}
+        onChange={(e) => setChooseTrigger(radioToState(e.target.value))}
         value={stateToRadio}
       >
         <Radio value="icon">icon</Radio>
@@ -531,10 +554,15 @@ export const Interactive: ComponentStory<any> = () => {
       </Typography.Title>
       <Divider />
       <Paragraph copyable>This is a copyable text.</Paragraph>
-      <Paragraph copyable={{ text: 'Hello, Ant Design!' }}>Replace copy text.</Paragraph>
+      <Paragraph copyable={{ text: 'Hello, Ant Design!' }}>
+        Replace copy text.
+      </Paragraph>
       <Paragraph
         copyable={{
-          icon: [<SmileOutlined key="copy-icon" />, <SmileFilled key="copied-icon" />],
+          icon: [
+            <SmileOutlined key="copy-icon" />,
+            <SmileFilled key="copied-icon" />,
+          ],
           tooltips: ['click here', 'you clicked!!'],
         }}
       >
@@ -542,16 +570,17 @@ export const Interactive: ComponentStory<any> = () => {
       </Paragraph>
       <Paragraph copyable={{ tooltips: false }}>Hide Copy tooltips.</Paragraph>
     </>
-  );
-};
+  )
+}
 
 Interactive.parameters = {
   docs: {
     description: {
-      story: 'Provide additional interactive capacity of editable and copyable.',
+      story:
+        'Provide additional interactive capacity of editable and copyable.',
     },
   },
-};
+}
 
 export const CopyableAPI: ComponentStory<any> = () => {
   const dataSource = [
@@ -595,10 +624,16 @@ export const CopyableAPI: ComponentStory<any> = () => {
       type: 'function',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 CopyableAPI.parameters = {
   docs: {
@@ -617,7 +652,7 @@ CopyableAPI.parameters = {
       code: null,
     },
   },
-};
+}
 
 export const EditableAPI: ComponentStory<any> = () => {
   const dataSource = [
@@ -727,10 +762,16 @@ export const EditableAPI: ComponentStory<any> = () => {
       type: 'ReactNode',
       default: <Tag>&lt;EnterOutlined &frasl; &gt;</Tag>,
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 EditableAPI.parameters = {
   docs: {
@@ -756,7 +797,7 @@ EditableAPI.parameters = {
       code: null,
     },
   },
-};
+}
 
 export const EllipsisAPI: ComponentStory<any> = () => {
   const dataSource = [
@@ -813,10 +854,16 @@ export const EllipsisAPI: ComponentStory<any> = () => {
       type: 'function(event)',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 EllipsisAPI.parameters = {
   docs: {
@@ -837,4 +884,4 @@ EllipsisAPI.parameters = {
       code: null,
     },
   },
-};
+}

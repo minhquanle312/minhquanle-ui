@@ -1,7 +1,7 @@
 // Libraries
-import React, { useMemo, useState } from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-import type { NotificationPlacement } from 'antd/es/notification/interface';
+import React, { useMemo, useState } from 'react'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { NotificationPlacement } from 'antd/es/notification/interface'
 import {
   RadiusBottomleftOutlined,
   RadiusBottomrightOutlined,
@@ -10,15 +10,15 @@ import {
   SmileOutlined,
   BorderBottomOutlined,
   BorderTopOutlined,
-} from '@ant-design/icons';
+} from '@ant-design/icons'
 
 // Component
-import { Table } from '../../organism';
-import { Button, Space, Divider } from '../index';
-import { notification } from './Notification';
+import { Table } from '../../organism'
+import { Button, Space, Divider } from '../index'
+import { notification } from './Notification'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'src/constants/storybook';
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants/storybook'
 
 export default {
   title: ' Atoms/Notification',
@@ -55,18 +55,18 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Button>;
+} as ComponentMeta<typeof Button>
 
 const Template: ComponentStory<typeof Button> = () => {
-  const [api, contextHolder] = notification.useNotification();
+  const [api, contextHolder] = notification.useNotification()
 
   const openNotification = () => {
     api.open({
       message: 'Notification Title',
       description: 'I will  close automatically after 1s.',
       duration: 1,
-    });
-  };
+    })
+  }
 
   return (
     <>
@@ -75,25 +75,27 @@ const Template: ComponentStory<typeof Button> = () => {
         Open the notification box
       </Button>
     </>
-  );
-};
+  )
+}
 
-export const Basic = Template.bind({});
+export const Basic = Template.bind({})
 
-const Context = React.createContext({ name: 'Default' });
+const Context = React.createContext({ name: 'Default' })
 
 export const HooksUsage = () => {
-  const [api, contextHolder] = notification.useNotification();
+  const [api, contextHolder] = notification.useNotification()
 
   const openNotification = (placement: NotificationPlacement) => {
     api.info({
       message: `Notification ${placement}`,
-      description: <Context.Consumer>{({ name }) => `Hello, ${name}!`}</Context.Consumer>,
+      description: (
+        <Context.Consumer>{({ name }) => `Hello, ${name}!`}</Context.Consumer>
+      ),
       placement,
-    });
-  };
+    })
+  }
 
-  const contextValue = useMemo(() => ({ name: 'Ant Design' }), []);
+  const contextValue = useMemo(() => ({ name: 'Ant Design' }), [])
 
   return (
     <Context.Provider value={contextValue}>
@@ -132,8 +134,8 @@ export const HooksUsage = () => {
         </Button>
       </Space>
     </Context.Provider>
-  );
-};
+  )
+}
 HooksUsage.parameters = {
   docs: {
     description: {
@@ -141,10 +143,10 @@ HooksUsage.parameters = {
         'Use `notification.useNotification` to get `contextHolder` with context accessible issue. Please note that, we recommend to use top level registration instead of `notification` static method, because static method cannot consume context, and ConfigProvider data will not work.',
     },
   },
-};
+}
 
 export const DurationAfterNotificationIsClosed = () => {
-  const [api, contextHolder] = notification.useNotification();
+  const [api, contextHolder] = notification.useNotification()
 
   const openNotification = () => {
     api.open({
@@ -152,8 +154,8 @@ export const DurationAfterNotificationIsClosed = () => {
       description:
         'I will never close automatically. This is a purposely very very long description that has many many characters and words.',
       duration: 0,
-    });
-  };
+    })
+  }
 
   return (
     <>
@@ -162,8 +164,8 @@ export const DurationAfterNotificationIsClosed = () => {
         Open the notification box
       </Button>
     </>
-  );
-};
+  )
+}
 
 DurationAfterNotificationIsClosed.parameters = {
   docs: {
@@ -172,32 +174,36 @@ DurationAfterNotificationIsClosed.parameters = {
         'notification stays open. After the duration time elapses, the notification closes automatically. If not specified, default value is 4.5 seconds. If you set the value to 0, the notification box will never close automatically.',
     },
   },
-};
+}
 
 export const NotificationWithIcon = () => {
-  type NotificationType = 'success' | 'info' | 'warning' | 'error';
-  const [api, contextHolder] = notification.useNotification();
+  type NotificationType = 'success' | 'info' | 'warning' | 'error'
+  const [api, contextHolder] = notification.useNotification()
 
   const openNotificationWithIcon = (type: NotificationType) => {
     api[type]({
       message: 'Notification Title',
       description:
         'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
-    });
-  };
+    })
+  }
 
   return (
     <>
       {contextHolder}
       <Space>
-        <Button onClick={() => openNotificationWithIcon('success')}>Success</Button>
+        <Button onClick={() => openNotificationWithIcon('success')}>
+          Success
+        </Button>
         <Button onClick={() => openNotificationWithIcon('info')}>Info</Button>
-        <Button onClick={() => openNotificationWithIcon('warning')}>Warning</Button>
+        <Button onClick={() => openNotificationWithIcon('warning')}>
+          Warning
+        </Button>
         <Button onClick={() => openNotificationWithIcon('error')}>Error</Button>
       </Space>
     </>
-  );
-};
+  )
+}
 
 NotificationWithIcon.parameters = {
   docs: {
@@ -205,18 +211,18 @@ NotificationWithIcon.parameters = {
       story: 'A notification box with a icon at the left side.',
     },
   },
-};
+}
 
 export const CustomCloseButton = () => {
   const close = () => {
     console.log(
-      'Notification was closed. Either the close button was clicked or duration time elapsed.',
-    );
-  };
-  const [api, contextHolder] = notification.useNotification();
+      'Notification was closed. Either the close button was clicked or duration time elapsed.'
+    )
+  }
+  const [api, contextHolder] = notification.useNotification()
 
   const openNotification = () => {
-    const key = `open${Date.now()}`;
+    const key = `open${Date.now()}`
     const btn = (
       <Space>
         <Button type="link" size="small" onClick={() => api.destroy()}>
@@ -226,7 +232,7 @@ export const CustomCloseButton = () => {
           Confirm
         </Button>
       </Space>
-    );
+    )
     api.open({
       message: 'Notification Title',
       description:
@@ -234,8 +240,8 @@ export const CustomCloseButton = () => {
       btn,
       key,
       onClose: close,
-    });
-  };
+    })
+  }
 
   return (
     <>
@@ -244,8 +250,8 @@ export const CustomCloseButton = () => {
         Open the notification box
       </Button>
     </>
-  );
-};
+  )
+}
 
 CustomCloseButton.parameters = {
   docs: {
@@ -253,10 +259,10 @@ CustomCloseButton.parameters = {
       story: 'To customize the style or font of the close button.',
     },
   },
-};
+}
 
 export const CustomizedIcon = () => {
-  const [api, contextHolder] = notification.useNotification();
+  const [api, contextHolder] = notification.useNotification()
 
   const openNotification = () => {
     api.open({
@@ -264,8 +270,8 @@ export const CustomizedIcon = () => {
       description:
         'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
       icon: <SmileOutlined style={{ color: '#108ee9' }} />,
-    });
-  };
+    })
+  }
 
   return (
     <>
@@ -274,8 +280,8 @@ export const CustomizedIcon = () => {
         Open the notification box
       </Button>
     </>
-  );
-};
+  )
+}
 
 CustomizedIcon.parameters = {
   docs: {
@@ -283,10 +289,10 @@ CustomizedIcon.parameters = {
       story: 'The icon can be customized to any react node.',
     },
   },
-};
+}
 
 export const CustomizedStyle = () => {
-  const [api, contextHolder] = notification.useNotification();
+  const [api, contextHolder] = notification.useNotification()
 
   const openNotification = () => {
     api.open({
@@ -297,8 +303,8 @@ export const CustomizedStyle = () => {
       style: {
         width: 600,
       },
-    });
-  };
+    })
+  }
 
   return (
     <>
@@ -307,19 +313,20 @@ export const CustomizedStyle = () => {
         Open the notification box
       </Button>
     </>
-  );
-};
+  )
+}
 
 CustomizedStyle.parameters = {
   docs: {
     description: {
-      story: 'The style and className are available to customize Notification. ',
+      story:
+        'The style and className are available to customize Notification. ',
     },
   },
-};
+}
 
 export const Placement = () => {
-  const [api, contextHolder] = notification.useNotification();
+  const [api, contextHolder] = notification.useNotification()
 
   const openNotification = (placement: NotificationPlacement) => {
     api.info({
@@ -327,14 +334,18 @@ export const Placement = () => {
       description:
         'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
       placement,
-    });
-  };
+    })
+  }
 
   return (
     <>
       {contextHolder}
       <Space>
-        <Button type="primary" onClick={() => openNotification('top')} icon={<BorderTopOutlined />}>
+        <Button
+          type="primary"
+          onClick={() => openNotification('top')}
+          icon={<BorderTopOutlined />}
+        >
           top
         </Button>
         <Button
@@ -380,8 +391,8 @@ export const Placement = () => {
         </Button>
       </Space>
     </>
-  );
-};
+  )
+}
 
 Placement.parameters = {
   docs: {
@@ -390,27 +401,27 @@ Placement.parameters = {
         'A notification box can appear from the `topRight`, `bottomRight`, `bottomLeft` or `topLeft` of the viewport via `placement`. ',
     },
   },
-};
+}
 
 export const UpdateMessageContent = () => {
-  const key = 'updatable';
+  const key = 'updatable'
 
-  const [api, contextHolder] = notification.useNotification();
+  const [api, contextHolder] = notification.useNotification()
   const openNotification = () => {
     api.open({
       key,
       message: 'Notification Title',
       description: 'description.',
-    });
+    })
 
     setTimeout(() => {
       api.open({
         key,
         message: 'New Title',
         description: 'New description.',
-      });
-    }, 1000);
-  };
+      })
+    }, 1000)
+  }
 
   return (
     <>
@@ -419,8 +430,8 @@ export const UpdateMessageContent = () => {
         Open the notification box
       </Button>
     </>
-  );
-};
+  )
+}
 
 UpdateMessageContent.parameters = {
   docs: {
@@ -428,7 +439,7 @@ UpdateMessageContent.parameters = {
       story: 'Update content with unique key.',
     },
   },
-};
+}
 
 export const API: ComponentStory<any> = () => {
   const dataSources = [
@@ -522,7 +533,8 @@ export const API: ComponentStory<any> = () => {
     {
       key: '12',
       property: 'onClick',
-      description: 'Specify a function that will be called when the notification is clicked	',
+      description:
+        'Specify a function that will be called when the notification is clicked	',
       type: 'function',
       default: '-',
     },
@@ -541,10 +553,16 @@ export const API: ComponentStory<any> = () => {
       type: 'function',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSources} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSources}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 API.parameters = {
   docs: {
@@ -571,7 +589,7 @@ API.parameters = {
       code: null,
     },
   },
-};
+}
 
 export const NotificationConfig: ComponentStory<any> = () => {
   const dataSources = [
@@ -625,10 +643,16 @@ export const NotificationConfig: ComponentStory<any> = () => {
       type: 'number',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSources} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSources}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 NotificationConfig.parameters = {
   docs: {
@@ -636,4 +660,4 @@ NotificationConfig.parameters = {
       code: null,
     },
   },
-};
+}

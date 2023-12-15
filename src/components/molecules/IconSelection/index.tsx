@@ -1,22 +1,26 @@
 /* eslint-disable react/destructuring-assignment */
 // Libraries
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 
 // Hooks
-import { useDeepCompareEffect } from 'src/hooks';
+import { useDeepCompareEffect } from 'minhquanle-ui/lib/hooks'
 
 // Atoms
-import { Button, Icon, ScrollBox } from 'src/components/atoms';
+import { Button, Icon, ScrollBox } from 'minhquanle-ui/lib/components/atoms'
 
 // Molecules
-import { Modal, InputSearch } from 'src/components/molecules';
+import { Modal, InputSearch } from 'minhquanle-ui/lib/components/molecules'
 
 // Components
-import { IconSelectionRenderer } from './components/Icon';
+import { IconSelectionRenderer } from './components/Icon'
 
 // Constants
-import { DEFAULT_UI_ICON_STYLES, LIMIT_ICONS_SHOW, LIST_ICON_BY_TYPE } from './constants';
-import { THEME } from 'src/constants';
+import {
+  DEFAULT_UI_ICON_STYLES,
+  LIMIT_ICONS_SHOW,
+  LIST_ICON_BY_TYPE,
+} from './constants'
+import { THEME } from 'minhquanle-ui/lib/constants'
 
 // Styled
 import {
@@ -25,16 +29,16 @@ import {
   Overlay,
   WrapperListItemRender,
   WrapperListRender,
-} from './styled';
+} from './styled'
 
 // Types
-import { IconSelectionProps, isIconType } from './types';
+import { IconSelectionProps, isIconType } from './types'
 
 // Utils
-import { serializeIcon } from './utils';
-import clsx from 'clsx';
+import { serializeIcon } from './utils'
+import clsx from 'clsx'
 
-export const IconSelection: React.FC<IconSelectionProps> = props => {
+export const IconSelection: React.FC<IconSelectionProps> = (props) => {
   const {
     labelHeadingModal = 'Icon Selection',
     searchPlaceholder = 'Search for icon...',
@@ -47,64 +51,67 @@ export const IconSelection: React.FC<IconSelectionProps> = props => {
     onChange,
     onRemoveIcon,
     onChangeSvg,
-  } = props;
+  } = props
 
-  const [listIconsOriginal, setListIconsOriginal] = useState<string[]>([]);
-  const [listIcons, setListIcons] = useState<string[]>([]);
-  const [selectedIcon, setSelectedIcon] = useState(props.icon || '');
-  const [isOpenModal, setIsOpenModal] = useState<boolean>(isOpen);
-  const [activeIcon, setActiveIcon] = useState('');
+  const [listIconsOriginal, setListIconsOriginal] = useState<string[]>([])
+  const [listIcons, setListIcons] = useState<string[]>([])
+  const [selectedIcon, setSelectedIcon] = useState(props.icon || '')
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(isOpen)
+  const [activeIcon, setActiveIcon] = useState('')
 
   useDeepCompareEffect(() => {
-    const temp = Object.entries(LIST_ICON_BY_TYPE).reduce<string[]>((acc, current) => {
-      const [iconType, icons] = current;
+    const temp = Object.entries(LIST_ICON_BY_TYPE).reduce<string[]>(
+      (acc, current) => {
+        const [iconType, icons] = current
 
-      if (isIconType(iconType) && iconTypes.includes(iconType)) {
-        acc.push(...icons.map(icon => `${iconType} ${icon}`));
-      }
+        if (isIconType(iconType) && iconTypes.includes(iconType)) {
+          acc.push(...icons.map((icon) => `${iconType} ${icon}`))
+        }
 
-      return acc;
-    }, []);
+        return acc
+      },
+      []
+    )
 
-    setListIconsOriginal(temp);
-    setListIcons(temp.slice(0, limitShowIcon));
-  }, [iconTypes, limitShowIcon]);
+    setListIconsOriginal(temp)
+    setListIcons(temp.slice(0, limitShowIcon))
+  }, [iconTypes, limitShowIcon])
 
-  const iconRef = useRef<SVGSVGElement | null>(null);
+  const iconRef = useRef<SVGSVGElement | null>(null)
 
   useEffect(() => {
-    setSelectedIcon(props.icon || '');
-  }, [props.icon]);
+    setSelectedIcon(props.icon || '')
+  }, [props.icon])
 
   const showModal = () => {
-    setIsOpenModal(true);
-  };
+    setIsOpenModal(true)
+  }
 
   const handleCancel = () => {
-    setIsOpenModal(false);
-    setListIcons(listIconsOriginal.slice(0, limitShowIcon));
-  };
+    setIsOpenModal(false)
+    setListIcons(listIconsOriginal.slice(0, limitShowIcon))
+  }
 
   const handleSelectIcon = (icon: string) => {
     if (onChange) {
-      onChange(icon);
+      onChange(icon)
     }
     if (typeof onChangeSvg === 'function') {
-      onChangeSvg(iconRef?.current?.outerHTML);
+      onChangeSvg(iconRef?.current?.outerHTML)
     }
-    setSelectedIcon(icon);
-    handleCancel();
-  };
+    setSelectedIcon(icon)
+    handleCancel()
+  }
 
   const renderListIcons = (listIconsRender: string[]) =>
-    listIconsRender.map(icon => {
-      const serializeResult = serializeIcon(icon);
+    listIconsRender.map((icon) => {
+      const serializeResult = serializeIcon(icon)
 
       if (serializeResult === null) {
-        return null;
+        return null
       }
 
-      const { iconType, iconName } = serializeResult;
+      const { iconType, iconName } = serializeResult
 
       return (
         <WrapperListRender className="ants-group" key={icon}>
@@ -116,10 +123,13 @@ export const IconSelection: React.FC<IconSelectionProps> = props => {
               {...DEFAULT_UI_ICON_STYLES.LISTING[iconType]}
             />
 
-            <CustomButton 
+            <CustomButton
               onClick={() => handleSelectIcon(icon)}
-              onMouseEnter={onChangeSvg ? () => setActiveIcon(iconName) : undefined}
-              className="group-hover">
+              onMouseEnter={
+                onChangeSvg ? () => setActiveIcon(iconName) : undefined
+              }
+              className="group-hover"
+            >
               USE
             </CustomButton>
 
@@ -137,8 +147,8 @@ export const IconSelection: React.FC<IconSelectionProps> = props => {
             {iconName}
           </span>
         </WrapperListRender>
-      );
-    });
+      )
+    })
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleSeachIcons = useCallback(
@@ -146,40 +156,40 @@ export const IconSelection: React.FC<IconSelectionProps> = props => {
       if (value && value.trim()) {
         setListIcons(
           listIconsOriginal
-            .filter(icon => {
-              const serializeResult = serializeIcon(icon);
+            .filter((icon) => {
+              const serializeResult = serializeIcon(icon)
 
               return (
                 serializeResult &&
                 serializeResult.iconName
                   .toLocaleLowerCase()
                   .includes(value.trim().toLocaleLowerCase())
-              );
+              )
             })
-            .slice(0, limitShowIcon),
-        );
+            .slice(0, limitShowIcon)
+        )
       } else {
-        setListIcons(listIconsOriginal.slice(0, limitShowIcon));
+        setListIcons(listIconsOriginal.slice(0, limitShowIcon))
       }
     },
-    [listIconsOriginal, limitShowIcon],
-  );
+    [listIconsOriginal, limitShowIcon]
+  )
 
   const handleRemoveIcon = () => {
     if (onRemoveIcon) {
-      onRemoveIcon();
+      onRemoveIcon()
     }
     if (typeof onChange === 'function') {
-      onChange('');
+      onChange('')
     }
-    setSelectedIcon('');
-  };
+    setSelectedIcon('')
+  }
 
-  const serializeSelectedIcon = serializeIcon(selectedIcon);
+  const serializeSelectedIcon = serializeIcon(selectedIcon)
 
   const renderSelectedIcon = () => {
     if (serializeSelectedIcon) {
-      const { iconType, iconName } = serializeSelectedIcon;
+      const { iconType, iconName } = serializeSelectedIcon
 
       return (
         <IconSelectionRenderer
@@ -187,23 +197,31 @@ export const IconSelection: React.FC<IconSelectionProps> = props => {
           iconName={iconName}
           {...DEFAULT_UI_ICON_STYLES.SELECTED[iconType]}
         />
-      );
+      )
     }
 
-    return null;
-  };
+    return null
+  }
 
   return (
-    <IconSelectionWrapper style={style} className={clsx(wrapperClassName, className)}>
+    <IconSelectionWrapper
+      style={style}
+      className={clsx(wrapperClassName, className)}
+    >
       <div className="transparent-wrapper">
-        <div style={{ position: 'absolute', zIndex: 0 }}>{renderSelectedIcon()}</div>
+        <div style={{ position: 'absolute', zIndex: 0 }}>
+          {renderSelectedIcon()}
+        </div>
 
         {serializeSelectedIcon ? (
           <>
             <Button onClick={showModal} style={{ backgroundColor: '#ffffff' }}>
               Change
             </Button>
-            <Button onClick={handleRemoveIcon} style={{ backgroundColor: '#ffffff' }}>
+            <Button
+              onClick={handleRemoveIcon}
+              style={{ backgroundColor: '#ffffff' }}
+            >
               <Icon
                 type="icon-ants-remove-trash"
                 size={15}
@@ -258,11 +276,14 @@ export const IconSelection: React.FC<IconSelectionProps> = props => {
         />
 
         <div style={{ paddingTop: 28, width: 650 }}>
-          <ScrollBox height={460} style={{ display: 'flex', flexWrap: 'wrap', gap: '35px' }}>
+          <ScrollBox
+            height={460}
+            style={{ display: 'flex', flexWrap: 'wrap', gap: '35px' }}
+          >
             {renderListIcons(listIcons)}
           </ScrollBox>
         </div>
       </Modal>
     </IconSelectionWrapper>
-  );
-};
+  )
+}

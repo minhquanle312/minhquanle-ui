@@ -1,61 +1,61 @@
 // Libraries
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react'
 
 // Styled
-import { StyledHeader, StyledTable } from './styled';
+import { StyledHeader, StyledTable } from './styled'
 
 // Types
-import { ColumnsType } from 'antd/es/table';
-import { TData } from './types';
+import { ColumnsType } from 'antd/es/table'
+import { TData } from './types'
 
 // Hooks
-import { useDeepCompareEffect } from 'src/hooks';
+import { useDeepCompareEffect } from 'minhquanle-ui/lib/hooks'
 
 // Components
-import { Typography } from 'src/components/atoms/Typography';
+import { Typography } from 'minhquanle-ui/lib/components/atoms/Typography'
 
 // Constants
-import { TEST_DATA } from './constants';
+import { TEST_DATA } from './constants'
 
 // Utils
-import { buildColumns, buildDataSource } from './utils';
+import { buildColumns, buildDataSource } from './utils'
 
 interface ExplorePivotTableProps {
-  data: TData;
+  data: TData
   scroll?: {
-    x?: number | string;
-    y?: number | string;
-  };
+    x?: number | string
+    y?: number | string
+  }
 }
 
-export const ExplorePivotTable: React.FC<ExplorePivotTableProps> = props => {
+export const ExplorePivotTable: React.FC<ExplorePivotTableProps> = (props) => {
   // Props
-  const { scroll, data } = props;
+  const { scroll, data } = props
 
   // State
   const [state, setState] = useState<{
-    columns: ColumnsType<any>;
-    dataSource: any[];
+    columns: ColumnsType<any>
+    dataSource: any[]
   }>({
     columns: [],
     dataSource: [],
-  });
+  })
 
   // Effects
   useDeepCompareEffect(() => {
-    const columns = buildColumns(data);
-    const dataSource = buildDataSource(data);
+    const columns = buildColumns(data)
+    const dataSource = buildDataSource(data)
 
-    setState(state => ({ ...state, columns, dataSource }));
-  }, [data]);
+    setState((state) => ({ ...state, columns, dataSource }))
+  }, [data])
 
   // Handles
   const renderHeader = useCallback((data: TData) => {
-    const { versions, metrics, columnDimension } = data;
+    const { versions, metrics, columnDimension } = data
 
     if (columnDimension.length) {
-      const firstVersion = versions[0];
-      const metric = metrics[0];
+      const firstVersion = versions[0]
+      const metric = metrics[0]
 
       return (
         <StyledHeader>
@@ -63,11 +63,11 @@ export const ExplorePivotTable: React.FC<ExplorePivotTableProps> = props => {
             {firstVersion.name} / {metric.label}
           </Typography>
         </StyledHeader>
-      );
+      )
     }
 
-    return null;
-  }, []);
+    return null
+  }, [])
 
   return (
     <div>
@@ -82,8 +82,8 @@ export const ExplorePivotTable: React.FC<ExplorePivotTableProps> = props => {
         pagination={false}
       />
     </div>
-  );
-};
+  )
+}
 
 ExplorePivotTable.defaultProps = {
   data: TEST_DATA,
@@ -91,4 +91,4 @@ ExplorePivotTable.defaultProps = {
     x: 0,
     y: 500,
   },
-};
+}

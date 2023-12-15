@@ -1,21 +1,21 @@
 /* eslint-disable prettier/prettier */
 // Libraries
-import React, { useState, createContext } from 'react';
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
+import React, { useState, createContext } from 'react'
+import type { ComponentMeta, ComponentStory } from '@storybook/react'
 import {
   CloseOutlined,
   ExclamationCircleOutlined,
   ExclamationCircleFilled,
-} from '@ant-design/icons';
+} from '@ant-design/icons'
 
 // Components
-import { Modal } from './Modal';
-import { Space, Button, Tag } from '../../atoms';
-import { Table } from '../../organism';
-import { TableApiTypeTag } from 'src/stories/components';
+import { Modal } from './Modal'
+import { Space, Button, Tag } from '../../atoms'
+import { Table } from '../../organism'
+import { TableApiTypeTag } from 'minhquanle-ui/lib/stories/components'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'src/constants';
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants'
 
 export default {
   title: 'Molecules/Modal',
@@ -24,7 +24,8 @@ export default {
     afterClose: {
       name: 'afterClose',
       defaultValue: undefined,
-      description: 'Specify a function that will be called when modal is closed completely',
+      description:
+        'Specify a function that will be called when modal is closed completely',
       table: {
         type: { summary: 'function' },
         defaultValue: { summary: '-' },
@@ -34,7 +35,8 @@ export default {
     bodyStyle: {
       name: 'bodyStyle',
       defaultValue: undefined,
-      description: 'Body style for modal body element. Such as height, padding etc',
+      description:
+        'Body style for modal body element. Such as height, padding etc',
       table: {
         type: { summary: 'CSSProperties' },
         defaultValue: { summary: '-' },
@@ -74,7 +76,8 @@ export default {
     closable: {
       name: 'closable',
       defaultValue: true,
-      description: 'Whether a close (x) button is visible on top right of the modal dialog or not',
+      description:
+        'Whether a close (x) button is visible on top right of the modal dialog or not',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'true' },
@@ -94,7 +97,8 @@ export default {
     confirmLoading: {
       name: 'confirmLoading',
       defaultValue: false,
-      description: 'Whether to apply loading visual effect for OK button or not',
+      description:
+        'Whether to apply loading visual effect for OK button or not',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
@@ -114,7 +118,8 @@ export default {
     focusTriggerAfterClose: {
       name: 'focusTriggerAfterClose',
       defaultValue: true,
-      description: 'Whether need to focus trigger element after dialog is closed',
+      description:
+        'Whether need to focus trigger element after dialog is closed',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'true' },
@@ -124,7 +129,8 @@ export default {
     footer: {
       name: 'footer',
       defaultValue: undefined,
-      description: "Footer content, set as `footer={null}` when you don't need default buttons",
+      description:
+        "Footer content, set as `footer={null}` when you don't need default buttons",
       table: {
         type: { summary: 'ReactNode' },
         defaultValue: { summary: '(OK and Cancel buttons)' },
@@ -146,7 +152,9 @@ export default {
       defaultValue: undefined,
       description: 'The mounted node for Modal but still display at fullscreen',
       table: {
-        type: { summary: 'HTMLElement | () => HTMLElement | Selectors | false' },
+        type: {
+          summary: 'HTMLElement | () => HTMLElement | Selectors | false',
+        },
         defaultValue: { summary: 'document.body' },
       },
       control: null,
@@ -196,7 +204,9 @@ export default {
       defaultValue: undefined,
       description: 'The ok button props',
       table: {
-        type: { summary: '[ButtonProps](https://ant.design/components/button/#api)' },
+        type: {
+          summary: '[ButtonProps](https://ant.design/components/button/#api)',
+        },
         defaultValue: { summary: '-' },
       },
       control: null,
@@ -224,7 +234,8 @@ export default {
     style: {
       name: 'style',
       defaultValue: undefined,
-      description: 'Style of floating layer, typically used at least for adjusting the position',
+      description:
+        'Style of floating layer, typically used at least for adjusting the position',
       table: {
         type: { summary: 'CSSProperties' },
         defaultValue: { summary: '-' },
@@ -295,7 +306,8 @@ export default {
     onOk: {
       name: 'onOk',
       defaultValue: undefined,
-      description: 'Specify a function that will be called when a user clicks the OK button',
+      description:
+        'Specify a function that will be called when a user clicks the OK button',
       table: {
         type: { summary: 'function(e)' },
         defaultValue: { summary: '-' },
@@ -305,7 +317,8 @@ export default {
     afterOpenChange: {
       name: 'afterOpenChange',
       defaultValue: undefined,
-      description: 'Callback when the animation ends when Modal is turned on and off',
+      description:
+        'Callback when the animation ends when Modal is turned on and off',
       table: {
         type: { summary: '(open: boolean) => void' },
         defaultValue: { summary: '-' },
@@ -323,11 +336,11 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Modal>;
+} as ComponentMeta<typeof Modal>
 
 // Default
-const Template: ComponentStory<typeof Modal> = args => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const Template: ComponentStory<typeof Modal> = (args) => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
     <>
@@ -341,43 +354,48 @@ const Template: ComponentStory<typeof Modal> = args => {
         onCancel={() => setIsModalOpen(false)}
       />
     </>
-  );
-};
-export const Default = Template.bind({});
+  )
+}
+export const Default = Template.bind({})
 
 Default.args = {
   title: 'Modal',
   children: 'Basic Modal',
-};
+}
 
 // // Examples
 export const Basic: ComponentStory<any> = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const showModal = () => {
-    setIsModalOpen(true);
-  };
+    setIsModalOpen(true)
+  }
 
   const handleOk = () => {
-    setIsModalOpen(false);
-  };
+    setIsModalOpen(false)
+  }
 
   const handleCancel = () => {
-    setIsModalOpen(false);
-  };
+    setIsModalOpen(false)
+  }
   return (
     <>
       <Button type="primary" onClick={showModal}>
         Open Modal
       </Button>
-      <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+      <Modal
+        title="Basic Modal"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
       </Modal>
     </>
-  );
-};
+  )
+}
 
 Basic.parameters = {
   docs: {
@@ -385,27 +403,27 @@ Basic.parameters = {
       story: 'Basic modal.',
     },
   },
-};
+}
 
 export const CustomizedFooter: ComponentStory<any> = () => {
-  const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false)
+  const [open, setOpen] = useState(false)
 
   const showModal = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleOk = () => {
-    setLoading(true);
+    setLoading(true)
     setTimeout(() => {
-      setLoading(false);
-      setOpen(false);
-    }, 3000);
-  };
+      setLoading(false)
+      setOpen(false)
+    }, 3000)
+  }
 
   const handleCancel = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
   return (
     <>
       <Button type="primary" onClick={showModal}>
@@ -420,7 +438,12 @@ export const CustomizedFooter: ComponentStory<any> = () => {
           <Button key="back" onClick={handleCancel}>
             Return
           </Button>,
-          <Button key="submit" type="primary" loading={loading} onClick={handleOk}>
+          <Button
+            key="submit"
+            type="primary"
+            loading={loading}
+            onClick={handleOk}
+          >
             Submit
           </Button>,
           <Button
@@ -441,8 +464,8 @@ export const CustomizedFooter: ComponentStory<any> = () => {
         <p>Some contents...</p>
       </Modal>
     </>
-  );
-};
+  )
+}
 
 CustomizedFooter.parameters = {
   docs: {
@@ -452,18 +475,18 @@ CustomizedFooter.parameters = {
         "You could set footer to null if you don't need default footer buttons.",
     },
   },
-};
+}
 
 export const Internationalization: ComponentStory<any> = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
   const showModal = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const hideModal = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   return (
     <>
@@ -483,8 +506,8 @@ export const Internationalization: ComponentStory<any> = () => {
         <p>Bla bla ...</p>
       </Modal>
     </>
-  );
-};
+  )
+}
 
 Internationalization.parameters = {
   docs: {
@@ -493,11 +516,11 @@ Internationalization.parameters = {
         'To customize the text of the buttons, you need to set `okText` and `cancelText` props.',
     },
   },
-};
+}
 
 export const CustomizePosition: ComponentStory<any> = () => {
-  const [modal1Open, setModal1Open] = useState(false);
-  const [modal2Open, setModal2Open] = useState(false);
+  const [modal1Open, setModal1Open] = useState(false)
+  const [modal2Open, setModal2Open] = useState(false)
 
   return (
     <>
@@ -532,60 +555,65 @@ export const CustomizePosition: ComponentStory<any> = () => {
         <p>some contents...</p>
       </Modal>
     </>
-  );
-};
+  )
+}
 
 CustomizePosition.parameters = {
   docs: {
     description: {
-      story: 'You can use `centered`, `style.top` or other styles to set position of modal dialog.',
+      story:
+        'You can use `centered`, `style.top` or other styles to set position of modal dialog.',
     },
   },
-};
+}
 
 export const UseHooksToGetContext: ComponentStory<any> = () => {
-  const ReachableContext = createContext<string | null>(null);
-  const UnreachableContext = createContext<string | null>(null);
-  const [modal, contextHolder] = Modal.useModal();
+  const ReachableContext = createContext<string | null>(null)
+  const UnreachableContext = createContext<string | null>(null)
+  const [modal, contextHolder] = Modal.useModal()
 
   const config = {
     title: 'Use Hook!',
     content: (
       <>
-        <ReachableContext.Consumer>{name => `Reachable: ${name}!`}</ReachableContext.Consumer>
+        <ReachableContext.Consumer>
+          {(name) => `Reachable: ${name}!`}
+        </ReachableContext.Consumer>
         <br />
-        <UnreachableContext.Consumer>{name => `Unreachable: ${name}!`}</UnreachableContext.Consumer>
+        <UnreachableContext.Consumer>
+          {(name) => `Unreachable: ${name}!`}
+        </UnreachableContext.Consumer>
       </>
     ),
-  };
+  }
 
   return (
     <ReachableContext.Provider value="Light">
       <Space>
         <Button
           onClick={() => {
-            modal.confirm(config);
+            modal.confirm(config)
           }}
         >
           Confirm
         </Button>
         <Button
           onClick={() => {
-            modal.warning(config);
+            modal.warning(config)
           }}
         >
           Warning
         </Button>
         <Button
           onClick={() => {
-            modal.info(config);
+            modal.info(config)
           }}
         >
           Info
         </Button>
         <Button
           onClick={() => {
-            modal.error(config);
+            modal.error(config)
           }}
         >
           Error
@@ -597,19 +625,20 @@ export const UseHooksToGetContext: ComponentStory<any> = () => {
       {/* Can not access this context since `contextHolder` is not in it */}
       <UnreachableContext.Provider value="Bamboo" />
     </ReachableContext.Provider>
-  );
-};
+  )
+}
 
 UseHooksToGetContext.parameters = {
   docs: {
     description: {
-      story: 'Use `Modal.useModal` to get `contextHolder` with context accessible issue.',
+      story:
+        'Use `Modal.useModal` to get `contextHolder` with context accessible issue.',
     },
   },
-};
+}
 
 export const CustomizeWidth: ComponentStory<any> = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
   return (
     <>
@@ -629,8 +658,8 @@ export const CustomizeWidth: ComponentStory<any> = () => {
         <p>some contents...</p>
       </Modal>
     </>
-  );
-};
+  )
+}
 
 CustomizeWidth.parameters = {
   docs: {
@@ -638,14 +667,14 @@ CustomizeWidth.parameters = {
       story: 'Use `width` to set the width of the modal dialog.',
     },
   },
-};
+}
 
 export const DestroyConfirmationModalDialog: ComponentStory<any> = () => {
-  const { confirm } = Modal;
+  const { confirm } = Modal
 
   const destroyAll = () => {
-    Modal.destroyAll();
-  };
+    Modal.destroyAll()
+  }
 
   const showConfirm = () => {
     for (let i = 0; i < 3; i += 1) {
@@ -659,13 +688,13 @@ export const DestroyConfirmationModalDialog: ComponentStory<any> = () => {
           onCancel() {
             // Do something
           },
-        });
-      }, i * 500);
+        })
+      }, i * 500)
     }
-  };
+  }
 
-  return <Button onClick={showConfirm}>Confirm</Button>;
-};
+  return <Button onClick={showConfirm}>Confirm</Button>
+}
 
 DestroyConfirmationModalDialog.parameters = {
   docs: {
@@ -674,29 +703,29 @@ DestroyConfirmationModalDialog.parameters = {
         '`Modal.destroyAll()` will destroy all confirmation modal dialogs. Usually, you can use it in router change event to destroy confirm modal dialog automatically.',
     },
   },
-};
+}
 
 export const AsynchronouslyClose: ComponentStory<any> = () => {
-  const [open, setOpen] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const [modalText, setModalText] = useState('Content of the modal');
+  const [open, setOpen] = useState(false)
+  const [confirmLoading, setConfirmLoading] = useState(false)
+  const [modalText, setModalText] = useState('Content of the modal')
 
   const showModal = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleOk = () => {
-    setModalText('The modal will be closed after two seconds');
-    setConfirmLoading(true);
+    setModalText('The modal will be closed after two seconds')
+    setConfirmLoading(true)
     setTimeout(() => {
-      setOpen(false);
-      setConfirmLoading(false);
-    }, 2000);
-  };
+      setOpen(false)
+      setConfirmLoading(false)
+    }, 2000)
+  }
 
   const handleCancel = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   return (
     <>
@@ -713,8 +742,8 @@ export const AsynchronouslyClose: ComponentStory<any> = () => {
         <p>{modalText}</p>
       </Modal>
     </>
-  );
-};
+  )
+}
 
 AsynchronouslyClose.parameters = {
   docs: {
@@ -723,10 +752,10 @@ AsynchronouslyClose.parameters = {
         'Asynchronously close a modal dialog when the OK button is pressed. For example, you can use this pattern when you submit a form.',
     },
   },
-};
+}
 
 export const ConfirmationModalDialog: ComponentStory<any> = () => {
-  const { confirm } = Modal;
+  const { confirm } = Modal
 
   const showConfirm = () => {
     confirm({
@@ -739,22 +768,23 @@ export const ConfirmationModalDialog: ComponentStory<any> = () => {
       onCancel() {
         // Do something
       },
-    });
-  };
+    })
+  }
 
   const showPromiseConfirm = () => {
     confirm({
       title: 'Do you want to delete these items?',
       icon: <ExclamationCircleFilled />,
-      content: 'When clicked the OK button, this dialog will be closed after 1 second',
+      content:
+        'When clicked the OK button, this dialog will be closed after 1 second',
       onOk() {
         return new Promise((resolve, reject) => {
-          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-        }).catch(() => 'Oops errors!');
+          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
+        }).catch(() => 'Oops errors!')
       },
       onCancel() {},
-    });
-  };
+    })
+  }
 
   const showDeleteConfirm = () => {
     confirm({
@@ -770,8 +800,8 @@ export const ConfirmationModalDialog: ComponentStory<any> = () => {
       onCancel() {
         // Do something
       },
-    });
-  };
+    })
+  }
 
   const showPropsConfirm = () => {
     confirm({
@@ -790,8 +820,8 @@ export const ConfirmationModalDialog: ComponentStory<any> = () => {
       onCancel() {
         // Do something
       },
-    });
-  };
+    })
+  }
 
   return (
     <Space wrap>
@@ -804,8 +834,8 @@ export const ConfirmationModalDialog: ComponentStory<any> = () => {
         With extra props
       </Button>
     </Space>
-  );
-};
+  )
+}
 
 ConfirmationModalDialog.parameters = {
   docs: {
@@ -814,39 +844,39 @@ ConfirmationModalDialog.parameters = {
         'Use `confirm()` to show a confirmation modal dialog. Let onCancel/onOk function return a promise object to delay closing the dialog.',
     },
   },
-};
+}
 
 export const ManualToUpdateDestroy: ComponentStory<any> = () => {
-  const [modal, contextHolder] = Modal.useModal();
+  const [modal, contextHolder] = Modal.useModal()
 
   const countDown = () => {
-    let secondsToGo = 5;
+    let secondsToGo = 5
 
     const instance = modal.success({
       title: 'This is a notification message',
       content: `This modal will be destroyed after ${secondsToGo} second.`,
-    });
+    })
 
     const timer = setInterval(() => {
-      secondsToGo -= 1;
+      secondsToGo -= 1
       instance.update({
         content: `This modal will be destroyed after ${secondsToGo} second.`,
-      });
-    }, 1000);
+      })
+    }, 1000)
 
     setTimeout(() => {
-      clearInterval(timer);
-      instance.destroy();
-    }, secondsToGo * 1000);
-  };
+      clearInterval(timer)
+      instance.destroy()
+    }, secondsToGo * 1000)
+  }
 
   return (
     <>
       <Button onClick={countDown}>Open modal to close in 5s</Button>
       {contextHolder}
     </>
-  );
-};
+  )
+}
 
 ManualToUpdateDestroy.parameters = {
   docs: {
@@ -854,22 +884,22 @@ ManualToUpdateDestroy.parameters = {
       story: 'Manually updating and destroying a modal through instance.',
     },
   },
-};
+}
 
 export const CustomizeFooterButtonsProps: ComponentStory<any> = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
   const showModal = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleOk = (_e: React.MouseEvent<HTMLElement>) => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   const handleCancel = (_e: React.MouseEvent<HTMLElement>) => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   return (
     <>
@@ -889,8 +919,8 @@ export const CustomizeFooterButtonsProps: ComponentStory<any> = () => {
         <p>Some contents...</p>
       </Modal>
     </>
-  );
-};
+  )
+}
 
 CustomizeFooterButtonsProps.parameters = {
   docs: {
@@ -899,7 +929,7 @@ CustomizeFooterButtonsProps.parameters = {
         'Passing `okButtonProps` and `cancelButtonProps` will customize the OK button and cancel button props.',
     },
   },
-};
+}
 
 export const StaticMethod: ComponentStory<any> = () => {
   const info = () => {
@@ -912,28 +942,28 @@ export const StaticMethod: ComponentStory<any> = () => {
         </div>
       ),
       onOk() {},
-    });
-  };
+    })
+  }
 
   const success = () => {
     Modal.success({
       content: 'some messages...some messages...',
-    });
-  };
+    })
+  }
 
   const error = () => {
     Modal.error({
       title: 'This is an error message',
       content: 'some messages...some messages...',
-    });
-  };
+    })
+  }
 
   const warning = () => {
     Modal.warning({
       title: 'This is a warning message',
       content: 'some messages...some messages...',
-    });
-  };
+    })
+  }
 
   return (
     <Space wrap>
@@ -942,8 +972,8 @@ export const StaticMethod: ComponentStory<any> = () => {
       <Button onClick={error}>Error</Button>
       <Button onClick={warning}>Warning</Button>
     </Space>
-  );
-};
+  )
+}
 
 StaticMethod.parameters = {
   docs: {
@@ -952,7 +982,7 @@ StaticMethod.parameters = {
         'In most case, you do not need static method. It can not consume context like dynamic theme. Please use hooks version or `App` provided instance first.',
     },
   },
-};
+}
 
 export const ModalMethodAPI: ComponentStory<any> = () => {
   const dataSource = [
@@ -980,7 +1010,8 @@ export const ModalMethodAPI: ComponentStory<any> = () => {
     {
       key: '3',
       property: 'bodyStyle',
-      description: 'Body style for modal body element. Such as height, padding etc',
+      description:
+        'Body style for modal body element. Such as height, padding etc',
       type: 'CSSProperties',
       default: '-',
     },
@@ -1039,7 +1070,8 @@ export const ModalMethodAPI: ComponentStory<any> = () => {
       property: 'footer',
       description: (
         <>
-          Footer content, set as <Tag style={{ marginRight: '0' }}>footer: null</Tag> when you
+          Footer content, set as{' '}
+          <Tag style={{ marginRight: '0' }}>footer: null</Tag> when you
           don&apos;t need default buttons
         </>
       ),
@@ -1110,7 +1142,8 @@ export const ModalMethodAPI: ComponentStory<any> = () => {
     {
       key: '21',
       property: 'style',
-      description: 'Style of floating layer, typically used at least for adjusting the position',
+      description:
+        'Style of floating layer, typically used at least for adjusting the position',
       type: 'CSSProperties',
       default: '-',
     },
@@ -1151,13 +1184,16 @@ export const ModalMethodAPI: ComponentStory<any> = () => {
       property: 'onCancel',
       description: (
         <>
-          Specify a function that will be called when the user clicks the Cancel button. The
-          parameter of this function is a function whose execution should include closing the
-          dialog. If the function does not take any parameter (&nbsp;
-          <Tag style={{ marginRight: '0' }}>!onCancel.length</Tag>&nbsp;) then modal dialog will be
-          closed unless returned value is <Tag style={{ marginRight: '0' }}>true</Tag> (&nbsp;
-          <Tag style={{ marginRight: '0' }}>!!onCancel()</Tag>&nbsp;). You can also just return a
-          promise and when the promise is resolved, the modal dialog will also be closed
+          Specify a function that will be called when the user clicks the Cancel
+          button. The parameter of this function is a function whose execution
+          should include closing the dialog. If the function does not take any
+          parameter (&nbsp;
+          <Tag style={{ marginRight: '0' }}>!onCancel.length</Tag>&nbsp;) then
+          modal dialog will be closed unless returned value is{' '}
+          <Tag style={{ marginRight: '0' }}>true</Tag> (&nbsp;
+          <Tag style={{ marginRight: '0' }}>!!onCancel()</Tag>&nbsp;). You can
+          also just return a promise and when the promise is resolved, the modal
+          dialog will also be closed
         </>
       ),
       type: 'function(close)',
@@ -1168,22 +1204,31 @@ export const ModalMethodAPI: ComponentStory<any> = () => {
       property: 'onOk',
       description: (
         <>
-          Specify a function that will be called when the user clicks the OK button. The parameter
-          of this function is a function whose execution should include closing the dialog. If the
-          function does not take any parameter (&nbsp;
-          <Tag style={{ marginRight: '0' }}>!onOk.length</Tag>&nbsp;) then modal dialog will be
-          closed unless returned value is <Tag style={{ marginRight: '0' }}>true</Tag> (&nbsp;
-          <Tag style={{ marginRight: '0' }}>!!onOk()</Tag>&nbsp;). You can also just return a
-          promise and when the promise is resolved, the modal dialog will also be closed
+          Specify a function that will be called when the user clicks the OK
+          button. The parameter of this function is a function whose execution
+          should include closing the dialog. If the function does not take any
+          parameter (&nbsp;
+          <Tag style={{ marginRight: '0' }}>!onOk.length</Tag>&nbsp;) then modal
+          dialog will be closed unless returned value is{' '}
+          <Tag style={{ marginRight: '0' }}>true</Tag> (&nbsp;
+          <Tag style={{ marginRight: '0' }}>!!onOk()</Tag>&nbsp;). You can also
+          just return a promise and when the promise is resolved, the modal
+          dialog will also be closed
         </>
       ),
       type: 'function(close)',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 ModalMethodAPI.parameters = {
   docs: {
@@ -1201,4 +1246,4 @@ ModalMethodAPI.parameters = {
       code: null,
     },
   },
-};
+}

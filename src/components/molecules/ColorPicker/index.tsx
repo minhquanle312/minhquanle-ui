@@ -1,28 +1,28 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/destructuring-assignment */
 // Libraries
-import React, { useState, useEffect, ReactNode } from 'react';
+import React, { useState, useEffect, ReactNode } from 'react'
 
 // Components
-import { Icon, Input, Popover } from 'src/components/atoms';
+import { Icon, Input, Popover } from 'minhquanle-ui/lib/components/atoms'
 
 // Styled
-import { ColorPickerWrapper } from './styled';
+import { ColorPickerWrapper } from './styled'
 
 // Utils
-import { hexWithAlpha } from 'src/utils/color';
-import CustomPicker from './CustomPicker';
+import { hexWithAlpha } from 'minhquanle-ui/lib/utils/color'
+import CustomPicker from './CustomPicker'
 
 export interface ColorPickerProps {
-  className?: string;
-  color?: string;
-  presetColors?: any[] | ReactNode;
-  defaultColor?: string;
-  icon?: React.ReactNode | string;
-  onChange?: (color: string) => void;
-  showInput?: boolean;
-  positionInput?: 'right' | 'left';
-  style?: React.CSSProperties;
+  className?: string
+  color?: string
+  presetColors?: any[] | ReactNode
+  defaultColor?: string
+  icon?: React.ReactNode | string
+  onChange?: (color: string) => void
+  showInput?: boolean
+  positionInput?: 'right' | 'left'
+  style?: React.CSSProperties
 }
 
 const styleBtnColor = {
@@ -34,9 +34,9 @@ const styleBtnColor = {
   padding: 0,
   fontSize: '100%',
   border: 'none',
-};
+}
 
-export const ColorPicker: React.FC<ColorPickerProps> = props => {
+export const ColorPicker: React.FC<ColorPickerProps> = (props) => {
   // Props
   const {
     className = '',
@@ -46,73 +46,77 @@ export const ColorPicker: React.FC<ColorPickerProps> = props => {
     icon,
     showInput = true,
     style = {},
-  } = props;
-  const { onChange = () => {} } = props;
+  } = props
+  const { onChange = () => {} } = props
 
   // States
-  const [color, setColor] = useState(defaultColor);
-  const [popoverVisible, setPopoverVisible] = useState(false);
+  const [color, setColor] = useState(defaultColor)
+  const [popoverVisible, setPopoverVisible] = useState(false)
 
-  const [iconNode, setIconNode] = useState<React.ReactNode>();
+  const [iconNode, setIconNode] = useState<React.ReactNode>()
 
   // Effects
   useEffect(() => {
     if (props.color) {
-      setColor(props.color);
+      setColor(props.color)
     }
-  }, [props.color]);
+  }, [props.color])
 
   useEffect(() => {
     if (icon) {
       if (typeof icon === 'string') {
-        setIconNode(<Icon type={icon} />);
+        setIconNode(<Icon type={icon} />)
       } else {
-        setIconNode(icon);
+        setIconNode(icon)
       }
     }
-  }, [icon]);
+  }, [icon])
 
   // Handlers
-  const onChangeColorPicker = color => {
+  const onChangeColorPicker = (color) => {
     if (['hsv', 'hsl'].includes(color.source)) {
       if (!color?.rgb?.a) {
-        setColor(color.hex);
+        setColor(color.hex)
 
-        return;
+        return
       }
     }
 
-    setColor(hexWithAlpha(color));
-  };
+    setColor(hexWithAlpha(color))
+  }
 
-  const onChangeComplete = color => {
+  const onChangeComplete = (color) => {
     if (['hsv', 'hsl'].includes(color.source)) {
       if (!color?.rgb?.a) {
-        onChange(color.hex);
+        onChange(color.hex)
 
-        return;
+        return
       }
     }
 
-    onChange(hexWithAlpha(color));
-  };
+    onChange(hexWithAlpha(color))
+  }
 
-  const onChangeColorInput = event => {
-    const { value } = event.target;
+  const onChangeColorInput = (event) => {
+    const { value } = event.target
 
-    setColor(value);
-    onChange(value);
-  };
+    setColor(value)
+    onChange(value)
+  }
 
-  const onPopoverVisibleChange = visible => {
-    setPopoverVisible(visible);
-  };
+  const onPopoverVisibleChange = (visible) => {
+    setPopoverVisible(visible)
+  }
 
   return (
     <ColorPickerWrapper className={className} style={style}>
       {/* Input value section */}
       {showInput && positionInput === 'left' && (
-        <Input style={{ textTransform: 'uppercase' }} value={color} onChange={onChangeColorInput} />
+        <Input
+          style={{ textTransform: 'uppercase' }}
+          value={color}
+          onChange={onChangeColorInput}
+        />
       )}
 
       {/* Color Picker popover section */}
@@ -128,7 +132,7 @@ export const ColorPicker: React.FC<ColorPickerProps> = props => {
         }
         trigger="click"
         visible={popoverVisible}
-        getPopupContainer={triggerNode => triggerNode}
+        getPopupContainer={(triggerNode) => triggerNode}
         onVisibleChange={onPopoverVisibleChange}
       >
         <button style={styleBtnColor}>
@@ -148,11 +152,15 @@ export const ColorPicker: React.FC<ColorPickerProps> = props => {
 
       {/* Input value section */}
       {showInput && positionInput === 'right' && (
-        <Input style={{ textTransform: 'uppercase' }} value={color} onChange={onChangeColorInput} />
+        <Input
+          style={{ textTransform: 'uppercase' }}
+          value={color}
+          onChange={onChangeColorInput}
+        />
       )}
     </ColorPickerWrapper>
-  );
-};
+  )
+}
 
 ColorPicker.defaultProps = {
   className: '',
@@ -162,4 +170,4 @@ ColorPicker.defaultProps = {
   showInput: true,
   positionInput: 'left',
   style: {},
-};
+}

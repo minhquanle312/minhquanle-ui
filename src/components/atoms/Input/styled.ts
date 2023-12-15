@@ -1,14 +1,14 @@
 // Styled
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
 // Components
-import { Input as InputAntd } from 'antd';
+import { Input as InputAntd } from 'antd'
 
 // Types
-import { InputProps } from './Input';
+import { InputProps } from './Input'
 
 // Constants
-import { THEME } from 'src/constants';
+import { THEME } from 'minhquanle-ui/lib/constants'
 
 export const StyledInput = styled(InputAntd)<InputProps>`
   /* height: 30px;
@@ -41,8 +41,8 @@ export const StyledInput = styled(InputAntd)<InputProps>`
     css`
       --tw-shadow: 0 0 #0000;
       --tw-shadow-colored: 0 0 #0000;
-      box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
-        var(--tw-shadow);
+      box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+        var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
       padding-left: 0;
       padding-right: 0;
     `}
@@ -64,7 +64,7 @@ export const StyledInput = styled(InputAntd)<InputProps>`
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
       var(--tw-shadow);
   } */
-`;
+`
 
 export const TextArea = styled(InputAntd.TextArea)<{ showBorder?: boolean }>`
   height: 30px;
@@ -76,8 +76,8 @@ export const TextArea = styled(InputAntd.TextArea)<{ showBorder?: boolean }>`
   font-size: ${THEME.token?.fontSize}px;
   --tw-shadow: 0 1px 0 0 #e0e0e0;
   --tw-shadow-colored: 0 1px 0 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
-    var(--tw-shadow);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 
   &::placeholder {
     color: ${THEME.token?.accent5};
@@ -96,8 +96,8 @@ export const TextArea = styled(InputAntd.TextArea)<{ showBorder?: boolean }>`
     background-color: ${THEME.token?.blue0};
     --tw-shadow: 0 1px 0 0 #194e8d;
     --tw-shadow-colored: 0 1px 0 0 var(--tw-shadow-color);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
-      var(--tw-shadow);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+      var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   &:disabled {
@@ -105,13 +105,13 @@ export const TextArea = styled(InputAntd.TextArea)<{ showBorder?: boolean }>`
     color: ${THEME.token?.accent5};
     --tw-shadow: 0 1px 0 0 #e0e0e0;
     --tw-shadow-colored: 0 1px 0 0 var(--tw-shadow-color);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
-      var(--tw-shadow);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+      var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
-  ${props =>
+  ${(props) =>
     props.showBorder &&
     css`
       border: 1px solid #e0e0e0;
     `}
-`;
+`

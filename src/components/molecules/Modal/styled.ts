@@ -1,26 +1,27 @@
 // Libraries
-import styled, { css } from 'styled-components';
-import { Modal as AntdModal } from 'antd';
+import styled, { css } from 'styled-components'
+import { Modal as AntdModal } from 'antd'
 
 // Constants
-import { THEME } from 'src/constants';
+import { THEME } from 'minhquanle-ui/lib/constants'
 
 export interface CustomModalProps {
-  header?: React.ReactNode;
-  headerStyle?: { [key: string]: any };
-  rightFooter?: boolean;
+  header?: React.ReactNode
+  headerStyle?: { [key: string]: any }
+  rightFooter?: boolean
 }
 
-const JSToCSS = cssObj => {
-  let cssString = '';
+const JSToCSS = (cssObj) => {
+  let cssString = ''
   for (const objectKey in cssObj) {
-    cssString += `${objectKey.replace(/([A-Z])/g, g => `-${g[0].toLowerCase()}`)}: ${
-      cssObj[objectKey]
-    };\n`;
+    cssString += `${objectKey.replace(
+      /([A-Z])/g,
+      (g) => `-${g[0].toLowerCase()}`
+    )}: ${cssObj[objectKey]};\n`
   }
 
-  return cssString;
-};
+  return cssString
+}
 
 export const StyledModal = styled(AntdModal)<CustomModalProps>`
   .antsomi-modal-content {
@@ -36,8 +37,8 @@ export const StyledModal = styled(AntdModal)<CustomModalProps>`
       padding-bottom: 0;
       border-style: 0px;
 
-      ${props => (props.headerStyle ? JSToCSS(props.headerStyle) : '')}
-      ${p =>
+      ${(props) => (props.headerStyle ? JSToCSS(props.headerStyle) : '')}
+      ${(p) =>
         p.header
           ? css`
               display: none;
@@ -53,7 +54,7 @@ export const StyledModal = styled(AntdModal)<CustomModalProps>`
       padding-left: 20px;
       padding-right: 20px;
 
-      ${p =>
+      ${(p) =>
         p.rightFooter
           ? css`
               justify-content: flex-end;
@@ -84,9 +85,9 @@ export const StyledModal = styled(AntdModal)<CustomModalProps>`
       }
     }
   }
-`;
+`
 
 export const WrapperSpin = styled.div`
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-`;
+`

@@ -1,17 +1,22 @@
 // Libraries
-import React, { useState } from 'react';
-import { Avatar, Form, RadioChangeEvent, Switch, List } from 'antd';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { DotChartOutlined, StarOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons';
-import type Icon from '@ant-design/icons';
+import React, { useState } from 'react'
+import { Avatar, Form, RadioChangeEvent, Switch, List } from 'antd'
+import { ComponentStory, ComponentMeta } from '@storybook/react'
+import {
+  DotChartOutlined,
+  StarOutlined,
+  LikeOutlined,
+  MessageOutlined,
+} from '@ant-design/icons'
+import type Icon from '@ant-design/icons'
 
 // Components
-import { Skeleton } from './Skeleton';
-import { Space, Divider, Radio, Button } from '../index';
-import { Table } from '../../organism';
+import { Skeleton } from './Skeleton'
+import { Space, Divider, Radio, Button } from '../index'
+import { Table } from '../../organism'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'src/constants/storybook';
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants/storybook'
 
 export default {
   title: 'Atoms/Skeleton',
@@ -94,14 +99,18 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Skeleton>;
+} as ComponentMeta<typeof Skeleton>
 
 // Default
-const Template: ComponentStory<typeof Skeleton> = args => <Skeleton {...args} />;
+const Template: ComponentStory<typeof Skeleton> = (args) => (
+  <Skeleton {...args} />
+)
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 
-export const ComplexCombination = () => <Skeleton avatar paragraph={{ rows: 4 }} />;
+export const ComplexCombination = () => (
+  <Skeleton avatar paragraph={{ rows: 4 }} />
+)
 
 ComplexCombination.parameters = {
   docs: {
@@ -109,9 +118,9 @@ ComplexCombination.parameters = {
       story: 'Complex combination with avatar and multiple paragraphs.',
     },
   },
-};
+}
 
-export const ActiveAnimation = () => <Skeleton active />;
+export const ActiveAnimation = () => <Skeleton active />
 
 ActiveAnimation.parameters = {
   docs: {
@@ -119,48 +128,58 @@ ActiveAnimation.parameters = {
       story: 'Display active animation.',
     },
   },
-};
+}
 
 export const ButtonAvatarInputImageNode = () => {
-  type SizeType = 'default' | 'small' | 'large';
-  type ButtonShapeType = 'circle' | 'square' | 'round' | 'default';
-  type AvatarShapeType = 'circle' | 'square';
-  const [active, setActive] = useState(false);
-  const [block, setBlock] = useState(false);
-  const [size, setSize] = useState<SizeType>('default');
-  const [buttonShape, setButtonShape] = useState<ButtonShapeType>('default');
-  const [avatarShape, setAvatarShape] = useState<AvatarShapeType>('circle');
+  type SizeType = 'default' | 'small' | 'large'
+  type ButtonShapeType = 'circle' | 'square' | 'round' | 'default'
+  type AvatarShapeType = 'circle' | 'square'
+  const [active, setActive] = useState(false)
+  const [block, setBlock] = useState(false)
+  const [size, setSize] = useState<SizeType>('default')
+  const [buttonShape, setButtonShape] = useState<ButtonShapeType>('default')
+  const [avatarShape, setAvatarShape] = useState<AvatarShapeType>('circle')
 
   const handleActiveChange = (checked: boolean) => {
-    setActive(checked);
-  };
+    setActive(checked)
+  }
 
   const handleBlockChange = (checked: boolean) => {
-    setBlock(checked);
-  };
+    setBlock(checked)
+  }
 
   const handleSizeChange = (e: RadioChangeEvent) => {
-    setSize(e.target.value);
-  };
+    setSize(e.target.value)
+  }
 
   const handleShapeButton = (e: RadioChangeEvent) => {
-    setButtonShape(e.target.value);
-  };
+    setButtonShape(e.target.value)
+  }
 
   const handleAvatarShape = (e: RadioChangeEvent) => {
-    setAvatarShape(e.target.value);
-  };
+    setAvatarShape(e.target.value)
+  }
 
   return (
     <>
       <Space>
-        <Skeleton.Button active={active} size={size} shape={buttonShape} block={block} />
+        <Skeleton.Button
+          active={active}
+          size={size}
+          shape={buttonShape}
+          block={block}
+        />
         <Skeleton.Avatar active={active} size={size} shape={avatarShape} />
         <Skeleton.Input active={active} size={size} />
       </Space>
       <br />
       <br />
-      <Skeleton.Button active={active} size={size} shape={buttonShape} block={block} />
+      <Skeleton.Button
+        active={active}
+        size={size}
+        shape={buttonShape}
+        block={block}
+      />
       <br />
       <br />
       <Skeleton.Input active={active} size={size} block={block} />
@@ -205,8 +224,8 @@ export const ButtonAvatarInputImageNode = () => {
         </Space>
       </Form>
     </>
-  );
-};
+  )
+}
 
 ButtonAvatarInputImageNode.parameters = {
   docs: {
@@ -214,34 +233,34 @@ ButtonAvatarInputImageNode.parameters = {
       story: 'Skeleton Button, Avatar, Input, Image and Node.',
     },
   },
-};
+}
 
 export const ContainsSubComponent = () => {
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false)
 
   const showSkeleton = () => {
-    setLoading(true);
+    setLoading(true)
     setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  };
+      setLoading(false)
+    }, 3000)
+  }
 
   return (
     <Space direction="vertical" style={{ width: '100%' }} size={16}>
       <Skeleton loading={loading}>
         <h4 style={{ marginBottom: 16 }}>Ant Design, a design language</h4>
         <p>
-          We supply a series of design principles, practical patterns and high quality design
-          resources (Sketch and Axure), to help people create their product prototypes beautifully
-          and efficiently.
+          We supply a series of design principles, practical patterns and high
+          quality design resources (Sketch and Axure), to help people create
+          their product prototypes beautifully and efficiently.
         </p>
       </Skeleton>
       <Button onClick={showSkeleton} disabled={loading}>
         Show Skeleton
       </Button>
     </Space>
-  );
-};
+  )
+}
 
 ContainsSubComponent.parameters = {
   docs: {
@@ -249,11 +268,11 @@ ContainsSubComponent.parameters = {
       story: 'Skeleton contains sub component.',
     },
   },
-};
+}
 
 interface IconTextProps {
-  icon: typeof Icon;
-  text: React.ReactNode;
+  icon: typeof Icon
+  text: React.ReactNode
 }
 
 const listData = Array.from({ length: 3 }).map((_, i) => ({
@@ -264,38 +283,54 @@ const listData = Array.from({ length: 3 }).map((_, i) => ({
     'Ant Design, a design language for background applications, is refined by Ant UED Team.',
   content:
     'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-}));
+}))
 
 const IconText: React.FC<IconTextProps> = ({ icon, text }) => (
   <>
     {React.createElement(icon, { style: { marginRight: 8 } })}
     {text}
   </>
-);
+)
 
 export const SkeletonList = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true)
 
   const onChange = (checked: boolean) => {
-    setLoading(!checked);
-  };
+    setLoading(!checked)
+  }
 
   return (
     <>
-      <Switch checked={!loading} onChange={onChange} style={{ marginBottom: 16 }} />
+      <Switch
+        checked={!loading}
+        onChange={onChange}
+        style={{ marginBottom: 16 }}
+      />
       <List
         itemLayout="vertical"
         size="large"
         dataSource={listData}
-        renderItem={item => (
+        renderItem={(item) => (
           <List.Item
             key={item.title}
             actions={
               !loading
                 ? [
-                    <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
-                    <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
-                    <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
+                    <IconText
+                      icon={StarOutlined}
+                      text="156"
+                      key="list-vertical-star-o"
+                    />,
+                    <IconText
+                      icon={LikeOutlined}
+                      text="156"
+                      key="list-vertical-like-o"
+                    />,
+                    <IconText
+                      icon={MessageOutlined}
+                      text="2"
+                      key="list-vertical-message"
+                    />,
                   ]
                 : undefined
             }
@@ -321,8 +356,8 @@ export const SkeletonList = () => {
         )}
       />
     </>
-  );
-};
+  )
+}
 
 SkeletonList.parameters = {
   docs: {
@@ -330,7 +365,7 @@ SkeletonList.parameters = {
       story: 'Use skeleton in list component.',
     },
   },
-};
+}
 
 export const SkeletonAvatarProps: ComponentStory<any> = () => {
   const dataSources = [
@@ -355,10 +390,16 @@ export const SkeletonAvatarProps: ComponentStory<any> = () => {
       type: 'number | large | small | default',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSources} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSources}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 SkeletonAvatarProps.parameters = {
   docs: {
@@ -366,7 +407,7 @@ SkeletonAvatarProps.parameters = {
       code: null,
     },
   },
-};
+}
 
 export const SkeletonTitleProps: ComponentStory<any> = () => {
   const dataSources = [
@@ -377,10 +418,16 @@ export const SkeletonTitleProps: ComponentStory<any> = () => {
       type: 'number | string',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSources} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSources}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 SkeletonTitleProps.parameters = {
   docs: {
@@ -388,7 +435,7 @@ SkeletonTitleProps.parameters = {
       code: null,
     },
   },
-};
+}
 
 export const SkeletonParagraphProps: ComponentStory<any> = () => {
   const dataSources = [
@@ -406,10 +453,16 @@ export const SkeletonParagraphProps: ComponentStory<any> = () => {
       type: 'number | string | Array<number | string> ',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSources} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSources}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 SkeletonParagraphProps.parameters = {
   docs: {
@@ -417,7 +470,7 @@ SkeletonParagraphProps.parameters = {
       code: null,
     },
   },
-};
+}
 
 export const SkeletonButtonProps: ComponentStory<any> = () => {
   const dataSources = [
@@ -449,10 +502,16 @@ export const SkeletonButtonProps: ComponentStory<any> = () => {
       type: 'large | small | default',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSources} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSources}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 SkeletonButtonProps.parameters = {
   docs: {
@@ -460,7 +519,7 @@ SkeletonButtonProps.parameters = {
       code: null,
     },
   },
-};
+}
 
 export const SkeletonInputProps: ComponentStory<any> = () => {
   const dataSources = [
@@ -478,10 +537,16 @@ export const SkeletonInputProps: ComponentStory<any> = () => {
       type: 'large | small | default',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSources} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSources}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 SkeletonInputProps.parameters = {
   docs: {
@@ -489,4 +554,4 @@ SkeletonInputProps.parameters = {
       code: null,
     },
   },
-};
+}

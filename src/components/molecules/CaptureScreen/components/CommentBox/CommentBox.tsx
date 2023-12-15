@@ -1,68 +1,82 @@
 // Libraries
-import React, { useEffect, useState } from 'react';
-import Draggable from 'react-draggable';
+import React, { useEffect, useState } from 'react'
+import Draggable from 'react-draggable'
 
 // Components
-import Icon from '@antscorp/icons';
-import { Space, Button } from 'antd';
+import Icon from '@antscorp/icons'
+import { Space, Button } from 'antd'
 
 // Constanst
-import { THEME } from 'src/constants';
+import { THEME } from 'minhquanle-ui/lib/constants'
 
 // Hooks
-import { useDebounce } from 'src/hooks/useDebounce';
+import { useDebounce } from 'minhquanle-ui/lib/hooks/useDebounce'
 
 // Types
-import { CommentBoxProps } from './types';
-import { CommentListProps } from '../../types';
+import { CommentBoxProps } from './types'
+import { CommentListProps } from '../../types'
 
 // Styled
-import { CommentBoxed, CommentPoint, RoundedDashed, TextArea, WrapperIcon } from './styled';
+import {
+  CommentBoxed,
+  CommentPoint,
+  RoundedDashed,
+  TextArea,
+  WrapperIcon,
+} from './styled'
 
-const LIMIT_CONTENT_COMMENT = 200;
+const LIMIT_CONTENT_COMMENT = 200
 
 const CommentBox = (props: CommentBoxProps) => {
-  const { info, offset, className, boxDimension, onChangeComment } = props;
+  const { info, offset, className, boxDimension, onChangeComment } = props
 
-  const [activeDrags, setActiveDrags] = useState<number>(0);
+  const [activeDrags, setActiveDrags] = useState<number>(0)
   const [positionDrag] = useState<Pick<CommentListProps, 'left' | 'top'>>({
     top: info.top,
     left: info.left,
-  });
+  })
 
-  const [debouncedPosition, _positionOriginal, setPositionDrag] = useDebounce(positionDrag, 400);
+  const [debouncedPosition, _positionOriginal, setPositionDrag] = useDebounce(
+    positionDrag,
+    400
+  )
 
   const handleStart = (): void => {
-    setActiveDrags(activeDrags + 1);
-  };
+    setActiveDrags(activeDrags + 1)
+  }
 
   const handleStop = (): void => {
-    setActiveDrags(activeDrags - 1);
-  };
+    setActiveDrags(activeDrags - 1)
+  }
 
   const handleDrag = (_e, _ui) => {
     try {
-      const left = _ui.node.offsetLeft;
-      const top = _ui.node.offsetTop;
+      const left = _ui.node.offsetLeft
+      const top = _ui.node.offsetTop
       setPositionDrag({
         left,
         top,
-      });
+      })
     } catch (error) {
-      console.log('error :>', error);
+      console.log('error :>', error)
     }
-  };
+  }
 
   useEffect(() => {
     if (typeof onChangeComment === 'function') {
-      onChangeComment('CHANGE_CONTENT', { ...info, ...debouncedPosition });
+      onChangeComment('CHANGE_CONTENT', { ...info, ...debouncedPosition })
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [debouncedPosition]);
+  }, [debouncedPosition])
 
   return (
-    <Draggable bounds="canvas" onDrag={handleDrag} onStart={handleStart} onStop={handleStop}>
+    <Draggable
+      bounds="canvas"
+      onDrag={handleDrag}
+      onStart={handleStart}
+      onStop={handleStop}
+    >
       <CommentPoint
         color={info.color}
         isSubmitted={info.isSubmitted}
@@ -85,10 +99,10 @@ const CommentBox = (props: CommentBoxProps) => {
               value={info.content}
               disabled={info.isSubmitted}
               maxLength={LIMIT_CONTENT_COMMENT}
-              onChange={event => {
-                const { value } = event?.target;
+              onChange={(event) => {
+                const { value } = event?.target
                 if (value && value.length <= LIMIT_CONTENT_COMMENT) {
-                  onChangeComment('CHANGE_CONTENT', { ...info, content: value });
+                  onChangeComment('CHANGE_CONTENT', { ...info, content: value })
                 }
               }}
             />
@@ -102,7 +116,10 @@ const CommentBox = (props: CommentBoxProps) => {
                 >
                   Comment
                 </Button>
-                <Button style={{ height: 28 }} onClick={() => onChangeComment('CANCEL', info)}>
+                <Button
+                  style={{ height: 28 }}
+                  onClick={() => onChangeComment('CANCEL', info)}
+                >
                   Cancel
                 </Button>
               </Space>
@@ -112,9 +129,9 @@ const CommentBox = (props: CommentBoxProps) => {
         <RoundedDashed offset={offset} className="rounded-dashed" />
         <WrapperIcon
           className="icon-close-comment"
-          onClick={e => {
-            e.stopPropagation();
-            onChangeComment('CANCEL', info);
+          onClick={(e) => {
+            e.stopPropagation()
+            onChangeComment('CANCEL', info)
           }}
         >
           <Icon
@@ -124,8 +141,8 @@ const CommentBox = (props: CommentBoxProps) => {
         </WrapperIcon>
       </CommentPoint>
     </Draggable>
-  );
-};
+  )
+}
 
 CommentBox.defaultProps = {
   info: {
@@ -137,5 +154,5 @@ CommentBox.defaultProps = {
   },
   offset: 20,
   onChangeComment: () => {},
-};
-export { CommentBox };
+}
+export { CommentBox }

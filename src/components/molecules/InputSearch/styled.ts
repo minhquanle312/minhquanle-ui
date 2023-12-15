@@ -1,8 +1,8 @@
 // Libraries
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 // Constants
-import { THEME } from 'src/constants';
+import { THEME } from 'minhquanle-ui/lib/constants'
 
 export const Wrapper = styled.div`
   position: relative;
@@ -46,4 +46,4 @@ export const Wrapper = styled.div`
       color: ${THEME.token?.colorPrimary};
     }
   }
-`;
+`

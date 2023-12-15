@@ -1,8 +1,8 @@
 // Libraries
-import { THEME } from 'src/constants';
+import { THEME } from 'minhquanle-ui/lib/constants'
 
 // Constants
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
 export const PlusCursor = styled.div`
   position: absolute;
@@ -21,7 +21,7 @@ export const PlusCursor = styled.div`
   cursor: none;
   pointer-events: none;
   z-index: 999999;
-`;
+`
 
 export const TooltipDrag = styled.div`
   position: absolute;
@@ -42,18 +42,18 @@ export const TooltipDrag = styled.div`
   box-sizing: border-box;
   user-select: none;
   z-index: 9999;
-`;
+`
 
 export const DottedCursor = styled.div<{
-  bgColor?: string;
-  isPointerBox?: boolean;
-  offset: number;
+  bgColor?: string
+  isPointerBox?: boolean
+  offset: number
 }>`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: ${props => props.bgColor || '#0f2eae'};
+  background-color: ${(props) => props.bgColor || '#0f2eae'};
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -63,7 +63,7 @@ export const DottedCursor = styled.div<{
   pointer-events: none;
   z-index: 999999;
 
-  ${props =>
+  ${(props) =>
     props.isPointerBox &&
     css`
       display: flex;
@@ -81,4 +81,4 @@ export const DottedCursor = styled.div<{
 
       font-family: ${THEME.token?.fontFamily};
     `}
-`;
+`

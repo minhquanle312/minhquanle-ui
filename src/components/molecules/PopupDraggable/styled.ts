@@ -1,12 +1,12 @@
 // Libraries
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
 // Constants
-import { THEME } from 'src/constants';
+import { THEME } from 'minhquanle-ui/lib/constants'
 
 export const PopupContainer = styled.div<{
-  isHiddenResizing?: boolean;
-  isShowResizeHover?: boolean;
+  isHiddenResizing?: boolean
+  isShowResizeHover?: boolean
 }>`
   position: fixed !important;
   top: 0px;
@@ -25,7 +25,7 @@ export const PopupContainer = styled.div<{
     box-sizing: border-box !important;
   }
 
-  ${props =>
+  ${(props) =>
     props.isHiddenResizing &&
     css`
       .react-resizable-handle {
@@ -33,7 +33,7 @@ export const PopupContainer = styled.div<{
       }
     `}
 
-  ${props =>
+  ${(props) =>
     props.isShowResizeHover &&
     css`
       &:hover .react-resizable-handle {
@@ -41,7 +41,7 @@ export const PopupContainer = styled.div<{
         z-index: 99;
       }
     `}
-`;
+`
 
 export const WrapperIcon = styled.div`
   position: absolute;
@@ -56,4 +56,4 @@ export const WrapperIcon = styled.div`
     font-size: 12px;
     color: ${THEME.token?.colorIcon};
   }
-`;
+`

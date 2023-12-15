@@ -1,28 +1,34 @@
 // Libraries
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties } from 'react'
 
 // Molecules
-import { SettingWrapper } from '../SettingWrapper';
-import { ColorPicker, ColorPickerProps } from 'src/components/molecules/ColorPicker';
+import { SettingWrapper } from '../SettingWrapper'
+import {
+  ColorPicker,
+  ColorPickerProps,
+} from 'minhquanle-ui/lib/components/molecules/ColorPicker'
 
 // Utils
-import { handleError } from 'src/utils';
-import { Button, Icon, Text } from 'src/components/atoms';
+import { handleError } from 'minhquanle-ui/lib/utils'
+import { Button, Icon, Text } from 'minhquanle-ui/lib/components/atoms'
 
 // Styled
-import { ButtonPreset, PresetColor, PresetWrapper } from './styled';
+import { ButtonPreset, PresetColor, PresetWrapper } from './styled'
 
-const PATH = 'src/components/molecules/ColorSetting/index.tsx';
+const PATH = 'minhquanle-ui/lib/components/molecules/ColorSetting/index.tsx'
 
 interface ColorSettingProps extends ColorPickerProps {
-  label: string;
-  labelClassName?: string;
-  labelStyling?: Partial<CSSProperties>;
-  isHideBtnEdit?: boolean;
-  className?: string;
-  vertical?: boolean;
-  customColors?: Array<string>;
-  callback?: (type: 'ON_ADD_NEW_PRESET' | 'ON_EDIT_CLICKED', dataOut?: any) => void;
+  label: string
+  labelClassName?: string
+  labelStyling?: Partial<CSSProperties>
+  isHideBtnEdit?: boolean
+  className?: string
+  vertical?: boolean
+  customColors?: Array<string>
+  callback?: (
+    type: 'ON_ADD_NEW_PRESET' | 'ON_EDIT_CLICKED',
+    dataOut?: any
+  ) => void
 }
 
 const stylingCenter: Partial<CSSProperties> = {
@@ -30,9 +36,9 @@ const stylingCenter: Partial<CSSProperties> = {
   justifyContent: 'space-between',
   alignItems: 'center',
   width: '100%',
-};
+}
 
-export const ColorSetting: React.FC<ColorSettingProps> = props => {
+export const ColorSetting: React.FC<ColorSettingProps> = (props) => {
   const {
     label,
     color,
@@ -45,29 +51,33 @@ export const ColorSetting: React.FC<ColorSettingProps> = props => {
     callback,
     onChange,
     ...restOf
-  } = props;
+  } = props
 
   const onClickPresetColor = (color: string) => {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      typeof onChange === 'function' && onChange(color);
+      typeof onChange === 'function' && onChange(color)
     } catch (error) {
       handleError(error, {
         path: PATH,
         name: 'onClickPresetColor',
         args: { color },
-      });
+      })
     }
-  };
+  }
 
   const onClickAddNewPresetColor = () => {
     try {
-      if (color && typeof customColors !== 'undefined' && !customColors?.includes(color)) {
-        const draftCustomColors = [...customColors];
-        draftCustomColors.push(color);
+      if (
+        color &&
+        typeof customColors !== 'undefined' &&
+        !customColors?.includes(color)
+      ) {
+        const draftCustomColors = [...customColors]
+        draftCustomColors.push(color)
 
         if (typeof callback === 'function') {
-          callback('ON_ADD_NEW_PRESET', { customColors: draftCustomColors });
+          callback('ON_ADD_NEW_PRESET', { customColors: draftCustomColors })
         }
       }
     } catch (error) {
@@ -75,23 +85,23 @@ export const ColorSetting: React.FC<ColorSettingProps> = props => {
         path: PATH,
         name: 'onClickAddNewPresetColor',
         args: {},
-      });
+      })
     }
-  };
+  }
 
   const onClickEdit = () => {
     try {
       if (typeof callback === 'function') {
-        callback('ON_EDIT_CLICKED');
+        callback('ON_EDIT_CLICKED')
       }
     } catch (error) {
       handleError(error, {
         path: PATH,
         name: 'onClickEdit',
         args: {},
-      });
+      })
     }
-  };
+  }
 
   const presetColors = (
     <div>
@@ -114,13 +124,16 @@ export const ColorSetting: React.FC<ColorSettingProps> = props => {
                 color={customColor}
                 onClick={() => onClickPresetColor(customColor)}
               >
-                <div className="__color" style={{ backgroundColor: customColor }} />
+                <div
+                  className="__color"
+                  style={{ backgroundColor: customColor }}
+                />
               </PresetColor>
             ))
           : null}
       </PresetWrapper>
     </div>
-  );
+  )
 
   return (
     <SettingWrapper
@@ -130,10 +143,15 @@ export const ColorSetting: React.FC<ColorSettingProps> = props => {
       labelStyle={labelStyling}
       vertical={vertical}
     >
-      <ColorPicker {...restOf} color={color} presetColors={presetColors} onChange={onChange} />
+      <ColorPicker
+        {...restOf}
+        color={color}
+        presetColors={presetColors}
+        onChange={onChange}
+      />
     </SettingWrapper>
-  );
-};
+  )
+}
 
 ColorSetting.defaultProps = {
   label: '',
@@ -142,4 +160,4 @@ ColorSetting.defaultProps = {
   isHideBtnEdit: true,
   callback: () => {},
   onChange: () => {},
-};
+}

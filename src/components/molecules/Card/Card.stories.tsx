@@ -1,16 +1,20 @@
 // Libraries
-import React, { useState } from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
-import { Avatar, Switch, Skeleton, ConfigProvider } from 'antd';
+import React, { useState } from 'react'
+import { ComponentStory, ComponentMeta } from '@storybook/react'
+import {
+  EditOutlined,
+  EllipsisOutlined,
+  SettingOutlined,
+} from '@ant-design/icons'
+import { Avatar, Switch, Skeleton, ConfigProvider } from 'antd'
 
 // Components
-import { Card } from './Card';
-import { Row, Col } from '../../atoms';
-import { Table } from '../../organism';
+import { Card } from './Card'
+import { Row, Col } from '../../atoms'
+import { Table } from '../../organism'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'src/constants';
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants'
 
 export default {
   title: 'Molecules/Card',
@@ -91,7 +95,8 @@ export default {
     hoverable: {
       name: 'hoverable',
       defaultValue: false,
-      description: 'Inline style to apply to the card headLift up when hovering card',
+      description:
+        'Inline style to apply to the card headLift up when hovering card',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: false },
@@ -103,7 +108,8 @@ export default {
     loading: {
       name: 'loading',
       defaultValue: false,
-      description: 'Shows a loading indicator while the contents of the card are being fetched',
+      description:
+        'Shows a loading indicator while the contents of the card are being fetched',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: false },
@@ -187,18 +193,23 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Card>;
+} as ComponentMeta<typeof Card>
 
 // Default
-const Template: ComponentStory<typeof Card> = args => (
-  <Card title="Default size card" extra={<a href="#">More</a>} style={{ width: 300 }} {...args}>
+const Template: ComponentStory<typeof Card> = (args) => (
+  <Card
+    title="Default size card"
+    extra={<a href="#">More</a>}
+    style={{ width: 300 }}
+    {...args}
+  >
     <p>Card content</p>
     <p>Card content</p>
     <p>Card content</p>
   </Card>
-);
+)
 
-export const Basic = Template.bind({});
+export const Basic = Template.bind({})
 
 // Examples
 
@@ -208,7 +219,7 @@ export const NoBorder = () => (
     <p>Card content</p>
     <p>Card content</p>
   </Card>
-);
+)
 
 NoBorder.parameters = {
   docs: {
@@ -216,7 +227,7 @@ NoBorder.parameters = {
       story: 'A borderless card on a gray background.',
     },
   },
-};
+}
 
 export const SimpleCard = () => (
   <Card style={{ width: 300 }}>
@@ -224,7 +235,7 @@ export const SimpleCard = () => (
     <p>Card content</p>
     <p>Card content</p>
   </Card>
-);
+)
 
 SimpleCard.parameters = {
   docs: {
@@ -232,20 +243,25 @@ SimpleCard.parameters = {
       story: 'A simple card only containing a content area.',
     },
   },
-};
+}
 
 export const CustomizedContent = () => {
-  const { Meta } = Card;
+  const { Meta } = Card
   return (
     <Card
       hoverable
       style={{ width: 240 }}
-      cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+      cover={
+        <img
+          alt="example"
+          src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+        />
+      }
     >
       <Meta title="Europe Street beat" description="www.instagram.com" />
     </Card>
-  );
-};
+  )
+}
 
 CustomizedContent.parameters = {
   docs: {
@@ -253,7 +269,7 @@ CustomizedContent.parameters = {
       story: 'You can use `Card.Meta` to support more flexible content.',
     },
   },
-};
+}
 
 export const CardInColumn = () => (
   <Row gutter={16}>
@@ -273,28 +289,31 @@ export const CardInColumn = () => (
       </Card>
     </Col>
   </Row>
-);
+)
 
 CardInColumn.parameters = {
   docs: {
     description: {
-      story: 'Cards usually cooperate with grid column layout in overview page.',
+      story:
+        'Cards usually cooperate with grid column layout in overview page.',
     },
   },
-};
+}
 
 export const LoadingCard = () => {
-  const { Meta } = Card;
-  const [loading, setLoading] = useState(true);
+  const { Meta } = Card
+  const [loading, setLoading] = useState(true)
   const onChange = (checked: boolean) => {
-    setLoading(!checked);
-  };
+    setLoading(!checked)
+  }
   return (
     <>
       <Switch checked={!loading} onChange={onChange} />
       <Card style={{ width: 300, marginTop: 16 }} loading={loading}>
         <Meta
-          avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />}
+          avatar={
+            <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
+          }
           title="Card title"
           description="This is the description"
         />
@@ -309,29 +328,32 @@ export const LoadingCard = () => {
       >
         <Skeleton loading={loading} avatar active>
           <Meta
-            avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=2" />}
+            avatar={
+              <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=2" />
+            }
             title="Card title"
             description="This is the description"
           />
         </Skeleton>
       </Card>
     </>
-  );
-};
+  )
+}
 
 LoadingCard.parameters = {
   docs: {
     description: {
-      story: 'Shows a loading indicator while the contents of the card is being fetched.',
+      story:
+        'Shows a loading indicator while the contents of the card is being fetched.',
     },
   },
-};
+}
 
 export const GridCard = () => {
   const gridStyle: React.CSSProperties = {
     width: '25%',
     textAlign: 'center',
-  };
+  }
   return (
     <Card title="Card Title">
       <Card.Grid style={gridStyle}>Content</Card.Grid>
@@ -344,8 +366,8 @@ export const GridCard = () => {
       <Card.Grid style={gridStyle}>Content</Card.Grid>
       <Card.Grid style={gridStyle}>Content</Card.Grid>
     </Card>
-  );
-};
+  )
+}
 
 export const InnerCard = () => (
   <Card title="Card title">
@@ -361,7 +383,7 @@ export const InnerCard = () => (
       Inner Card content
     </Card>
   </Card>
-);
+)
 
 InnerCard.parameters = {
   docs: {
@@ -370,7 +392,7 @@ InnerCard.parameters = {
         'It can be placed inside the ordinary card to display the information of the multilevel structure.',
     },
   },
-};
+}
 
 export const WithTabs = () => {
   const tabList = [
@@ -382,12 +404,12 @@ export const WithTabs = () => {
       key: 'tab2',
       tab: 'tab2',
     },
-  ];
+  ]
 
   const contentList: Record<string, React.ReactNode> = {
     tab1: <p>content1</p>,
     tab2: <p>content2</p>,
-  };
+  }
 
   const tabListNoTitle = [
     {
@@ -402,22 +424,22 @@ export const WithTabs = () => {
       key: 'project',
       tab: 'project',
     },
-  ];
+  ]
 
   const contentListNoTitle: Record<string, React.ReactNode> = {
     article: <p>article content</p>,
     app: <p>app content</p>,
     project: <p>project content</p>,
-  };
-  const [activeTabKey1, setActiveTabKey1] = useState<string>('tab1');
-  const [activeTabKey2, setActiveTabKey2] = useState<string>('app');
+  }
+  const [activeTabKey1, setActiveTabKey1] = useState<string>('tab1')
+  const [activeTabKey2, setActiveTabKey2] = useState<string>('app')
 
   const onTab1Change = (key: string) => {
-    setActiveTabKey1(key);
-  };
+    setActiveTabKey1(key)
+  }
   const onTab2Change = (key: string) => {
-    setActiveTabKey2(key);
-  };
+    setActiveTabKey2(key)
+  }
 
   return (
     <>
@@ -443,8 +465,8 @@ export const WithTabs = () => {
         {contentListNoTitle[activeTabKey2]}
       </Card>
     </>
-  );
-};
+  )
+}
 
 WithTabs.parameters = {
   docs: {
@@ -452,10 +474,10 @@ WithTabs.parameters = {
       story: 'More content can be hosted.',
     },
   },
-};
+}
 
 export const SupportMoreContentConfiguration = () => {
-  const { Meta } = Card;
+  const { Meta } = Card
   return (
     <Card
       style={{ width: 300 }}
@@ -472,21 +494,24 @@ export const SupportMoreContentConfiguration = () => {
       ]}
     >
       <Meta
-        avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+        avatar={
+          <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />
+        }
         title="Card title"
         description="This is the description"
       />
     </Card>
-  );
-};
+  )
+}
 
 SupportMoreContentConfiguration.parameters = {
   docs: {
     description: {
-      story: 'A Card that supports `cover`, `avatar`, `title` and `description`.',
+      story:
+        'A Card that supports `cover`, `avatar`, `title` and `description`.',
     },
   },
-};
+}
 
 export const CardGrid: ComponentStory<any> = () => {
   const dataSource = [
@@ -511,10 +536,16 @@ export const CardGrid: ComponentStory<any> = () => {
       type: 'CSSProperties',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 CardGrid.parameters = {
   docs: {
@@ -522,7 +553,7 @@ CardGrid.parameters = {
       code: null,
     },
   },
-};
+}
 
 export const CardMeta: ComponentStory<any> = () => {
   const dataSource = [
@@ -561,10 +592,16 @@ export const CardMeta: ComponentStory<any> = () => {
       type: 'ReactNode',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 CardGrid.parameters = {
   docs: {
@@ -572,4 +609,4 @@ CardGrid.parameters = {
       code: null,
     },
   },
-};
+}

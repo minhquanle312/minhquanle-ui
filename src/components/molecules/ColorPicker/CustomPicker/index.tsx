@@ -1,14 +1,19 @@
 /* eslint-disable react/destructuring-assignment */
 // Libraries
-import React, { CSSProperties, ReactNode, useState } from 'react';
-import { CustomPicker as CustomPickerHOC } from 'react-color';
-import { Saturation, Hue, Alpha, EditableInput } from 'react-color/lib/components/common';
+import React, { CSSProperties, ReactNode, useState } from 'react'
+import { CustomPicker as CustomPickerHOC } from 'react-color'
+import {
+  Saturation,
+  Hue,
+  Alpha,
+  EditableInput,
+} from 'react-color/lib/components/common'
 
 // Atoms
-import { Button, Divider, Icon, Text } from 'src/components/atoms';
+import { Button, Divider, Icon, Text } from 'minhquanle-ui/lib/components/atoms'
 
 // Molecules
-import { InputNumber } from '../../InputNumber';
+import { InputNumber } from '../../InputNumber'
 
 // Styled
 import {
@@ -17,19 +22,20 @@ import {
   PreviewColorPoint,
   SaturationPointer,
   EditableInputWrapper,
-} from './styled';
+} from './styled'
 
 // Utils
-import { handleError } from 'src/utils';
+import { handleError } from 'minhquanle-ui/lib/utils'
 
-const PATH = 'src/components/molecules/ColorPicker/CustomPicker/index.tsx';
+const PATH =
+  'minhquanle-ui/lib/components/molecules/ColorPicker/CustomPicker/index.tsx'
 
 interface CustomPickerProps {
-  [key: string]: any;
-  className?: string;
-  children?: ReactNode;
-  presetColors?: any[] | ReactNode;
-  style?: CSSProperties;
+  [key: string]: any
+  className?: string
+  children?: ReactNode
+  presetColors?: any[] | ReactNode
+  style?: CSSProperties
 }
 
 const rgbaStyling: Partial<CSSProperties> = {
@@ -37,7 +43,7 @@ const rgbaStyling: Partial<CSSProperties> = {
   position: 'relative',
   flexDirection: 'column',
   alignItems: 'center',
-};
+}
 
 const rgbaInputStyling: Partial<CSSProperties> = {
   display: 'flex',
@@ -47,14 +53,14 @@ const rgbaInputStyling: Partial<CSSProperties> = {
   marginLeft: 5,
   marginRight: 5,
   gap: '8px',
-};
+}
 
 const wrapperStyling: Partial<CSSProperties> = {
   display: 'flex',
   alignItems: 'center',
   margin: '15px 8px 0',
   width: '100%',
-};
+}
 
 const styleContainAlpha: Partial<CSSProperties> = {
   display: 'flex',
@@ -62,33 +68,54 @@ const styleContainAlpha: Partial<CSSProperties> = {
   marginLeft: 10,
   marginRight: 10,
   width: '100%',
-};
+}
 
-const CustomPicker: React.FC<CustomPickerProps> = props => {
+const CustomPicker: React.FC<CustomPickerProps> = (props) => {
   // Props
-  const { className, style, children, onChange, onChangeComplete, presetColors, ...restOf } = props;
+  const {
+    className,
+    style,
+    children,
+    onChange,
+    onChangeComplete,
+    presetColors,
+    ...restOf
+  } = props
 
   // State
-  const [isShowRgbaInput, setShowRgbaInput] = useState(true);
+  const [isShowRgbaInput, setShowRgbaInput] = useState(true)
 
   const onChangeRgbaColor = (key: string, value: any) => {
     try {
-      const draftRgb = { ...props.rgb, [key]: value };
+      const draftRgb = { ...props.rgb, [key]: value }
 
-      onChange(`rgba(${draftRgb.r}, ${draftRgb.g}, ${draftRgb.b}, ${draftRgb.a})`);
+      onChange(
+        `rgba(${draftRgb.r}, ${draftRgb.g}, ${draftRgb.b}, ${draftRgb.a})`
+      )
     } catch (error) {
       handleError(error, {
         path: PATH,
         name: 'onChangeRgbaColor',
         args: {},
-      });
+      })
     }
-  };
+  }
 
   return (
     <CustomPickerWrapper className={className} style={style}>
-      <div style={{ position: 'relative', overflow: 'hidden', width: '100%', height: 143 }}>
-        <Saturation {...restOf} pointer={SaturationPointer} onChange={onChange} />
+      <div
+        style={{
+          position: 'relative',
+          overflow: 'hidden',
+          width: '100%',
+          height: 143,
+        }}
+      >
+        <Saturation
+          {...restOf}
+          pointer={SaturationPointer}
+          onChange={onChange}
+        />
       </div>
       <div style={wrapperStyling}>
         <PreviewColorPoint>
@@ -107,7 +134,14 @@ const CustomPicker: React.FC<CustomPickerProps> = props => {
           <div style={{ position: 'relative', width: '100%', height: 12 }}>
             <Hue {...restOf} pointer={HuePointer} onChange={onChange} />
           </div>
-          <div style={{ position: 'relative', width: '100%', height: 12, marginTop: 10 }}>
+          <div
+            style={{
+              position: 'relative',
+              width: '100%',
+              height: 12,
+              marginTop: 10,
+            }}
+          >
             <Alpha {...restOf} pointer={HuePointer} onChange={onChange} />
           </div>
         </div>
@@ -126,7 +160,7 @@ const CustomPicker: React.FC<CustomPickerProps> = props => {
                 value={props.rgb?.r}
                 controls={false}
                 width="auto !important"
-                onChange={value => onChangeRgbaColor('r', value)}
+                onChange={(value) => onChangeRgbaColor('r', value)}
               />
               <Text style={{ position: 'absolute', bottom: '-20px' }}>R</Text>
             </div>
@@ -135,7 +169,7 @@ const CustomPicker: React.FC<CustomPickerProps> = props => {
                 value={props.rgb?.g}
                 controls={false}
                 width="auto !important"
-                onChange={value => onChangeRgbaColor('g', value)}
+                onChange={(value) => onChangeRgbaColor('g', value)}
               />
               <Text style={{ position: 'absolute', bottom: '-20px' }}>G</Text>
             </div>
@@ -144,7 +178,7 @@ const CustomPicker: React.FC<CustomPickerProps> = props => {
                 value={props.rgb?.b}
                 controls={false}
                 width="auto !important"
-                onChange={value => onChangeRgbaColor('b', value)}
+                onChange={(value) => onChangeRgbaColor('b', value)}
               />
               <Text style={{ position: 'absolute', bottom: '-20px' }}>B</Text>
             </div>
@@ -153,7 +187,7 @@ const CustomPicker: React.FC<CustomPickerProps> = props => {
                 value={props.rgb?.a}
                 controls={false}
                 width="auto !important"
-                onChange={value => onChangeRgbaColor('a', value)}
+                onChange={(value) => onChangeRgbaColor('a', value)}
               />
               <Text style={{ position: 'absolute', bottom: '-20px' }}>A</Text>
             </div>
@@ -167,8 +201,8 @@ const CustomPicker: React.FC<CustomPickerProps> = props => {
 
         <Button
           onClick={() => {
-            setShowRgbaInput(true);
-            onChange('rgba(0, 0, 0, 0)');
+            setShowRgbaInput(true)
+            onChange('rgba(0, 0, 0, 0)')
           }}
         >
           Clear
@@ -181,7 +215,7 @@ const CustomPicker: React.FC<CustomPickerProps> = props => {
         </div>
       ) : null}
     </CustomPickerWrapper>
-  );
-};
+  )
+}
 
-export default CustomPickerHOC(CustomPicker);
+export default CustomPickerHOC(CustomPicker)

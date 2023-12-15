@@ -1,21 +1,21 @@
 // Libraries
-import React, { CSSProperties, memo } from 'react';
+import React, { CSSProperties, memo } from 'react'
 
 // Components
-import { Icon, Input } from 'src/components/atoms';
+import { Icon, Input } from 'minhquanle-ui/lib/components/atoms'
 
 // Types
-import { InputProps } from 'src/components/atoms/Input';
+import { InputProps } from 'minhquanle-ui/lib/components/atoms/Input'
 
 // Styled
-import { Wrapper } from './styled';
+import { Wrapper } from './styled'
 
 interface InputSearchProps extends InputProps {
-  inputStyle?: CSSProperties;
+  inputStyle?: CSSProperties
 }
 
-export const InputSearch: React.FC<InputSearchProps> = memo(props => {
-  const { className, style, inputStyle, ...restOf } = props;
+export const InputSearch: React.FC<InputSearchProps> = memo((props) => {
+  const { className, style, inputStyle, ...restOf } = props
 
   return (
     <Wrapper tabIndex={-1} className={className} style={style}>
@@ -23,5 +23,5 @@ export const InputSearch: React.FC<InputSearchProps> = memo(props => {
 
       <Icon type="icon-ants-search-2" className="__icon-search" />
     </Wrapper>
-  );
-});
+  )
+})

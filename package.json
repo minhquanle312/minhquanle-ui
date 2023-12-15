@@ -1,6 +1,6 @@
 {
   "name": "minhquanle-ui",
-  "version": "1.0.11",
+  "version": "1.0.2",
   "description": "An enterprise-class UI design language and React UI library.",
   "files": [
     "lib"

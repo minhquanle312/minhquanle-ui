@@ -1,36 +1,36 @@
 // Libraries
-import React from 'react';
+import React from 'react'
 
 // Atoms
-import { Button, Icon } from 'src/components/atoms';
+import { Button, Icon } from 'minhquanle-ui/lib/components/atoms'
 
 // Molecules
-import { SettingWrapper } from '../SettingWrapper';
+import { SettingWrapper } from '../SettingWrapper'
 
 // Styled
-import { AlignSettingWrapper } from './styled';
+import { AlignSettingWrapper } from './styled'
 
-export type TAlign = 'left' | 'center' | 'right' | undefined;
+export type TAlign = 'left' | 'center' | 'right' | undefined
 export interface AlignEditProps {
-  className?: string;
-  align?: TAlign;
-  onChange?: (align: TAlign) => void;
-  style?: Object;
+  className?: string
+  align?: TAlign
+  onChange?: (align: TAlign) => void
+  style?: Object
 }
 
 export interface AlignSettingProps extends AlignEditProps {
-  label?: string;
-  labelClassName?: string;
+  label?: string
+  labelClassName?: string
 }
 
 export const ALIGN_TYPE = {
   LEFT: 'left',
   CENTER: 'center',
   RIGHT: 'right',
-};
+}
 
-export const AlignEdit: React.FC<AlignEditProps> = props => {
-  const { className, style, onChange, align } = props;
+export const AlignEdit: React.FC<AlignEditProps> = (props) => {
+  const { className, style, onChange, align } = props
 
   return (
     <AlignSettingWrapper className={className} style={style}>
@@ -65,16 +65,16 @@ export const AlignEdit: React.FC<AlignEditProps> = props => {
         <Icon type="icon-ants-align-right" />
       </Button>
     </AlignSettingWrapper>
-  );
-};
+  )
+}
 
-export const AlignSetting: React.FC<AlignSettingProps> = props => {
+export const AlignSetting: React.FC<AlignSettingProps> = (props) => {
   // Props
-  const { label, labelClassName, ...restOf } = props;
+  const { label, labelClassName, ...restOf } = props
 
   return (
     <SettingWrapper label={label || 'Align'} labelClassName={labelClassName}>
       <AlignEdit {...restOf} />
     </SettingWrapper>
-  );
-};
+  )
+}

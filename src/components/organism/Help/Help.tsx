@@ -2,9 +2,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-multi-str */
 // Libraries
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { isEmpty } from 'lodash';
-import { createPortal } from 'react-dom';
+import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { isEmpty } from 'lodash'
+import { createPortal } from 'react-dom'
 
 // Types
 import {
@@ -15,15 +15,15 @@ import {
   MenuItemTypeProps,
   StreamTrackProps,
   ValueFormProps,
-} from './types';
-import { ControlPosition } from 'react-draggable';
-import type { MenuProps, TreeProps } from 'antd';
-import { CaptureTypeProps } from 'src/components/molecules/CaptureScreen/types';
+} from './types'
+import { ControlPosition } from 'react-draggable'
+import type { MenuProps, TreeProps } from 'antd'
+import { CaptureTypeProps } from 'minhquanle-ui/lib/components/molecules/CaptureScreen/types'
 // Assets
-import '@antscorp/icons/main.css';
+import '@antscorp/icons/main.css'
 
 // Services
-import TicketService from 'src/services/Ticket';
+import TicketService from 'minhquanle-ui/lib/services/Ticket'
 
 // Component
 import {
@@ -63,17 +63,26 @@ import {
   WrapperLinkItemFiles,
   WrapperLoading,
   WrapperSearch,
-} from './styled';
-import { Button, Spin, Tree } from 'antd';
-import Icon from '@antscorp/icons';
-import { Editor } from '@tinymce/tinymce-react';
-import { LoadingOutlined, QuestionCircleOutlined, UserOutlined } from '@ant-design/icons';
+} from './styled'
+import { Button, Spin, Tree } from 'antd'
+import Icon from '@antscorp/icons'
+import { Editor } from '@tinymce/tinymce-react'
+import {
+  LoadingOutlined,
+  QuestionCircleOutlined,
+  UserOutlined,
+} from '@ant-design/icons'
 
 // Atoms
-import { Input } from 'src/components/atoms';
+import { Input } from 'minhquanle-ui/lib/components/atoms'
 
 // Molecules
-import { PopupDraggable, Select, CaptureScreen, ChatBox } from 'src/components/molecules';
+import {
+  PopupDraggable,
+  Select,
+  CaptureScreen,
+  ChatBox,
+} from 'minhquanle-ui/lib/components/molecules'
 
 // Constants
 import {
@@ -87,8 +96,8 @@ import {
   REPORT_TYPES,
   TABS_SHARING_SCREEN,
   TICKET_CUSTOM_MESSAGE_KEY,
-} from './constants';
-import { THEME } from 'src/constants';
+} from './constants'
+import { THEME } from 'minhquanle-ui/lib/constants'
 
 // Utils
 import {
@@ -96,23 +105,30 @@ import {
   convertBlobToFile,
   generateUniqueId,
   mergeAudioStreams,
-} from 'src/components/molecules/CaptureScreen/utils';
-import { expendDefault, formatParams, postCustomEvent } from './utils';
-import { DataNode, DirectoryTreeProps } from 'antd/es/tree';
-import { CameraIcon, CaptureIcon, OpenUrlIcon, BugIcon, RequestIcon } from 'src/components/icons';
+} from 'minhquanle-ui/lib/components/molecules/CaptureScreen/utils'
+import { expendDefault, formatParams, postCustomEvent } from './utils'
+import { DataNode, DirectoryTreeProps } from 'antd/es/tree'
+import {
+  CameraIcon,
+  CaptureIcon,
+  OpenUrlIcon,
+  BugIcon,
+  RequestIcon,
+} from 'minhquanle-ui/lib/components/icons'
 
-const antIcon = <LoadingOutlined style={{ fontSize: 40 }} spin />;
+const antIcon = <LoadingOutlined style={{ fontSize: 40 }} spin />
 const Loading = ({ isLoading, height, width }) =>
   isLoading && (
     <WrapperLoading className="loader-container" height={height} width={width}>
       <Spin indicator={antIcon} />
     </WrapperLoading>
-  );
+  )
 
-type ReportValueType = (typeof REPORT_TYPES)[keyof typeof REPORT_TYPES];
+type ReportValueType = (typeof REPORT_TYPES)[keyof typeof REPORT_TYPES]
 
-const Help: React.FC<IHelpProps> = props => {
-  const { configs, triggerType, boundsDraggable, isShowResizeHover, children } = props;
+const Help: React.FC<IHelpProps> = (props) => {
+  const { configs, triggerType, boundsDraggable, isShowResizeHover, children } =
+    props
   const {
     apiKey,
     domainPlatform,
@@ -124,20 +140,18 @@ const Help: React.FC<IHelpProps> = props => {
     config,
     domainTicket,
     avatar,
-  } = configs;
+  } = configs
 
-  const [isOpenDropdown, setIsOpenDropdown] = useState<boolean>(false);
-  const [defaultPositionDrawActions, setDefaultPositionDrawActions] = useState<ControlPosition>(
-    DEFAULT_POSITIONS.capture,
-  );
-  const [defaultPositionRecordActions, setDefaultPositionRecordActions] = useState<ControlPosition>(
-    DEFAULT_POSITIONS.record,
-  );
-  const [isMainLoading, setIsMainLoading] = useState<boolean>(false);
-  const [isShowPopup, setIsShowPopup] = useState<boolean>(false);
-  const [title, setTitle] = useState<string>('');
-  const [type, setType] = useState<ReportValueType>(REPORT_TYPES.HELP);
-  const [isValidAll, setIsValidAll] = useState<boolean>(true);
+  const [isOpenDropdown, setIsOpenDropdown] = useState<boolean>(false)
+  const [defaultPositionDrawActions, setDefaultPositionDrawActions] =
+    useState<ControlPosition>(DEFAULT_POSITIONS.capture)
+  const [defaultPositionRecordActions, setDefaultPositionRecordActions] =
+    useState<ControlPosition>(DEFAULT_POSITIONS.record)
+  const [isMainLoading, setIsMainLoading] = useState<boolean>(false)
+  const [isShowPopup, setIsShowPopup] = useState<boolean>(false)
+  const [title, setTitle] = useState<string>('')
+  const [type, setType] = useState<ReportValueType>(REPORT_TYPES.HELP)
+  const [isValidAll, setIsValidAll] = useState<boolean>(true)
   const [valueInput, setValueInput] = useState<ValueFormProps>({
     title: '',
     ticketType: '',
@@ -148,36 +162,40 @@ const Help: React.FC<IHelpProps> = props => {
     message: '',
     files: [],
     referenceUrl: '',
-  });
+  })
   const [errFile, setErrFile] = useState<any>({
     isError: false,
     message: '',
-  });
-  const [pathHelp, setHelp] = useState<string>('');
-  const [urlImageDrawer, setUrlImageDrawer] = useState<string>('');
-  const [urlVideoPreview, setUrlVideoPreview] = useState<any>('');
+  })
+  const [pathHelp, setHelp] = useState<string>('')
+  const [urlImageDrawer, setUrlImageDrawer] = useState<string>('')
+  const [urlVideoPreview, setUrlVideoPreview] = useState<any>('')
   const [imageDrew, setImageDrew] = useState<ImageDrewProps>({
     imageName: '',
     dataURL: '',
-  });
-  const [isOpenImageDrawer, setIsOpenImageDrawer] = useState<boolean>(false);
-  const [captureType, setCaptureType] = useState<CaptureTypeProps>(ATTACH_KEYS.CAPTURE);
-  const [open, setOpen] = useState<boolean>(false);
-  const [dataRecorded, setDataRecorded] = useState<any>([]);
-  const [dataListHelp, setDataListHelp] = useState<any>([]);
-  const [isMute, setIsMute] = useState<boolean>(false);
+  })
+  const [isOpenImageDrawer, setIsOpenImageDrawer] = useState<boolean>(false)
+  const [captureType, setCaptureType] = useState<CaptureTypeProps>(
+    ATTACH_KEYS.CAPTURE
+  )
+  const [open, setOpen] = useState<boolean>(false)
+  const [dataRecorded, setDataRecorded] = useState<any>([])
+  const [dataListHelp, setDataListHelp] = useState<any>([])
+  const [isMute, setIsMute] = useState<boolean>(false)
   const [appTargeting, setAppTargeting] = useState<AllAppOptionsProps>({
     label: '',
     value: '',
-  });
-  const [autoExpandParent, setAutoExpandParent] = useState(true);
-  const [expandedKeys, setExpandedKeys] = useState<React.Key[]>([]);
-  const [searchValue, setSearchValue] = useState('');
-  const [allAppOptions, setAllAppOptions] = useState<Array<AllAppOptionsProps>>([]);
-  const [isForceStopRecorder, setIsForceStopRecorder] = useState<boolean>(false);
-  const [isLoadingListHelp, setIsLoadingHelp] = useState<boolean>(true);
-  const recorderRef = useRef<MediaRecorder>();
-  const streamTracks = useRef<StreamTrackProps>();
+  })
+  const [autoExpandParent, setAutoExpandParent] = useState(true)
+  const [expandedKeys, setExpandedKeys] = useState<React.Key[]>([])
+  const [searchValue, setSearchValue] = useState('')
+  const [allAppOptions, setAllAppOptions] = useState<Array<AllAppOptionsProps>>(
+    []
+  )
+  const [isForceStopRecorder, setIsForceStopRecorder] = useState<boolean>(false)
+  const [isLoadingListHelp, setIsLoadingHelp] = useState<boolean>(true)
+  const recorderRef = useRef<MediaRecorder>()
+  const streamTracks = useRef<StreamTrackProps>()
 
   // const showModal = (captureKey: CaptureTypeProps) => {
   //   setOpen(true);
@@ -204,7 +222,13 @@ const Help: React.FC<IHelpProps> = props => {
               }}
             >
               New features & announcements
-              <OpenUrlIcon style={{ fill: THEME.token?.colorIcon, maxWidth: 24, maxHeight: 24 }} />
+              <OpenUrlIcon
+                style={{
+                  fill: THEME.token?.colorIcon,
+                  maxWidth: 24,
+                  maxHeight: 24,
+                }}
+              />
             </Label>
           </a>
         ),
@@ -238,54 +262,54 @@ const Help: React.FC<IHelpProps> = props => {
         key: MENU_KEYS.SUPPORT,
       },
     ],
-    [domainTicket, portalId, userId],
-  );
+    [domainTicket, portalId, userId]
+  )
 
   const modifiedDomain = useMemo(() => {
-    const regex = /^(https?:)/;
+    const regex = /^(https?:)/
 
     if (regex.test(domain)) {
-      return domain.replace(regex, '');
+      return domain.replace(regex, '')
     }
 
-    return domain;
-  }, [domain]);
+    return domain
+  }, [domain])
 
   const handleCancel = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
   const handleClick = (data: MenuItemTypeProps): any => {
-    const { key = '' } = data;
+    const { key = '' } = data
     switch (key) {
       case MENU_KEYS.FEEDBACK: {
-        setType(REPORT_TYPES.FEEDBACK);
-        setTitle('Send feedback to Antsomi');
-        setIsShowPopup(true);
-        break;
+        setType(REPORT_TYPES.FEEDBACK)
+        setTitle('Send feedback to Antsomi')
+        setIsShowPopup(true)
+        break
       }
       case MENU_KEYS.HELP: {
-        fetchDataListHelp();
-        setType(REPORT_TYPES.HELP);
-        setTitle('Get Help');
-        setIsShowPopup(true);
-        break;
+        fetchDataListHelp()
+        setType(REPORT_TYPES.HELP)
+        setTitle('Get Help')
+        setIsShowPopup(true)
+        break
       }
       case MENU_KEYS.CHAT: {
-        setType(REPORT_TYPES.CHAT);
-        setTitle('Get ideas with ChatGPT');
-        setIsShowPopup(true);
-        break;
+        setType(REPORT_TYPES.CHAT)
+        setTitle('Get ideas with ChatGPT')
+        setIsShowPopup(true)
+        break
       }
       default: {
-        setIsOpenDropdown(false);
-        break;
+        setIsOpenDropdown(false)
+        break
       }
     }
-  };
+  }
 
-  const handleUploadFile = async params => {
+  const handleUploadFile = async (params) => {
     try {
-      setIsMainLoading(true);
+      setIsMainLoading(true)
 
       const res = await TicketService.tickets.callApi.upload(
         params,
@@ -293,27 +317,27 @@ const Help: React.FC<IHelpProps> = props => {
         token,
         config,
         userId,
-        'ticket',
-      );
+        'ticket'
+      )
 
       if (res.code === 200) {
-        setValueInput(prevVal => ({
+        setValueInput((prevVal) => ({
           ...prevVal,
           files: [...valueInput.files, res.data],
-        }));
+        }))
       }
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.log('error :>', error);
+      console.log('error :>', error)
     } finally {
-      setIsMainLoading(false);
+      setIsMainLoading(false)
     }
-  };
+  }
 
   useEffect(() => {
     const handleFetchAllApps = async () => {
       try {
-        setIsMainLoading(true);
+        setIsMainLoading(true)
 
         const res = await TicketService.tickets.callApi.getCustomFields(
           {},
@@ -321,149 +345,151 @@ const Help: React.FC<IHelpProps> = props => {
           token,
           config,
           userId,
-          'get-custom-fields',
-        );
+          'get-custom-fields'
+        )
 
         if (res && res.code === 200) {
-          const { data } = res;
+          const { data } = res
 
           if (data && Array.isArray(data.fields)) {
-            const features = data.fields.find(item => item.value === 'feature');
-            const { field_options = [] } = features || {};
+            const features = data.fields.find(
+              (item) => item.value === 'feature'
+            )
+            const { field_options = [] } = features || {}
 
-            const temp = field_options.map(app => ({
+            const temp = field_options.map((app) => ({
               label: app.name,
               value: app.value,
               raw: app,
-            }));
-            setAppTargeting(temp[0]);
-            setAllAppOptions(temp);
+            }))
+            setAppTargeting(temp[0])
+            setAllAppOptions(temp)
           }
         }
       } catch (error) {
         // eslint-disable-next-line no-console
-        console.log('error :>', error);
+        console.log('error :>', error)
       } finally {
-        setIsMainLoading(false);
+        setIsMainLoading(false)
       }
-    };
+    }
 
     if (isEmpty(allAppOptions)) {
-      handleFetchAllApps();
+      handleFetchAllApps()
     }
-  }, [allAppOptions, config, domainTicket, token, userId]);
+  }, [allAppOptions, config, domainTicket, token, userId])
 
-  const handleOnchangeFile = e => {
-    const limitSize = 50 * 1024 * 1024;
-    const sizeFile = e.target?.files[0]?.size;
+  const handleOnchangeFile = (e) => {
+    const limitSize = 50 * 1024 * 1024
+    const sizeFile = e.target?.files[0]?.size
     if (sizeFile >= limitSize) {
       setErrFile({
         isError: true,
         message: '*Maximum upload file size: 50MB',
-      });
+      })
     } else {
-      const formData = new FormData();
-      formData.append('file', e.target.files[0]);
+      const formData = new FormData()
+      formData.append('file', e.target.files[0])
       const params = {
         data: formData,
-      };
+      }
       setErrFile({
         isError: false,
         message: '',
-      });
-      handleUploadFile(params);
+      })
+      handleUploadFile(params)
     }
-  };
+  }
 
-  const handleRemoveFile = token => {
-    let newListFile = valueInput.files;
-    newListFile = newListFile.filter(list => list?.token !== token);
-    setValueInput(prevVal => ({ ...prevVal, files: newListFile }));
-  };
+  const handleRemoveFile = (token) => {
+    let newListFile = valueInput.files
+    newListFile = newListFile.filter((list) => list?.token !== token)
+    setValueInput((prevVal) => ({ ...prevVal, files: newListFile }))
+  }
 
   const handleResetData = () => {
-    setUrlImageDrawer('');
-    setUrlVideoPreview('');
-    setIsValidAll(true);
-    setIsOpenDropdown(false);
-    setValueInput(prev => ({
+    setUrlImageDrawer('')
+    setUrlVideoPreview('')
+    setIsValidAll(true)
+    setIsOpenDropdown(false)
+    setValueInput((prev) => ({
       ...prev,
       message: '',
       title: '',
       files: [],
-    }));
-    setIsShowPopup(false);
+    }))
+    setIsShowPopup(false)
     setErrFile({
       isError: false,
       message: '',
-    });
+    })
     setImageDrew({
       imageName: '',
       dataURL: '',
-    });
-    setDataRecorded([]);
-    setSearchValue('');
-    setAutoExpandParent(false);
-    setExpandedKeys([]);
-  };
+    })
+    setDataRecorded([])
+    setSearchValue('')
+    setAutoExpandParent(false)
+    setExpandedKeys([])
+  }
 
-  useEffect(() => () => handleResetData(), []);
+  useEffect(() => () => handleResetData(), [])
   useEffect(() => {
     if (dataRecorded) {
-      const dataRecordedBlob = new Blob(dataRecorded, { type: 'video/mp4' });
-      const url = URL.createObjectURL(dataRecordedBlob);
-      setUrlVideoPreview(url);
+      const dataRecordedBlob = new Blob(dataRecorded, { type: 'video/mp4' })
+      const url = URL.createObjectURL(dataRecordedBlob)
+      setUrlVideoPreview(url)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataRecorded]);
+  }, [dataRecorded])
 
   useEffect(() => {
     if (isForceStopRecorder && !isEmpty(dataRecorded)) {
-      setDataRecorded([]);
-      setIsForceStopRecorder(false);
+      setDataRecorded([])
+      setIsForceStopRecorder(false)
     }
-  }, [dataRecorded, isForceStopRecorder]);
+  }, [dataRecorded, isForceStopRecorder])
 
   useEffect(
     () => () => {
       if (streamTracks.current) {
-        const { desktopStream, voiceStream } = streamTracks.current;
+        const { desktopStream, voiceStream } = streamTracks.current
         if (desktopStream && voiceStream) {
-          desktopStream.getTracks().forEach(track => track.stop());
-          voiceStream.getTracks().forEach(track => track.stop());
+          desktopStream.getTracks().forEach((track) => track.stop())
+          voiceStream.getTracks().forEach((track) => track.stop())
         }
       }
     },
-    [],
-  );
+    []
+  )
 
   const fetchDataListHelp = () => {
-    setIsLoadingHelp(true);
+    setIsLoadingHelp(true)
     TicketService.help.callApi
       .getList({ appCode, role: '1' }, domainPlatform, token, config, userId)
-      .then(res => {
+      .then((res) => {
         if (res && res.data.code === 200 && res.data) {
-          const { data } = res.data;
-          setDataListHelp(data);
-          setIsLoadingHelp(false);
-          setExpandedKeys(expendDefault(data));
+          const { data } = res.data
+          setDataListHelp(data)
+          setIsLoadingHelp(false)
+          setExpandedKeys(expendDefault(data))
         } else {
-          setIsLoadingHelp(true);
+          setIsLoadingHelp(true)
         }
       })
-      .catch(err => {
+      .catch((err) => {
         // console.log('err ===>', err)
-      });
-  };
+      })
+  }
   const handleCreateRecorder = async () => {
     try {
-      let controller;
+      let controller
       if (
         'CaptureController' in window &&
         'setFocusBehavior' in (window as any).CaptureController.prototype
       ) {
-        controller = new (window as any).CaptureController();
-        controller.setFocusBehavior('no-focus-change');
+        controller = new (window as any).CaptureController()
+        controller.setFocusBehavior('no-focus-change')
       }
 
       const displayMediaOptions: any = {
@@ -474,71 +500,73 @@ const Help: React.FC<IHelpProps> = props => {
         audio: true,
         controller,
         selfBrowserSurface: 'include',
-      };
+      }
 
-      const desktopStream = await navigator.mediaDevices.getDisplayMedia(displayMediaOptions);
+      const desktopStream = await navigator.mediaDevices.getDisplayMedia(
+        displayMediaOptions
+      )
       const voiceStream = await navigator.mediaDevices.getUserMedia({
         video: false,
         audio: !isMute,
-      });
+      })
 
       const tracks = [
         ...desktopStream.getVideoTracks(),
         ...mergeAudioStreams(desktopStream, voiceStream),
-      ];
+      ]
 
-      const stream = new MediaStream(tracks);
-      const recorder = new MediaRecorder(stream);
-      const data: Array<any> = [];
+      const stream = new MediaStream(tracks)
+      const recorder = new MediaRecorder(stream)
+      const data: Array<any> = []
 
       // ondataavailable -> fired periodically each time timeslice millisecond of media have been recorded
       // or when the entire media is recorded if no timeslice is specified
-      recorder.ondataavailable = event => data.push(event.data);
+      recorder.ondataavailable = (event) => data.push(event.data)
 
       const stopped = new Promise((resolve, reject) => {
-        recorder.onstop = resolve;
-        recorder.onerror = (event: any) => reject(event.name);
-      });
+        recorder.onstop = resolve
+        recorder.onerror = (event: any) => reject(event.name)
+      })
       Promise.all([stopped, recorder]).then(() => {
-        setDataRecorded(data);
-      });
+        setDataRecorded(data)
+      })
 
-      const videoTrack = desktopStream.getVideoTracks()[0];
+      const videoTrack = desktopStream.getVideoTracks()[0]
       // eslint-disable-next-line func-names
       videoTrack.onended = function () {
         if (recorder) {
-          recorder.stop();
+          recorder.stop()
         }
-        desktopStream.getTracks().forEach(track => track.stop());
-        voiceStream.getTracks().forEach(track => track.stop());
-        setIsShowPopup(true);
-        setIsOpenImageDrawer(false);
-      };
+        desktopStream.getTracks().forEach((track) => track.stop())
+        voiceStream.getTracks().forEach((track) => track.stop())
+        setIsShowPopup(true)
+        setIsOpenImageDrawer(false)
+      }
 
-      recorderRef.current = recorder;
+      recorderRef.current = recorder
       streamTracks.current = {
         desktopStream,
         voiceStream,
-      };
-      setIsForceStopRecorder(false);
-      setIsOpenImageDrawer(true);
-      handleCancel();
-      setIsShowPopup(false);
+      }
+      setIsForceStopRecorder(false)
+      setIsOpenImageDrawer(true)
+      handleCancel()
+      setIsShowPopup(false)
     } catch (error) {
-      console.log('error :>', error);
-      setIsShowPopup(true);
+      console.log('error :>', error)
+      setIsShowPopup(true)
     }
-  };
+  }
 
   const handleCaptureScreen = async () => {
     try {
-      let controller;
+      let controller
       if (
         'CaptureController' in window &&
         'setFocusBehavior' in (window as any).CaptureController.prototype
       ) {
-        controller = new (window as any).CaptureController();
-        controller.setFocusBehavior('no-focus-change');
+        controller = new (window as any).CaptureController()
+        controller.setFocusBehavior('no-focus-change')
       }
       const displayMediaOptions: any = {
         // preferCurrentTab: true,
@@ -550,162 +578,171 @@ const Help: React.FC<IHelpProps> = props => {
         surfaceSwitching: 'include',
         controller,
         selfBrowserSurface: 'include',
-      };
+      }
 
       // navigator.mediaDevices.enumerateDevices().then(value => {
       //   console.log('insideee.dev - list :>', value);
       // });
 
       // asking permission to use a media input to record current tab
-      const supportedConstraints = navigator.mediaDevices.getSupportedConstraints();
+      const supportedConstraints =
+        navigator.mediaDevices.getSupportedConstraints()
 
       // if (supportedConstraints.displaySurface) {
       //   displayMediaOptions.video.displaySurface = 'monitor';
       // }
       if (supportedConstraints.width) {
-        displayMediaOptions.video.width = { ideal: 1920, max: 1920 };
+        displayMediaOptions.video.width = { ideal: 1920, max: 1920 }
       }
       if (supportedConstraints.height) {
-        displayMediaOptions.video.heigh = { ideal: 1080 };
+        displayMediaOptions.video.heigh = { ideal: 1080 }
       }
       if (supportedConstraints.aspectRatio) {
-        displayMediaOptions.video.aspectRatio = 1.777777778;
+        displayMediaOptions.video.aspectRatio = 1.777777778
       }
       if (supportedConstraints.frameRate) {
-        displayMediaOptions.video.frameRate = { max: 30 };
+        displayMediaOptions.video.frameRate = { max: 30 }
       }
-      const stream = await navigator.mediaDevices.getDisplayMedia(displayMediaOptions);
-      const video = document.createElement('video');
+      const stream = await navigator.mediaDevices.getDisplayMedia(
+        displayMediaOptions
+      )
+      const video = document.createElement('video')
 
       video?.addEventListener('loadedmetadata', () => {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
+        const canvas = document.createElement('canvas')
+        const ctx = canvas.getContext('2d')
 
         // passing video width & height as canvas width & height
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
+        canvas.width = video.videoWidth
+        canvas.height = video.videoHeight
 
-        video.play(); // playing the video so the drawn image won't be black or blank
+        video.play() // playing the video so the drawn image won't be black or blank
         // drawing an image of the captured video stream
-        ctx?.drawImage(video, 0, 0, canvas.width, canvas.height);
-        stream.getVideoTracks()[0].stop(); // terminating first video track of the stream
+        ctx?.drawImage(video, 0, 0, canvas.width, canvas.height)
+        stream.getVideoTracks()[0].stop() // terminating first video track of the stream
 
         // passing canvas data url as screenshot preview src
-        setUrlImageDrawer(canvas.toDataURL());
-        setIsOpenImageDrawer(true);
-        handleCancel();
-        setIsShowPopup(false);
-      });
-      video.srcObject = stream; // passing capture stream data as video source object
+        setUrlImageDrawer(canvas.toDataURL())
+        setIsOpenImageDrawer(true)
+        handleCancel()
+        setIsShowPopup(false)
+      })
+      video.srcObject = stream // passing capture stream data as video source object
     } catch (error) {
       // if image couldn't capture by any reason, then alert the msg
       // eslint-disable-next-line no-console
-      console.info('Failed to capture screenshot!', error);
-      setIsShowPopup(true);
+      console.info('Failed to capture screenshot!', error)
+      setIsShowPopup(true)
     }
-  };
+  }
 
   const callback = (type: string, dataIn?: any): void => {
     switch (type) {
       case 'ON_CLOSE_POPUP': {
-        handleResetData();
-        break;
+        handleResetData()
+        break
       }
       case 'ON_BACK_POPUP': {
-        setType(REPORT_TYPES.HELP);
-        break;
+        setType(REPORT_TYPES.HELP)
+        break
       }
       case REPORT_TYPES.ISSUE: {
-        setTitle('Report an issue to Antsomi');
-        setType(type);
-        break;
+        setTitle('Report an issue to Antsomi')
+        setType(type)
+        break
       }
       case REPORT_TYPES.IDEA: {
-        setTitle('Request an idea to Antsomi');
-        setType(type);
-        break;
+        setTitle('Request an idea to Antsomi')
+        setType(type)
+        break
       }
       case 'CLOSE_DRAWER': {
-        setIsOpenImageDrawer(false);
-        setIsShowPopup(true);
+        setIsOpenImageDrawer(false)
+        setIsShowPopup(true)
 
         if (captureType === ATTACH_KEYS.CAPTURE) {
-          setUrlImageDrawer('');
+          setUrlImageDrawer('')
         } else if (captureType === ATTACH_KEYS.RECORD) {
-          setIsForceStopRecorder(true);
-          const recorder = recorderRef.current as MediaRecorder;
-          const { desktopStream, voiceStream } = streamTracks.current as StreamTrackProps;
+          setIsForceStopRecorder(true)
+          const recorder = recorderRef.current as MediaRecorder
+          const { desktopStream, voiceStream } =
+            streamTracks.current as StreamTrackProps
 
           if (recorder && recorder.state === 'recording') {
-            recorder.stop();
+            recorder.stop()
           }
 
           if (desktopStream && voiceStream) {
-            desktopStream.getTracks().forEach(track => track.stop());
-            voiceStream.getTracks().forEach(track => track.stop());
+            desktopStream.getTracks().forEach((track) => track.stop())
+            voiceStream.getTracks().forEach((track) => track.stop())
           }
         }
-        break;
+        break
       }
       case 'ON_DRAWER_DONE': {
-        setIsOpenImageDrawer(false);
-        setImageDrew(dataIn as ImageDrewProps);
-        setIsShowPopup(true);
-        break;
+        setIsOpenImageDrawer(false)
+        setImageDrew(dataIn as ImageDrewProps)
+        setIsShowPopup(true)
+        break
       }
       case 'STOP_RECORDER': {
-        setIsOpenImageDrawer(false);
-        setIsShowPopup(true);
-        streamTracks.current = undefined;
-        break;
+        setIsOpenImageDrawer(false)
+        setIsShowPopup(true)
+        streamTracks.current = undefined
+        break
       }
       case 'ON_CHANGE_MUTE': {
-        setIsMute(prevMute => !prevMute);
-        break;
+        setIsMute((prevMute) => !prevMute)
+        break
       }
       case 'SET_POSITION_DRAG': {
-        const { name = '', x = 0, y = 0 } = dataIn;
+        const { name = '', x = 0, y = 0 } = dataIn
 
         if (name === ATTACH_KEYS.CAPTURE) {
-          setDefaultPositionDrawActions({ x, y });
+          setDefaultPositionDrawActions({ x, y })
         }
         if (name === ATTACH_KEYS.RECORD) {
-          setDefaultPositionRecordActions({ x, y });
+          setDefaultPositionRecordActions({ x, y })
         }
-        break;
+        break
       }
       case 'RESET_POSITION_DRAG': {
-        setDefaultPositionDrawActions(DEFAULT_POSITIONS.capture);
-        setDefaultPositionRecordActions(DEFAULT_POSITIONS.record);
-        break;
+        setDefaultPositionDrawActions(DEFAULT_POSITIONS.capture)
+        setDefaultPositionRecordActions(DEFAULT_POSITIONS.record)
+        break
       }
       default: {
-        break;
+        break
       }
     }
-  };
+  }
 
-  const handleCreateTicket = async params => {
+  const handleCreateTicket = async (params) => {
     try {
-      setIsMainLoading(true);
-      let attachments: string[] = [];
-      const { imageDrew = {}, dataRecorded = [], type = '', ...restParams } = params;
+      setIsMainLoading(true)
+      let attachments: string[] = []
+      const {
+        imageDrew = {},
+        dataRecorded = [],
+        type = '',
+        ...restParams
+      } = params
       if (params.attachments && !isEmpty(params.attachments)) {
-        attachments = [...params.attachments];
+        attachments = [...params.attachments]
       }
 
       if (imageDrew.dataURL) {
         const imageFile = base64ToFile(
           imageDrew.dataURL,
-          `${imageDrew.imageName}-${generateUniqueId()}.png`,
-        );
+          `${imageDrew.imageName}-${generateUniqueId()}.png`
+        )
         if (imageFile) {
-          const uploadFormData = new FormData();
+          const uploadFormData = new FormData()
 
-          uploadFormData.append('file', imageFile as File);
+          uploadFormData.append('file', imageFile as File)
           const uploadFileParams = {
             data: uploadFormData,
-          };
+          }
 
           const res = await TicketService.tickets.callApi.upload(
             uploadFileParams,
@@ -713,22 +750,22 @@ const Help: React.FC<IHelpProps> = props => {
             token,
             config,
             userId,
-            'ticket',
-          );
+            'ticket'
+          )
           if (res && res.code === 200 && res.data) {
-            attachments.push(res.data.token);
+            attachments.push(res.data.token)
           }
         }
       }
 
       if (!isEmpty(dataRecorded)) {
-        const blob = dataRecorded[0];
-        const blobName = `video-${generateUniqueId()}.mp4`;
-        const videoFile = convertBlobToFile(blob, blobName);
+        const blob = dataRecorded[0]
+        const blobName = `video-${generateUniqueId()}.mp4`
+        const videoFile = convertBlobToFile(blob, blobName)
 
         if (videoFile) {
-          const uploadFormData = new FormData();
-          uploadFormData.append('file', videoFile);
+          const uploadFormData = new FormData()
+          uploadFormData.append('file', videoFile)
 
           const res = await TicketService.tickets.callApi.upload(
             { data: uploadFormData },
@@ -736,10 +773,10 @@ const Help: React.FC<IHelpProps> = props => {
             token,
             config,
             userId,
-            'ticket',
-          );
+            'ticket'
+          )
           if (res && res.code === 200 && res.data) {
-            attachments.push(res.data.token);
+            attachments.push(res.data.token)
           }
         }
       }
@@ -749,161 +786,166 @@ const Help: React.FC<IHelpProps> = props => {
         attachments,
         networkId: Number(portalId),
         ticketType: type === REPORT_TYPES.ISSUE ? 'bug' : 'request',
-      };
+      }
 
       const res = await TicketService.tickets.callApi.createTicket(
         dataToAPI,
         domainTicket,
         token,
         config,
-        userId,
-      );
+        userId
+      )
 
       if (res.code === 200) {
         postCustomEvent(TICKET_CUSTOM_MESSAGE_KEY, {
           type: MESSAGE_TYPE.TICKET_CREATE_STATUS,
           value: true,
-        });
+        })
       } else {
         postCustomEvent(TICKET_CUSTOM_MESSAGE_KEY, {
           type: MESSAGE_TYPE.TICKET_CREATE_STATUS,
           value: false,
-        });
+        })
       }
 
-      handleResetData();
+      handleResetData()
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.log('error :>', error);
+      console.log('error :>', error)
     } finally {
-      setIsMainLoading(false);
+      setIsMainLoading(false)
     }
-  };
+  }
 
   const handleSubmit = () => {
     if (!valueInput.title || !valueInput.message) {
-      setIsValidAll(false);
-      return;
+      setIsValidAll(false)
+      return
     }
 
     if (!errFile.isError) {
-      const params = formatParams({ ...valueInput, feature: appTargeting });
+      const params = formatParams({ ...valueInput, feature: appTargeting })
       handleCreateTicket({
         ...params,
         type,
         imageDrew,
         dataRecorded,
         submitterId: Number(userId),
-      });
+      })
     }
-  };
+  }
 
   // console.log('insideee.dev - data :>', valueInput, appTargeting, errFile);
 
   const handleShareCapture = (type: CaptureTypeProps) => {
-    setCaptureType(type);
-    setIsShowPopup(false);
+    setCaptureType(type)
+    setIsShowPopup(false)
     return () => {
       if (type === ATTACH_KEYS.CAPTURE) {
-        handleCaptureScreen();
+        handleCaptureScreen()
       } else {
-        handleCreateRecorder();
+        handleCreateRecorder()
       }
-    };
-  };
+    }
+  }
 
   const handleChangeAttachFile = (
     key: ATTACH_KEYS.CAPTURE | ATTACH_KEYS.RECORD,
-    type: 'edit' | 'delete',
+    type: 'edit' | 'delete'
   ) => {
     if (type === 'edit') {
       // showModal(key);
-      handleShareCapture(key)();
+      handleShareCapture(key)()
     } else if (type === 'delete') {
       if (key === ATTACH_KEYS.CAPTURE) {
         setImageDrew({
           imageName: '',
           dataURL: '',
-        });
+        })
       } else if (key === ATTACH_KEYS.RECORD) {
-        setDataRecorded([]);
+        setDataRecorded([])
       }
     }
-  };
+  }
   const onSelect = (selectedKeys, info) => {
-    const { node } = info;
-    const { path } = node as HelpDocItem;
+    const { node } = info
+    const { path } = node as HelpDocItem
     if (path) {
-      setHelp(path);
-      setType(REPORT_TYPES.HELP_V1);
+      setHelp(path)
+      setType(REPORT_TYPES.HELP_V1)
     }
 
     // console.log('selected', selectedKeys, info);
-  };
+  }
 
   const onExpand = (newExpandedKeys: React.Key[]) => {
-    setExpandedKeys(newExpandedKeys);
-    setAutoExpandParent(false);
-  };
+    setExpandedKeys(newExpandedKeys)
+    setAutoExpandParent(false)
+  }
 
   const getParentKey = (key: React.Key, tree: DataNode[]): React.Key => {
-    let parentKey: React.Key;
+    let parentKey: React.Key
     for (let i = 0; i < tree.length; i++) {
-      const node = tree[i];
+      const node = tree[i]
       if (node.children) {
-        if (node.children.some(item => item.key === key)) {
-          parentKey = node.key;
+        if (node.children.some((item) => item.key === key)) {
+          parentKey = node.key
         } else if (getParentKey(key, node.children)) {
-          parentKey = getParentKey(key, node.children);
+          parentKey = getParentKey(key, node.children)
         }
       }
     }
-    return parentKey!;
-  };
+    return parentKey!
+  }
 
   // const onExpand: DirectoryTreeProps['onCheck'] = (checkedKeys, info) => {
   //   console.log('onCheck', checkedKeys, info);
   // };
-  const dataList: { key: React.Key; title: any }[] = [];
+  const dataList: { key: React.Key; title: any }[] = []
   const generateList = (data: DataNode[]) => {
     for (let i = 0; i < data.length; i++) {
-      const node = data[i];
-      const { key, title } = node;
-      dataList.push({ key, title });
+      const node = data[i]
+      const { key, title } = node
+      dataList.push({ key, title })
       if (node.children) {
-        generateList(node.children);
+        generateList(node.children)
       }
     }
-  };
-  generateList(dataListHelp);
+  }
+  generateList(dataListHelp)
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
+    const { value } = e.target
     const newExpandedKeys = dataList
-      .map(item => {
-        if (item.title.toString().toLowerCase().indexOf(value.toLowerCase()) > -1) {
-          return getParentKey(item.key, dataListHelp);
+      .map((item) => {
+        if (
+          item.title.toString().toLowerCase().indexOf(value.toLowerCase()) > -1
+        ) {
+          return getParentKey(item.key, dataListHelp)
         }
-        return null;
+        return null
       })
-      .filter((item, i, self) => item && self.indexOf(item) === i);
-    setExpandedKeys(newExpandedKeys as React.Key[]);
-    setSearchValue(value);
-    setAutoExpandParent(true);
-  };
+      .filter((item, i, self) => item && self.indexOf(item) === i)
+    setExpandedKeys(newExpandedKeys as React.Key[])
+    setSearchValue(value)
+    setAutoExpandParent(true)
+  }
 
   const renderIcon = (name, style) =>
     ({
       'icon-ants-capture': <CaptureIcon style={style} />,
       'icon-ants-camera': <CameraIcon style={style} />,
-    }[name]);
+    }[name])
 
   const treeData = useMemo(() => {
     const loop = (data: HelpDocItem[]): HelpDocItem[] =>
-      data.map(item => {
-        const strTitle = item.title as string;
-        const index = strTitle.toString().toLowerCase().indexOf(searchValue.toLowerCase());
-        const beforeStr = strTitle.substring(0, index);
-        const afterStr = strTitle.slice(index + searchValue.length);
+      data.map((item) => {
+        const strTitle = item.title as string
+        const index = strTitle
+          .toString()
+          .toLowerCase()
+          .indexOf(searchValue.toLowerCase())
+        const beforeStr = strTitle.substring(0, index)
+        const afterStr = strTitle.slice(index + searchValue.length)
         const title =
           index > -1 ? (
             <Span styles={item.children}>
@@ -913,22 +955,27 @@ const Help: React.FC<IHelpProps> = props => {
             </Span>
           ) : (
             <Span styles={item.children}>{strTitle}</Span>
-          );
+          )
         if (item.children) {
-          return { title, key: item.key, children: loop(item.children) };
+          return { title, key: item.key, children: loop(item.children) }
         }
         return {
           title,
           key: item.key,
           path: item.path,
-        };
-      });
+        }
+      })
 
-    return loop(dataListHelp);
-  }, [searchValue, dataListHelp]);
+    return loop(dataListHelp)
+  }, [searchValue, dataListHelp])
   const renderAttachActions = (): React.ReactNode =>
-    ATTACH_CAPTURE_TYPES.map(item => (
-      <ControlGroup key={item.key} size={10} direction="vertical" style={{ width: 'auto' }}>
+    ATTACH_CAPTURE_TYPES.map((item) => (
+      <ControlGroup
+        key={item.key}
+        size={10}
+        direction="vertical"
+        style={{ width: 'auto' }}
+      >
         {((item.key === ATTACH_KEYS.CAPTURE && imageDrew.dataURL) ||
           (!isForceStopRecorder &&
             !isEmpty(dataRecorded) &&
@@ -937,20 +984,29 @@ const Help: React.FC<IHelpProps> = props => {
           <PreviewBox>
             <Overlay className="overlay-preview">
               <FlexCenter style={{ height: '100%', gap: 10 }}>
-                {item.actions?.map(action => (
+                {item.actions?.map((action) => (
                   <ButtonFeedback
                     key={`${item.key}-${action.key}`}
                     height={28}
-                    style={{ borderRadius: `${THEME.token?.borderRadius}px`, width: 34 }}
+                    style={{
+                      borderRadius: `${THEME.token?.borderRadius}px`,
+                      width: 34,
+                    }}
                     borderRadiusCustom={3}
                     icon={
                       <Icon
                         type={action.icon}
-                        style={{ color: THEME.token?.colorPrimary, fontSize: '24px' }}
+                        style={{
+                          color: THEME.token?.colorPrimary,
+                          fontSize: '24px',
+                        }}
                       />
                     }
                     onClick={() =>
-                      handleChangeAttachFile(item.key, action.key as 'edit' | 'delete')
+                      handleChangeAttachFile(
+                        item.key,
+                        action.key as 'edit' | 'delete'
+                      )
                     }
                   />
                 ))}
@@ -959,20 +1015,31 @@ const Help: React.FC<IHelpProps> = props => {
             {item.key === ATTACH_KEYS.CAPTURE ? (
               <Image src={imageDrew.dataURL} alt="send feedback" isFull />
             ) : (
-              <Video src={urlVideoPreview} muted autoPlay={false} controls={false} />
+              <Video
+                src={urlVideoPreview}
+                muted
+                autoPlay={false}
+                controls={false}
+              />
             )}
           </PreviewBox>
         )}
         <ButtonFeedback
           height={28}
           borderRadiusCustom={3}
-          style={{ borderRadius: `${THEME.token?.borderRadius}px`, marginBottom: 58 }}
+          style={{
+            borderRadius: `${THEME.token?.borderRadius}px`,
+            marginBottom: 58,
+          }}
           icon={
             // <Icon
             //   type={item.icon}
             //   style={{ color: `${THEME.token?.colorPrimary}`, fontSize: '24px' }}
             // />
-            renderIcon(item.icon, { fill: THEME.token?.colorPrimary, maxWidth: '24px' })
+            renderIcon(item.icon, {
+              fill: THEME.token?.colorPrimary,
+              maxWidth: '24px',
+            })
           }
           // onClick={() => showModal(item.key)}
           onClick={() => handleShareCapture(item.key)()}
@@ -980,7 +1047,7 @@ const Help: React.FC<IHelpProps> = props => {
           {item.label}
         </ButtonFeedback>
       </ControlGroup>
-    ));
+    ))
 
   const renderContentPopup = (type: string): React.ReactNode | null => {
     switch (type) {
@@ -999,9 +1066,9 @@ const Help: React.FC<IHelpProps> = props => {
             </FlexCenter>
             <FlexCenter style={{ margin: '50px 3px 0' }}>
               <FlexCenter
-                onClick={e => {
-                  e.stopPropagation();
-                  callback(REPORT_TYPES.ISSUE);
+                onClick={(e) => {
+                  e.stopPropagation()
+                  callback(REPORT_TYPES.ISSUE)
                 }}
               >
                 <ButtonFeedback
@@ -1010,7 +1077,9 @@ const Help: React.FC<IHelpProps> = props => {
                     //   type="icon-ants-bug"
                     //   style={{ color: `${THEME.token?.colorIcon}`, fontSize: '24px' }}
                     // />
-                    <BugIcon style={{ fill: THEME.token?.colorIcon, maxWidth: '24px' }} />
+                    <BugIcon
+                      style={{ fill: THEME.token?.colorIcon, maxWidth: '24px' }}
+                    />
                   }
                   style={{ marginRight: 15 }}
                 >
@@ -1018,9 +1087,9 @@ const Help: React.FC<IHelpProps> = props => {
                 </ButtonFeedback>
               </FlexCenter>
               <FlexCenter
-                onClick={e => {
-                  e.stopPropagation();
-                  callback(REPORT_TYPES.IDEA);
+                onClick={(e) => {
+                  e.stopPropagation()
+                  callback(REPORT_TYPES.IDEA)
                 }}
               >
                 <ButtonFeedback
@@ -1029,7 +1098,9 @@ const Help: React.FC<IHelpProps> = props => {
                     //   type="icon-ants-idea"
                     //   style={{ color: `${THEME.token?.colorIcon}`, fontSize: '24px' }}
                     // />
-                    <RequestIcon style={{ fill: THEME.token?.colorIcon, maxWidth: '24px' }} />
+                    <RequestIcon
+                      style={{ fill: THEME.token?.colorIcon, maxWidth: '24px' }}
+                    />
                   }
                 >
                   <Text>Request an Idea</Text>
@@ -1037,7 +1108,7 @@ const Help: React.FC<IHelpProps> = props => {
               </FlexCenter>
             </FlexCenter>
           </SendFeedback>
-        );
+        )
       }
       case REPORT_TYPES.IDEA:
       case REPORT_TYPES.ISSUE: {
@@ -1045,12 +1116,16 @@ const Help: React.FC<IHelpProps> = props => {
           <ControlGroup size={20} direction="vertical">
             {/* {type === REPORT_TYPES.ISSUE && ( */}
             <ControlGroup size={0} direction="vertical">
-              <ControlLabel>When you noticed this issue, what were you trying to do?</ControlLabel>
+              <ControlLabel>
+                When you noticed this issue, what were you trying to do?
+              </ControlLabel>
               <Select
                 defaultValue={appTargeting}
                 value={appTargeting}
                 style={{ width: '100%' }}
-                onChange={(_, option) => setAppTargeting(option as AllAppOptionsProps)}
+                onChange={(_, option) =>
+                  setAppTargeting(option as AllAppOptionsProps)
+                }
                 options={allAppOptions}
               />
             </ControlGroup>
@@ -1062,10 +1137,10 @@ const Help: React.FC<IHelpProps> = props => {
               <Input
                 placeholder="Enter ticket title"
                 value={valueInput.title}
-                onChange={event => {
-                  const { value } = event?.target;
-                  event.stopPropagation();
-                  setValueInput(prev => ({ ...prev, title: value }));
+                onChange={(event) => {
+                  const { value } = event?.target
+                  event.stopPropagation()
+                  setValueInput((prev) => ({ ...prev, title: value }))
                 }}
               />
               <ErrorMessage isShow={!isValidAll && !valueInput?.title}>
@@ -1104,9 +1179,9 @@ const Help: React.FC<IHelpProps> = props => {
                     resize: false,
                     statusbar: false,
                     setup(editor) {
-                      editor.on('init', e => {
-                        editor.getBody().style.fontSize = `${THEME.token?.fontSize}px`;
-                      });
+                      editor.on('init', (e) => {
+                        editor.getBody().style.fontSize = `${THEME.token?.fontSize}px`
+                      })
                     },
                     placeholder: 'Enter your comment...',
                     entity_encoding: 'raw',
@@ -1114,23 +1189,40 @@ const Help: React.FC<IHelpProps> = props => {
                   }}
                   // disabled={!!props.disabled}
                   // outputFormat='text'
-                  onEditorChange={content =>
-                    setValueInput(prevVal => ({ ...prevVal, message: content }))
+                  onEditorChange={(content) =>
+                    setValueInput((prevVal) => ({
+                      ...prevVal,
+                      message: content,
+                    }))
                   }
                 />
                 <div>
                   {valueInput.files?.length > 0 && (
                     <WrapperLinkFiles>
-                      {valueInput.files?.map(file => (
+                      {valueInput.files?.map((file) => (
                         <WrapperLinkItemFiles key={file?.token}>
-                          <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                          <span
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '10px',
+                            }}
+                          >
                             <Icon
                               type="icon-ants-hyperlink"
-                              style={{ color: THEME.token?.colorPrimary, fontSize: '24px' }}
+                              style={{
+                                color: THEME.token?.colorPrimary,
+                                fontSize: '24px',
+                              }}
                             >
                               link
                             </Icon>
-                            <Text style={{ color: '#000', fontSize: `${THEME.token?.fontSize}px` }}>
+                            <Text
+                              style={{
+                                color: '#000',
+                                fontSize: `${THEME.token?.fontSize}px`,
+                              }}
+                            >
                               {file?.file_name}
                             </Text>
                           </span>
@@ -1149,7 +1241,9 @@ const Help: React.FC<IHelpProps> = props => {
                       ))}
                     </WrapperLinkFiles>
                   )}
-                  <WrapperIconEditor borderTop={Boolean(valueInput.files?.length)}>
+                  <WrapperIconEditor
+                    borderTop={Boolean(valueInput.files?.length)}
+                  >
                     <WrapperInputFile>
                       <label htmlFor="fileImage">
                         <Icon
@@ -1168,7 +1262,12 @@ const Help: React.FC<IHelpProps> = props => {
                       </label>
                       <input
                         type="file"
-                        style={{ position: 'absolute', top: 0, right: 0, display: 'none' }}
+                        style={{
+                          position: 'absolute',
+                          top: 0,
+                          right: 0,
+                          display: 'none',
+                        }}
                         name="fileImage"
                         id="fileImage"
                         onChange={handleOnchangeFile}
@@ -1178,7 +1277,9 @@ const Help: React.FC<IHelpProps> = props => {
                 </div>
               </EditorWrapper>
               {errFile.isError ? (
-                <ErrorMessage isShow={errFile.isError}>{errFile.message}</ErrorMessage>
+                <ErrorMessage isShow={errFile.isError}>
+                  {errFile.message}
+                </ErrorMessage>
               ) : (
                 <ErrorMessage isShow={!isValidAll && !valueInput?.message}>
                   *This field can&apos;t be empty
@@ -1188,13 +1289,17 @@ const Help: React.FC<IHelpProps> = props => {
             <ControlGroup size={0} direction="vertical">
               <ControlLabel>Attached Screenshot/ Video Recorded</ControlLabel>
               <FlexCenter
-                style={{ justifyContent: 'flex-start', alignItems: 'flex-start', gap: 10 }}
+                style={{
+                  justifyContent: 'flex-start',
+                  alignItems: 'flex-start',
+                  gap: 10,
+                }}
               >
                 {renderAttachActions()}
               </FlexCenter>
             </ControlGroup>
           </ControlGroup>
-        );
+        )
       }
       case REPORT_TYPES.HELP: {
         return (
@@ -1203,12 +1308,16 @@ const Help: React.FC<IHelpProps> = props => {
             <div style={{ padding: '13px 15px' }}>
               <LabelTitle>Popular Help Resources</LabelTitle>
               {isLoadingListHelp && (
-                <WrapperLoading style={{ background: 'none' }} height="80%" width="100%">
+                <WrapperLoading
+                  style={{ background: 'none' }}
+                  height="80%"
+                  width="100%"
+                >
                   <Spin indicator={antIcon} />
                 </WrapperLoading>
               )}
               {treeData.length > 0 &&
-                treeData.map(item => (
+                treeData.map((item) => (
                   <WrapperContentHelp>
                     <TreeContent
                       onSelect={onSelect}
@@ -1221,7 +1330,7 @@ const Help: React.FC<IHelpProps> = props => {
                 ))}
             </div>
           </Wrapper>
-        );
+        )
       }
       case REPORT_TYPES.CHAT: {
         return (
@@ -1235,20 +1344,20 @@ const Help: React.FC<IHelpProps> = props => {
             }}
             withoutBox
           />
-        );
+        )
       }
       case REPORT_TYPES.HELP_V1: {
         return (
           <Wrapper>
             <IframeHelp src={pathHelp} />
           </Wrapper>
-        );
+        )
       }
       default: {
-        return null;
+        return null
       }
     }
-  };
+  }
 
   const renderPopupLayout = (type: ReportValueType): React.ReactNode => (
     <>
@@ -1306,12 +1415,18 @@ const Help: React.FC<IHelpProps> = props => {
             }}
           >
             Open in new tab
-            <OpenUrlIcon style={{ fill: THEME.token?.colorPrimary, maxWidth: 18, maxHeight: 18 }} />
+            <OpenUrlIcon
+              style={{
+                fill: THEME.token?.colorPrimary,
+                maxWidth: 18,
+                maxHeight: 18,
+              }}
+            />
           </Link>
         </WrapperFooterSpace>
       )}
     </>
-  );
+  )
 
   return (
     <>
@@ -1319,9 +1434,9 @@ const Help: React.FC<IHelpProps> = props => {
         menu={{
           style: { minWidth: 250, padding: 0 },
           items: items as any,
-          onClick: info => handleClick(info as MenuItemTypeProps),
+          onClick: (info) => handleClick(info as MenuItemTypeProps),
         }}
-        onOpenChange={isOpen => setIsOpenDropdown(isOpen)}
+        onOpenChange={(isOpen) => setIsOpenDropdown(isOpen)}
         trigger={triggerType}
         placement="bottom"
         className="dropdown-helps"
@@ -1335,11 +1450,15 @@ const Help: React.FC<IHelpProps> = props => {
             }}
             icon={
               <QuestionCircleOutlined
-                style={{ color: '#666666', fontSize: '24px', transform: 'unset' }}
+                style={{
+                  color: '#666666',
+                  fontSize: '24px',
+                  transform: 'unset',
+                }}
               />
             }
             className={`${isOpenDropdown ? 'antsomi-btn-default-active' : ''}`}
-            onClick={e => e.preventDefault()}
+            onClick={(e) => e.preventDefault()}
           />
         )}
       </DropDown>
@@ -1359,7 +1478,7 @@ const Help: React.FC<IHelpProps> = props => {
             {renderPopupLayout(type)}
           </PopupDraggable>,
           document.body,
-          PORTALS_ANTSOMI_PACKAGE_UI_KEY_POPUP,
+          PORTALS_ANTSOMI_PACKAGE_UI_KEY_POPUP
         )}
       {isOpenImageDrawer &&
         createPortal(
@@ -1378,7 +1497,7 @@ const Help: React.FC<IHelpProps> = props => {
             callback={callback}
           />,
           document.body,
-          PORTALS_ANTSOMI_PACKAGE_UI_KEY,
+          PORTALS_ANTSOMI_PACKAGE_UI_KEY
         )}
       {/* <Modal // Hiện tại dùng Prompt mặc định của Screen Capture API, không dùng Modal custom này
         open={open}
@@ -1415,8 +1534,8 @@ const Help: React.FC<IHelpProps> = props => {
         </WrapperBodyModal>
       </Modal> */}
     </>
-  );
-};
+  )
+}
 
 Help.defaultProps = {
   triggerType: ['click'],
@@ -1442,5 +1561,5 @@ Help.defaultProps = {
     },
   },
   children: '',
-};
-export { Help };
+}
+export { Help }

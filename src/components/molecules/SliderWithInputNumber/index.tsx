@@ -1,29 +1,32 @@
 // Libraries
-import React, { CSSProperties, useEffect, useState } from 'react';
+import React, { CSSProperties, useEffect, useState } from 'react'
 
 // Atoms
-import { Slider, SliderProps } from 'src/components/atoms/Slider';
+import { Slider, SliderProps } from 'minhquanle-ui/lib/components/atoms/Slider'
 
 // Molecules
-import { InputNumber } from 'src/components/molecules/InputNumber';
+import { InputNumber } from 'minhquanle-ui/lib/components/molecules/InputNumber'
 
 // Styled
-import { SliderWithInputNumberWrapper } from './styled';
+import { SliderWithInputNumberWrapper } from './styled'
 
 // Utils
-import { handleError } from 'src/utils';
+import { handleError } from 'minhquanle-ui/lib/utils'
 
-const PATH = 'src/components/molecules/SliderWithInputNumber/index.tsx';
+const PATH =
+  'minhquanle-ui/lib/components/molecules/SliderWithInputNumber/index.tsx'
 
 interface SliderWithInputNumberProps extends SliderProps {
-  precision?: number;
-  label?: React.ReactNode;
-  labelClassName?: string;
-  labelStyling?: Partial<CSSProperties>;
-  inputStyling?: Partial<CSSProperties>;
+  precision?: number
+  label?: React.ReactNode
+  labelClassName?: string
+  labelStyling?: Partial<CSSProperties>
+  inputStyling?: Partial<CSSProperties>
 }
 
-export const SliderWithInputNumber: React.FC<SliderWithInputNumberProps> = props => {
+export const SliderWithInputNumber: React.FC<SliderWithInputNumberProps> = (
+  props
+) => {
   // Props
   const {
     label,
@@ -36,32 +39,32 @@ export const SliderWithInputNumber: React.FC<SliderWithInputNumberProps> = props
     step,
     precision,
     ...restOf
-  } = props;
+  } = props
 
   // State
-  const [value, setValue] = useState(defaultValue);
+  const [value, setValue] = useState(defaultValue)
 
   useEffect(() => {
     if (props.value !== undefined) {
-      setValue(props.value);
+      setValue(props.value)
     }
-  }, [props.value]);
+  }, [props.value])
 
   const onChangeInputNumber = (value: any) => {
     try {
       if (value !== null) {
-        setValue(value);
+        setValue(value)
 
-        typeof props.onAfterChange === 'function' && props.onAfterChange(value);
+        typeof props.onAfterChange === 'function' && props.onAfterChange(value)
       }
     } catch (error) {
       handleError(error, {
         path: PATH,
         name: 'onChange',
         args: {},
-      });
+      })
     }
-  };
+  }
 
   return (
     <SliderWithInputNumberWrapper>
@@ -81,7 +84,7 @@ export const SliderWithInputNumber: React.FC<SliderWithInputNumberProps> = props
           max={max}
           step={step}
           {...restOf}
-          onChange={value => setValue(value)}
+          onChange={(value) => setValue(value)}
           value={value}
         />
         <InputNumber
@@ -96,9 +99,9 @@ export const SliderWithInputNumber: React.FC<SliderWithInputNumberProps> = props
         />
       </div>
     </SliderWithInputNumberWrapper>
-  );
-};
+  )
+}
 
 SliderWithInputNumber.defaultProps = {
   defaultValue: 0,
-};
+}

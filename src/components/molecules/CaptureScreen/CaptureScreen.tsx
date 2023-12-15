@@ -1,9 +1,16 @@
 // Libraries
-import React, { useState, useEffect, useRef, MouseEvent, useMemo, useCallback } from 'react';
-import clsx from 'clsx';
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  MouseEvent,
+  useMemo,
+  useCallback,
+} from 'react'
+import clsx from 'clsx'
 // import html2canvas from 'html2canvas';
-import { toPng } from 'html-to-image';
-import { isEmpty } from 'lodash';
+import { toPng } from 'html-to-image'
+import { isEmpty } from 'lodash'
 
 // PropTypes
 import {
@@ -12,7 +19,7 @@ import {
   CommentListProps,
   DrawItemProps,
   IImageEditorProps,
-} from './types';
+} from './types'
 // import { PositionCursorProps } from './components/Cursor/types';
 
 // Styled
@@ -33,18 +40,18 @@ import {
   WrapperDraggable,
   WrapperIcon,
   WrapperRemoveBtn,
-} from './styled';
+} from './styled'
 
 // Components
-import Icon from '@antscorp/icons';
-import { Button } from 'src/components/atoms';
-import { PopupDraggable } from '../PopupDraggable';
-import { Cursor } from './components/Cursor';
-import { CommentBox } from './components/CommentBox';
-import { Progress } from 'antd';
+import Icon from '@antscorp/icons'
+import { Button } from 'minhquanle-ui/lib/components/atoms'
+import { PopupDraggable } from '../PopupDraggable'
+import { Cursor } from './components/Cursor'
+import { CommentBox } from './components/CommentBox'
+import { Progress } from 'antd'
 
 // Constants
-import { THEME } from 'src/constants';
+import { THEME } from 'minhquanle-ui/lib/constants'
 import {
   DRAW_ACTION_LIST,
   DRAW_KEYS,
@@ -56,14 +63,14 @@ import {
   SIZE_ADJUST,
   styleRecordItem,
   styleDrawItem,
-} from './constants';
-import { ATTACH_KEYS } from 'src/components/organism/Help/constants';
+} from './constants'
+import { ATTACH_KEYS } from 'minhquanle-ui/lib/components/organism/Help/constants'
 
 // Hooks
-import { useImageEditor } from './hooks/useImageEditor';
+import { useImageEditor } from './hooks/useImageEditor'
 
 // Utils
-import { generateUniqueId, initDefaultColors } from './utils';
+import { generateUniqueId, initDefaultColors } from './utils'
 import {
   ArrowGrowIcon,
   AudioRecordIcon,
@@ -75,111 +82,124 @@ import {
   MuteIcon,
   PauseIcon,
   StopRecordIcon,
-} from 'src/components/icons';
+} from 'minhquanle-ui/lib/components/icons'
 
 const CaptureScreen = (props: IImageEditorProps) => {
-  const { captureType, src, defaultPositions, recorderConfigs, callback } = props;
+  const { captureType, src, defaultPositions, recorderConfigs, callback } =
+    props
 
-  const [isShowCursor, setIsShowCursor] = useState<boolean>(false);
-  const [drawItemActive, setDrawItemActive] = useState<string>('');
-  const [recordingItemActive, setRecordingItemActive] = useState<string>('');
-  const [isMouseDowning, setIsMouseDowning] = useState<boolean>(false);
-  const [isRecording, setIsRecording] = useState<boolean>(false);
-  const [drawColors, setDrawColors] = useState<Record<ColorKeys, string>>(initDefaultColors());
-  const [commentInfoList, setCommentInfoList] = useState<Array<CommentListProps>>([]);
-  const [seconds, setSeconds] = useState<number>(0);
-  const [minutes, setMinutes] = useState<number>(0);
-  const [percentage, setPercentage] = useState<number>(0);
+  const [isShowCursor, setIsShowCursor] = useState<boolean>(false)
+  const [drawItemActive, setDrawItemActive] = useState<string>('')
+  const [recordingItemActive, setRecordingItemActive] = useState<string>('')
+  const [isMouseDowning, setIsMouseDowning] = useState<boolean>(false)
+  const [isRecording, setIsRecording] = useState<boolean>(false)
+  const [drawColors, setDrawColors] = useState<Record<ColorKeys, string>>(
+    initDefaultColors()
+  )
+  const [commentInfoList, setCommentInfoList] = useState<
+    Array<CommentListProps>
+  >([])
+  const [seconds, setSeconds] = useState<number>(0)
+  const [minutes, setMinutes] = useState<number>(0)
+  const [percentage, setPercentage] = useState<number>(0)
 
-  const imageEditorRef: React.RefObject<HTMLDivElement> = useRef(null);
-  const cursorRef: React.RefObject<HTMLDivElement> = useRef(null);
-  const outlineRemoveContainerRef: React.RefObject<HTMLDivElement> = useRef(null);
-  const wrapperRemoveBtnRef: React.RefObject<HTMLDivElement> = useRef(null);
-  const timerIdRef = useRef(null);
+  const imageEditorRef: React.RefObject<HTMLDivElement> = useRef(null)
+  const cursorRef: React.RefObject<HTMLDivElement> = useRef(null)
+  const outlineRemoveContainerRef: React.RefObject<HTMLDivElement> =
+    useRef(null)
+  const wrapperRemoveBtnRef: React.RefObject<HTMLDivElement> = useRef(null)
+  const timerIdRef = useRef(null)
 
-  const { editorInstance, canvasEditor, methods } = useImageEditor(imageEditorRef, {
-    preventCreateInstance: captureType !== ATTACH_KEYS.CAPTURE,
-  });
-  const { activateShapeMode, getSettings } = methods;
-
-  const handleMouseMove = useCallback(event => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const positionX = event?.clientX;
-    const positionY = event?.clientY;
-    if (!isEmpty(cursorRef.current)) {
-      const cursorRefTemp = cursorRef.current as unknown as HTMLDivElement;
-      cursorRefTemp.style.left = `${positionX}px`;
-      cursorRefTemp.style.top = `${positionY}px`;
-      imageEditorRef.current?.classList.add('hide-cursor');
+  const { editorInstance, canvasEditor, methods } = useImageEditor(
+    imageEditorRef,
+    {
+      preventCreateInstance: captureType !== ATTACH_KEYS.CAPTURE,
     }
-  }, []);
+  )
+  const { activateShapeMode, getSettings } = methods
+
+  const handleMouseMove = useCallback((event) => {
+    event.preventDefault()
+    event.stopPropagation()
+
+    const positionX = event?.clientX
+    const positionY = event?.clientY
+    if (!isEmpty(cursorRef.current)) {
+      const cursorRefTemp = cursorRef.current as unknown as HTMLDivElement
+      cursorRefTemp.style.left = `${positionX}px`
+      cursorRefTemp.style.top = `${positionY}px`
+      imageEditorRef.current?.classList.add('hide-cursor')
+    }
+  }, [])
 
   useEffect(() => {
-    let canvasUpper;
+    let canvasUpper
 
     if (!isEmpty(editorInstance) && captureType === ATTACH_KEYS.CAPTURE) {
       canvasUpper = document.querySelector(
-        '.tui-image-editor-canvas-container .upper-canvas',
-      ) as HTMLCanvasElement;
+        '.tui-image-editor-canvas-container .upper-canvas'
+      ) as HTMLCanvasElement
 
       if (
         canvasUpper &&
-        ([DRAW_KEYS.PEN, DRAW_KEYS.COMMENT, DRAW_KEYS.HIGHLIGHT] as string[]).includes(
-          drawItemActive,
-        )
+        (
+          [DRAW_KEYS.PEN, DRAW_KEYS.COMMENT, DRAW_KEYS.HIGHLIGHT] as string[]
+        ).includes(drawItemActive)
       ) {
-        canvasUpper.addEventListener('mousemove', handleMouseMove);
+        canvasUpper.addEventListener('mousemove', handleMouseMove)
       }
     }
 
     return () => {
       if (canvasUpper) {
-        canvasUpper.removeEventListener('mousemove', handleMouseMove);
+        canvasUpper.removeEventListener('mousemove', handleMouseMove)
       }
-    };
-  }, [editorInstance, captureType, drawItemActive, handleMouseMove]);
+    }
+  }, [editorInstance, captureType, drawItemActive, handleMouseMove])
 
   useEffect(() => {
-    let timerId;
+    let timerId
 
-    if (isEmpty(drawItemActive) && isMouseDowning && captureType === ATTACH_KEYS.CAPTURE) {
+    if (
+      isEmpty(drawItemActive) &&
+      isMouseDowning &&
+      captureType === ATTACH_KEYS.CAPTURE
+    ) {
       timerId = setTimeout(() => {
-        setIsMouseDowning(false);
-      }, 300);
+        setIsMouseDowning(false)
+      }, 300)
     }
 
     return () => {
-      clearTimeout(timerId);
-    };
-  }, [drawItemActive, isMouseDowning, captureType]);
+      clearTimeout(timerId)
+    }
+  }, [drawItemActive, isMouseDowning, captureType])
 
   useEffect(() => {
     if (captureType === ATTACH_KEYS.CAPTURE) {
       const canvasContainer = document.querySelector(
-        '.tui-image-editor-canvas-container',
-      ) as HTMLDivElement;
+        '.tui-image-editor-canvas-container'
+      ) as HTMLDivElement
 
-      const handleAddComment = event => {
+      const handleAddComment = (event) => {
         try {
-          event.stopPropagation();
-          const canvasUpper = canvasContainer.querySelector('.upper-canvas');
+          event.stopPropagation()
+          const canvasUpper = canvasContainer.querySelector('.upper-canvas')
 
-          if (!canvasUpper) return;
+          if (!canvasUpper) return
 
-          const pointerPosX = event.clientX;
-          const pointerPosY = event.clientY;
-          const clientX = canvasUpper.clientWidth;
-          const clientY = canvasUpper.clientHeight;
-          let isReverseAxisX = false;
-          let isReverseAxisY = false;
+          const pointerPosX = event.clientX
+          const pointerPosY = event.clientY
+          const clientX = canvasUpper.clientWidth
+          const clientY = canvasUpper.clientHeight
+          let isReverseAxisX = false
+          let isReverseAxisY = false
 
           if (clientX - pointerPosX < COMMENT_BOX_DIMENSION_FIXED.width) {
-            isReverseAxisX = true;
+            isReverseAxisX = true
           }
           if (clientY - pointerPosY < COMMENT_BOX_DIMENSION_FIXED.height) {
-            isReverseAxisY = true;
+            isReverseAxisY = true
           }
 
           if (
@@ -187,29 +207,29 @@ const CaptureScreen = (props: IImageEditorProps) => {
             imageEditorRef.current &&
             imageEditorRef.current.classList.contains('hide-cursor')
           ) {
-            setIsShowCursor(false);
-            imageEditorRef.current.classList.remove('hide-cursor');
-            canvasUpper.removeEventListener('mousemove', handleMouseMove);
+            setIsShowCursor(false)
+            imageEditorRef.current.classList.remove('hide-cursor')
+            canvasUpper.removeEventListener('mousemove', handleMouseMove)
           }
 
-          setCommentInfoList(prevCommentList => {
+          setCommentInfoList((prevCommentList) => {
             if (
               prevCommentList.length > 0 &&
               !prevCommentList[prevCommentList.length - 1].isSubmitted
             )
-              return prevCommentList;
+              return prevCommentList
 
-            const randomId = generateUniqueId();
+            const randomId = generateUniqueId()
 
             // Căn giữa CommentPoint Component theo cursor click
-            const left = pointerPosX - OFFSET_CENTER;
-            const top = pointerPosY - OFFSET_CENTER;
-            const temp = [...prevCommentList];
+            const left = pointerPosX - OFFSET_CENTER
+            const top = pointerPosY - OFFSET_CENTER
+            const temp = [...prevCommentList]
 
-            let newLatestCommentIndex = 1;
+            let newLatestCommentIndex = 1
 
             if (temp.length > 0) {
-              newLatestCommentIndex = temp[temp.length - 1].index + 1;
+              newLatestCommentIndex = temp[temp.length - 1].index + 1
             }
 
             temp.push({
@@ -222,90 +242,99 @@ const CaptureScreen = (props: IImageEditorProps) => {
               isSubmitted: false,
               isReverseAxisX,
               isReverseAxisY,
-            });
-            return temp;
-          });
+            })
+            return temp
+          })
         } catch (error) {
           // eslint-disable-next-line no-console
-          console.log('error :>', error);
+          console.log('error :>', error)
         }
-      };
+      }
 
       try {
         if (canvasContainer && drawItemActive === DRAW_KEYS.COMMENT) {
-          canvasContainer.addEventListener('mousedown', handleAddComment);
+          canvasContainer.addEventListener('mousedown', handleAddComment)
         }
       } catch (error) {
         // eslint-disable-next-line no-console
-        console.log('error :>', error);
+        console.log('error :>', error)
       }
 
       return () => {
-        canvasContainer.removeEventListener('mousedown', handleAddComment);
-      };
+        canvasContainer.removeEventListener('mousedown', handleAddComment)
+      }
     }
-  }, [drawItemActive, drawColors, captureType, handleMouseMove]);
+  }, [drawItemActive, drawColors, captureType, handleMouseMove])
 
   useEffect(() => {
-    let handleMouseUp;
-    let canvasUpper;
+    let handleMouseUp
+    let canvasUpper
 
     if (!isEmpty(editorInstance) && captureType === ATTACH_KEYS.CAPTURE) {
-      canvasUpper = document.querySelector('.tui-image-editor-canvas-container .upper-canvas');
+      canvasUpper = document.querySelector(
+        '.tui-image-editor-canvas-container .upper-canvas'
+      )
 
       if (canvasUpper) {
         handleMouseUp = () => {
-          setIsMouseDowning(false);
+          setIsMouseDowning(false)
 
-          if (([DRAW_KEYS.PEN, DRAW_KEYS.HIGHLIGHT] as string[]).includes(drawItemActive)) {
-            canvasUpper.addEventListener('mousemove', handleMouseMove);
+          if (
+            ([DRAW_KEYS.PEN, DRAW_KEYS.HIGHLIGHT] as string[]).includes(
+              drawItemActive
+            )
+          ) {
+            canvasUpper.addEventListener('mousemove', handleMouseMove)
           }
-        };
+        }
 
-        canvasUpper.addEventListener('mouseup', handleMouseUp);
+        canvasUpper.addEventListener('mouseup', handleMouseUp)
       }
 
       // reset lại draw type đang active và đưa draw về mode NORMAL sau khi add 1 object
-      editorInstance?.on('objectAdded', _data => {
-        setIsMouseDowning(false);
-      });
+      editorInstance?.on('objectAdded', (_data) => {
+        setIsMouseDowning(false)
+      })
     }
 
     return () => {
       if (canvasUpper && handleMouseUp) {
-        canvasUpper.removeEventListener('mouseup', handleMouseUp);
+        canvasUpper.removeEventListener('mouseup', handleMouseUp)
       }
-    };
-  }, [editorInstance, captureType, drawItemActive, handleMouseMove]);
+    }
+  }, [editorInstance, captureType, drawItemActive, handleMouseMove])
 
   const handleClickDrawItem = useCallback(
     (item: DrawItemProps, stroke?: string): void => {
       try {
         // Không được chuyển type draw khi chưa submit comment
-        if (commentInfoList.length > 0 && !commentInfoList[commentInfoList.length - 1].isSubmitted)
-          return;
+        if (
+          commentInfoList.length > 0 &&
+          !commentInfoList[commentInfoList.length - 1].isSubmitted
+        )
+          return
 
-        const { key } = item;
-        if (!key) return;
+        const { key } = item
+        if (!key) return
 
         if (drawItemActive !== key) {
-          setDrawItemActive(key);
+          setDrawItemActive(key)
         }
 
-        if (isEmpty(editorInstance)) return;
+        if (isEmpty(editorInstance)) return
 
-        const color = stroke || drawColors[key];
-        const settings = getSettings(key, color);
+        const color = stroke || drawColors[key]
+        const settings = getSettings(key, color)
 
         switch (key) {
           case DRAW_KEYS.CANCEL: {
-            callback('CLOSE_DRAWER');
-            break;
+            callback('CLOSE_DRAWER')
+            break
           }
           case DRAW_KEYS.HIGHLIGHT:
           case DRAW_KEYS.HIDE: {
             if (key === DRAW_KEYS.HIGHLIGHT) {
-              setIsShowCursor(true);
+              setIsShowCursor(true)
             }
 
             if (
@@ -314,51 +343,53 @@ const CaptureScreen = (props: IImageEditorProps) => {
               imageEditorRef.current.classList.contains('hide-cursor') &&
               key === DRAW_KEYS.HIDE
             ) {
-              imageEditorRef.current.classList.remove('hide-cursor');
+              imageEditorRef.current.classList.remove('hide-cursor')
             }
 
-            const shapeType = ([DRAW_KEYS.HIGHLIGHT, DRAW_KEYS.HIDE] as string[]).includes(key)
+            const shapeType = (
+              [DRAW_KEYS.HIGHLIGHT, DRAW_KEYS.HIDE] as string[]
+            ).includes(key)
               ? 'rect'
-              : 'circle';
+              : 'circle'
 
-            editorInstance.setDrawingShape(shapeType, settings);
-            activateShapeMode();
-            break;
+            editorInstance.setDrawingShape(shapeType, settings)
+            activateShapeMode()
+            break
           }
           case DRAW_KEYS.PEN: {
-            setIsShowCursor(true);
-            editorInstance.stopDrawingMode();
-            editorInstance.changeCursor('none');
-            editorInstance.startDrawingMode('FREE_DRAWING', settings);
-            break;
+            setIsShowCursor(true)
+            editorInstance.stopDrawingMode()
+            editorInstance.changeCursor('none')
+            editorInstance.startDrawingMode('FREE_DRAWING', settings)
+            break
           }
           case DRAW_KEYS.ARROW: {
-            setIsShowCursor(false);
+            setIsShowCursor(false)
             if (
               imageEditorRef &&
               imageEditorRef.current &&
               imageEditorRef.current.classList.contains('hide-cursor')
             ) {
-              imageEditorRef.current.classList.remove('hide-cursor');
+              imageEditorRef.current.classList.remove('hide-cursor')
             }
 
-            editorInstance.stopDrawingMode();
-            editorInstance.startDrawingMode('LINE_DRAWING', settings);
-            break;
+            editorInstance.stopDrawingMode()
+            editorInstance.startDrawingMode('LINE_DRAWING', settings)
+            break
           }
           case DRAW_KEYS.DONE: {
-            setIsShowCursor(false);
+            setIsShowCursor(false)
             if (
               imageEditorRef &&
               imageEditorRef.current &&
               imageEditorRef.current.classList.contains('hide-cursor')
             ) {
-              imageEditorRef.current.classList.remove('hide-cursor');
+              imageEditorRef.current.classList.remove('hide-cursor')
             }
 
-            editorInstance.deactivateAll();
-            editorInstance.stopDrawingMode();
-            setDrawItemActive('');
+            editorInstance.deactivateAll()
+            editorInstance.stopDrawingMode()
+            setDrawItemActive('')
 
             toPng(imageEditorRef.current as HTMLElement, {
               filter: (element: HTMLElement) =>
@@ -368,19 +399,19 @@ const CaptureScreen = (props: IImageEditorProps) => {
                     IGNORE_DRAW_ID_LIST.ICON_CLOSE,
                     IGNORE_DRAW_ID_LIST.BORDER_OVERLAY,
                   ] as string[]
-                ).some(id => element.id === id),
+                ).some((id) => element.id === id),
             })
-              .then(dataURL => {
-                const imageName = editorInstance.getImageName();
+              .then((dataURL) => {
+                const imageName = editorInstance.getImageName()
 
                 if (typeof callback === 'function') {
-                  callback('ON_DRAWER_DONE', { imageName, dataURL });
+                  callback('ON_DRAWER_DONE', { imageName, dataURL })
                 }
               })
-              .catch(error => {
+              .catch((error) => {
                 // eslint-disable-next-line no-console
-                console.error('oops, something went wrong!', error);
-              });
+                console.error('oops, something went wrong!', error)
+              })
             // html2canvas(imageEditorRef.current as HTMLElement, {
             //   allowTaint: false,
             // ignoreElements: (element: Element) => {
@@ -404,21 +435,21 @@ const CaptureScreen = (props: IImageEditorProps) => {
             //   callback('ON_DRAWER_DONE', { imageName, dataURL });
             // }
             // });
-            break;
+            break
           }
           case DRAW_KEYS.COMMENT: {
-            setIsShowCursor(true);
-            editorInstance.stopDrawingMode();
-            editorInstance.changeCursor('cell');
-            break;
+            setIsShowCursor(true)
+            editorInstance.stopDrawingMode()
+            editorInstance.changeCursor('cell')
+            break
           }
           default: {
-            break;
+            break
           }
         }
       } catch (error) {
         // eslint-disable-next-line no-console
-        console.log('error :>', error);
+        console.log('error :>', error)
       }
     },
     [
@@ -429,31 +460,31 @@ const CaptureScreen = (props: IImageEditorProps) => {
       drawItemActive,
       editorInstance,
       getSettings,
-    ],
-  );
+    ]
+  )
 
   useEffect(() => {
     try {
       if (!isEmpty(editorInstance) && captureType === ATTACH_KEYS.CAPTURE) {
         editorInstance.on('mousedown', () => {
           const canvasUpper = document.querySelector(
-            '.tui-image-editor-canvas-container .upper-canvas',
-          );
+            '.tui-image-editor-canvas-container .upper-canvas'
+          )
 
           if (canvasUpper) {
-            canvasUpper.removeEventListener('mousemove', handleMouseMove);
+            canvasUpper.removeEventListener('mousemove', handleMouseMove)
           }
 
           if (editorInstance.getDrawingMode() !== 'NORMAL') {
-            setIsMouseDowning(true);
+            setIsMouseDowning(true)
           }
-        });
+        })
       }
     } catch (err) {
       // eslint-disable-next-line no-console
-      console.log(err);
+      console.log(err)
     }
-  }, [captureType, editorInstance, handleMouseMove, handleClickDrawItem]);
+  }, [captureType, editorInstance, handleMouseMove, handleClickDrawItem])
 
   useEffect(() => {
     if (
@@ -461,90 +492,99 @@ const CaptureScreen = (props: IImageEditorProps) => {
       isEmpty(drawItemActive) &&
       !isEmpty(editorInstance)
     ) {
-      handleClickDrawItem(DRAW_ACTION_LIST[0]);
+      handleClickDrawItem(DRAW_ACTION_LIST[0])
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [editorInstance]);
+  }, [editorInstance])
 
   const handleSetColorByKey = (
     e: MouseEvent<HTMLDivElement>,
     drawItem: DrawItemProps,
-    itemColor: string,
+    itemColor: string
   ): void => {
-    e.stopPropagation();
+    e.stopPropagation()
     // Không được chuyển type draw khi chưa submit comment
-    if (commentInfoList.length > 0 && !commentInfoList[commentInfoList.length - 1].isSubmitted)
-      return;
+    if (
+      commentInfoList.length > 0 &&
+      !commentInfoList[commentInfoList.length - 1].isSubmitted
+    )
+      return
 
-    const { key } = drawItem;
+    const { key } = drawItem
 
     setDrawColors({
       ...drawColors,
       [key]: itemColor,
-    });
+    })
 
-    if (isEmpty(editorInstance)) return;
+    if (isEmpty(editorInstance)) return
 
-    handleClickDrawItem(drawItem, itemColor);
-  };
+    handleClickDrawItem(drawItem, itemColor)
+  }
 
   const handleChangeComment = (type: string, dataIn: CommentListProps) => {
-    const commentIndex = commentInfoList.findIndex(item => item.id === dataIn.id);
-    if (commentIndex === -1) return;
+    const commentIndex = commentInfoList.findIndex(
+      (item) => item.id === dataIn.id
+    )
+    if (commentIndex === -1) return
 
-    const tempCommentList = [...commentInfoList];
+    const tempCommentList = [...commentInfoList]
 
     if (type === 'CHANGE_CONTENT') {
-      tempCommentList.splice(commentIndex, 1, dataIn);
+      tempCommentList.splice(commentIndex, 1, dataIn)
     } else if (type === 'SUBMIT') {
-      const temp = { ...dataIn, isSubmitted: true };
-      tempCommentList.splice(commentIndex, 1, temp);
+      const temp = { ...dataIn, isSubmitted: true }
+      tempCommentList.splice(commentIndex, 1, temp)
     } else if (type === 'CANCEL') {
-      tempCommentList.splice(commentIndex, 1);
+      tempCommentList.splice(commentIndex, 1)
     }
 
-    setCommentInfoList(tempCommentList);
+    setCommentInfoList(tempCommentList)
 
-    if (['SUBMIT', 'CANCEL'].includes(type) && imageEditorRef && imageEditorRef.current) {
+    if (
+      ['SUBMIT', 'CANCEL'].includes(type) &&
+      imageEditorRef &&
+      imageEditorRef.current
+    ) {
       const canvasUpper = document.querySelector(
-        '.tui-image-editor-canvas-container .upper-canvas',
-      );
+        '.tui-image-editor-canvas-container .upper-canvas'
+      )
       if (
         canvasUpper &&
-        ([DRAW_KEYS.COMMENT, DRAW_KEYS.HIGHLIGHT, DRAW_KEYS.PEN] as string[]).includes(
-          drawItemActive,
-        )
+        (
+          [DRAW_KEYS.COMMENT, DRAW_KEYS.HIGHLIGHT, DRAW_KEYS.PEN] as string[]
+        ).includes(drawItemActive)
       ) {
-        canvasUpper.addEventListener('mousemove', handleMouseMove);
-        imageEditorRef.current.classList.add('hide-cursor');
-        setIsShowCursor(true);
+        canvasUpper.addEventListener('mousemove', handleMouseMove)
+        imageEditorRef.current.classList.add('hide-cursor')
+        setIsShowCursor(true)
       }
     }
-  };
+  }
 
   useEffect(() => {
     if (!isEmpty(recorderConfigs) && recorderConfigs.recorder) {
       recorderConfigs.recorder.onerror = (event: any) => {
         // eslint-disable-next-line no-console
-        console.error('MediaRecorder error:', event.error);
-        setIsRecording(false);
-      };
+        console.error('MediaRecorder error:', event.error)
+        setIsRecording(false)
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [recorderConfigs.recorder]);
+  }, [recorderConfigs.recorder])
 
   useEffect(
     () => () => {
       if (typeof callback === 'function') {
-        callback('RESET_POSITION_DRAG');
+        callback('RESET_POSITION_DRAG')
       }
       if (timerIdRef && timerIdRef.current) {
-        clearTimeout(timerIdRef.current);
+        clearTimeout(timerIdRef.current)
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
-  );
+    []
+  )
 
   const handleActionRecorderByType = useCallback(
     (type: string): void => {
@@ -556,46 +596,52 @@ const CaptureScreen = (props: IImageEditorProps) => {
           !recorderConfigs.streamTracks?.desktopStream ||
           !recorderConfigs.streamTracks?.voiceStream
         )
-          return;
+          return
 
         switch (type) {
           case RECORD_KEYS.START: {
-            const recordActionEle = document.getElementById(IGNORE_DRAW_ID_LIST.DRAW_ACTIONS);
+            const recordActionEle = document.getElementById(
+              IGNORE_DRAW_ID_LIST.DRAW_ACTIONS
+            )
 
             if (recordActionEle && defaultPositions?.record) {
-              (timerIdRef.current as any) = setTimeout(() => {
-                recordActionEle.style.transform = `translate(${defaultPositions?.record.x}px, ${defaultPositions?.record.y}px)`;
-              }, 10);
+              ;(timerIdRef.current as any) = setTimeout(() => {
+                recordActionEle.style.transform = `translate(${defaultPositions?.record.x}px, ${defaultPositions?.record.y}px)`
+              }, 10)
             }
-            recorderConfigs.recorder.start();
-            setRecordingItemActive(type);
-            setIsRecording(true);
-            break;
+            recorderConfigs.recorder.start()
+            setRecordingItemActive(type)
+            setIsRecording(true)
+            break
           }
           case RECORD_KEYS.STOP: {
-            if (['paused', 'recording'].includes(recorderConfigs.recorder.state)) {
-              recorderConfigs.recorder.stop();
-              setIsRecording(false);
+            if (
+              ['paused', 'recording'].includes(recorderConfigs.recorder.state)
+            ) {
+              recorderConfigs.recorder.stop()
+              setIsRecording(false)
             }
 
-            const { desktopStream, voiceStream } = recorderConfigs.streamTracks;
+            const { desktopStream, voiceStream } = recorderConfigs.streamTracks
 
-            desktopStream.getTracks().forEach(track => track.stop());
-            voiceStream.getTracks().forEach(track => track.stop());
+            desktopStream.getTracks().forEach((track) => track.stop())
+            voiceStream.getTracks().forEach((track) => track.stop())
             if (typeof callback === 'function') {
-              callback('STOP_RECORDER', recorderConfigs);
+              callback('STOP_RECORDER', recorderConfigs)
             }
-            setRecordingItemActive(type);
-            break;
+            setRecordingItemActive(type)
+            break
           }
           case RECORD_KEYS.PAUSE: {
             if (recorderConfigs.recorder.state === 'paused') {
-              recorderConfigs.recorder.resume();
+              recorderConfigs.recorder.resume()
             } else {
-              recorderConfigs.recorder.pause();
+              recorderConfigs.recorder.pause()
             }
-            setRecordingItemActive(prev => (prev === RECORD_KEYS.PAUSE ? '' : type));
-            break;
+            setRecordingItemActive((prev) =>
+              prev === RECORD_KEYS.PAUSE ? '' : type
+            )
+            break
           }
           // case RECORD_KEYS.RESUME: {
           //   setRecordingItemActive(type);
@@ -604,59 +650,61 @@ const CaptureScreen = (props: IImageEditorProps) => {
           // }
           case RECORD_KEYS.MUTED:
           case RECORD_KEYS.UNMUTE: {
-            const { isMute, streamTracks } = recorderConfigs;
-            const { voiceStream } = streamTracks;
-            const audioTracks = voiceStream.getAudioTracks();
+            const { isMute, streamTracks } = recorderConfigs
+            const { voiceStream } = streamTracks
+            const audioTracks = voiceStream.getAudioTracks()
 
-            audioTracks.forEach(track => {
-              track.enabled = isMute;
-            });
-            setRecordingItemActive(type);
-            callback('ON_CHANGE_MUTE');
-            break;
+            audioTracks.forEach((track) => {
+              track.enabled = isMute
+            })
+            setRecordingItemActive(type)
+            callback('ON_CHANGE_MUTE')
+            break
           }
           default: {
-            break;
+            break
           }
         }
       } catch (error) {
         // eslint-disable-next-line no-console
-        console.log('error :>', error);
+        console.log('error :>', error)
       }
     },
-    [callback, isRecording, recorderConfigs],
-  );
+    [callback, isRecording, recorderConfigs]
+  )
 
   useEffect(() => {
-    let intervalId;
-    const totalDuration = 2 * 60;
+    let intervalId
+    const totalDuration = 2 * 60
 
     if (isRecording) {
       intervalId = setInterval(() => {
         if (recorderConfigs.recorder?.state === 'recording') {
-          setSeconds(prevSeconds => (prevSeconds === 59 ? 0 : prevSeconds + 1));
+          setSeconds((prevSeconds) =>
+            prevSeconds === 59 ? 0 : prevSeconds + 1
+          )
 
           if (seconds === 59) {
-            setMinutes(prevMinutes => prevMinutes + 1);
+            setMinutes((prevMinutes) => prevMinutes + 1)
           }
 
-          const currentSeconds = minutes * 60 + seconds;
-          const progressPercentage = (currentSeconds / totalDuration) * 100;
-          setPercentage(Number(progressPercentage.toFixed(2)));
+          const currentSeconds = minutes * 60 + seconds
+          const progressPercentage = (currentSeconds / totalDuration) * 100
+          setPercentage(Number(progressPercentage.toFixed(2)))
 
           if (minutes === 2 && seconds === 0) {
-            clearInterval(intervalId);
-            handleActionRecorderByType(RECORD_KEYS.STOP);
+            clearInterval(intervalId)
+            handleActionRecorderByType(RECORD_KEYS.STOP)
           }
         }
-      }, 1000);
+      }, 1000)
     }
 
     return () => {
       if (intervalId) {
-        clearInterval(intervalId);
+        clearInterval(intervalId)
       }
-    };
+    }
   }, [
     handleActionRecorderByType,
     isRecording,
@@ -664,221 +712,243 @@ const CaptureScreen = (props: IImageEditorProps) => {
     recorderConfigs.recorder?.state,
     seconds,
     percentage,
-  ]);
+  ])
 
   useEffect(() => {
-    let ignoreHoveringList;
-    let handleMouseEnterDrawActions;
-    let handleMouseOutDrawActions;
+    let ignoreHoveringList
+    let handleMouseEnterDrawActions
+    let handleMouseOutDrawActions
     if (
       !isMouseDowning &&
       captureType === ATTACH_KEYS.CAPTURE &&
-      ([DRAW_KEYS.PEN, DRAW_KEYS.COMMENT, DRAW_KEYS.HIGHLIGHT] as string[]).includes(drawItemActive)
+      (
+        [DRAW_KEYS.PEN, DRAW_KEYS.COMMENT, DRAW_KEYS.HIGHLIGHT] as string[]
+      ).includes(drawItemActive)
     ) {
-      ignoreHoveringList = document.querySelectorAll(`.${IGNORE_DRAW_ID_LIST.CLASS_PREVENT_HOVER}`);
+      ignoreHoveringList = document.querySelectorAll(
+        `.${IGNORE_DRAW_ID_LIST.CLASS_PREVENT_HOVER}`
+      )
 
       if (ignoreHoveringList.length > 0) {
-        handleMouseEnterDrawActions = event => {
-          event.stopPropagation();
+        handleMouseEnterDrawActions = (event) => {
+          event.stopPropagation()
 
           if (
-            (drawItemActive === DRAW_KEYS.COMMENT && commentInfoList.length === 0) ||
+            (drawItemActive === DRAW_KEYS.COMMENT &&
+              commentInfoList.length === 0) ||
             (drawItemActive === DRAW_KEYS.COMMENT &&
               commentInfoList.length > 0 &&
               commentInfoList[commentInfoList.length - 1].isSubmitted) ||
-            ([DRAW_KEYS.PEN, DRAW_KEYS.HIGHLIGHT] as string[]).includes(drawItemActive)
+            ([DRAW_KEYS.PEN, DRAW_KEYS.HIGHLIGHT] as string[]).includes(
+              drawItemActive
+            )
           ) {
-            setIsShowCursor(false);
+            setIsShowCursor(false)
           }
-        };
-        handleMouseOutDrawActions = event => {
-          event.stopPropagation();
+        }
+        handleMouseOutDrawActions = (event) => {
+          event.stopPropagation()
           if (
-            (drawItemActive === DRAW_KEYS.COMMENT && commentInfoList.length === 0) ||
+            (drawItemActive === DRAW_KEYS.COMMENT &&
+              commentInfoList.length === 0) ||
             (drawItemActive === DRAW_KEYS.COMMENT &&
               commentInfoList.length > 0 &&
               commentInfoList[commentInfoList.length - 1].isSubmitted) ||
-            ([DRAW_KEYS.PEN, DRAW_KEYS.HIGHLIGHT] as string[]).includes(drawItemActive)
+            ([DRAW_KEYS.PEN, DRAW_KEYS.HIGHLIGHT] as string[]).includes(
+              drawItemActive
+            )
           ) {
-            setIsShowCursor(true);
+            setIsShowCursor(true)
           }
-        };
+        }
 
-        ignoreHoveringList.forEach(ignoreItem => {
-          ignoreItem.addEventListener('mouseenter', handleMouseEnterDrawActions);
-          ignoreItem.addEventListener('mouseleave', handleMouseOutDrawActions);
-        });
+        ignoreHoveringList.forEach((ignoreItem) => {
+          ignoreItem.addEventListener('mouseenter', handleMouseEnterDrawActions)
+          ignoreItem.addEventListener('mouseleave', handleMouseOutDrawActions)
+        })
       }
     }
 
     return () => {
       if (!isEmpty(ignoreHoveringList)) {
-        ignoreHoveringList.forEach(ignoreItem => {
-          ignoreItem.removeEventListener('mouseenter', handleMouseEnterDrawActions);
-          ignoreItem.removeEventListener('mouseleave', handleMouseOutDrawActions);
-        });
+        ignoreHoveringList.forEach((ignoreItem) => {
+          ignoreItem.removeEventListener(
+            'mouseenter',
+            handleMouseEnterDrawActions
+          )
+          ignoreItem.removeEventListener(
+            'mouseleave',
+            handleMouseOutDrawActions
+          )
+        })
       }
-    };
-  }, [captureType, commentInfoList, drawItemActive, isMouseDowning]);
+    }
+  }, [captureType, commentInfoList, drawItemActive, isMouseDowning])
 
-  const setPositionOutlineRemoveContainer = useCallback(obj => {
-    const outlineRemoveContainer = outlineRemoveContainerRef.current || null;
-    const removeBtn = wrapperRemoveBtnRef.current || null;
+  const setPositionOutlineRemoveContainer = useCallback((obj) => {
+    const outlineRemoveContainer = outlineRemoveContainerRef.current || null
+    const removeBtn = wrapperRemoveBtnRef.current || null
     const absCoords: { left: number; top: number } = {
       left: obj.left,
       top: obj.top,
-    };
+    }
 
-    const objWidth = obj.width * (obj.scaleX || 1);
-    const objHeight = obj.height * (obj.scaleY || 1);
+    const objWidth = obj.width * (obj.scaleX || 1)
+    const objHeight = obj.height * (obj.scaleY || 1)
 
     if (outlineRemoveContainer) {
-      outlineRemoveContainer.style.width = `${SIZE_ADJUST * objWidth + obj.strokeWidth}px`;
-      outlineRemoveContainer.style.height = `${SIZE_ADJUST * objHeight + obj.strokeWidth}px`;
-      outlineRemoveContainer.style.left = `${absCoords.left}px`;
-      outlineRemoveContainer.style.top = `${absCoords.top}px`;
+      outlineRemoveContainer.style.width = `${
+        SIZE_ADJUST * objWidth + obj.strokeWidth
+      }px`
+      outlineRemoveContainer.style.height = `${
+        SIZE_ADJUST * objHeight + obj.strokeWidth
+      }px`
+      outlineRemoveContainer.style.left = `${absCoords.left}px`
+      outlineRemoveContainer.style.top = `${absCoords.top}px`
     }
     if (removeBtn) {
-      removeBtn.style.left = `${absCoords.left + objWidth / 2}px`;
-      removeBtn.style.top = `${absCoords.top - objHeight / 2}px`;
+      removeBtn.style.left = `${absCoords.left + objWidth / 2}px`
+      removeBtn.style.top = `${absCoords.top - objHeight / 2}px`
     }
-  }, []);
+  }, [])
 
   // Handle Hover and remove object in canvas
   useEffect(() => {
-    let handleDelete;
-    let handleRemoveBtnMouseEnter;
-    let handleRemoveBtnMouseLeave;
-    let currentObjectDrew = null;
-    let activeObject = null;
-    let isMouseDown = false;
-    const btnRemove = wrapperRemoveBtnRef.current || null;
-    const outlineRemoveContainer = outlineRemoveContainerRef.current || null;
+    let handleDelete
+    let handleRemoveBtnMouseEnter
+    let handleRemoveBtnMouseLeave
+    let currentObjectDrew = null
+    let activeObject = null
+    let isMouseDown = false
+    const btnRemove = wrapperRemoveBtnRef.current || null
+    const outlineRemoveContainer = outlineRemoveContainerRef.current || null
 
     if (captureType === ATTACH_KEYS.CAPTURE && canvasEditor) {
       handleDelete = () => {
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        currentObjectDrew && canvasEditor.remove(currentObjectDrew);
+        currentObjectDrew && canvasEditor.remove(currentObjectDrew)
 
         if (btnRemove && outlineRemoveContainer) {
-          btnRemove.style.display = 'none';
-          outlineRemoveContainer.style.display = 'none';
+          btnRemove.style.display = 'none'
+          outlineRemoveContainer.style.display = 'none'
         }
-      };
-
-      handleRemoveBtnMouseEnter = () => {
-        if (!currentObjectDrew) return;
-
-        if (btnRemove && !isMouseDown) {
-          btnRemove.style.display = 'flex';
-        }
-        setPositionOutlineRemoveContainer(currentObjectDrew);
-        if (outlineRemoveContainer && !isMouseDown) {
-          outlineRemoveContainer.style.border = '2px dashed #707070';
-          outlineRemoveContainer.style.display = 'block';
-        }
-
-        canvasEditor.renderAll();
-      };
-
-      handleRemoveBtnMouseLeave = () => {
-        if (!currentObjectDrew) return;
-
-        if (btnRemove && outlineRemoveContainer) {
-          btnRemove.style.display = 'none';
-          outlineRemoveContainer.style.border = 'none';
-        }
-      };
-
-      if (btnRemove) {
-        btnRemove.addEventListener('click', handleDelete);
-        btnRemove.addEventListener('mouseenter', handleRemoveBtnMouseEnter);
-        btnRemove.addEventListener('mouseleave', handleRemoveBtnMouseLeave);
       }
 
-      canvasEditor.on('mouse:over', event => {
-        if (!event.target || activeObject === event.target) return;
+      handleRemoveBtnMouseEnter = () => {
+        if (!currentObjectDrew) return
 
-        const currentObj = event.target;
-        currentObjectDrew = currentObj;
-        setPositionOutlineRemoveContainer(currentObj);
-        if (!isMouseDown) {
-          if (btnRemove) {
-            btnRemove.style.display = 'flex';
-          }
-          if (outlineRemoveContainer) {
-            outlineRemoveContainer.style.border = '2px dashed #707070';
-            outlineRemoveContainer.style.display = 'block';
-          }
+        if (btnRemove && !isMouseDown) {
+          btnRemove.style.display = 'flex'
+        }
+        setPositionOutlineRemoveContainer(currentObjectDrew)
+        if (outlineRemoveContainer && !isMouseDown) {
+          outlineRemoveContainer.style.border = '2px dashed #707070'
+          outlineRemoveContainer.style.display = 'block'
         }
 
-        canvasEditor.renderAll();
-      });
+        canvasEditor.renderAll()
+      }
 
-      canvasEditor.on('mouse:down', () => {
-        isMouseDown = true;
-        // eslint-disable-next-line no-underscore-dangle
-        activeObject = canvasEditor._activeObject;
-
-        if (btnRemove && outlineRemoveContainer && activeObject) {
-          btnRemove.style.display = 'none';
-          outlineRemoveContainer.style.border = 'none';
-        }
-      });
-      canvasEditor.on('mouse:up', () => {
-        isMouseDown = false;
-      });
-
-      canvasEditor.on('mouse:out', e => {
-        if (!e.target) return;
+      handleRemoveBtnMouseLeave = () => {
+        if (!currentObjectDrew) return
 
         if (btnRemove && outlineRemoveContainer) {
-          btnRemove.style.display = 'none';
-          outlineRemoveContainer.style.border = 'none';
+          btnRemove.style.display = 'none'
+          outlineRemoveContainer.style.border = 'none'
         }
-      });
+      }
+
+      if (btnRemove) {
+        btnRemove.addEventListener('click', handleDelete)
+        btnRemove.addEventListener('mouseenter', handleRemoveBtnMouseEnter)
+        btnRemove.addEventListener('mouseleave', handleRemoveBtnMouseLeave)
+      }
+
+      canvasEditor.on('mouse:over', (event) => {
+        if (!event.target || activeObject === event.target) return
+
+        const currentObj = event.target
+        currentObjectDrew = currentObj
+        setPositionOutlineRemoveContainer(currentObj)
+        if (!isMouseDown) {
+          if (btnRemove) {
+            btnRemove.style.display = 'flex'
+          }
+          if (outlineRemoveContainer) {
+            outlineRemoveContainer.style.border = '2px dashed #707070'
+            outlineRemoveContainer.style.display = 'block'
+          }
+        }
+
+        canvasEditor.renderAll()
+      })
+
+      canvasEditor.on('mouse:down', () => {
+        isMouseDown = true
+        // eslint-disable-next-line no-underscore-dangle
+        activeObject = canvasEditor._activeObject
+
+        if (btnRemove && outlineRemoveContainer && activeObject) {
+          btnRemove.style.display = 'none'
+          outlineRemoveContainer.style.border = 'none'
+        }
+      })
+      canvasEditor.on('mouse:up', () => {
+        isMouseDown = false
+      })
+
+      canvasEditor.on('mouse:out', (e) => {
+        if (!e.target) return
+
+        if (btnRemove && outlineRemoveContainer) {
+          btnRemove.style.display = 'none'
+          outlineRemoveContainer.style.border = 'none'
+        }
+      })
 
       canvasEditor.on('object:moving', () => {
         if (btnRemove && outlineRemoveContainer) {
-          btnRemove.style.display = 'none';
-          outlineRemoveContainer.style.border = 'none';
+          btnRemove.style.display = 'none'
+          outlineRemoveContainer.style.border = 'none'
         }
-      });
+      })
     }
 
     return () => {
       if (btnRemove) {
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        handleDelete && btnRemove.removeEventListener('click', handleDelete);
+        handleDelete && btnRemove.removeEventListener('click', handleDelete)
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         handleRemoveBtnMouseEnter &&
-          btnRemove.removeEventListener('mouseenter', handleRemoveBtnMouseEnter);
+          btnRemove.removeEventListener('mouseenter', handleRemoveBtnMouseEnter)
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         handleRemoveBtnMouseLeave &&
-          btnRemove.removeEventListener('mouseleave', handleRemoveBtnMouseLeave);
+          btnRemove.removeEventListener('mouseleave', handleRemoveBtnMouseLeave)
       }
-    };
-  }, [captureType, canvasEditor, setPositionOutlineRemoveContainer]);
+    }
+  }, [captureType, canvasEditor, setPositionOutlineRemoveContainer])
 
   useEffect(() => {
     if (captureType === ATTACH_KEYS.RECORD && isRecording) {
-      const drawActions = document.getElementById(IGNORE_DRAW_ID_LIST.DRAW_ACTIONS);
+      const drawActions = document.getElementById(
+        IGNORE_DRAW_ID_LIST.DRAW_ACTIONS
+      )
 
       if (drawActions) {
-        drawActions.style.transform = 'translate(169px, 0px)';
+        drawActions.style.transform = 'translate(169px, 0px)'
       }
     }
-  }, [isRecording, captureType]);
+  }, [isRecording, captureType])
 
   const numberCommentCursor = useMemo(() => {
     if (drawItemActive === DRAW_KEYS.COMMENT) {
-      if (!commentInfoList[commentInfoList.length - 1]) return 1;
+      if (!commentInfoList[commentInfoList.length - 1]) return 1
 
-      return commentInfoList[commentInfoList.length - 1].index + 1;
+      return commentInfoList[commentInfoList.length - 1].index + 1
     }
 
-    return null;
-  }, [commentInfoList, drawItemActive]);
+    return null
+  }, [commentInfoList, drawItemActive])
 
   const renderIcon = (name, style) =>
     ({
@@ -892,12 +962,18 @@ const CaptureScreen = (props: IImageEditorProps) => {
       'icon-ants-mute': <MuteIcon style={style} />,
       'icon-ants-pause': <PauseIcon style={style} />,
       'icon-ants-stop-record': <StopRecordIcon style={style} />,
-    }[name]);
+    }[name])
 
   const renderDrawActionList = (): React.ReactNode =>
-    DRAW_ACTION_LIST.map(drawItem => {
+    DRAW_ACTION_LIST.map((drawItem) => {
       if (drawItem?.type === 'divider') {
-        return <Divider isVertical key={drawItem.key} style={{ width: styleDrawItem.SMALL }} />;
+        return (
+          <Divider
+            isVertical
+            key={drawItem.key}
+            style={{ width: styleDrawItem.SMALL }}
+          />
+        )
       }
 
       return (
@@ -905,15 +981,21 @@ const CaptureScreen = (props: IImageEditorProps) => {
           key={drawItem.key}
           className={clsx({
             active: drawItemActive === drawItem.key,
-            'hide-hover': ([DRAW_KEYS.DONE, DRAW_KEYS.CANCEL] as string[]).includes(drawItem.key),
+            'hide-hover': (
+              [DRAW_KEYS.DONE, DRAW_KEYS.CANCEL] as string[]
+            ).includes(drawItem.key),
           })}
           style={{
             height: styleDrawItem.SMALL,
-            marginLeft: ([DRAW_KEYS.HIGHLIGHT, DRAW_KEYS.DONE] as string[]).includes(drawItem.key)
+            marginLeft: (
+              [DRAW_KEYS.HIGHLIGHT, DRAW_KEYS.DONE] as string[]
+            ).includes(drawItem.key)
               ? '15px'
               : '8px',
             marginRight: drawItem.key === DRAW_KEYS.HIDE ? '15px' : '8px',
-            width: !([DRAW_KEYS.DONE, DRAW_KEYS.CANCEL] as string[]).includes(drawItem.key)
+            width: !([DRAW_KEYS.DONE, DRAW_KEYS.CANCEL] as string[]).includes(
+              drawItem.key
+            )
               ? styleDrawItem.MEDIUM
               : 'auto',
           }}
@@ -924,7 +1006,9 @@ const CaptureScreen = (props: IImageEditorProps) => {
               type={drawItem.icon}
               style={{ fontSize: '24px', color: `${THEME.token?.colorIcon}` }}
             /> */}
-            {([DRAW_KEYS.DONE, DRAW_KEYS.CANCEL] as string[]).includes(drawItem.key) ? (
+            {([DRAW_KEYS.DONE, DRAW_KEYS.CANCEL] as string[]).includes(
+              drawItem.key
+            ) ? (
               <Button
                 type={drawItem.key === DRAW_KEYS.DONE ? 'primary' : 'default'}
                 style={{ fontWeight: 'bold', flexDirection: 'row-reverse' }}
@@ -954,18 +1038,23 @@ const CaptureScreen = (props: IImageEditorProps) => {
             <PopupBySide className="toggle-popup-by-side">
               <Heading>{drawItem.label}</Heading>
               <WrapperColor>
-                {drawItem.colorList?.map(itemColor => (
+                {drawItem.colorList?.map((itemColor) => (
                   <BoxColor
                     key={`${drawItem.key}-${itemColor}`}
                     bgColor={itemColor}
-                    onClick={e => handleSetColorByKey(e, drawItem, itemColor)}
+                    onClick={(e) => handleSetColorByKey(e, drawItem, itemColor)}
                   >
                     {drawColors[drawItem.key] === itemColor && (
                       // <Icon
                       //   type="icon-ants-check-slim"
                       //   style={{ color: `${THEME.token?.bw0}`, fontSize: '20px' }}
                       // />
-                      <CheckSlimIcon style={{ fill: `${THEME.token?.bw0}`, maxWidth: '20px' }} />
+                      <CheckSlimIcon
+                        style={{
+                          fill: `${THEME.token?.bw0}`,
+                          maxWidth: '20px',
+                        }}
+                      />
                     )}
                   </BoxColor>
                 ))}
@@ -973,8 +1062,8 @@ const CaptureScreen = (props: IImageEditorProps) => {
             </PopupBySide>
           )}
         </DrawerGroupItem>
-      );
-    });
+      )
+    })
 
   const renderRecordActionList = (): React.ReactNode => (
     <>
@@ -1003,7 +1092,9 @@ const CaptureScreen = (props: IImageEditorProps) => {
       ) : (
         <>
           <DrawerGroupItem
-            className={clsx({ active: recordingItemActive === RECORD_KEYS.STOP })}
+            className={clsx({
+              active: recordingItemActive === RECORD_KEYS.STOP,
+            })}
             style={styleRecordItem}
             onClick={() => handleActionRecorderByType(RECORD_KEYS.STOP)}
           >
@@ -1020,7 +1111,9 @@ const CaptureScreen = (props: IImageEditorProps) => {
           </DrawerGroupItem>
           <DrawerGroupItem
             // key={recordItem.key}
-            className={clsx({ active: recordingItemActive === RECORD_KEYS.PAUSE })}
+            className={clsx({
+              active: recordingItemActive === RECORD_KEYS.PAUSE,
+            })}
             style={styleRecordItem}
             onClick={() => handleActionRecorderByType(RECORD_KEYS.PAUSE)}
           >
@@ -1057,7 +1150,9 @@ const CaptureScreen = (props: IImageEditorProps) => {
       )}
       {recorderConfigs && recorderConfigs.isMute ? (
         <DrawerGroupItem
-          className={clsx({ active: recordingItemActive === RECORD_KEYS.UNMUTE })}
+          className={clsx({
+            active: recordingItemActive === RECORD_KEYS.UNMUTE,
+          })}
           style={styleRecordItem}
           onClick={() => handleActionRecorderByType(RECORD_KEYS.UNMUTE)}
         >
@@ -1066,12 +1161,17 @@ const CaptureScreen = (props: IImageEditorProps) => {
               type="icon-ants-mute"
               style={{ fontSize: '24px', color: `${THEME.token?.colorIcon}` }}
             /> */}
-            {renderIcon('icon-ants-mute', { maxWidth: '24px', fill: `${THEME.token?.colorIcon}` })}
+            {renderIcon('icon-ants-mute', {
+              maxWidth: '24px',
+              fill: `${THEME.token?.colorIcon}`,
+            })}
           </FlexColumn>
         </DrawerGroupItem>
       ) : (
         <DrawerGroupItem
-          className={clsx({ active: recordingItemActive === RECORD_KEYS.MUTED })}
+          className={clsx({
+            active: recordingItemActive === RECORD_KEYS.MUTED,
+          })}
           style={styleRecordItem}
           onClick={() => handleActionRecorderByType(RECORD_KEYS.MUTED)}
         >
@@ -1089,9 +1189,16 @@ const CaptureScreen = (props: IImageEditorProps) => {
       )}
 
       {isRecording && (
-        <DrawerGroupItem style={{ ...styleRecordItem, width: 130 }} className="timer-recording">
+        <DrawerGroupItem
+          style={{ ...styleRecordItem, width: 130 }}
+          className="timer-recording"
+        >
           <FlexCenter>
-            <Progress percent={percentage} showInfo={false} style={{ width: 100, margin: 0 }} />
+            <Progress
+              percent={percentage}
+              showInfo={false}
+              style={{ width: 100, margin: 0 }}
+            />
             <Heading style={{ whiteSpace: 'nowrap' }}>{`${minutes}:${seconds
               .toString()
               .padStart(2, '0')}`}</Heading>
@@ -1099,7 +1206,7 @@ const CaptureScreen = (props: IImageEditorProps) => {
         </DrawerGroupItem>
       )}
     </>
-  );
+  )
 
   const renderPopupAction = (type: CaptureTypeProps): React.ReactNode => {
     if (type === ATTACH_KEYS.RECORD) {
@@ -1116,7 +1223,7 @@ const CaptureScreen = (props: IImageEditorProps) => {
         >
           {renderRecordActionList()}
         </PopupDraggable>
-      );
+      )
     }
 
     return (
@@ -1162,11 +1269,11 @@ const CaptureScreen = (props: IImageEditorProps) => {
           </DrawerGroups>
         </PopupDraggable>
       )
-    );
-  };
+    )
+  }
 
   const renderCommentList = (commentList: Array<CommentListProps>) =>
-    commentList.map(commentItem => (
+    commentList.map((commentItem) => (
       <CommentBox
         key={commentItem.id}
         className={IGNORE_DRAW_ID_LIST.CLASS_PREVENT_HOVER}
@@ -1175,7 +1282,7 @@ const CaptureScreen = (props: IImageEditorProps) => {
         info={commentItem}
         onChangeComment={handleChangeComment}
       />
-    ));
+    ))
 
   return (
     <ContainerCapture
@@ -1226,8 +1333,8 @@ const CaptureScreen = (props: IImageEditorProps) => {
 
       {renderPopupAction(captureType)}
     </ContainerCapture>
-  );
-};
+  )
+}
 
 CaptureScreen.defaultProps = {
   isOpen: false,
@@ -1238,6 +1345,6 @@ CaptureScreen.defaultProps = {
     record: null,
   },
   callback: () => {},
-};
+}
 
-export { CaptureScreen };
+export { CaptureScreen }

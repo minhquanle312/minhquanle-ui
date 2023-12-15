@@ -1,17 +1,17 @@
 // Libraries
-import React from 'react';
-import { Global, css } from '@emotion/react';
+import React from 'react'
+import { Global, css } from '@emotion/react'
 
 // Constants
-import { THEME } from 'src/constants';
+import { THEME } from 'minhquanle-ui/lib/constants'
 
 // FontAwesome
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { far } from '@fortawesome/free-regular-svg-icons';
-import { fab } from '@fortawesome/free-brands-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
+import { fab } from '@fortawesome/free-brands-svg-icons'
 
-library.add(fas, far, fab);
+library.add(fas, far, fab)
 
 interface GlobalStyleProps {}
 
@@ -129,7 +129,9 @@ export const GlobalStyle: React.FC<GlobalStyleProps> = () => (
         }
       }
 
-      .antsomi-input-affix-wrapper-status-error:not(.antsomi-input-affix-wrapper-disabled):not(
+      .antsomi-input-affix-wrapper-status-error:not(
+          .antsomi-input-affix-wrapper-disabled
+        ):not(
           .antsomi-input-affix-wrapper-borderless
         ).antsomi-input-affix-wrapper {
         &:hover,
@@ -138,7 +140,9 @@ export const GlobalStyle: React.FC<GlobalStyleProps> = () => (
         }
       }
 
-      .antsomi-input-affix-wrapper-status-warning:not(.antsomi-input-affix-wrapper-disabled):not(
+      .antsomi-input-affix-wrapper-status-warning:not(
+          .antsomi-input-affix-wrapper-disabled
+        ):not(
           .antsomi-input-affix-wrapper-borderless
         ).antsomi-input-affix-wrapper {
         &:hover,
@@ -152,20 +156,25 @@ export const GlobalStyle: React.FC<GlobalStyleProps> = () => (
         right: 5px !important;
       }
 
-      .antsomi-select:not(.antsomi-select-disabled):not(.antsomi-select-customize-input):not(
-          .antsomi-pagination-size-changer
-        ):hover
+      .antsomi-select:not(.antsomi-select-disabled):not(
+          .antsomi-select-customize-input
+        ):not(.antsomi-pagination-size-changer):hover
         .antsomi-select-selector {
         border-color: ${THEME.token?.blue1} !important;
         background-color: ${THEME.token?.blue} !important;
       }
 
-      .antsomi-select-disabled.antsomi-select:not(.antsomi-select-customize-input)
+      .antsomi-select-disabled.antsomi-select:not(
+          .antsomi-select-customize-input
+        )
         .antsomi-select-selector {
         border-color: ${THEME.token?.bw4};
       }
 
-      .antsomi-select-disabled.antsomi-select:not(.antsomi-select-customize-input) .antsomi-tag {
+      .antsomi-select-disabled.antsomi-select:not(
+          .antsomi-select-customize-input
+        )
+        .antsomi-tag {
         background-color: ${THEME.token?.bw4} !important;
       }
 
@@ -237,9 +246,9 @@ export const GlobalStyle: React.FC<GlobalStyleProps> = () => (
         color: ${THEME.token?.bw10};
       }
 
-      .antsomi-picker:not(.antsomi-picker-disabled).antsomi-picker-status-error:not(
-          [disabled]
-        ):hover {
+      .antsomi-picker:not(
+          .antsomi-picker-disabled
+        ).antsomi-picker-status-error:not([disabled]):hover {
         background-color: ${THEME.token?.red} !important;
       }
 
@@ -249,7 +258,9 @@ export const GlobalStyle: React.FC<GlobalStyleProps> = () => (
       }
 
       .antsomi-picker-dropdown__advanced {
-        > .antsomi-picker-panel-container > .antsomi-picker-panel-layout > .antsomi-picker-panel {
+        > .antsomi-picker-panel-container
+          > .antsomi-picker-panel-layout
+          > .antsomi-picker-panel {
           flex-direction: column-reverse;
           padding-bottom: 60px;
 
@@ -383,8 +394,8 @@ export const GlobalStyle: React.FC<GlobalStyleProps> = () => (
           &:focus-within {
             --tw-shadow: 0 0 #0000;
             --tw-shadow-colored: 0 0 #0000;
-            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
-              var(--tw-shadow);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+              var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
           }
 
           &:first-child {
@@ -494,4 +505,4 @@ export const GlobalStyle: React.FC<GlobalStyleProps> = () => (
       }
     `}
   />
-);
+)

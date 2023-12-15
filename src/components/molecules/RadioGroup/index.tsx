@@ -1,26 +1,26 @@
 // Libraries
-import React from 'react';
+import React from 'react'
 
 // Components
-import { Text } from 'src/components/atoms';
+import { Text } from 'minhquanle-ui/lib/components/atoms'
 
 // Types
-import type { RadioGroupProps as AntdRadioGroupProps } from 'antd';
+import type { RadioGroupProps as AntdRadioGroupProps } from 'antd'
 
 // Styled
-import { RadioGroupWrapper, StyledRadioGroup } from './styled';
+import { RadioGroupWrapper, StyledRadioGroup } from './styled'
 
 interface RadioGroupProps extends AntdRadioGroupProps {
-  label?: string;
+  label?: string
 }
 
-export const RadioGroup: React.FC<RadioGroupProps> = props => {
-  const { label, ...restOf } = props;
+export const RadioGroup: React.FC<RadioGroupProps> = (props) => {
+  const { label, ...restOf } = props
 
   return (
     <RadioGroupWrapper>
       {label ? <Text>{label}</Text> : null}
       <StyledRadioGroup {...restOf} />
     </RadioGroupWrapper>
-  );
-};
+  )
+}

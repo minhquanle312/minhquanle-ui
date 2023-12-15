@@ -1,17 +1,17 @@
 // Libraries
-import React, { useState } from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { Slider } from 'antd';
-import styled from 'styled-components';
-import { Row, Col } from './Grid';
+import React, { useState } from 'react'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { Slider } from 'antd'
+import styled from 'styled-components'
+import { Row, Col } from './Grid'
 
 // Component
-import { Divider } from '../Divider';
-import { Table } from '../../organism';
-import { THEME } from 'src/constants/theme';
+import { Divider } from '../Divider'
+import { Table } from '../../organism'
+import { THEME } from 'minhquanle-ui/lib/constants/theme'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'src/constants/storybook';
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants/storybook'
 
 export default {
   title: ' Atoms/Grid',
@@ -58,7 +58,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Row>;
+} as ComponentMeta<typeof Row>
 
 const GridStyle = styled.div`
   text-align: center;
@@ -74,14 +74,14 @@ const GridStyle = styled.div`
       background-color: #1677ffbf;
     }
   }
-`;
+`
 
 const style: React.CSSProperties = {
   background: THEME.token?.colorPrimary,
   padding: '12px 0',
   color: 'white',
   textAlign: 'center',
-};
+}
 
 const Template: ComponentStory<typeof Row> = () => (
   <GridStyle>
@@ -104,9 +104,9 @@ const Template: ComponentStory<typeof Row> = () => (
       <Col span={6}>col-6</Col>
     </Row>
   </GridStyle>
-);
+)
 
-export const Basic = Template.bind({});
+export const Basic = Template.bind({})
 
 export const GridGutter = () => (
   <>
@@ -175,7 +175,7 @@ export const GridGutter = () => (
       </Col>
     </Row>
   </>
-);
+)
 
 GridGutter.parameters = {
   docs: {
@@ -184,7 +184,7 @@ GridGutter.parameters = {
         'You can use the `gutte`r property of `Row` as grid spacing, we recommend set it to `(16 + 8n)` px (`n` stands for natural number)<br/>You can set it to a object like `{ xs: 8, sm: 16, md: 24, lg: 32 }` for responsive design.<br/>You can use an array to set vertical spacing, `[horizontal, vertical]` `[16, { xs: 8, sm: 16, md: 24, lg: 32 }]`.',
     },
   },
-};
+}
 
 export const ColumnOffset = () => (
   <GridStyle>
@@ -208,7 +208,7 @@ export const ColumnOffset = () => (
       </Col>
     </Row>
   </GridStyle>
-);
+)
 
 ColumnOffset.parameters = {
   docs: {
@@ -217,7 +217,7 @@ ColumnOffset.parameters = {
         '`offset` can set the column to the right side. For example, using `offset = {4}` can set the element shifted to the right four columns width.',
     },
   },
-};
+}
 
 export const GridSort = () => (
   <GridStyle>
@@ -230,15 +230,16 @@ export const GridSort = () => (
       </Col>
     </Row>
   </GridStyle>
-);
+)
 
 GridSort.parameters = {
   docs: {
     description: {
-      story: 'By using `push` and `pull` class you can easily change column order.',
+      story:
+        'By using `push` and `pull` class you can easily change column order.',
     },
   },
-};
+}
 
 export const Typesetting = () => (
   <GridStyle>
@@ -290,7 +291,7 @@ export const Typesetting = () => (
       <Col span={4}>col-4</Col>
     </Row>
   </GridStyle>
-);
+)
 
 Typesetting.parameters = {
   docs: {
@@ -299,17 +300,19 @@ Typesetting.parameters = {
         'Child elements depending on the value of the `start`, `center`, `end`, `space-between`, `space-around` and `space-evenly`, which are defined in its parent node typesetting mode.',
     },
   },
-};
+}
 
-const DemoBox: React.FC<{ children: React.ReactNode; value: number }> = props => {
-  const { value, children } = props;
+const DemoBox: React.FC<{ children: React.ReactNode; value: number }> = (
+  props
+) => {
+  const { value, children } = props
   const boxStyle: React.CSSProperties = {
     ...style,
     height: `${value}px`,
-  };
+  }
 
-  return <p style={boxStyle}>{children}</p>;
-};
+  return <p style={boxStyle}>{children}</p>
+}
 
 export const Alignment = () => (
   <>
@@ -361,7 +364,7 @@ export const Alignment = () => (
       </Col>
     </Row>
   </>
-);
+)
 
 Alignment.parameters = {
   docs: {
@@ -369,7 +372,7 @@ Alignment.parameters = {
       story: 'Child elements vertically aligned.',
     },
   },
-};
+}
 
 export const Order = () => (
   <GridStyle>
@@ -390,21 +393,45 @@ export const Order = () => (
     </Row>
     <Divider orientation="left">Responsive</Divider>
     <Row>
-      <Col span={6} xs={{ order: 1 }} sm={{ order: 2 }} md={{ order: 3 }} lg={{ order: 4 }}>
+      <Col
+        span={6}
+        xs={{ order: 1 }}
+        sm={{ order: 2 }}
+        md={{ order: 3 }}
+        lg={{ order: 4 }}
+      >
         1 col-order-responsive
       </Col>
-      <Col span={6} xs={{ order: 2 }} sm={{ order: 1 }} md={{ order: 4 }} lg={{ order: 3 }}>
+      <Col
+        span={6}
+        xs={{ order: 2 }}
+        sm={{ order: 1 }}
+        md={{ order: 4 }}
+        lg={{ order: 3 }}
+      >
         2 col-order-responsive
       </Col>
-      <Col span={6} xs={{ order: 3 }} sm={{ order: 4 }} md={{ order: 2 }} lg={{ order: 1 }}>
+      <Col
+        span={6}
+        xs={{ order: 3 }}
+        sm={{ order: 4 }}
+        md={{ order: 2 }}
+        lg={{ order: 1 }}
+      >
         3 col-order-responsive
       </Col>
-      <Col span={6} xs={{ order: 4 }} sm={{ order: 3 }} md={{ order: 1 }} lg={{ order: 2 }}>
+      <Col
+        span={6}
+        xs={{ order: 4 }}
+        sm={{ order: 3 }}
+        md={{ order: 1 }}
+        lg={{ order: 2 }}
+      >
         4 col-order-responsive
       </Col>
     </Row>
   </GridStyle>
-);
+)
 
 Order.parameters = {
   docs: {
@@ -412,7 +439,7 @@ Order.parameters = {
       story: 'To change the element sort by `order`.',
     },
   },
-};
+}
 
 export const FlexStretch = () => (
   <GridStyle>
@@ -439,7 +466,7 @@ export const FlexStretch = () => (
       <Col flex="auto">auto with no-wrap</Col>
     </Row>
   </GridStyle>
-);
+)
 
 FlexStretch.parameters = {
   docs: {
@@ -447,7 +474,7 @@ FlexStretch.parameters = {
       story: 'Col provides `flex` prop to support fill rest..',
     },
   },
-};
+}
 
 export const Responsive = () => (
   <GridStyle>
@@ -463,7 +490,7 @@ export const Responsive = () => (
       </Col>
     </Row>
   </GridStyle>
-);
+)
 
 Responsive.parameters = {
   docs: {
@@ -472,7 +499,7 @@ Responsive.parameters = {
         'Referring to the Bootstrap responsive design, here preset six dimensions: `xs` `sm` `md` `lg` `xl` `xxl`.',
     },
   },
-};
+}
 
 export const MoreResponsive = () => (
   <GridStyle>
@@ -488,7 +515,7 @@ export const MoreResponsive = () => (
       </Col>
     </Row>
   </GridStyle>
-);
+)
 
 MoreResponsive.parameters = {
   docs: {
@@ -497,36 +524,36 @@ MoreResponsive.parameters = {
         '`span` `pull` `push` `offset` `order` property can be embedded into `xs` `sm` `md` `lg` `xl` `xxl` properties to use, where `xs={6}` is equivalent to `xs={{span: 6}}`.',
     },
   },
-};
+}
 
 export const Playground = () => {
-  const gutters: Record<PropertyKey, number> = {};
-  const vgutters: Record<PropertyKey, number> = {};
-  const colCounts: Record<PropertyKey, number> = {};
+  const gutters: Record<PropertyKey, number> = {}
+  const vgutters: Record<PropertyKey, number> = {}
+  const colCounts: Record<PropertyKey, number> = {}
 
-  [8, 16, 24, 32, 40, 48].forEach((value, i) => {
-    gutters[i] = value;
-  });
-  [8, 16, 24, 32, 40, 48].forEach((value, i) => {
-    vgutters[i] = value;
-  });
-  [2, 3, 4, 6, 8, 12].forEach((value, i) => {
-    colCounts[i] = value;
-  });
-  const [gutterKey, setGutterKey] = useState(1);
-  const [vgutterKey, setVgutterKey] = useState(1);
-  const [colCountKey, setColCountKey] = useState(2);
+  ;[8, 16, 24, 32, 40, 48].forEach((value, i) => {
+    gutters[i] = value
+  })
+  ;[8, 16, 24, 32, 40, 48].forEach((value, i) => {
+    vgutters[i] = value
+  })
+  ;[2, 3, 4, 6, 8, 12].forEach((value, i) => {
+    colCounts[i] = value
+  })
+  const [gutterKey, setGutterKey] = useState(1)
+  const [vgutterKey, setVgutterKey] = useState(1)
+  const [colCountKey, setColCountKey] = useState(2)
 
-  const cols: any[] = [];
-  const colCount = colCounts[colCountKey];
-  let colCode = '';
+  const cols: any[] = []
+  const colCount = colCounts[colCountKey]
+  let colCode = ''
   for (let i = 0; i < colCount; i++) {
     cols.push(
       <Col key={i.toString()} span={24 / colCount}>
         Column
-      </Col>,
-    );
-    colCode += `  <Col span={${24 / colCount}}  />\n`;
+      </Col>
+    )
+    colCode += `  <Col span={${24 / colCount}}  />\n`
   }
 
   return (
@@ -577,8 +604,8 @@ export const Playground = () => {
       <pre className="demo-code">{`<Row gutter={[${gutters[gutterKey]}, ${vgutters[vgutterKey]}]}>\n${colCode}\n${colCode}</Row>`}</pre>
       <pre className="demo-code">{`<Row gutter={[${gutters[gutterKey]}, ${vgutters[vgutterKey]}]}>\n${colCode}</Row>`}</pre>
     </>
-  );
-};
+  )
+}
 
 Playground.parameters = {
   docs: {
@@ -586,7 +613,7 @@ Playground.parameters = {
       story: 'A simple playground for column count and gutter.',
     },
   },
-};
+}
 
 export const RowProps: ComponentStory<any> = () => {
   const dataSources = [
@@ -619,10 +646,16 @@ export const RowProps: ComponentStory<any> = () => {
       type: 'boolean',
       default: 'true',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSources} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSources}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 RowProps.parameters = {
   docs: {
@@ -630,7 +663,7 @@ RowProps.parameters = {
       code: null,
     },
   },
-};
+}
 
 export const ColProps: ComponentStory<any> = () => {
   const dataSources = [
@@ -672,7 +705,8 @@ export const ColProps: ComponentStory<any> = () => {
     {
       key: '6',
       property: 'span',
-      description: 'Raster number of cells to occupy, 0 corresponds to display: none',
+      description:
+        'Raster number of cells to occupy, 0 corresponds to display: none',
       type: 'number',
       default: 'none',
     },
@@ -687,49 +721,61 @@ export const ColProps: ComponentStory<any> = () => {
     {
       key: '8',
       property: 'sm',
-      description: 'screen ≥ 576px, could be a span value or an object containing above props',
+      description:
+        'screen ≥ 576px, could be a span value or an object containing above props',
       type: 'number | object',
       default: '-',
     },
     {
       key: '9',
       property: 'md',
-      description: 'screen ≥ 768px, could be a span value or an object containing above props',
+      description:
+        'screen ≥ 768px, could be a span value or an object containing above props',
       type: 'number | object',
       default: '-',
     },
     {
       key: '9',
       property: 'md',
-      description: 'screen ≥ 768px, could be a span value or an object containing above props',
+      description:
+        'screen ≥ 768px, could be a span value or an object containing above props',
       type: 'number | object',
       default: '-',
     },
     {
       key: '10',
       property: 'lg',
-      description: 'screen ≥ 992px, could be a span value or an object containing above props',
+      description:
+        'screen ≥ 992px, could be a span value or an object containing above props',
       type: 'number | object',
       default: '-',
     },
     {
       key: '11',
       property: 'xl',
-      description: 'screen ≥ 1200px, could be a span value or an object containing above props',
+      description:
+        'screen ≥ 1200px, could be a span value or an object containing above props',
       type: 'number | object',
       default: '-',
     },
     {
       key: '12',
       property: 'xxl',
-      description: 'screen ≥ 1600px, could be a span value or an object containing above props',
+      description:
+        'screen ≥ 1600px, could be a span value or an object containing above props',
       type: 'number | object',
       default: '-',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSources} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSources}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 ColProps.parameters = {
   docs: {
@@ -737,4 +783,4 @@ ColProps.parameters = {
       code: null,
     },
   },
-};
+}

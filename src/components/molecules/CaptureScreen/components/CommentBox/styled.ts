@@ -1,34 +1,37 @@
 // Libraries
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
 // Constants
-import { THEME } from 'src/constants';
+import { THEME } from 'minhquanle-ui/lib/constants'
 
 // Types
-import { BoxDimensionProps, CommentPointProps } from './types';
+import { BoxDimensionProps, CommentPointProps } from './types'
 
 export const CommentPoint = styled.div<CommentPointProps>`
   position: fixed;
-  top: ${props => props.top}px;
-  left: ${props => props.left}px;
+  top: ${(props) => props.top}px;
+  left: ${(props) => props.left}px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  width: ${props => props.offset * 2}px;
-  height: ${props => props.offset * 2}px;
+  width: ${(props) => props.offset * 2}px;
+  height: ${(props) => props.offset * 2}px;
   border-radius: 50%;
 
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.5);
-  /* background-color: ${props =>
+  /* background-color: ${(props) =>
     props.isSubmitted ? `${THEME.token?.bw0}` : `${props.color}`}; */
-  background-color: ${props => (props.color ? props.color : `${THEME.token?.bw0}`)};
-  /* color: ${props => (props.isSubmitted ? `${THEME.token?.blue8}` : `${THEME.token?.bw0}`)}; */
-  color: ${props => (props.color ? `${THEME.token?.bw0}` : `${THEME.token?.colorText}`)};
+  background-color: ${(props) =>
+    props.color ? props.color : `${THEME.token?.bw0}`};
+  /* color: ${(props) =>
+    props.isSubmitted ? `${THEME.token?.blue8}` : `${THEME.token?.bw0}`}; */
+  color: ${(props) =>
+    props.color ? `${THEME.token?.bw0}` : `${THEME.token?.colorText}`};
   font-size: 16px;
 
-  /* pointer-events: ${props => (props.isSubmitted ? 'none' : 'visible')}; */
+  /* pointer-events: ${(props) => (props.isSubmitted ? 'none' : 'visible')}; */
   font-family: ${THEME.token?.fontFamily};
   z-index: 99;
   cursor: grab;
@@ -41,7 +44,7 @@ export const CommentPoint = styled.div<CommentPointProps>`
   :hover .rounded-dashed {
     display: block;
   }
-`;
+`
 
 export const RoundedDashed = styled.div<{ offset: number }>`
   position: absolute;
@@ -49,19 +52,19 @@ export const RoundedDashed = styled.div<{ offset: number }>`
   left: 0;
   display: none;
   border: 2px dashed #707070;
-  width: ${props => props.offset * 2 + 1}px;
-  height: ${props => props.offset * 2 + 1}px;
-`;
+  width: ${(props) => props.offset * 2 + 1}px;
+  height: ${(props) => props.offset * 2 + 1}px;
+`
 
 export const CommentBoxed = styled.div<{
-  boxDimension: BoxDimensionProps;
-  isReverseAxisX: boolean;
-  isReverseAxisY: boolean;
+  boxDimension: BoxDimensionProps
+  isReverseAxisX: boolean
+  isReverseAxisY: boolean
 }>`
   position: absolute;
-  width: ${props => props.boxDimension.width}px;
+  width: ${(props) => props.boxDimension.width}px;
   /* height: 170px; */
-  max-height: ${props => props.boxDimension.height}px;
+  max-height: ${(props) => props.boxDimension.height}px;
   padding: 15px;
   border-radius: ${THEME.token?.borderRadius}px;
 
@@ -83,7 +86,7 @@ export const CommentBoxed = styled.div<{
   }
 
   /* Tính toán lại vị trí của box comment khi box bị che */
-  ${props =>
+  ${(props) =>
     props.isReverseAxisY
       ? css`
           bottom: 50%;
@@ -104,7 +107,7 @@ export const CommentBoxed = styled.div<{
           }
         `}
 
-  ${props =>
+  ${(props) =>
     props.isReverseAxisX
       ? css`
           right: calc(100% + 24px);
@@ -120,7 +123,7 @@ export const CommentBoxed = styled.div<{
             left: -15px;
           }
         `}
-`;
+`
 
 export const TextArea = styled.textarea`
   width: 300px;
@@ -132,7 +135,7 @@ export const TextArea = styled.textarea`
   font-size: ${THEME.token?.fontSize}px;
   color: #999999;
   resize: none;
-`;
+`
 
 export const WrapperIcon = styled.div`
   position: absolute;
@@ -145,4 +148,4 @@ export const WrapperIcon = styled.div`
 
   display: none;
   z-index: 10;
-`;
+`

@@ -1,27 +1,31 @@
 /* eslint-disable no-promise-executor-return */
 // Services
-import { SavedImage } from 'src/models/SavedImage';
-import { Upload } from 'src/models/Upload';
-import { services } from 'src/services';
+import { SavedImage } from 'minhquanle-ui/lib/models/SavedImage'
+import { Upload } from 'minhquanle-ui/lib/models/Upload'
+import { services } from 'minhquanle-ui/lib/services'
 
-export const getListingSavedImage = async (domainUrl, slug, infos): Promise<SavedImage[]> => {
+export const getListingSavedImage = async (
+  domainUrl,
+  slug,
+  infos
+): Promise<SavedImage[]> => {
   try {
     const { data } = await services.mediaTemplateSavedImages.getList(
       {
         API_HOST: `${domainUrl}/${slug}/saved-image/index`,
       },
-      infos,
-    );
+      infos
+    )
 
-    let savedImages = data?.data || [];
+    let savedImages = data?.data || []
 
-    savedImages = savedImages.map(savedImage => new SavedImage(savedImage));
+    savedImages = savedImages.map((savedImage) => new SavedImage(savedImage))
 
-    return savedImages;
+    return savedImages
   } catch (error) {
-    return new Promise((_, reject) => reject(error));
+    return new Promise((_, reject) => reject(error))
   }
-};
+}
 
 export const createSavedImage = (domainUrl, slug, infos, data) => {
   try {
@@ -30,12 +34,12 @@ export const createSavedImage = (domainUrl, slug, infos, data) => {
         API_HOST: `${domainUrl}/${slug}/saved-image/index`,
         ...data,
       },
-      infos,
-    );
+      infos
+    )
   } catch (error) {
-    return new Promise((_, reject) => reject(error));
+    return new Promise((_, reject) => reject(error))
   }
-};
+}
 
 export const deleteSavedImage = (domainUrl, slug, infos, id) => {
   try {
@@ -45,34 +49,39 @@ export const deleteSavedImage = (domainUrl, slug, infos, id) => {
         image_id: [id],
         status: 80,
       },
-      infos,
-    );
+      infos
+    )
   } catch (error) {
-    return new Promise((_, reject) => reject(error));
+    return new Promise((_, reject) => reject(error))
   }
-};
+}
 
-export const uploadFile = async (domainUrl, slug, infos, files): Promise<Upload[]> => {
+export const uploadFile = async (
+  domainUrl,
+  slug,
+  infos,
+  files
+): Promise<Upload[]> => {
   try {
-    const formData = new FormData();
+    const formData = new FormData()
 
-    files.forEach(file => {
-      formData.append('files', file);
-    });
+    files.forEach((file) => {
+      formData.append('files', file)
+    })
 
     const result = await services.mediaTemplateSavedImages.upload(
       {
         API_HOST: `${domainUrl}/${slug}/file-upload/file`,
         formData,
       },
-      infos,
-    );
+      infos
+    )
 
-    const uploadData = result ? result.data?.data : null;
+    const uploadData = result ? result.data?.data : null
 
     return uploadData?.length
       ? uploadData.map(
-          file =>
+          (file) =>
             new Upload({
               url: file.url,
               file: file.file,
@@ -80,11 +89,11 @@ export const uploadFile = async (domainUrl, slug, infos, files): Promise<Upload[
               dimensions_file: file.dimensions_file,
               size: file.size,
               file_name: file.file_name,
-            }),
+            })
         )
-      : [];
+      : []
   } catch (error) {
     // eslint-disable-next-line no-promise-executor-return
-    return new Promise((_, reject) => reject(error));
+    return new Promise((_, reject) => reject(error))
   }
-};
+}

@@ -1,8 +1,8 @@
 // Libraries
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 // Constants
-import { THEME } from 'src/constants';
+import { THEME } from 'minhquanle-ui/lib/constants'
 
 export const WrapperListImages = styled.div`
   display: flex;
@@ -15,11 +15,11 @@ export const WrapperListImages = styled.div`
   &.ants-group:hover .group-hover {
     opacity: 1;
   }
-`;
+`
 
 export const TextStyled = styled.span`
   color: ${THEME.token?.colorTextDark};
-`;
+`
 
 export const Boxed = styled.div`
   position: relative;
@@ -36,13 +36,13 @@ export const Boxed = styled.div`
   &:hover {
     border-width: 2px;
   }
-`;
+`
 
 export const Image = styled.img`
   object-fit: contain;
   width: 100%;
   height: 100%;
-`;
+`
 
 export const WrapperBtn = styled.div`
   position: absolute;
@@ -52,18 +52,19 @@ export const WrapperBtn = styled.div`
   z-index: 3;
   gap: 15px;
   opacity: 0;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke,
-    opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+    backdrop-filter;
   transition-duration: 200ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-`;
+`
 
 export const Paragraph = styled.p`
   display: inline-block;
   margin-top: 5px;
   width: 100%;
   font-size: ${THEME.token?.fontSize}px;
-`;
+`
 
 export const Overlay = styled.div`
   position: absolute;
@@ -74,16 +75,17 @@ export const Overlay = styled.div`
   z-index: 2;
   background-color: ${THEME.token?.bgLightTransparent};
   opacity: 0;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke,
-    opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+    backdrop-filter;
   transition-duration: 200ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-`;
+`
 
 export const WrapperInputMode = styled.div<{ width?: string }>`
   position: relative;
-  width: ${props => (props.width ? props.width : '100%')};
-`;
+  width: ${(props) => (props.width ? props.width : '100%')};
+`
 
 export const WrapperIcon = styled.div`
   position: absolute;
@@ -101,7 +103,7 @@ export const WrapperIcon = styled.div`
   &:hover {
     background-color: rgba(0, 0, 0, 0.04);
   }
-`;
+`
 
 export const ErrorMessage = styled.div`
   width: 100%;
@@ -109,7 +111,7 @@ export const ErrorMessage = styled.div`
   color: #f44336;
   font-size: 0.688rem;
   line-height: 1.66;
-`;
+`
 
 export const UploadImageWrapper = styled.div`
   .antsomi-upload.antsomi-upload-btn {
@@ -142,4 +144,4 @@ export const UploadImageWrapper = styled.div`
       }
     }
   }
-`;
+`

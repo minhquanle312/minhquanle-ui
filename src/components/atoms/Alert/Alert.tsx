@@ -1,9 +1,9 @@
 // Libraries
-import styled from 'styled-components';
-import { Alert as AntdAlert } from 'antd';
+import styled from 'styled-components'
+import { Alert as AntdAlert } from 'antd'
 
 // Constants
-import { THEME } from 'src/constants';
+import { THEME } from 'minhquanle-ui/lib/constants'
 
 export const Alert = styled(AntdAlert)`
   padding: 10px;
@@ -17,4 +17,4 @@ export const Alert = styled(AntdAlert)`
     background-color: ${THEME.token?.bw1};
     border-color: ${THEME.token?.bw1};
   }
-`;
+`

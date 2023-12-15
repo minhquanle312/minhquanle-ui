@@ -1,13 +1,13 @@
 // Types
-import { CSSProperties } from 'react';
-import { BoxDimensionProps } from './components/CommentBox/types';
-import { DrawItemProps } from './types';
+import { CSSProperties } from 'react'
+import { BoxDimensionProps } from './components/CommentBox/types'
+import { DrawItemProps } from './types'
 
 // Constants
-import { THEME } from 'src/constants';
+import { THEME } from 'minhquanle-ui/lib/constants'
 
-export const OFFSET_CENTER = 20;
-export const SIZE_ADJUST = 1.0;
+export const OFFSET_CENTER = 20
+export const SIZE_ADJUST = 1.0
 
 export enum IGNORE_DRAW_ID_LIST {
   ICON_CLOSE = 'antsomi-package-close-draw-icon',
@@ -18,17 +18,17 @@ export enum IGNORE_DRAW_ID_LIST {
 export const COMMENT_BOX_DIMENSION_FIXED: BoxDimensionProps = {
   width: 330,
   height: 170,
-};
+}
 
 export const styleDrawItem = {
   MEDIUM: 33,
   SMALL: 31,
   LARGE: 43,
-};
+}
 export const styleRecordItem: CSSProperties = {
   height: '100%',
   padding: 10,
-};
+}
 
 export const styleContainer: CSSProperties = {
   display: 'flex',
@@ -44,7 +44,7 @@ export const styleContainer: CSSProperties = {
   bottom: '20px',
   right: '50%',
   zIndex: 999,
-};
+}
 
 export enum DRAW_KEYS {
   NULL = 'null',
@@ -75,35 +75,70 @@ export const DRAW_ACTION_LIST: Array<DrawItemProps> = [
     icon: 'icon-ants-highlight',
     label: 'Highlight',
     isShowColorList: true,
-    colorList: ['#0f2eae', '#212b37', '#1e6be5', '#17bb84', '#f5b108', '#f71007'],
+    colorList: [
+      '#0f2eae',
+      '#212b37',
+      '#1e6be5',
+      '#17bb84',
+      '#f5b108',
+      '#f71007',
+    ],
   },
   {
     key: DRAW_KEYS.COMMENT,
     icon: 'icon-ants-comment',
     label: 'Comment',
     isShowColorList: true,
-    colorList: ['#0f2eae', '#212b37', '#1e6be5', '#17bb84', '#f5b108', '#f71007'],
+    colorList: [
+      '#0f2eae',
+      '#212b37',
+      '#1e6be5',
+      '#17bb84',
+      '#f5b108',
+      '#f71007',
+    ],
   },
   {
     key: DRAW_KEYS.PEN,
     icon: 'icon-ants-free-draw',
     label: 'Pen',
     isShowColorList: true,
-    colorList: ['#0f2eae', '#212b37', '#1e6be5', '#17bb84', '#f5b108', '#f71007'],
+    colorList: [
+      '#0f2eae',
+      '#212b37',
+      '#1e6be5',
+      '#17bb84',
+      '#f5b108',
+      '#f71007',
+    ],
   },
   {
     key: DRAW_KEYS.ARROW,
     icon: 'icon-ants-arrow-grow',
     label: 'Arrow',
     isShowColorList: true,
-    colorList: ['#0f2eae', '#212b37', '#1e6be5', '#17bb84', '#f5b108', '#f71007'],
+    colorList: [
+      '#0f2eae',
+      '#212b37',
+      '#1e6be5',
+      '#17bb84',
+      '#f5b108',
+      '#f71007',
+    ],
   },
   {
     key: DRAW_KEYS.HIDE,
     icon: 'icon-ants-invisible',
     label: 'Hide',
     isShowColorList: true,
-    colorList: ['#0f2eae', '#212b37', '#1e6be5', '#17bb84', '#f5b108', '#f71007'],
+    colorList: [
+      '#0f2eae',
+      '#212b37',
+      '#1e6be5',
+      '#17bb84',
+      '#f5b108',
+      '#f71007',
+    ],
   },
   {
     key: DRAW_KEYS.NULL,
@@ -123,4 +158,4 @@ export const DRAW_ACTION_LIST: Array<DrawItemProps> = [
     label: 'Cancel',
     isShowColorList: false,
   },
-];
+]

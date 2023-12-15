@@ -1,15 +1,15 @@
 // Libraries
-import React, { useMemo, useState } from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Form, Slider } from 'antd';
+import React, { useMemo, useState } from 'react'
+import { ComponentStory, ComponentMeta } from '@storybook/react'
+import { Form, Slider } from 'antd'
 
 // Components
-import { Watermark } from './Watermark';
-import { Typography, Input, InputNumber, Space } from '../index';
-import { Table } from '../../organism';
+import { Watermark } from './Watermark'
+import { Typography, Input, InputNumber, Space } from '../index'
+import { Table } from '../../organism'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'src/constants/storybook';
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants/storybook'
 
 export default {
   title: 'Atoms/Watermark',
@@ -18,7 +18,8 @@ export default {
     width: {
       name: 'width',
       defaultValue: 120,
-      description: 'The width of the watermark, the default value of `content` is its own width',
+      description:
+        'The width of the watermark, the default value of `content` is its own width',
       table: {
         type: { summary: 'number' },
         defaultValue: { summary: 120 },
@@ -30,7 +31,8 @@ export default {
     height: {
       name: 'height',
       defaultValue: 64,
-      description: 'The height of the watermark, the default value of `content` is its own height',
+      description:
+        'The height of the watermark, the default value of `content` is its own height',
       table: {
         type: { summary: 'number' },
         defaultValue: { summary: 64 },
@@ -122,15 +124,15 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Watermark>;
+} as ComponentMeta<typeof Watermark>
 
-const Template: ComponentStory<typeof Watermark> = args => (
+const Template: ComponentStory<typeof Watermark> = (args) => (
   <Watermark content="Antsomi" {...args}>
     <div style={{ height: 300 }} />
   </Watermark>
-);
+)
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 
 // Examples
 
@@ -138,15 +140,16 @@ export const MultilineWatermark = () => (
   <Watermark content={['Antsomi', 'Happy Working']}>
     <div style={{ height: 500 }} />
   </Watermark>
-);
+)
 
 MultilineWatermark.parameters = {
   docs: {
     description: {
-      story: 'Use `content` to set a string array to specify multi-line text watermark content. ',
+      story:
+        'Use `content` to set a string array to specify multi-line text watermark content. ',
     },
   },
-};
+}
 
 export const ImageWatermark = () => (
   <Watermark
@@ -156,7 +159,7 @@ export const ImageWatermark = () => (
   >
     <div style={{ height: 500 }} />
   </Watermark>
-);
+)
 
 ImageWatermark.parameters = {
   docs: {
@@ -165,22 +168,22 @@ ImageWatermark.parameters = {
         'Specify the image address via `image`. To ensure that the image is high definition and not stretched, set the width and height, and upload at least twice the width and height of the logo image address.',
     },
   },
-};
+}
 
-const { Paragraph } = Typography;
+const { Paragraph } = Typography
 
 interface WatermarkConfig {
-  content: string;
-  color: string;
-  fontSize: number;
-  zIndex: number;
-  rotate: number;
-  gap: [number, number];
-  offset?: [number, number];
+  content: string
+  color: string
+  fontSize: number
+  zIndex: number
+  rotate: number
+  gap: [number, number]
+  offset?: [number, number]
 }
 
 export const CustomConfiguration = () => {
-  const [form] = Form.useForm();
+  const [form] = Form.useForm()
   const [config, setConfig] = useState<WatermarkConfig>({
     content: 'Antsomi',
     color: 'rgba(0, 0, 0, 0.15)',
@@ -189,8 +192,8 @@ export const CustomConfiguration = () => {
     rotate: -22,
     gap: [100, 100],
     offset: undefined,
-  });
-  const { content, color, fontSize, zIndex, rotate, gap, offset } = config;
+  })
+  const { content, color, fontSize, zIndex, rotate, gap, offset } = config
 
   const watermarkProps = useMemo(
     () => ({
@@ -204,35 +207,38 @@ export const CustomConfiguration = () => {
       gap,
       offset,
     }),
-    [config],
-  );
+    [config]
+  )
 
   return (
     <div style={{ display: 'flex' }}>
       <Watermark {...watermarkProps}>
         <Typography>
           <Paragraph>
-            The light-speed iteration of the digital world makes products more complex. However,
-            human consciousness and attention resources are limited. Facing this design
-            contradiction, the pursuit of natural interaction will be the consistent direction of
-            Ant Design.
+            The light-speed iteration of the digital world makes products more
+            complex. However, human consciousness and attention resources are
+            limited. Facing this design contradiction, the pursuit of natural
+            interaction will be the consistent direction of Ant Design.
           </Paragraph>
           <Paragraph>
-            Natural user cognition: According to cognitive psychology, about 80% of external
-            information is obtained through visual channels. The most important visual elements in
-            the interface design, including layout, colors, illustrations, icons, etc., should fully
-            absorb the laws of nature, thereby reducing the user&apos;s cognitive cost and bringing
-            authentic and smooth feelings. In some scenarios, opportunely adding other sensory
-            channels such as hearing, touch can create a richer and more natural product experience.
+            Natural user cognition: According to cognitive psychology, about 80%
+            of external information is obtained through visual channels. The
+            most important visual elements in the interface design, including
+            layout, colors, illustrations, icons, etc., should fully absorb the
+            laws of nature, thereby reducing the user&apos;s cognitive cost and
+            bringing authentic and smooth feelings. In some scenarios,
+            opportunely adding other sensory channels such as hearing, touch can
+            create a richer and more natural product experience.
           </Paragraph>
           <Paragraph>
-            Natural user behavior: In the interaction with the system, the designer should fully
-            understand the relationship between users, system roles, and task objectives, and also
-            contextually organize system functions and services. At the same time, a series of
-            methods such as behavior analysis, artificial intelligence and sensors could be applied
-            to assist users to make effective decisions and reduce extra operations of users, to
-            save users&apos; mental and physical resources and make human-computer interaction more
-            natural.
+            Natural user behavior: In the interaction with the system, the
+            designer should fully understand the relationship between users,
+            system roles, and task objectives, and also contextually organize
+            system functions and services. At the same time, a series of methods
+            such as behavior analysis, artificial intelligence and sensors could
+            be applied to assist users to make effective decisions and reduce
+            extra operations of users, to save users&apos; mental and physical
+            resources and make human-computer interaction more natural.
           </Paragraph>
         </Typography>
         <img
@@ -258,7 +264,7 @@ export const CustomConfiguration = () => {
         layout="vertical"
         initialValues={config}
         onValuesChange={(_, values) => {
-          setConfig(values);
+          setConfig(values)
         }}
       >
         <Form.Item name="content" label="Content">
@@ -298,8 +304,8 @@ export const CustomConfiguration = () => {
         </Form.Item>
       </Form>
     </div>
-  );
-};
+  )
+}
 
 export const Font: ComponentStory<any> = () => {
   const dataSources = [
@@ -338,10 +344,16 @@ export const Font: ComponentStory<any> = () => {
       type: 'none | normal | italic | oblique',
       default: 'normal',
     },
-  ];
+  ]
 
-  return <Table dataSource={dataSources} columns={TABLE_API_COLUMNS} pagination={false} />;
-};
+  return (
+    <Table
+      dataSource={dataSources}
+      columns={TABLE_API_COLUMNS}
+      pagination={false}
+    />
+  )
+}
 
 Font.parameters = {
   docs: {
@@ -349,4 +361,4 @@ Font.parameters = {
       code: null,
     },
   },
-};
+}

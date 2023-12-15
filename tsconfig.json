@@ -82,9 +82,9 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "src/*": ["./src/*"],
-      "minhquanle-ui": ["./src/components/index.ts"],
-      "minhquanle-ui/lib/*": ["./src/components/*"]
+      // "src/*": ["./src/*"],
+      "minhquanle-ui/lib/*": ["./src/*"]
+      // "minhquanle-ui/lib/*": ["./src/components/*"]
     },
     "target": "ES6",
     "module": "ESNext",

@@ -6,16 +6,16 @@ import { SettingWrapper } from '../SettingWrapper'
 import {
   ColorPicker,
   ColorPickerProps,
-} from 'minhquanle-ui/lib/components/molecules/ColorPicker'
+} from 'minhquanle-ui/es/components/molecules/ColorPicker'
 
 // Utils
-import { handleError } from 'minhquanle-ui/lib/utils'
-import { Button, Icon, Text } from 'minhquanle-ui/lib/components/atoms'
+import { handleError } from 'minhquanle-ui/es/utils'
+import { Button, Icon, Text } from 'minhquanle-ui/es/components/atoms'
 
 // Styled
 import { ButtonPreset, PresetColor, PresetWrapper } from './styled'
 
-const PATH = 'minhquanle-ui/lib/components/molecules/ColorSetting/index.tsx'
+const PATH = 'minhquanle-ui/es/components/molecules/ColorSetting/index.tsx'
 
 interface ColorSettingProps extends ColorPickerProps {
   label: string

@@ -3,7 +3,7 @@ import React, { CSSProperties, memo } from 'react'
 import classNames from 'classnames'
 
 // Atoms
-import { Text } from 'minhquanle-ui/lib/components/atoms'
+import { Text } from 'minhquanle-ui/es/components/atoms'
 
 // Styled
 import { StyledSettingWrapper } from './styled'

@@ -9,10 +9,10 @@ import { ColumnsType } from 'antd/es/table'
 import { TData } from './types'
 
 // Hooks
-import { useDeepCompareEffect } from 'minhquanle-ui/lib/hooks'
+import { useDeepCompareEffect } from 'minhquanle-ui/es/hooks'
 
 // Components
-import { Typography } from 'minhquanle-ui/lib/components/atoms/Typography'
+import { Typography } from 'minhquanle-ui/es/components/atoms/Typography'
 
 // Constants
 import { TEST_DATA } from './constants'

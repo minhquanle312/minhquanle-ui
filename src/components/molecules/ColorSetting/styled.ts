@@ -2,10 +2,10 @@
 import styled from 'styled-components'
 
 // Image
-import TransparentSvg from 'minhquanle-ui/lib/assets/svg/transparent.svg'
+import TransparentSvg from 'minhquanle-ui/es/assets/svg/transparent.svg'
 
 // Components
-import { Button } from 'minhquanle-ui/lib/components/atoms'
+import { Button } from 'minhquanle-ui/es/components/atoms'
 
 export const ColorSettingWrapper = styled.div``
 

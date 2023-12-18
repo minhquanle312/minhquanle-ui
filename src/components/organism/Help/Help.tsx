@@ -18,12 +18,12 @@ import {
 } from './types'
 import { ControlPosition } from 'react-draggable'
 import type { MenuProps, TreeProps } from 'antd'
-import { CaptureTypeProps } from 'minhquanle-ui/lib/components/molecules/CaptureScreen/types'
+import { CaptureTypeProps } from 'minhquanle-ui/es/components/molecules/CaptureScreen/types'
 // Assets
 import '@antscorp/icons/main.css'
 
 // Services
-import TicketService from 'minhquanle-ui/lib/services/Ticket'
+import TicketService from 'minhquanle-ui/es/services/Ticket'
 
 // Component
 import {
@@ -74,7 +74,7 @@ import {
 } from '@ant-design/icons'
 
 // Atoms
-import { Input } from 'minhquanle-ui/lib/components/atoms'
+import { Input } from 'minhquanle-ui/es/components/atoms'
 
 // Molecules
 import {
@@ -82,7 +82,7 @@ import {
   Select,
   CaptureScreen,
   ChatBox,
-} from 'minhquanle-ui/lib/components/molecules'
+} from 'minhquanle-ui/es/components/molecules'
 
 // Constants
 import {
@@ -97,7 +97,7 @@ import {
   TABS_SHARING_SCREEN,
   TICKET_CUSTOM_MESSAGE_KEY,
 } from './constants'
-import { THEME } from 'minhquanle-ui/lib/constants'
+import { THEME } from 'minhquanle-ui/es/constants'
 
 // Utils
 import {
@@ -105,7 +105,7 @@ import {
   convertBlobToFile,
   generateUniqueId,
   mergeAudioStreams,
-} from 'minhquanle-ui/lib/components/molecules/CaptureScreen/utils'
+} from 'minhquanle-ui/es/components/molecules/CaptureScreen/utils'
 import { expendDefault, formatParams, postCustomEvent } from './utils'
 import { DataNode, DirectoryTreeProps } from 'antd/es/tree'
 import {
@@ -114,7 +114,7 @@ import {
   OpenUrlIcon,
   BugIcon,
   RequestIcon,
-} from 'minhquanle-ui/lib/components/icons'
+} from 'minhquanle-ui/es/components/icons'
 
 const antIcon = <LoadingOutlined style={{ fontSize: 40 }} spin />
 const Loading = ({ isLoading, height, width }) =>

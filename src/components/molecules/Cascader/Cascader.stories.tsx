@@ -11,7 +11,7 @@ import { Radio, Divider, Space } from '../../atoms'
 import { Table } from '../../organism'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants'
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/es/constants'
 
 export default {
   title: 'Molecules/Cascader',

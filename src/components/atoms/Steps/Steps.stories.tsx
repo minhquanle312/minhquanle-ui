@@ -15,7 +15,7 @@ import { Button, message, Divider, Popover, Space, Radio } from '../index'
 import { Table } from '../../organism'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants'
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/es/constants'
 
 export default {
   title: 'Atoms/Steps',

@@ -2,7 +2,7 @@
 import React from 'react'
 
 // Components
-import { Text } from 'minhquanle-ui/lib/components/atoms'
+import { Text } from 'minhquanle-ui/es/components/atoms'
 
 // Types
 import type { RadioGroupProps as AntdRadioGroupProps } from 'antd'

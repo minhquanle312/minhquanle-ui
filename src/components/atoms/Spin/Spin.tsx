@@ -9,7 +9,7 @@ import { SpinProps as AntdSpinProps } from 'antd'
 import { StyledSpin } from './styled'
 
 // Constants
-import { THEME } from 'minhquanle-ui/lib/constants'
+import { THEME } from 'minhquanle-ui/es/constants'
 
 export interface TSpinProps extends AntdSpinProps {
   indicatorSize?: number

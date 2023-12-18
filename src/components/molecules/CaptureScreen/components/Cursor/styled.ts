@@ -1,5 +1,5 @@
 // Libraries
-import { THEME } from 'minhquanle-ui/lib/constants'
+import { THEME } from 'minhquanle-ui/es/constants'
 
 // Constants
 import styled, { css } from 'styled-components'

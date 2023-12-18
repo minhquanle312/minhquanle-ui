@@ -2,7 +2,7 @@
 import React from 'react'
 
 // Atoms
-import { Button, Icon } from 'minhquanle-ui/lib/components/atoms'
+import { Button, Icon } from 'minhquanle-ui/es/components/atoms'
 
 // Molecules
 import { SettingWrapper } from '../SettingWrapper'

@@ -8,7 +8,7 @@ import { Input as InputAntd } from 'antd'
 import { InputProps } from './Input'
 
 // Constants
-import { THEME } from 'minhquanle-ui/lib/constants'
+import { THEME } from 'minhquanle-ui/es/constants'
 
 export const StyledInput = styled(InputAntd)<InputProps>`
   /* height: 30px;

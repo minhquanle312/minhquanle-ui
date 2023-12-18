@@ -4,7 +4,7 @@ import {
   VALUE_LEFT_WINDOW,
   VALUE_V,
   VALUE_Z,
-} from 'minhquanle-ui/lib/constants/keyCode'
+} from 'minhquanle-ui/es/constants/keyCode'
 /**
  * Function to parse search params string to object
  * @param {string} searchParams - search params

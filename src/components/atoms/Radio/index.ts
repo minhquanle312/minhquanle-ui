@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { Radio as AntdRadio } from 'antd'
 
 // Constants
-import { THEME } from 'minhquanle-ui/lib/constants'
+import { THEME } from 'minhquanle-ui/es/constants'
 
 export const Radio = styled(AntdRadio)`
   font-family: 'Roboto';

@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components'
 import AntsIcon from '@antscorp/icons'
 
 // Constants
-import { THEME } from 'minhquanle-ui/lib/constants'
+import { THEME } from 'minhquanle-ui/es/constants'
 
 interface IconProps {
   size?: number

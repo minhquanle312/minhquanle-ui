@@ -24,8 +24,8 @@ import { AdvancedPicker } from '../AdvancedPicker'
 import { ADVANCED_RANGE_PICKER_FORMAT } from './constants'
 
 // Utils
-import { handleError } from 'minhquanle-ui/lib/utils'
-import { translations } from 'minhquanle-ui/lib/locales/translations'
+import { handleError } from 'minhquanle-ui/es/utils'
+import { translations } from 'minhquanle-ui/es/locales/translations'
 
 export interface AdvancedRangePickerProps {
   disabled?: boolean
@@ -40,7 +40,7 @@ export interface AdvancedRangePickerProps {
 }
 
 const PATH =
- 'minhquanle-ui/lib/components/molecules/DatePicker/components/AdvancedRangePicker/AdvancedRangePicker.tsx'
+  'minhquanle-ui/es/components/molecules/DatePicker/components/AdvancedRangePicker/AdvancedRangePicker.tsx'
 
 export const AdvancedRangePicker: React.FC<AdvancedRangePickerProps> = (
   props

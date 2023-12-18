@@ -3,7 +3,7 @@ import React from 'react'
 import { Global, css } from '@emotion/react'
 
 // Constants
-import { THEME } from 'minhquanle-ui/lib/constants'
+import { THEME } from 'minhquanle-ui/es/constants'
 
 // FontAwesome
 import { library } from '@fortawesome/fontawesome-svg-core'

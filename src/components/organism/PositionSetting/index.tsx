@@ -2,7 +2,7 @@
 import React, { CSSProperties, memo } from 'react'
 
 // Atoms
-import { Button, Icon, Popover } from 'minhquanle-ui/lib/components/atoms'
+import { Button, Icon, Popover } from 'minhquanle-ui/es/components/atoms'
 
 // Molecules
 import { SettingWrapper } from '../../molecules/SettingWrapper'
@@ -15,10 +15,10 @@ import { SPACING_SETTINGS_DEFAULT, SPACING_STYLES_DEFAULT } from './config'
 import { TPositionSettings, TPositionStyles } from './types'
 
 // Utils
-import { getNumberFromString } from 'minhquanle-ui/lib/utils/common'
-import { handleError } from 'minhquanle-ui/lib/utils'
+import { getNumberFromString } from 'minhquanle-ui/es/utils/common'
+import { handleError } from 'minhquanle-ui/es/utils'
 
-const PATH = 'minhquanle-ui/lib/components/organism/PositionSetting/index.tsx'
+const PATH = 'minhquanle-ui/es/components/organism/PositionSetting/index.tsx'
 
 interface PositionSettingProps {
   labelWrapper?: string

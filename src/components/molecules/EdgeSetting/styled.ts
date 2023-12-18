@@ -2,7 +2,7 @@
 import styled from 'styled-components'
 
 // Constant
-import { THEME } from 'minhquanle-ui/lib/constants'
+import { THEME } from 'minhquanle-ui/es/constants'
 
 export const EdgeSettingWrapper = styled.div`
   color: ${THEME.token?.colorIcon} !important;

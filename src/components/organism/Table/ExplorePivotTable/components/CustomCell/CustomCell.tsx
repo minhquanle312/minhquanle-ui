@@ -8,7 +8,7 @@ import { TCellType } from '../../types'
 import { BarCell, HeatCell, StyledValue } from './styled'
 
 // Utils
-import { generateHeatMapColor, hexToRgb } from 'minhquanle-ui/lib/utils'
+import { generateHeatMapColor, hexToRgb } from 'minhquanle-ui/es/utils'
 import { GRAND_TOTAL_KEY } from '../../constants'
 
 interface CustomCellProps {

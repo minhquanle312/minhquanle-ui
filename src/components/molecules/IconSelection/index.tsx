@@ -3,13 +3,13 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 
 // Hooks
-import { useDeepCompareEffect } from 'minhquanle-ui/lib/hooks'
+import { useDeepCompareEffect } from 'minhquanle-ui/es/hooks'
 
 // Atoms
-import { Button, Icon, ScrollBox } from 'minhquanle-ui/lib/components/atoms'
+import { Button, Icon, ScrollBox } from 'minhquanle-ui/es/components/atoms'
 
 // Molecules
-import { Modal, InputSearch } from 'minhquanle-ui/lib/components/molecules'
+import { Modal, InputSearch } from 'minhquanle-ui/es/components/molecules'
 
 // Components
 import { IconSelectionRenderer } from './components/Icon'
@@ -20,7 +20,7 @@ import {
   LIMIT_ICONS_SHOW,
   LIST_ICON_BY_TYPE,
 } from './constants'
-import { THEME } from 'minhquanle-ui/lib/constants'
+import { THEME } from 'minhquanle-ui/es/constants'
 
 // Styled
 import {

@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 
 // Constants
-import { THEME } from 'minhquanle-ui/lib/constants'
+import { THEME } from 'minhquanle-ui/es/constants'
 
 interface ScrollBoxProps extends React.HTMLAttributes<HTMLDivElement> {
   height?: number

@@ -2,10 +2,10 @@
 import React, { CSSProperties, memo } from 'react'
 
 // Components
-import { Icon, Input } from 'minhquanle-ui/lib/components/atoms'
+import { Icon, Input } from 'minhquanle-ui/es/components/atoms'
 
 // Types
-import { InputProps } from 'minhquanle-ui/lib/components/atoms/Input'
+import { InputProps } from 'minhquanle-ui/es/components/atoms/Input'
 
 // Styled
 import { Wrapper } from './styled'

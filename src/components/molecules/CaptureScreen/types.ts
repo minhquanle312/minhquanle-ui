@@ -3,10 +3,10 @@ import ImageEditor from 'tui-image-editor'
 
 // Constants
 import { DRAW_KEYS } from './constants'
-import { ATTACH_KEYS } from 'minhquanle-ui/lib/components/organism/Help/constants'
+import { ATTACH_KEYS } from 'minhquanle-ui/es/components/organism/Help/constants'
 
 // Types
-import { StreamTrackProps } from 'minhquanle-ui/lib/components/organism/Help/types'
+import { StreamTrackProps } from 'minhquanle-ui/es/components/organism/Help/types'
 import { ControlPosition } from 'react-draggable'
 
 interface RecorderConfigProps {

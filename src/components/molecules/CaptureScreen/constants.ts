@@ -4,7 +4,7 @@ import { BoxDimensionProps } from './components/CommentBox/types'
 import { DrawItemProps } from './types'
 
 // Constants
-import { THEME } from 'minhquanle-ui/lib/constants'
+import { THEME } from 'minhquanle-ui/es/constants'
 
 export const OFFSET_CENTER = 20
 export const SIZE_ADJUST = 1.0

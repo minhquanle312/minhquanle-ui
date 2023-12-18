@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components'
 import { InputNumber as AntdInputNumber } from 'antd'
 
 // Constants
-import { THEME } from 'minhquanle-ui/lib/constants'
+import { THEME } from 'minhquanle-ui/es/constants'
 
 export const InputNumberWrapper = styled(AntdInputNumber)`
   height: 30px;

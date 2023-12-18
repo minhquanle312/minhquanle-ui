@@ -6,10 +6,10 @@ import rehypeHighlight from 'rehype-highlight'
 import 'highlight.js/styles/vs2015.css'
 
 // Atoms
-import { Typography } from 'minhquanle-ui/lib/components/atoms'
+import { Typography } from 'minhquanle-ui/es/components/atoms'
 
 // Components
-import { GPTIconV3, UserIcon } from 'minhquanle-ui/lib/components/icons'
+import { GPTIconV3, UserIcon } from 'minhquanle-ui/es/components/icons'
 
 // Type
 import { IChatBoxMessageProps, Role } from './types'

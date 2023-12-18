@@ -2,7 +2,7 @@
 import styled, { css } from 'styled-components'
 
 // Constants
-import { THEME } from 'minhquanle-ui/lib/constants'
+import { THEME } from 'minhquanle-ui/es/constants'
 
 interface InputNumberWrapperProps {
   isNegative?: boolean

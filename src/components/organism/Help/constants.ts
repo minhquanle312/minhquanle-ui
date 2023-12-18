@@ -1,7 +1,7 @@
 import { title } from 'process'
 import { ITabShareScreenProps } from './types'
-import { generateUniqueId } from 'minhquanle-ui/lib/components/molecules/CaptureScreen/utils'
-import { ControlPositionProps } from 'minhquanle-ui/lib/components/molecules/CaptureScreen/types'
+import { generateUniqueId } from 'minhquanle-ui/es/components/molecules/CaptureScreen/utils'
+import { ControlPositionProps } from 'minhquanle-ui/es/components/molecules/CaptureScreen/types'
 
 export const TICKET_CUSTOM_MESSAGE_KEY = 'TICKET_CUSTOM_MESSAGE_KEY'
 export const PORTALS_ANTSOMI_PACKAGE_UI_KEY = 'PORTALS_ANTSOMI_PACKAGE_UI_KEY'

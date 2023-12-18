@@ -16,10 +16,10 @@ import { ColumnsType, TableProps } from 'antd/es/table'
 // Components
 import { Table } from './Table'
 import { Space, Radio, Divider, Tag, Button } from '../../atoms'
-import { TableApiTypeTag } from 'minhquanle-ui/lib/stories/components'
+import { TableApiTypeTag } from 'minhquanle-ui/es/stories/components'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants'
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/es/constants'
 
 export default {
   title: 'Organisms/Table',

@@ -33,10 +33,10 @@ import { Space } from './Space'
 import { SpaceSize } from 'antd/es/space'
 import { Tag } from '../Tag'
 import { Table } from '../../organism'
-import { TableApiTypeTag } from 'minhquanle-ui/lib/stories/components'
+import { TableApiTypeTag } from 'minhquanle-ui/es/stories/components'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants'
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/es/constants'
 import Compact from 'antd/es/space/Compact'
 
 export default {

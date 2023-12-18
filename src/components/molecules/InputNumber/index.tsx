@@ -2,7 +2,7 @@
 import React, { ReactNode, useEffect, useMemo, useState } from 'react'
 
 // Components
-import { Icon, RequiredLabel, Text } from 'minhquanle-ui/lib/components/atoms'
+import { Icon, RequiredLabel, Text } from 'minhquanle-ui/es/components/atoms'
 import { InputNumberWrapper } from './styled'
 
 // Types
@@ -10,8 +10,8 @@ import type { InputNumberProps as AntdInputNumberProps } from 'antd'
 import { valueType } from 'antd/lib/statistic/utils'
 
 // Utils
-import { getPreventKeyboardAction } from 'minhquanle-ui/lib/utils/web'
-import { handleError } from 'minhquanle-ui/lib/utils'
+import { getPreventKeyboardAction } from 'minhquanle-ui/es/utils/web'
+import { handleError } from 'minhquanle-ui/es/utils'
 
 export interface InputNumberProps extends AntdInputNumberProps {
   focused?: boolean
@@ -20,7 +20,7 @@ export interface InputNumberProps extends AntdInputNumberProps {
   disableUndo?: boolean
 }
 
-const PATH = 'minhquanle-ui/lib/app/components/molecules/InputNumber/index.tsx'
+const PATH = 'minhquanle-ui/es/app/components/molecules/InputNumber/index.tsx'
 
 export const InputNumber: React.FC<InputNumberProps> = (props) => {
   const { label, required, focused, errorMsg, onChange, ...restOf } = props

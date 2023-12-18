@@ -1,24 +1,17 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import mkcert from 'vite-plugin-mkcert'
 
 export default defineConfig({
-  plugins: [react()],
   resolve: {
     alias: {
-      src: resolve(__dirname, 'minhquanle-ui/lib'),
+      // 'minhquanle-ui/es': './src',
+      'minhquanle-ui/es': resolve(__dirname, './src'),
+      // src: resolve(__dirname, 'minhquanle-ui/es'),
       // src: './src',
     },
   },
-  build: {
-    lib: {
-      entry: resolve(__dirname, 'minhquanle-ui/lib/index.ts'),
-      name: 'minhquanle-ui',
-
-      fileName: 'index',
-    },
-    rollupOptions: {
-      external: ['react'],
-    },
-  },
+  server: { https: true },
+  plugins: [react(), mkcert()],
 })

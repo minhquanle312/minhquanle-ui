@@ -2,7 +2,7 @@
 import styled from 'styled-components'
 
 // Constants
-import { THEME } from 'minhquanle-ui/lib/constants'
+import { THEME } from 'minhquanle-ui/es/constants'
 
 export const RequiredLabelWrapper = styled.div``
 

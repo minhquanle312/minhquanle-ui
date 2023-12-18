@@ -3,7 +3,7 @@ import React, { memo } from 'react'
 import { ModalProps as AntdModalProps, ModalFuncProps } from 'antd'
 
 // Atoms
-import { Button, Icon, Spin } from 'minhquanle-ui/lib/components/atoms'
+import { Button, Icon, Spin } from 'minhquanle-ui/es/components/atoms'
 
 // Styled
 import { StyledModal, WrapperSpin } from './styled'

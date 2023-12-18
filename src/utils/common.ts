@@ -3,7 +3,7 @@
 import axios from 'axios'
 
 // Constants
-import { MESSAGES, PORTAL_KEYS } from 'minhquanle-ui/lib/services/constants'
+import { MESSAGES, PORTAL_KEYS } from 'minhquanle-ui/es/services/constants'
 
 /**
  * Function to reorder list

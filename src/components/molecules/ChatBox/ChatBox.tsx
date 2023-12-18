@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import axios from 'axios'
 
 // Atoms
-import { Button, Typography } from 'minhquanle-ui/lib/components/atoms'
+import { Button, Typography } from 'minhquanle-ui/es/components/atoms'
 import { Input as AntdInput } from 'antd'
 
 // Components
@@ -14,7 +14,7 @@ import {
   CloseIcon,
   PlaneIcon,
   WarningIcon,
-} from 'minhquanle-ui/lib/components/icons'
+} from 'minhquanle-ui/es/components/icons'
 
 // Styled
 import {

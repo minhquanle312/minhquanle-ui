@@ -10,7 +10,7 @@ import {
 } from 'react-color/lib/components/common'
 
 // Atoms
-import { Button, Divider, Icon, Text } from 'minhquanle-ui/lib/components/atoms'
+import { Button, Divider, Icon, Text } from 'minhquanle-ui/es/components/atoms'
 
 // Molecules
 import { InputNumber } from '../../InputNumber'
@@ -25,10 +25,10 @@ import {
 } from './styled'
 
 // Utils
-import { handleError } from 'minhquanle-ui/lib/utils'
+import { handleError } from 'minhquanle-ui/es/utils'
 
 const PATH =
-  'minhquanle-ui/lib/components/molecules/ColorPicker/CustomPicker/index.tsx'
+  'minhquanle-ui/es/components/molecules/ColorPicker/CustomPicker/index.tsx'
 
 interface CustomPickerProps {
   [key: string]: any

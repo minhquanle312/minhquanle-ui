@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 import { Modal as AntdModal } from 'antd'
 
 // Constants
-import { THEME } from 'minhquanle-ui/lib/constants'
+import { THEME } from 'minhquanle-ui/es/constants'
 
 export interface CustomModalProps {
   header?: React.ReactNode

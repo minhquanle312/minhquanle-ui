@@ -4,13 +4,13 @@
 import React, { useState, useEffect, ReactNode } from 'react'
 
 // Components
-import { Icon, Input, Popover } from 'minhquanle-ui/lib/components/atoms'
+import { Icon, Input, Popover } from 'minhquanle-ui/es/components/atoms'
 
 // Styled
 import { ColorPickerWrapper } from './styled'
 
 // Utils
-import { hexWithAlpha } from 'minhquanle-ui/lib/utils/color'
+import { hexWithAlpha } from 'minhquanle-ui/es/utils/color'
 import CustomPicker from './CustomPicker'
 
 export interface ColorPickerProps {

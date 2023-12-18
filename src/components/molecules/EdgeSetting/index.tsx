@@ -8,7 +8,7 @@ import {
   Icon,
   Text,
   InputNumber,
-} from 'minhquanle-ui/lib/components/atoms'
+} from 'minhquanle-ui/es/components/atoms'
 
 // Styled
 import {
@@ -18,13 +18,13 @@ import {
 } from './styled'
 
 // Utils
-import { handleError } from 'minhquanle-ui/lib/utils'
+import { handleError } from 'minhquanle-ui/es/utils'
 
 // Types
 import { AlignEdit } from '../AlignSetting'
 
 // Constants
-import { THEME } from 'minhquanle-ui/lib/constants'
+import { THEME } from 'minhquanle-ui/es/constants'
 
 type MarginProps = number | 'auto'
 type ValueProps = [MarginProps, MarginProps, MarginProps, MarginProps]
@@ -42,7 +42,7 @@ export const UNIT = {
     label: '%',
   },
 }
-const PATH = 'minhquanle-ui/lib/components/molecules/EdgeSetting/index.tsx'
+const PATH = 'minhquanle-ui/es/components/molecules/EdgeSetting/index.tsx'
 
 type DataProps = {
   values: ValueProps

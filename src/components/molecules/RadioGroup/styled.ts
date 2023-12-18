@@ -1,6 +1,6 @@
 // Libraries
-import { Radio } from 'minhquanle-ui/lib/components/atoms'
-import { THEME } from 'minhquanle-ui/lib/constants'
+import { Radio } from 'minhquanle-ui/es/components/atoms'
+import { THEME } from 'minhquanle-ui/es/constants'
 import styled from 'styled-components'
 
 export const RadioGroupWrapper = styled.div`

@@ -44,14 +44,14 @@ import {
 
 // Components
 import Icon from '@antscorp/icons'
-import { Button } from 'minhquanle-ui/lib/components/atoms'
+import { Button } from 'minhquanle-ui/es/components/atoms'
 import { PopupDraggable } from '../PopupDraggable'
 import { Cursor } from './components/Cursor'
 import { CommentBox } from './components/CommentBox'
 import { Progress } from 'antd'
 
 // Constants
-import { THEME } from 'minhquanle-ui/lib/constants'
+import { THEME } from 'minhquanle-ui/es/constants'
 import {
   DRAW_ACTION_LIST,
   DRAW_KEYS,
@@ -64,7 +64,7 @@ import {
   styleRecordItem,
   styleDrawItem,
 } from './constants'
-import { ATTACH_KEYS } from 'minhquanle-ui/lib/components/organism/Help/constants'
+import { ATTACH_KEYS } from 'minhquanle-ui/es/components/organism/Help/constants'
 
 // Hooks
 import { useImageEditor } from './hooks/useImageEditor'
@@ -82,7 +82,7 @@ import {
   MuteIcon,
   PauseIcon,
   StopRecordIcon,
-} from 'minhquanle-ui/lib/components/icons'
+} from 'minhquanle-ui/es/components/icons'
 
 const CaptureScreen = (props: IImageEditorProps) => {
   const { captureType, src, defaultPositions, recorderConfigs, callback } =

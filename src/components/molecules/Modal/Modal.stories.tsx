@@ -12,10 +12,10 @@ import {
 import { Modal } from './Modal'
 import { Space, Button, Tag } from '../../atoms'
 import { Table } from '../../organism'
-import { TableApiTypeTag } from 'minhquanle-ui/lib/stories/components'
+import { TableApiTypeTag } from 'minhquanle-ui/es/stories/components'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants'
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/es/constants'
 
 export default {
   title: 'Molecules/Modal',

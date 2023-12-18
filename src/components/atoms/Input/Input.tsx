@@ -15,14 +15,14 @@ import React, {
 import { InputProps as AntdInputProps } from 'antd'
 
 // Components
-import { RequiredLabel, Text } from 'minhquanle-ui/lib/components/atoms'
+import { RequiredLabel, Text } from 'minhquanle-ui/es/components/atoms'
 
 // Utils
-import { handleError } from 'minhquanle-ui/lib/utils'
-import { getPreventKeyboardAction } from 'minhquanle-ui/lib/utils/web'
+import { handleError } from 'minhquanle-ui/es/utils'
+import { getPreventKeyboardAction } from 'minhquanle-ui/es/utils/web'
 import { StyledInput } from './styled'
 
-const PATH = 'minhquanle-ui/lib/components/atoms/Input/Input.tsx'
+const PATH = 'minhquanle-ui/es/components/atoms/Input/Input.tsx'
 
 export interface InputProps extends AntdInputProps {
   noborder?: 'true' | 'false' | boolean

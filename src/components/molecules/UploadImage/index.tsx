@@ -4,10 +4,10 @@ import React, { useEffect, useState, useRef } from 'react'
 import Upload, { UploadProps as AntdUploadProps } from 'antd/lib/upload'
 
 // Hooks
-import { useDeepCompareEffect } from 'minhquanle-ui/lib/hooks'
+import { useDeepCompareEffect } from 'minhquanle-ui/es/hooks'
 
 // Assets
-import PlaceholderImage from 'minhquanle-ui/lib/assets/images/placeholder-image.png'
+import PlaceholderImage from 'minhquanle-ui/es/assets/images/placeholder-image.png'
 import MediaIcon from './MediaIcon'
 
 // Service
@@ -16,7 +16,7 @@ import {
   createSavedImage,
   deleteSavedImage,
   getListingSavedImage,
-} from 'minhquanle-ui/lib/services/MediaTemplateDesign/UploadFile'
+} from 'minhquanle-ui/es/services/MediaTemplateDesign/UploadFile'
 
 // Atoms
 import {
@@ -27,17 +27,17 @@ import {
   Spin,
   Input,
   Space,
-} from 'minhquanle-ui/lib/components/atoms'
+} from 'minhquanle-ui/es/components/atoms'
 
 // Molecules
 import {
   Modal,
   InputSearch,
   Select,
-} from 'minhquanle-ui/lib/components/molecules'
+} from 'minhquanle-ui/es/components/molecules'
 
 // Model
-import { SavedImage } from 'minhquanle-ui/lib/models/SavedImage'
+import { SavedImage } from 'minhquanle-ui/es/models/SavedImage'
 
 // Styled
 import {
@@ -55,10 +55,10 @@ import {
 } from './styled'
 
 // Utils
-import { handleError, safeParse } from 'minhquanle-ui/lib/utils'
+import { handleError, safeParse } from 'minhquanle-ui/es/utils'
 
 // Constants
-import { THEME } from 'minhquanle-ui/lib/constants'
+import { THEME } from 'minhquanle-ui/es/constants'
 
 interface UploadImageProps extends AntdUploadProps {
   labelHeadingModal?: string
@@ -109,7 +109,7 @@ interface UploadImageObject {
   url: string
 }
 
-const PATH = 'minhquanle-ui/lib/components/molecules/UploadImage/index.tsx'
+const PATH = 'minhquanle-ui/es/components/molecules/UploadImage/index.tsx'
 
 export const UploadImage: React.FC<UploadImageProps> = (props) => {
   const {

@@ -6,16 +6,16 @@ import React, { ReactNode, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
 // Constants
-import { THEME } from 'minhquanle-ui/lib/constants'
+import { THEME } from 'minhquanle-ui/es/constants'
 
 // Style
 import { GlobalStyle } from './GlobalStyle'
 
 // Types
-import { TLocale } from 'minhquanle-ui/lib/types'
+import { TLocale } from 'minhquanle-ui/es/types'
 
 // Initialize languages
-import 'minhquanle-ui/lib/locales/i18n'
+import 'minhquanle-ui/es/locales/i18n'
 
 interface ConfigProviderProps extends Omit<AntdConfigProviderProps, 'locale'> {
   children?: ReactNode

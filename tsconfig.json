@@ -82,25 +82,34 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      // "src/*": ["./src/*"],
-      "minhquanle-ui/lib/*": ["./src/*"]
-      // "minhquanle-ui/lib/*": ["./src/components/*"]
+      "minhquanle-ui/es/*": ["./src/*"]
     },
     "target": "ES6",
     "module": "ESNext",
     "strict": true,
+    // "sourceMap": true,
+    "resolveJsonModule": true,
     "esModuleInterop": true,
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
-    // "moduleResolution": "Bundler",
-    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "moduleResolution": "Node",
     "jsx": "react",
     "jsxFactory": "React.createElement",
     "jsxFragmentFactory": "React.Fragment",
-    "outDir": "./lib",
+    "outDir": "./es",
 
     "lib": ["dom", "es2017"]
   },
   "include": ["**/*"],
-  "exclude": ["node_modules", "lib", "es"]
+  "exclude": [
+    "node_modules",
+    "lib",
+    "es",
+    "src/**/*.stories.tsx",
+    "src/**/*.test.tsx",
+    "src/**/*.test.ts",
+    "src/stories"
+  ]
 }

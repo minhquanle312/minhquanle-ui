@@ -2,10 +2,10 @@
 import styled from 'styled-components'
 
 // Svg
-import TransparentSvg from 'minhquanle-ui/lib/assets/svg/transparent.svg'
+import TransparentSvg from 'minhquanle-ui/es/assets/svg/transparent.svg'
 
 // Constants
-import { THEME } from 'minhquanle-ui/lib/constants'
+import { THEME } from 'minhquanle-ui/es/constants'
 
 export const CustomPickerWrapper = styled.div`
   position: relative;

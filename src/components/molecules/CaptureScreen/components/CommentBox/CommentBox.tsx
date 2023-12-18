@@ -7,10 +7,10 @@ import Icon from '@antscorp/icons'
 import { Space, Button } from 'antd'
 
 // Constanst
-import { THEME } from 'minhquanle-ui/lib/constants'
+import { THEME } from 'minhquanle-ui/es/constants'
 
 // Hooks
-import { useDebounce } from 'minhquanle-ui/lib/hooks/useDebounce'
+import { useDebounce } from 'minhquanle-ui/es/hooks/useDebounce'
 
 // Types
 import { CommentBoxProps } from './types'

@@ -7,7 +7,7 @@ import { Table } from '../../organism'
 import { Button, Space } from '../index'
 import { message } from './Message'
 // Constants
-import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants/storybook'
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/es/constants/storybook'
 
 export default {
   title: ' Atoms/Message',

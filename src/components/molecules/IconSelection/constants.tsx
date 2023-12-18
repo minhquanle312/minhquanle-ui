@@ -28,9 +28,9 @@ import {
   Interactive,
   Web,
   LocalMallIcon,
-} from 'minhquanle-ui/lib/components/icons'
-import { IconProps } from 'minhquanle-ui/lib/components/icons/type'
-import { THEME } from 'minhquanle-ui/lib/constants'
+} from 'minhquanle-ui/es/components/icons'
+import { IconProps } from 'minhquanle-ui/es/components/icons/type'
+import { THEME } from 'minhquanle-ui/es/constants'
 
 export const CUS_ICON_MAPPING: {
   [k: string]: React.ForwardRefExoticComponent<

@@ -7,14 +7,14 @@ import { Button, Space } from 'antd'
 import { CaptureScreen } from './CaptureScreen'
 
 // Constants
-import { ATTACH_KEYS } from 'minhquanle-ui/lib/components/organism/Help/constants'
+import { ATTACH_KEYS } from 'minhquanle-ui/es/components/organism/Help/constants'
 
 // Types
 import { CaptureTypeProps, ControlPositionProps } from './types'
 import {
   ImageDrewProps,
   StreamTrackProps,
-} from 'minhquanle-ui/lib/components/organism/Help/types'
+} from 'minhquanle-ui/es/components/organism/Help/types'
 
 // Utils
 import { mergeAudioStreams } from './utils'

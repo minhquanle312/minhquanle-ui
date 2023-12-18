@@ -12,7 +12,7 @@ import { Table } from '../../organism'
 import Icon from '@antscorp/icons'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants'
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/es/constants'
 
 // Variables
 const exampleIcon = <Icon type="icon-ants-search-2" />

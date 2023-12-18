@@ -2,19 +2,19 @@
 import React, { CSSProperties, useEffect, useState } from 'react'
 
 // Atoms
-import { Slider, SliderProps } from 'minhquanle-ui/lib/components/atoms/Slider'
+import { Slider, SliderProps } from 'minhquanle-ui/es/components/atoms/Slider'
 
 // Molecules
-import { InputNumber } from 'minhquanle-ui/lib/components/molecules/InputNumber'
+import { InputNumber } from 'minhquanle-ui/es/components/molecules/InputNumber'
 
 // Styled
 import { SliderWithInputNumberWrapper } from './styled'
 
 // Utils
-import { handleError } from 'minhquanle-ui/lib/utils'
+import { handleError } from 'minhquanle-ui/es/utils'
 
 const PATH =
-  'minhquanle-ui/lib/components/molecules/SliderWithInputNumber/index.tsx'
+  'minhquanle-ui/es/components/molecules/SliderWithInputNumber/index.tsx'
 
 interface SliderWithInputNumberProps extends SliderProps {
   precision?: number

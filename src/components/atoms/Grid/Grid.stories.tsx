@@ -8,10 +8,10 @@ import { Row, Col } from './Grid'
 // Component
 import { Divider } from '../Divider'
 import { Table } from '../../organism'
-import { THEME } from 'minhquanle-ui/lib/constants/theme'
+import { THEME } from 'minhquanle-ui/es/constants/theme'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants/storybook'
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/es/constants/storybook'
 
 export default {
   title: ' Atoms/Grid',

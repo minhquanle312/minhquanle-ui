@@ -1,8 +1,8 @@
 /* eslint-disable no-promise-executor-return */
 // Services
-import { SavedImage } from 'minhquanle-ui/lib/models/SavedImage'
-import { Upload } from 'minhquanle-ui/lib/models/Upload'
-import { services } from 'minhquanle-ui/lib/services'
+import { SavedImage } from 'minhquanle-ui/es/models/SavedImage'
+import { Upload } from 'minhquanle-ui/es/models/Upload'
+import { services } from 'minhquanle-ui/es/services'
 
 export const getListingSavedImage = async (
   domainUrl,

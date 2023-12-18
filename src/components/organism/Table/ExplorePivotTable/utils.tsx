@@ -10,11 +10,10 @@ import { CustomCell } from './components/CustomCell'
 import { get } from 'lodash'
 
 // Utils
-import { handleError } from 'minhquanle-ui/lib/utils'
+import { handleError } from 'minhquanle-ui/es/utils'
 import { GRAND_TOTAL_KEY } from './constants'
 
-const PATH =
-  'minhquanle-ui/lib/components/organism/Table/ExploreTable/utils.tsx'
+const PATH = 'minhquanle-ui/es/components/organism/Table/ExploreTable/utils.tsx'
 
 export const buildColumns = (data: TData) => {
   const {

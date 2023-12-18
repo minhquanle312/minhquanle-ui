@@ -17,7 +17,7 @@ import { Table } from '../../organism'
 import { Tag } from '../Tag'
 
 // Constants
-import { TABLE_API_COLUMNS } from 'minhquanle-ui/lib/constants'
+import { TABLE_API_COLUMNS } from 'minhquanle-ui/es/constants'
 
 export default {
   title: 'Atoms/Typography',

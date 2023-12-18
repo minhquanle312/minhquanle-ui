@@ -1,9 +1,9 @@
 // Libraries
-import { Button } from 'minhquanle-ui/lib/components/atoms'
+import { Button } from 'minhquanle-ui/es/components/atoms'
 import styled from 'styled-components'
 
 // Constants
-import { THEME } from 'minhquanle-ui/lib/constants'
+import { THEME } from 'minhquanle-ui/es/constants'
 
 export const IconSelectionWrapper = styled.div`
   width: 100%;

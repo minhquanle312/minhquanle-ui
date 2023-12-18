@@ -21,13 +21,13 @@ import {
   Space,
   Button,
   Typography,
-} from 'minhquanle-ui/lib/components/atoms'
+} from 'minhquanle-ui/es/components/atoms'
 
 // Molecules
-import { Select, Dropdown, DatePicker } from 'minhquanle-ui/lib/components'
+import { Select, Dropdown, DatePicker } from 'minhquanle-ui/es/components'
 
 // Utils
-import { handleError, reorder } from 'minhquanle-ui/lib/utils'
+import { handleError, reorder } from 'minhquanle-ui/es/utils'
 import { calculationDateAdvanced } from './utils'
 
 // Styled
@@ -89,7 +89,7 @@ export interface AdvancedPickerProps {
 }
 
 const PATH =
-  'minhquanle-ui/lib/components/molecules/DatePicker/components/Advanced/DatePickerAdvanced.tsx'
+  'minhquanle-ui/es/components/molecules/DatePicker/components/Advanced/DatePickerAdvanced.tsx'
 
 const { useToken } = theme
 const { Text } = Typography

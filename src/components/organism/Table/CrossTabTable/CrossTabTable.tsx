@@ -2,7 +2,7 @@
 import React, { useMemo } from 'react'
 
 // Organism
-import { Table } from 'minhquanle-ui/lib/components/organism'
+import { Table } from 'minhquanle-ui/es/components/organism'
 
 // Constants
 import { TEST_DATA } from './constants'
